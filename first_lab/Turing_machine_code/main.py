@@ -1,7 +1,3 @@
-import sys
-from logging import StreamHandler
-from unittest import case
-
 from turing_machine import TuringMachine
 from settings import dict_of_settings, get_settings
 from rule import Rule
@@ -44,7 +40,7 @@ def work_with_input_rules(result_arr):
             match choice:
                 case 1:
                     for operation in result_arr:
-                        operation[1].__str__()
+                        print(operation[1].__str__())
                 case 2:
                     rule = create_new_rule()
                     if rule:

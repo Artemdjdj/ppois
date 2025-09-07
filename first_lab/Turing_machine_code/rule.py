@@ -11,7 +11,7 @@ class Rule:
 
     def __str__(self):
         """Эта функция выводит соответствующее правило"""
-        print(f"Текущее правило: {self.current_rule_name} текущее значение: {self.current_value}     ----> \
+        return (f"Текущее правило: {self.current_rule_name} текущее значение: {self.current_value}     ----> \
         Следующее правило: {self.next_rule_name}  новое значение: {self.next_value}  направление:\
         {self.direction}")
 
