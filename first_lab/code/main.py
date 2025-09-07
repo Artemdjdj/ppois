@@ -1,4 +1,5 @@
 import sys
+from logging import StreamHandler
 from unittest import case
 
 from turing_machine import TuringMachine
@@ -29,6 +30,12 @@ def create_new_rule():
 
 def work_with_input_rules(result_arr):
     """Эта функция редактирует правила"""
+    beautiful_logger = logging.getLogger("logger")
+    beautiful_logger.setLevel(logging.DEBUG)
+    beautiful_handler = logging.StreamHandler()
+    beautiful_formatter = ColoredFormatter('%(asctime)s - %(levelname)s - %(message)s')
+    beautiful_handler.setFormatter(beautiful_formatter)
+    beautiful_logger.addHandler(beautiful_handler)
     choice = -1
     while choice !=5:
         print_menu()
@@ -43,22 +50,27 @@ def work_with_input_rules(result_arr):
                     if rule:
                         result_arr.append([(rule.current_rule_name, rule.current_value), rule])
                     else:
-                        print("\nIncorrect rule! Try again!\n")
+                        # print("\nIncorrect rule! Try again!\n")
+                        beautiful_logger.error("Incorrect rule! Try again!\n")
                 case 3:
                     if not result_arr:
-                        print("\n You cant delete rule, because there are no rules!\n")
+                        # print("\n You cant delete rule, because there are no rules!\n")
+                        beautiful_logger.error("You cant delete rule, because there are no rules!\n")
                         continue
                     try:
                         number_of_rule = int(input("Enter the number of rule, which you want to cat from rules: "))
                         if 0 <= number_of_rule-1 < len(result_arr):
                             result_arr.pop(number_of_rule-1)
                         else:
-                            print("\n Number of rule is not correct!\n")
+                            # print("\n Number of rule is not correct!\n")
+                            beautiful_logger.error("Number of rule is not correct!\n")
                     except ValueError:
-                        print("\nIncorrect value, please try again!\n")
+                        # print("\nIncorrect value, please try again!\n")
+                        beautiful_logger.error("Incorrect value, please try again!\n")
                 case 4:
                     if not result_arr:
-                        print("\n You cant change rule, because there are no rules!\n")
+                        # print("\n You cant change rule, because there are no rules!\n")
+                        beautiful_logger.error("You cant change rule, because there are no rules!\n")
                         continue
                     try:
                         number_of_rule = int(input("Enter the number of rule, which you want to edit: "))
@@ -67,17 +79,23 @@ def work_with_input_rules(result_arr):
                             if rule:
                                 result_arr[number_of_rule-1] = [(rule.current_rule_name, rule.current_value), rule]
                             else:
-                                print("\nIncorrect rule! Try again!\n")
+                                # print("\nIncorrect rule! Try again!\n")
+                                beautiful_logger.error("Incorrect rule! Try again!\n")
                         else:
-                            print("\n Number of rule is not correct!\n")
+                            # print("\n Number of rule is not correct!\n")
+                            beautiful_logger.error("Number of rule is not correct!\n")
                     except ValueError:
-                        print("\nIncorrect value, please try again!\n")
+                        # print("\nIncorrect value, please try again!\n")
+                        beautiful_logger.error("Incorrect value, please try again!\n")
                 case 5:
-                    print("\nYou successful leaved from changing your rules\n")
+                    # print("\nYou successful leaved from changing your rules\n")
+                    beautiful_logger.info("You successful leaved from changing your rules\n")
                 case _:
-                    print("\nSorry, but you cant choose these operation!\n")
+                    # print("\nSorry, but you cant choose these operation!\n")
+                    beautiful_logger.warning("Sorry, but you cant choose these operation!\n")
         except ValueError:
-            print("\nIncorrect value, please try again!\n")
+            # print("\nIncorrect value, please try again!\n")
+            beautiful_logger.error("Incorrect value, please try again!\n")
     return result_arr
 def main():
     """Эта главная функция, которая управляет ходом работы программы"""

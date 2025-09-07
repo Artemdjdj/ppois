@@ -1,10 +1,16 @@
-__main__ -----> 2025-09-07 14:01:19,152 - DEBUG - dict of settings: {'len_of_tape': 10, 'default_symbol': '-', 'alphabet': 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-', 'carriage_position': 0}
-__main__ -----> 2025-09-07 14:01:19,153 - INFO - Success getting parameters ['1:', 'qstart', 'a', 'q3', '4', 'left']
-__main__ -----> 2025-09-07 14:01:19,153 - INFO - Success getting parameters ['2:', 'qstart', 'b', 'q2', '5', 'right']
-__main__ -----> 2025-09-07 14:01:19,154 - INFO - Success getting parameters ['3:', 'qstart', 'c', 'q3', '6', 'left']
-__main__ -----> 2025-09-07 14:01:19,154 - INFO - Success getting parameters ['4:', 'q3', '-', 'q4', '8', 'right']
-__main__ -----> 2025-09-07 14:01:19,154 - INFO - Success getting parameters ['5:', 'q4', '4', 'q2', '6', 'right']
-__main__ -----> 2025-09-07 14:01:19,155 - INFO - Success getting parameters ['6:', 'q2', 'b', 'q5', '10', 'right']
-__main__ -----> 2025-09-07 14:01:19,155 - INFO - Success getting parameters ['7:', 'q5', 'c', 'q6', '11', 'right']
-__main__ -----> 2025-09-07 14:01:19,155 - INFO - Success getting parameters ['8:', 'q6', 'a', 'qfinish', '3', 'right']
-__main__ -----> 2025-09-07 14:02:27,939 - ERROR - qstart not in input!
+__main__ -----> 2025-09-07 14:30:42,227 - DEBUG - dict of settings: {'len_of_tape': 10, 'default_symbol': '-', 'alphabet': 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-', 'carriage_position': 0}
+__main__ -----> 2025-09-07 14:30:42,228 - INFO - Success getting parameters ['1:', 'qstart', 'a', 'q3', '4', 'left']
+__main__ -----> 2025-09-07 14:30:42,229 - INFO - Success getting parameters ['2:', 'qstart', 'b', 'q2', '5', 'right']
+__main__ -----> 2025-09-07 14:30:42,229 - INFO - Success getting parameters ['3:', 'qstart', 'c', 'q3', '6', 'left']
+__main__ -----> 2025-09-07 14:30:42,229 - INFO - Success getting parameters ['4:', 'q3', '-', 'q4', '8', 'right']
+__main__ -----> 2025-09-07 14:30:42,230 - INFO - Success getting parameters ['5:', 'q4', '4', 'q2', '6', 'right']
+__main__ -----> 2025-09-07 14:30:42,230 - INFO - Success getting parameters ['6:', 'q2', 'b', 'q5', '10', 'right']
+__main__ -----> 2025-09-07 14:30:42,230 - INFO - Success getting parameters ['7:', 'q5', 'c', 'q6', '11', 'right']
+__main__ -----> 2025-09-07 14:30:42,230 - INFO - Success getting parameters ['8:', 'q6', 'a', 'qfinish', '3', 'right']
+__main__ -----> 2025-09-07 14:30:58,996 - DEBUG - На данный момент:        каретка находится на позиции: 9         текущая операция: q3         текущее значение: -
+__main__ -----> 2025-09-07 14:30:58,996 - DEBUG - На данный момент:        каретка находится на позиции: 10         текущая операция: q4         текущее значение: 4
+__main__ -----> 2025-09-07 14:30:58,996 - DEBUG - На данный момент:        каретка находится на позиции: 11         текущая операция: q2         текущее значение: b
+__main__ -----> 2025-09-07 14:30:58,996 - DEBUG - На данный момент:        каретка находится на позиции: 12         текущая операция: q5         текущее значение: c
+__main__ -----> 2025-09-07 14:30:58,996 - DEBUG - На данный момент:        каретка находится на позиции: 13         текущая операция: q6         текущее значение: a
+__main__ -----> 2025-09-07 14:30:58,996 - DEBUG - Result tape: ['-', '-', '-', '-', '-', '-', '-', '-', '-', '8', '6', '10', '11', '3', 'b', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-']
+__main__ -----> 2025-09-07 14:30:58,996 - INFO - The Turing machine is successfully completed!
