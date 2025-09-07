@@ -1,0 +1,4 @@
+len_of_tape 10
+default_symbol     -
+alphabet
+carriage_position 0

@@ -1,0 +1,8 @@
+1: qstart a q3 4 left
+2: qstart b q2 5 right
+3: qstart c q3 6 left
+4: q3 - q4 8 right
+5: q4 4 q2 6 right
+6: q2 b q5 10 right
+7: q5 c q6 11 right
+8: q6 a qfinish 3 right
