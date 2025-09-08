@@ -2,9 +2,23 @@ class Rule:
     """Этот класс описывает правило"""
     def __init__(self, search_string, replace_string):
         """Эта функция описывает инициализацию правила"""
-        self.search_string = search_string
-        self.replace_string = replace_string
+        self.__search_string = search_string
+        self.__replace_string = replace_string
+
+    def get_search_string(self):
+        """Эта функция возвращает строку, которую нужно заменить"""
+        return self.__search_string
+
+    def get_replace_string(self):
+        """Эта функция возвращает строку, которая заменяет предыдущую строку"""
+        return self.__replace_string
+
+    def __eq__(self, some_rule):
+        """Эта функция проверяет идентичность правил"""
+        if not isinstance(some_rule, Rule):
+            return False
+        return self.__search_string == some_rule.__search_string and self.__replace_string ==some_rule.__replace_string
 
     def __str__(self):
         """"Эта функция выводит правила в красивом виде"""
-        return f" Искомая подстрока: {self.search_string}  ---> Новая подстрока: {self.replace_string}"
+        return f" Искомая подстрока: {self.__search_string}  ---> Новая подстрока: {self.__replace_string}"

@@ -4,6 +4,8 @@ from rule import Rule
 from utils import check_input_rule
 import logging
 from logger import ColoredFormatter
+import time
+
 def print_menu():
     """Эта функция выводит меню операций на экран"""
     print("\n1. посмотреть список правил")
@@ -39,19 +41,26 @@ def work_with_input_rules(result_arr):
             choice  = int(input("Please, enter the number of choice:"))
             match choice:
                 case 1:
+                    if len(result_arr) <= 0:
+                        beautiful_logger.warning("There are no rules!")
+                        # для красивого вывода в консоль
+                        time.sleep(0.05)
+                        continue
                     for operation in result_arr:
-                        print(operation[1].__str__())
+                        beautiful_logger.debug(operation[1].__str__())
                 case 2:
                     rule = create_new_rule()
-                    if rule:
-                        result_arr.append([(rule.current_rule_name, rule.current_value), rule])
+                    if rule and [(rule.get_current_rule_name(), rule.get_current_value()), rule] not in result_arr:
+                        result_arr.append([(rule.get_current_rule_name(), rule.get_current_value()), rule])
                     else:
                         # print("\nIncorrect rule! Try again!\n")
-                        beautiful_logger.error("Incorrect rule! Try again!\n")
+                        beautiful_logger.error("Incorrect rule or such rule always in rules! Try again!\n")
                 case 3:
                     if not result_arr:
                         # print("\n You cant delete rule, because there are no rules!\n")
                         beautiful_logger.error("You cant delete rule, because there are no rules!\n")
+                        # для красивого вывода в консоль
+                        time.sleep(0.05)
                         continue
                     try:
                         number_of_rule = int(input("Enter the number of rule, which you want to cat from rules: "))
@@ -67,16 +76,18 @@ def work_with_input_rules(result_arr):
                     if not result_arr:
                         # print("\n You cant change rule, because there are no rules!\n")
                         beautiful_logger.error("You cant change rule, because there are no rules!\n")
+                        # для красивого вывода в консоль
+                        time.sleep(0.05)
                         continue
                     try:
                         number_of_rule = int(input("Enter the number of rule, which you want to edit: "))
                         if 0 <= number_of_rule - 1 < len(result_arr):
                             rule = create_new_rule()
-                            if rule:
-                                result_arr[number_of_rule-1] = [(rule.current_rule_name, rule.current_value), rule]
+                            if rule and [(rule.get_current_rule_name(), rule.get_current_value()), rule] not in result_arr:
+                                result_arr[number_of_rule-1] = [(rule.get_current_rule_name(), rule.get_current_value()), rule]
                             else:
                                 # print("\nIncorrect rule! Try again!\n")
-                                beautiful_logger.error("Incorrect rule! Try again!\n")
+                                beautiful_logger.error("Incorrect rule or such rule always in rules! Try again!\n")
                         else:
                             # print("\n Number of rule is not correct!\n")
                             beautiful_logger.error("Number of rule is not correct!\n")
@@ -89,6 +100,8 @@ def work_with_input_rules(result_arr):
                 case _:
                     # print("\nSorry, but you cant choose these operation!\n")
                     beautiful_logger.warning("Sorry, but you cant choose these operation!\n")
+            # для красивого вывода в консоль
+            time.sleep(0.05)
         except ValueError:
             # print("\nIncorrect value, please try again!\n")
             beautiful_logger.error("Incorrect value, please try again!\n")
@@ -153,7 +166,7 @@ def main():
         for el in res_arr_of_rules:
             tuple_rule = el[0]
             rule = el[1]
-            if not is_qstart and rule.current_rule_name=="qstart":
+            if not is_qstart and rule.get_current_rule_name()=="qstart":
                 is_qstart = True
             turing_machine.extend_rules(tuple_rule, rule)
         if not is_qstart:
@@ -172,9 +185,9 @@ def main():
                     logger.debug(turing_machine.__str__())
         # print(turing_machine.tape.tape)
         # print("\n The Turing machine is successfully completed!")
-        logger.debug(f"Result tape: {turing_machine.tape.tape}")
+        logger.debug(f"Result tape: {turing_machine.get_tape_to_turing_machine()}")
         logger.info("The Turing machine is successfully completed!")
-    except:
+    except FileNotFoundError:
         print("\nWrong path to your file!\n")
 
 if __name__ == '__main__':

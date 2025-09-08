@@ -3,6 +3,8 @@ from markov_algorithm import MarkovAlgorithm
 from rule import Rule
 import logging
 from logger import ColoredFormatter
+import typing
+import time
 
 def print_menu():
     """Эта функция выводит меню операций на экран"""
@@ -16,7 +18,7 @@ def create_new_rule(markov_algorithm):
     """Эта функция безопасно создает правило"""
     search_string = input("\nEnter search string:")
     replace_string = input("\nEnter replace string:")
-    if markov_algorithm.check_input_rule([search_string, markov_algorithm.default_symbol, replace_string]):
+    if markov_algorithm.check_input_rule([search_string, markov_algorithm.get_default_symbol(), replace_string]):
         rule = Rule(search_string, replace_string)
         return rule
     else:
@@ -39,23 +41,30 @@ def work_with_input_rules(markov_algorithm):
             choice  = int(input("Please, enter the number of choice:"))
             match choice:
                 case 1:
-                    for i, rule in enumerate(markov_algorithm.rules):
-                        print(f"{i+1}. {rule.__str__()}")
+                    if len(markov_algorithm.get_markov_rules())<=0:
+                        beautiful_logger.warning("There are no markov rules!")
+                        # для красивого вывода в консоль
+                        time.sleep(0.05)
+                        continue
+                    for i, rule in enumerate(markov_algorithm.get_markov_rules()):
+                        beautiful_logger.debug(f"{i+1}. {rule.__str__()}")
                 case 2:
                     rule =create_new_rule(markov_algorithm)
-                    if rule:
-                        markov_algorithm.rules.append(rule)
+                    if rule not in markov_algorithm.get_markov_rules():
+                        markov_algorithm.add_new_rule(rule)
                     else:
-                        beautiful_logger.error("Incorrect rule! Try again!\n")
+                        beautiful_logger.error("Incorrect rule or such rule always in list of rules! Try again!\n")
                 case 3:
-                    if not markov_algorithm.rules:
+                    if not markov_algorithm.get_markov_rules():
                         # print("\n You cant delete rule, because there are no rules!\n")
                         beautiful_logger.error("You cant delete rule, because there are no rules!\n")
+                        # для красивого вывода в консоль
+                        time.sleep(0.05)
                         continue
                     try:
                         number_of_rule = int(input("Enter the number of rule, which you want to cat from rules: "))
-                        if 0 <= number_of_rule-1 < len(markov_algorithm.rules):
-                            markov_algorithm.rules.pop(number_of_rule-1)
+                        if 0 <= number_of_rule-1 < len(markov_algorithm.get_markov_rules()):
+                            markov_algorithm.delete_rule_by_position(number_of_rule-1)
                         else:
                             # print("\n Number of rule is not correct!\n")
                             beautiful_logger.error("Number of rule is not correct!\n")
@@ -63,19 +72,21 @@ def work_with_input_rules(markov_algorithm):
                         # print("\nIncorrect value, please try again!\n")
                         beautiful_logger.error("Incorrect value, please try again!\n")
                 case 4:
-                    if not markov_algorithm.rules:
+                    if not markov_algorithm.get_markov_rules():
                         # print("\n You cant change rule, because there are no rules!\n")
                         beautiful_logger.error("You cant change rule, because there are no rules!\n")
+                        # для красивого вывода в консоль
+                        time.sleep(0.05)
                         continue
                     try:
                         number_of_rule = int(input("Enter the number of rule, which you want to edit: "))
-                        if 0 <= number_of_rule - 1 < len(markov_algorithm.rules):
+                        if 0 <= number_of_rule - 1 < len(markov_algorithm.get_markov_rules()):
                             rule = create_new_rule(markov_algorithm)
-                            if rule:
-                                markov_algorithm.rules[number_of_rule-1] = rule
+                            if rule and rule not in markov_algorithm.get_markov_rules():
+                                markov_algorithm.change_rule_by_position(number_of_rule-1, rule)
                             else:
                                 # print("\nIncorrect rule! Try again!\n")
-                                beautiful_logger.error("Incorrect rule! Try again!\n")
+                                beautiful_logger.error("Incorrect rule or such rule always in list of rules! Try again!\n")
                         else:
                             # print("\n Number of rule is not correct!\n")
                             beautiful_logger.error("Number of rule is not correct!\n")
@@ -88,6 +99,9 @@ def work_with_input_rules(markov_algorithm):
                 case _:
                     # print("\nSorry, but you cant choose these operation!\n")
                     beautiful_logger.warning("Sorry, but you cant choose these operation!\n")
+
+            # для красивого вывода в консоль
+            time.sleep(0.05)
         except ValueError:
             # print("\nIncorrect value, please try again!\n")
             beautiful_logger.error("Incorrect value, please try again!\n")
@@ -122,11 +136,11 @@ def main():
     # print([[rule.search_string, rule.replace_string] for rule in markov_algorithm_res.rules])
     while True:
         result_of_algorithm = markov_algorithm_res.make_markov_algorithm()
-        logger.debug(f"Result of algorithm: {markov_algorithm_res.markov_string.__str__()}")
+        logger.debug(f"Result of algorithm: {markov_algorithm_res.get_result_markov_string()}")
         if result_of_algorithm:
             break
 
-    logger.info(f"The result of the algorithm is: {markov_algorithm_res.markov_string.__str__()}")
+    logger.info(f"The result of the algorithm is: {markov_algorithm_res.get_result_markov_string()}")
 
 if __name__ == '__main__':
     main()
