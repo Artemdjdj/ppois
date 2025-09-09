@@ -1,15 +1,12 @@
+"""@package docstring
+Этот модуль используется для хранения настроек, например, алфавита, а также используется для получения инфориации
+от пользователя.
+"""
 
 import string
-# Этот файл отвечает за базовые настройки, например длина ленты в машине Тьюринга
-
-# dict_of_settings={
-#     'len_of_tape' : 10,
-#     'default_symbol':"-",
-#     'alphabet':string.ascii_lowercase+string.ascii_uppercase+"".join([str(n) for n in range(0, 10)])+dict_of_settings.get('default_symbol','-'),
-#     'carriage_position' : 0,
-# }
 dict_of_settings = {'len_of_tape': 10, 'default_symbol': "-"}
-dict_of_settings['alphabet'] = string.ascii_lowercase + string.ascii_uppercase + "".join([str(n) for n in range(0, 10)]) + dict_of_settings['default_symbol']
+dict_of_settings['alphabet'] = string.ascii_lowercase + string.ascii_uppercase + \
+                               "".join([str(n) for n in range(0, 10)]) + dict_of_settings['default_symbol']
 dict_of_settings['carriage_position'] = 0
 
 def try_to_make_input_data_better(key, value):

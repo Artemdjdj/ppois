@@ -1,6 +1,11 @@
+"""@package docstring
+Этот модуль описывает класс машины Тьюринга, в нем реализована вся необходимая логика.
+Один из важнейших файлов!
+"""
 from Turing_machine_code.settings import dict_of_settings
 from Turing_machine_code.rule import Rule
 from Turing_machine_code.tape import Tape
+from Turing_machine_code.utils import check_input_value
 
 
 class TuringMachine:
@@ -23,6 +28,10 @@ class TuringMachine:
         """Эта функция возвращает ленту"""
         return self.__tape.get_tape()
 
+    def get_tape_from_turing_machine(self):
+        """Эта функция возвращает ленту (как обьект)"""
+        return self.__tape
+
     def extend_rules(self, tuple_rule, rule):
         """Эта функция добавляет правило в словарь правил для машины Тьюринга"""
         self.__rules[tuple_rule] = rule
@@ -39,6 +48,14 @@ class TuringMachine:
         if not is_qstart:
             return False
         return True
+
+    def set_current_rule_name_and_current_value(self, current_rule_name, current_value):
+        """Ручная установка текущего правила"""
+        if check_input_value(current_value):
+            self.__current_state = current_rule_name
+            self.__current_value = current_value
+            return True
+        return False
 
     def move_carriage_and_make_some_action(self, is_start):
         """Эта функция будет выполнять какое-то действие по правилу, либо, если правило не

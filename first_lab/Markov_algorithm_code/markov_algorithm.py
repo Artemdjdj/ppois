@@ -1,7 +1,10 @@
-from rule import Rule
-from markov_string import MarkovString
+"""@package docstring
+В этом модуле описан класс, который определяет алгоритм Маркова
+"""
+from Markov_algorithm_code.rule import Rule
+from Markov_algorithm_code.markov_string import MarkovString
 import string
-from utils import binary_search
+from Markov_algorithm_code.utils import binary_search
 
 class MarkovAlgorithm:
     """Этот класс описывает непосредственно алгорифм  Маркова"""
@@ -22,6 +25,14 @@ class MarkovAlgorithm:
     def get_result_markov_string(self):
         """Эта функция выводит готовую строку Маркова"""
         return str(self.__markov_string)
+
+    def get_stop_symbol(self):
+        """Эта функция возвращает символ останова"""
+        return self.__stop_symbol
+
+    def get_markov_string_such_object(self):
+        """Эта функция возвращает строку Маркова, для тестирования нужен объект класса MarkovString"""
+        return self.__markov_string
 
     def get_default_symbol(self):
         """Эта функция возвращает разделяющий символ"""
@@ -58,6 +69,15 @@ class MarkovAlgorithm:
             else:
                 print("\n Sorry, but your string is not correct!")
         self.__markov_string.set_string_value(string_input)
+
+    def set_string_value_for_test(self, input_string):
+        """Эта функция используется чтобы проверить работу алгоритма в unittest"""
+        letters = sorted(list(self.__alphabet))
+        for letter in input_string:
+            if not binary_search(letters, letter):
+                return False
+        self.__markov_string.set_string_value(input_string)
+        return True
 
     def make_markov_algorithm(self)->bool:
         """Эта функция ищет подходящее правило и выполняет его"""
@@ -103,7 +123,7 @@ class MarkovAlgorithm:
 
             return True
         except FileNotFoundError:
-            print("\nSorry, but programm can't find the file!\n")
+            # print("\nSorry, but programm can't find the file!\n")
             return False
 
 # markov_algorithm_res = MarkovAlgorithm()

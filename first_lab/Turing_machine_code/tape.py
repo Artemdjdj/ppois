@@ -1,3 +1,7 @@
+"""@package docstring
+Этот модуль описывает класс ленты. Сам класс состоит из двух аргументов и небольшого количества различных функций
+"""
+
 from Turing_machine_code.settings import dict_of_settings
 
 class Tape:
@@ -14,7 +18,7 @@ class Tape:
         try:
             return self.__tape[position_of_carriage]
         except IndexError:
-            print("\n Problem with getting symbol!")
+            # print("\n Problem with getting symbol!")
             return None
 
     def get_tape(self):

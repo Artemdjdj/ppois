@@ -1,3 +1,7 @@
+"""@package docstring
+Этот модуль является вспомогательным, в нем проверяется соответствие символов определенному алфавиту
+"""
+
 from Turing_machine_code.settings import dict_of_settings, get_settings
 from Markov_algorithm_code.utils import binary_search
 # def binary_search(arr_of_chars, some_char):
@@ -25,6 +29,14 @@ def check_input_rule(list_of_keys:list)->bool:
         if not binary_search(letters, letter):
             return False
     for letter in next_value:
+        if not binary_search(letters, letter):
+            return False
+    return True
+
+def check_input_value(value):
+    """Эта функция проверяет что значение подходит алфавиту"""
+    letters = sorted(list(dict_of_settings['alphabet']))
+    for letter in value:
         if not binary_search(letters, letter):
             return False
     return True

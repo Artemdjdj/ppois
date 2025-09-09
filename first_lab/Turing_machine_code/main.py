@@ -1,3 +1,8 @@
+"""@package docstring
+Этот модуль выполняет функцию консольного приложения.
+С помощью этого модуля можно протестировать машину Тьюринга, а также отредактировать список правил
+"""
+
 from Turing_machine_code.turing_machine import TuringMachine
 from Turing_machine_code.settings import dict_of_settings, get_settings
 from Turing_machine_code.rule import Rule
@@ -5,8 +10,9 @@ from Turing_machine_code.utils import check_input_rule
 import logging
 from logger import ColoredFormatter
 import time
+from typing import List, Tuple, Callable
 
-def print_menu():
+def print_menu()->None:
     """Эта функция выводит меню операций на экран"""
     print("\n1. посмотреть список правил")
     print("2. добавить новое правило")
@@ -14,7 +20,7 @@ def print_menu():
     print("4. изменть правило")
     print("5. закончить редактирование правил")
 
-def create_new_rule():
+def create_new_rule()->Rule:
     """Эта функция безопасно создает правило"""
     current_state = input("Enter the current state: ")
     current_value = input("Enter the current value: ")

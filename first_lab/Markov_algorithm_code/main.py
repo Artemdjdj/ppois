@@ -1,13 +1,20 @@
+"""@package docstring
+Этот модуль выполняет функцию консольного приложения.
+С помощью этого модуля можно протестировать алгорифмы Маркова, отредактировать уже существующие правила
+"""
+
 from Markov_algorithm_code import markov_algorithm
-from markov_algorithm import MarkovAlgorithm
-from rule import Rule
+from Markov_algorithm_code.markov_algorithm import MarkovAlgorithm
+from Markov_algorithm_code.rule import Rule
 import logging
 from logger import ColoredFormatter
 import typing
 import time
 
 def print_menu():
-    """Эта функция выводит меню операций на экран"""
+    """
+    Эта функция выводит меню операций на экран
+    """
     print("\n1. посмотреть список правил")
     print("2. добавить новое правило")
     print("3. удалить правило")
