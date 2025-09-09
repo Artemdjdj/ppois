@@ -1,4 +1,4 @@
-from settings import dict_of_settings
+from Turing_machine_code.settings import dict_of_settings
 
 class Tape:
     """Этот класс описывает ленту машины Тьюринга"""

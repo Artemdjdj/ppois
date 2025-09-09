@@ -1,7 +1,7 @@
-from turing_machine import TuringMachine
-from settings import dict_of_settings, get_settings
-from rule import Rule
-from utils import check_input_rule
+from Turing_machine_code.turing_machine import TuringMachine
+from Turing_machine_code.settings import dict_of_settings, get_settings
+from Turing_machine_code.rule import Rule
+from Turing_machine_code.utils import check_input_rule
 import logging
 from logger import ColoredFormatter
 import time
@@ -161,16 +161,19 @@ def main():
         carriage = carriage_position + dict_of_settings.get('len_of_tape', 0)
 
         turing_machine = TuringMachine(carriage, input_string, 'qstart', input_string[0])
-        is_qstart = False
         res_arr_of_rules = work_with_input_rules(res_arr_of_rules)
-        for el in res_arr_of_rules:
-            tuple_rule = el[0]
-            rule = el[1]
-            if not is_qstart and rule.get_current_rule_name()=="qstart":
-                is_qstart = True
-            turing_machine.extend_rules(tuple_rule, rule)
+        # for el in res_arr_of_rules:
+        #     tuple_rule = el[0]
+        #     rule = el[1]
+        #     if not is_qstart and rule.get_current_rule_name()=="qstart":
+        #         is_qstart = True
+        #     turing_machine.extend_rules(tuple_rule, rule)
+        # if not is_qstart:
+        #     # print("\n qstart not in input!!!")
+        #     logger.error("qstart not in input!")
+        #     return
+        is_qstart = turing_machine.extend_rules_using_list_of_keys(res_arr_of_rules)
         if not is_qstart:
-            # print("\n qstart not in input!!!")
             logger.error("qstart not in input!")
             return
         is_start = False

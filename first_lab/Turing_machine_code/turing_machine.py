@@ -1,6 +1,6 @@
-from settings import dict_of_settings
-from rule import Rule
-from tape import Tape
+from Turing_machine_code.settings import dict_of_settings
+from Turing_machine_code.rule import Rule
+from Turing_machine_code.tape import Tape
 
 
 class TuringMachine:
@@ -26,6 +26,19 @@ class TuringMachine:
     def extend_rules(self, tuple_rule, rule):
         """Эта функция добавляет правило в словарь правил для машины Тьюринга"""
         self.__rules[tuple_rule] = rule
+
+    def extend_rules_using_list_of_keys(self, res_arr_of_rules):
+        """Эта функция добавляет правила, используя весь готовый набор правил"""
+        is_qstart = False
+        for el in res_arr_of_rules:
+            tuple_rule = el[0]
+            rule = el[1]
+            if not is_qstart and rule.get_current_rule_name()=="qstart":
+                is_qstart = True
+            self.__rules[tuple_rule] = rule
+        if not is_qstart:
+            return False
+        return True
 
     def move_carriage_and_make_some_action(self, is_start):
         """Эта функция будет выполнять какое-то действие по правилу, либо, если правило не

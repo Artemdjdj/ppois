@@ -20,10 +20,13 @@ def try_to_make_input_data_better(key, value):
         return value[0]
     return value
 
+def get_default_symbol():
+    """Эта функция вернет из словаря спустой символ ленты"""
+    return dict_of_settings.get('default_symbol', '-')
 
 def get_settings():
     """Эта функция считывает базовые настройки, которые можно записать в файл settings.txt"""
-    with open("settings.txt", 'r') as file:
+    with open(r"C:\Users\Redmi\Desktop\ppois\first_lab\Turing_machine_code\settings.txt", 'r') as file:
         for _ in range(len(dict_of_settings)):
             res = file.readline().split()
             if len(res)<=1 or len(res)>2:

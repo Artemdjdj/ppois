@@ -1,4 +1,4 @@
-from settings import dict_of_settings, get_settings
+from Turing_machine_code.settings import dict_of_settings, get_settings
 from Markov_algorithm_code.utils import binary_search
 # def binary_search(arr_of_chars, some_char):
 #     """Эта функция ищет символ в строке"""
