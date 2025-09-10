@@ -1,2 +1,10 @@
-__main__ -----> 2025-09-10 10:09:57,702 - DEBUG - Result of algorithm: abcab
-__main__ -----> 2025-09-10 10:09:57,703 - INFO - The result of the algorithm is: abcab
+__main__ -----> 2025-09-10 19:39:35,474 - DEBUG - Result of algorithm: 0|01
+__main__ -----> 2025-09-10 19:39:35,474 - DEBUG - Result of algorithm: 0|00|
+__main__ -----> 2025-09-10 19:39:35,474 - DEBUG - Result of algorithm: 00||0|
+__main__ -----> 2025-09-10 19:39:35,474 - DEBUG - Result of algorithm: 00|0|||
+__main__ -----> 2025-09-10 19:39:35,475 - DEBUG - Result of algorithm: 000|||||
+__main__ -----> 2025-09-10 19:39:35,475 - DEBUG - Result of algorithm: 500|||||
+__main__ -----> 2025-09-10 19:39:35,475 - DEBUG - Result of algorithm: 550|||||
+__main__ -----> 2025-09-10 19:39:35,475 - DEBUG - Result of algorithm: 555|||||
+__main__ -----> 2025-09-10 19:39:35,475 - DEBUG - Result of algorithm: 555|||||
+__main__ -----> 2025-09-10 19:39:35,475 - INFO - The result of the algorithm is: 555|||||

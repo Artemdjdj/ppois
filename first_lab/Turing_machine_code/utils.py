@@ -4,10 +4,17 @@
 
 from Turing_machine_code.settings import dict_of_settings, get_settings
 from Markov_algorithm_code.utils import binary_search
+from typing import List
 
-def check_input_rule(list_of_keys:list)->bool:
-    """Эта функция проверяет правило поступившее на вход"""
-    # print(list_of_keys)
+def check_input_rule(list_of_keys:List[str])->bool:
+    """Эта функция проверяет правило поступившее на вход
+
+    Args:
+        list_of_keys (List[str])
+
+    Returns:
+        bool
+    """
     current_value = str(list_of_keys[2])
     next_value = str(list_of_keys[4])
     get_settings()
@@ -23,8 +30,15 @@ def check_input_rule(list_of_keys:list)->bool:
         return False
     return True
 
-def check_input_value(value)->bool:
-    """Эта функция проверяет что значение подходит алфавиту"""
+def check_input_value(value:str)->bool:
+    """Эта функция проверяет что значение подходит алфавиту
+
+    Args:
+        value (str)
+
+    Returns:
+        bool
+    """
     letters = sorted(list(dict_of_settings['alphabet']))
     for letter in value:
         if not binary_search(letters, letter):

@@ -8,9 +8,16 @@ import string
 from typing import List
 
 class MarkovAlgorithm:
-    """Этот класс описывает непосредственно алгорифм  Маркова"""
+    """Этот класс описывает непосредственно алгорифм  Маркова
+    """
     def __init__(self,markov_string:MarkovString=MarkovString(""), alphabet=None, default_symbol = "→", stop_symbol="*")->None:
-        """Этот метод инициализирует сам алгорифм Маркова"""
+        """Этот метод инициализирует сам алгорифм Маркова
+        Args:
+            markov_string (MarkovString, optional). Defaults to MarkovString("").
+            alphabet (_type_, optional):. Defaults to None.
+            default_symbol (str, optional). Defaults to "→".
+            stop_symbol (str, optional). Defaults to "*".
+        """
         self.__rules = list()
         self.__markov_string = markov_string
         self.__default_symbol = default_symbol
@@ -19,39 +26,73 @@ class MarkovAlgorithm:
                             string.digits
 
     def get_result_markov_string(self)->str:
-        """Эта функция выводит готовую строку Маркова"""
+        """Эта функция выводит готовую строку Маркова
+
+        Returns:
+            str
+        """
         return str(self.__markov_string)
 
     def get_stop_symbol(self)->str:
-        """Эта функция возвращает символ останова"""
+        """Эта функция возвращает символ останова
+
+        Returns:
+            str
+        """
         return self.__stop_symbol
 
     def get_markov_string_such_object(self)->str:
-        """Эта функция возвращает строку Маркова, для тестирования нужен объект класса MarkovString"""
+        """Эта функция возвращает строку Маркова, для тестирования нужен объект класса MarkovString
+
+        Returns:
+            str
+        """
         return self.__markov_string
 
     def get_default_symbol(self)->str:
-        """Эта функция возвращает разделяющий символ"""
+        """Эта функция возвращает разделяющий символ
+
+        Returns:
+            str
+        """
         return self.__default_symbol
 
     def get_markov_rules(self)->List[Rule]:
-        """Эта функция возвращает список правил"""
+        """Эта функция возвращает список правил
+
+        Returns:
+            List[Rule]
+        """
         return self.__rules
 
-    def add_new_rule(self, rule)->None:
-        """Эта функция добавляет новое правило в общий список правил"""
+    def add_new_rule(self, rule:Rule)->None:
+        """_summary_
+
+        Args:
+            rule (Rule)
+        """
         self.__rules.append(rule)
 
-    def delete_rule_by_position(self, position)->None:
-        """Эта функция удаляет правило по позиции в списке правил"""
+    def delete_rule_by_position(self, position:int)->None:
+        """Эта функция удаляет правило по позиции в списке правил
+
+        Args:
+            position (int)
+        """
         self.__rules.pop(position)
 
-    def change_rule_by_position(self, position, new_rule)->None:
-        """Эта функция изменяет правило"""
+    def change_rule_by_position(self, position:int, new_rule:Rule)->None:
+        """Эта функция изменяет правило
+
+        Args:
+            position (int): _description_
+            new_rule (Rule): _description_
+        """
         self.__rules[position] = new_rule
 
     def set_string_value(self)->None:
-        """Эта функция устанавливает значение строки"""
+        """Эта функция устанавливает значение строки
+        """
         letters = sorted(list(self.__alphabet))
         while True:
             is_good_string = True
@@ -66,8 +107,15 @@ class MarkovAlgorithm:
                 print("\n Sorry, but your string is not correct!")
         self.__markov_string.set_string_value(string_input)
 
-    def set_string_value_for_test(self, input_string)->bool:
-        """Эта функция используется чтобы проверить работу алгоритма в unittest"""
+    def set_string_value_for_test(self, input_string:str)->bool:
+        """Эта функция используется чтобы проверить работу алгоритма в unittest
+
+        Args:
+            input_string (str)
+
+        Returns:
+            bool
+        """
         letters = sorted(list(self.__alphabet))
         for letter in input_string:
             if not binary_search(letters, letter):
@@ -76,7 +124,10 @@ class MarkovAlgorithm:
         return True
 
     def make_markov_algorithm(self)->bool:
-        """Эта функция ищет подходящее правило и выполняет его"""
+        """Эта функция ищет подходящее правило и выполняет его
+        Returns:
+            bool
+        """
         for rule in self.__rules:
             if self.__markov_string.replacing_one_string_with_another(rule.get_search_string(), \
                                                                       rule.get_replace_string(),self.__stop_symbol):
@@ -87,7 +138,14 @@ class MarkovAlgorithm:
         return True
 
     def check_input_rule(self, list_of_split_rule)->bool:
-        """Эта функция реализует проверку на корректность введенных правил"""
+        """Эта функция реализует проверку на корректность введенных правил
+
+        Args:
+            list_of_split_rule (_type_)
+
+        Returns:
+            bool
+        """
         if len(list_of_split_rule) !=3:
             return False
         first_str = list_of_split_rule[0]
@@ -105,7 +163,14 @@ class MarkovAlgorithm:
         return True
 
     def filling_set(self, path_to_file)->bool:
-        """Эта функция наполняет список правилами"""
+        """Эта функция наполняет список правилами
+
+        Args:
+            path_to_file (_type_)
+
+        Returns:
+            bool
+        """
         try:
             with open(path_to_file, 'r') as file:
                 while True:
@@ -121,8 +186,3 @@ class MarkovAlgorithm:
         except FileNotFoundError:
             # print("\nSorry, but programm can't find the file!\n")
             return False
-
-# markov_algorithm_res = MarkovAlgorithm()
-# markov_algorithm_res.set_string_value()
-#
-# markov_algorithm_res.get_result_markov_string()

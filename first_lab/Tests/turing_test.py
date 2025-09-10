@@ -27,12 +27,12 @@ class Test_Turing_machine(TestCase):
     """Этот класс используется для тестирования функций"""
     def test_get_tape(self):
         """Этот тест проверяет ленту машины Тьюринга"""
-        turing_machine = TuringMachine(0, "Hello world", "qstart", "g")
+        turing_machine = TuringMachine(0, "qstart", "g", Tape("Hello world"))
         self.assertEqual(''.join([x for x in turing_machine.get_tape_to_turing_machine() if x !=get_default_symbol()]), \
                          "Hello world")
     def test_get_tape2(self):
         """Этот тест проверяет ленту машины Тьюринга"""
-        turing_machine = TuringMachine(2, "result", "qstart", "g")
+        turing_machine = TuringMachine(2,"qstart", "g", Tape("result"))
         self.assertEqual(''.join([x for x in turing_machine.get_tape_to_turing_machine() if x !=get_default_symbol()]), \
                          "result")
 
@@ -58,17 +58,17 @@ class Test_Turing_machine(TestCase):
 
     def test_working_with_input_data(self):
         """Этот тест проверяет возможность расширения словаря правил"""
-        turing_machine = TuringMachine(0, "aaaa", "q1", "a")
+        turing_machine = TuringMachine(0, "q1", "a", Tape("aaaa"))
         self.assertTrue(turing_machine.extend_rules_using_list_of_keys(rules))
 
     def test_working_with_input_data2(self):
         """Этот тест проверяет возможность расширения словаря правил"""
-        turing_machine = TuringMachine(0, "aaaa", "qstart", "a")
+        turing_machine = TuringMachine(0, "qstart", "a", Tape("aaaa"))
         self.assertFalse(turing_machine.extend_rules_using_list_of_keys(rules[1:]))
 
     def test_how_work_function_make_action_False(self):
         """Этот тест проверяет непосредственно работу машины Тьюринга для некорректных значений"""
-        turing_machine = TuringMachine(0, "aaaa", "qstart", "a")
+        turing_machine = TuringMachine(0, "qstart", "a", Tape("aaaa"))
         if turing_machine.extend_rules_using_list_of_keys(rules):
             # test case when move return False
             turing_machine.set_current_rule_name_and_current_value("q10", "e")
@@ -76,7 +76,7 @@ class Test_Turing_machine(TestCase):
 
     def test_how_work_function_make_action_True(self):
         """Этот тест проверяет непосредственно работу машины Тьюринга для верных значений"""
-        turing_machine = TuringMachine(0, "aaaa", "qstart", "a")
+        turing_machine = TuringMachine(0, "qstart", "a", Tape("aaaa"))
         if turing_machine.extend_rules_using_list_of_keys(rules):
             # test case when move return True
             turing_machine.set_current_rule_name_and_current_value("q1", "a")
@@ -84,19 +84,19 @@ class Test_Turing_machine(TestCase):
 
     def test_how_work_function_make_action_False_and_Finish_value(self):
         """Этот тест проверяет непосредственно работу машины Тьюринга для некорректных значений"""
-        turing_machine = TuringMachine(0, "aaaa", "qstart", "a")
+        turing_machine = TuringMachine(0, "qstart", "a", Tape("aaaa"))
         if turing_machine.extend_rules_using_list_of_keys(rules):
             turing_machine.set_current_rule_name_and_current_value("q11", "e")
             self.assertFalse(turing_machine.move_carriage_and_make_some_action(False))
 
     def test_get_symbol_from_tape(self):
         """Этот тест проверяет функцию получения символа из ленты по положению каретки"""
-        turing_machine = TuringMachine(0, "aaap", "qstart", "a")
+        turing_machine = TuringMachine(0, "qstart", "a", Tape("aaap"))
         self.assertIsNone(turing_machine.get_tape_from_turing_machine().get_symbol_from_tape(50))
 
     def test_get_symbol_from_tape2(self):
         """Этот тест проверяет функцию получения символа из ленты по положению каретки"""
-        turing_machine = TuringMachine(0, "aaap", "qstart", "a")
+        turing_machine = TuringMachine(0, "qstart", "a", Tape("aaap"))
         self.assertIsNotNone(turing_machine.get_tape_from_turing_machine().get_symbol_from_tape(0))
 
     def test_equal_of_two_turing_rules(self):

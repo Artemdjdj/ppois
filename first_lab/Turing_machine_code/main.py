@@ -22,7 +22,11 @@ def print_menu()->None:
     print("5. закончить редактирование правил")
 
 def create_new_rule()->Rule:
-    """Эта функция безопасно создает правило"""
+    """Эта функция безопасно создает правило
+
+    Returns:
+        Rule
+    """
     current_state = input("Enter the current state: ")
     current_value = input("Enter the current value: ")
     next_rule_name = input("Enter the next state: ")
@@ -33,8 +37,15 @@ def create_new_rule()->Rule:
     else:
         return None
 
-def work_with_input_rules(result_arr)->List[List[Tuple[Callable, Callable]|Rule]]:
-    """Эта функция редактирует правила"""
+def work_with_input_rules(result_arr:List[List[Tuple[Callable, Callable]|Rule]])->List[List[Tuple[Callable, Callable]|Rule]]:
+    """Эта функция редактирует правила
+
+    Args:
+        result_arr (List[List[Tuple[Callable, Callable] | Rule]])
+
+    Returns:
+        List[List[Tuple[Callable, Callable]|Rule]]
+    """
     beautiful_logger = logging.getLogger("logger")
     beautiful_logger.setLevel(logging.DEBUG)
     beautiful_handler = logging.StreamHandler()
@@ -133,24 +144,19 @@ def main()->None:
                     break
                 list_of_keys = line.split()
                 if len(list_of_keys) !=6:
-                    # print("\nWrong input!")
                     logger.error("Wrong input format!")
-                    # print(list_of_keys)
                     return
                 logger.info(f"Success getting parameters {list_of_keys}")
                 if not check_input_rule(list_of_keys):
-                    # print("\nValues should be in alphabet!!!")
                     logger.error("Values should be in alphabet!")
                     return
                 rule = Rule(list_of_keys[1], list_of_keys[2], list_of_keys[3], list_of_keys[4], list_of_keys[5])
                 rule_tuple = (list_of_keys[1], list_of_keys[2])
                 res_arr_of_rules.append([rule_tuple, rule])
-
         input_string = input("\n Enter the start tape: ")
         carriage_position = dict_of_settings.get('carriage_position', 0) if dict_of_settings.get('carriage_position', 0) \
             < len(input_string) else 0
         carriage = carriage_position + dict_of_settings.get('len_of_tape', 0)
-
         turing_machine = TuringMachine(carriage, 'qstart', input_string[0], Tape(input_string))
         res_arr_of_rules = work_with_input_rules(res_arr_of_rules)
         is_qstart = turing_machine.extend_rules_using_list_of_keys(res_arr_of_rules)
@@ -167,8 +173,6 @@ def main()->None:
                     break
                 if is_log:
                     logger.debug(turing_machine.__str__())
-        # print(turing_machine.tape.tape)
-        # print("\n The Turing machine is successfully completed!")
         logger.debug(f"Result tape: {turing_machine.get_tape_to_turing_machine()}")
         logger.info("The Turing machine is successfully completed!")
     except FileNotFoundError:
