@@ -197,7 +197,7 @@ def main():
         logger.debug(f"Result tape: {turing_machine.get_tape_to_turing_machine()}")
         logger.info("The Turing machine is successfully completed!")
     except FileNotFoundError:
-        print("\nWrong path to your file!\n")
+        logger.error("\nWrong path to your file!\n")
 
 if __name__ == '__main__':
     main()

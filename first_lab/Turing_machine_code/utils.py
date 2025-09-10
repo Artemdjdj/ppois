@@ -31,6 +31,9 @@ def check_input_rule(list_of_keys:list)->bool:
     for letter in next_value:
         if not binary_search(letters, letter):
             return False
+    direction = list_of_keys[5]
+    if direction.lower() not in ["left", "right"]:
+        return False
     return True
 
 def check_input_value(value):
