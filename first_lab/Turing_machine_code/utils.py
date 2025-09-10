@@ -4,19 +4,6 @@
 
 from Turing_machine_code.settings import dict_of_settings, get_settings
 from Markov_algorithm_code.utils import binary_search
-# def binary_search(arr_of_chars, some_char):
-#     """Эта функция ищет символ в строке"""
-#     left = 0
-#     right = len(arr_of_chars) - 1
-#     while left<=right:
-#         mid = (left+right)//2
-#         if arr_of_chars[mid] == some_char:
-#             return True
-#         elif arr_of_chars[mid] > some_char:
-#             right = mid - 1
-#         else:
-#             left = mid + 1
-#     return False
 
 def check_input_rule(list_of_keys:list)->bool:
     """Эта функция проверяет правило поступившее на вход"""
@@ -36,7 +23,7 @@ def check_input_rule(list_of_keys:list)->bool:
         return False
     return True
 
-def check_input_value(value):
+def check_input_value(value)->bool:
     """Эта функция проверяет что значение подходит алфавиту"""
     letters = sorted(list(dict_of_settings['alphabet']))
     for letter in value:

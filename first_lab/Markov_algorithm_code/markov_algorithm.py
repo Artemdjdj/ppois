@@ -3,58 +3,54 @@
 """
 from Markov_algorithm_code.rule import Rule
 from Markov_algorithm_code.markov_string import MarkovString
-import string
 from Markov_algorithm_code.utils import binary_search
+import string
+from typing import List
 
 class MarkovAlgorithm:
     """Этот класс описывает непосредственно алгорифм  Маркова"""
-    def __init__(self, alphabet=None, default_symbol = "→", stop_symbol="*"):
+    def __init__(self,markov_string:MarkovString=MarkovString(""), alphabet=None, default_symbol = "→", stop_symbol="*")->None:
         """Этот метод инициализирует сам алгорифм Маркова"""
         self.__rules = list()
-        self.__markov_string = MarkovString("")
+        self.__markov_string = markov_string
         self.__default_symbol = default_symbol
         self.__stop_symbol = stop_symbol
         self.__alphabet = alphabet if alphabet else "|/?!,." + string.ascii_lowercase + string.ascii_uppercase + \
-                            "".join([str(n) for n in range(0, 10)])
-        # if not alphabet:
-        #     self.__alphabet = "|/?!,." + string.ascii_lowercase + string.ascii_uppercase + \
-        #                     "".join([str(n) for n in range(0, 10)])
-        # else:
-        #     self.__alphabet = alphabet
+                            string.digits
 
-    def get_result_markov_string(self):
+    def get_result_markov_string(self)->str:
         """Эта функция выводит готовую строку Маркова"""
         return str(self.__markov_string)
 
-    def get_stop_symbol(self):
+    def get_stop_symbol(self)->str:
         """Эта функция возвращает символ останова"""
         return self.__stop_symbol
 
-    def get_markov_string_such_object(self):
+    def get_markov_string_such_object(self)->str:
         """Эта функция возвращает строку Маркова, для тестирования нужен объект класса MarkovString"""
         return self.__markov_string
 
-    def get_default_symbol(self):
+    def get_default_symbol(self)->str:
         """Эта функция возвращает разделяющий символ"""
         return self.__default_symbol
 
-    def get_markov_rules(self):
+    def get_markov_rules(self)->List[Rule]:
         """Эта функция возвращает список правил"""
         return self.__rules
 
-    def add_new_rule(self, rule):
+    def add_new_rule(self, rule)->None:
         """Эта функция добавляет новое правило в общий список правил"""
         self.__rules.append(rule)
 
-    def delete_rule_by_position(self, position):
+    def delete_rule_by_position(self, position)->None:
         """Эта функция удаляет правило по позиции в списке правил"""
         self.__rules.pop(position)
 
-    def change_rule_by_position(self, position, new_rule):
+    def change_rule_by_position(self, position, new_rule)->None:
         """Эта функция изменяет правило"""
         self.__rules[position] = new_rule
 
-    def set_string_value(self):
+    def set_string_value(self)->None:
         """Эта функция устанавливает значение строки"""
         letters = sorted(list(self.__alphabet))
         while True:
@@ -70,7 +66,7 @@ class MarkovAlgorithm:
                 print("\n Sorry, but your string is not correct!")
         self.__markov_string.set_string_value(string_input)
 
-    def set_string_value_for_test(self, input_string):
+    def set_string_value_for_test(self, input_string)->bool:
         """Эта функция используется чтобы проверить работу алгоритма в unittest"""
         letters = sorted(list(self.__alphabet))
         for letter in input_string:
@@ -90,7 +86,7 @@ class MarkovAlgorithm:
                     return False
         return True
 
-    def check_input_rule(self, list_of_split_rule):
+    def check_input_rule(self, list_of_split_rule)->bool:
         """Эта функция реализует проверку на корректность введенных правил"""
         if len(list_of_split_rule) !=3:
             return False
@@ -108,7 +104,7 @@ class MarkovAlgorithm:
                 return False
         return True
 
-    def filling_set(self, path_to_file):
+    def filling_set(self, path_to_file)->bool:
         """Эта функция наполняет список правилами"""
         try:
             with open(path_to_file, 'r') as file:

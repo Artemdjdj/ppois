@@ -2,7 +2,7 @@
 Этот модуль выполняет второстепенную задачу, в нем описана вспомогательная функция бинарного поиска
 """
 
-def binary_search(arr_of_chars, some_char):
+def binary_search(arr_of_chars, some_char)->bool:
     """"Эта функция ищет символ в строке"""
     left = 0
     right = len(arr_of_chars) - 1

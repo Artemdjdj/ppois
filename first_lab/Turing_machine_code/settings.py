@@ -9,7 +9,7 @@ dict_of_settings['alphabet'] = string.ascii_lowercase + string.ascii_uppercase +
                                "".join([str(n) for n in range(0, 10)]) + dict_of_settings['default_symbol']
 dict_of_settings['carriage_position'] = 0
 
-def try_to_make_input_data_better(key, value):
+def try_to_make_input_data_better(key, value)->str:
     """Эта функция пытается сделать данные точно правильными"""
     if key == 'alphabet':
         return "".join(dict.fromkeys(value))
@@ -17,11 +17,11 @@ def try_to_make_input_data_better(key, value):
         return value[0]
     return value
 
-def get_default_symbol():
+def get_default_symbol()->str:
     """Эта функция вернет из словаря спустой символ ленты"""
     return dict_of_settings.get('default_symbol', '-')
 
-def get_settings():
+def get_settings()->None:
     """Эта функция считывает базовые настройки, которые можно записать в файл settings.txt"""
     with open(r"C:\Users\Redmi\Desktop\ppois\first_lab\Turing_machine_code\settings.txt", 'r') as file:
         for _ in range(len(dict_of_settings)):

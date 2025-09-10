@@ -3,7 +3,6 @@
 С помощью этого модуля можно протестировать алгорифмы Маркова, отредактировать уже существующие правила
 """
 
-from Markov_algorithm_code import markov_algorithm
 from Markov_algorithm_code.markov_algorithm import MarkovAlgorithm
 from Markov_algorithm_code.rule import Rule
 import logging
@@ -11,7 +10,7 @@ from logger import ColoredFormatter
 import typing
 import time
 
-def print_menu():
+def print_menu()->None:
     """
     Эта функция выводит меню операций на экран
     """
@@ -21,7 +20,7 @@ def print_menu():
     print("4. изменть правило")
     print("5. закончить редактирование правил")
 
-def create_new_rule(markov_algorithm):
+def create_new_rule(markov_algorithm:MarkovAlgorithm)->Rule|None:
     """Эта функция безопасно создает правило"""
     search_string = input("\nEnter search string:")
     replace_string = input("\nEnter replace string:")
@@ -33,7 +32,7 @@ def create_new_rule(markov_algorithm):
         return None
 
 
-def work_with_input_rules(markov_algorithm):
+def work_with_input_rules(markov_algorithm)->MarkovAlgorithm:
     """Эта функция редактирует правила"""
     beautiful_logger = logging.getLogger("logger_markov")
     beautiful_logger.setLevel(logging.DEBUG)
@@ -51,7 +50,7 @@ def work_with_input_rules(markov_algorithm):
                     if len(markov_algorithm.get_markov_rules())<=0:
                         beautiful_logger.warning("There are no markov rules!")
                         # для красивого вывода в консоль
-                        time.sleep(0.05)
+                        time.sleep(0.1)
                         continue
                     for i, rule in enumerate(markov_algorithm.get_markov_rules()):
                         beautiful_logger.debug(f"{i+1}. {rule.__str__()}")
@@ -63,27 +62,23 @@ def work_with_input_rules(markov_algorithm):
                         beautiful_logger.error("Incorrect rule or such rule always in list of rules! Try again!\n")
                 case 3:
                     if not markov_algorithm.get_markov_rules():
-                        # print("\n You cant delete rule, because there are no rules!\n")
                         beautiful_logger.error("You cant delete rule, because there are no rules!\n")
                         # для красивого вывода в консоль
-                        time.sleep(0.05)
+                        time.sleep(0.1)
                         continue
                     try:
                         number_of_rule = int(input("Enter the number of rule, which you want to cat from rules: "))
                         if 0 <= number_of_rule-1 < len(markov_algorithm.get_markov_rules()):
                             markov_algorithm.delete_rule_by_position(number_of_rule-1)
                         else:
-                            # print("\n Number of rule is not correct!\n")
                             beautiful_logger.error("Number of rule is not correct!\n")
                     except ValueError:
-                        # print("\nIncorrect value, please try again!\n")
                         beautiful_logger.error("Incorrect value, please try again!\n")
                 case 4:
                     if not markov_algorithm.get_markov_rules():
-                        # print("\n You cant change rule, because there are no rules!\n")
                         beautiful_logger.error("You cant change rule, because there are no rules!\n")
                         # для красивого вывода в консоль
-                        time.sleep(0.05)
+                        time.sleep(0.1)
                         continue
                     try:
                         number_of_rule = int(input("Enter the number of rule, which you want to edit: "))
@@ -108,13 +103,13 @@ def work_with_input_rules(markov_algorithm):
                     beautiful_logger.warning("Sorry, but you cant choose these operation!\n")
 
             # для красивого вывода в консоль
-            time.sleep(0.05)
+            time.sleep(0.1)
         except ValueError:
             # print("\nIncorrect value, please try again!\n")
             beautiful_logger.error("Incorrect value, please try again!\n")
     return markov_algorithm
 
-def main():
+def main()->None:
     """Это главная функция, вней тестируется сам алгоритм Маркова"""
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)

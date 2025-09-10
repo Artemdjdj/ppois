@@ -7,6 +7,7 @@ from Turing_machine_code.turing_machine import TuringMachine
 from Turing_machine_code.settings import dict_of_settings, get_settings
 from Turing_machine_code.rule import Rule
 from Turing_machine_code.utils import check_input_rule
+from Turing_machine_code.tape import Tape
 import logging
 from logger import ColoredFormatter
 import time
@@ -32,7 +33,7 @@ def create_new_rule()->Rule:
     else:
         return None
 
-def work_with_input_rules(result_arr):
+def work_with_input_rules(result_arr)->List[List[Tuple[Callable, Callable]|Rule]]:
     """Эта функция редактирует правила"""
     beautiful_logger = logging.getLogger("logger")
     beautiful_logger.setLevel(logging.DEBUG)
@@ -50,40 +51,35 @@ def work_with_input_rules(result_arr):
                     if len(result_arr) <= 0:
                         beautiful_logger.warning("There are no rules!")
                         # для красивого вывода в консоль
-                        time.sleep(0.05)
+                        time.sleep(0.1)
                         continue
                     for operation in result_arr:
-                        beautiful_logger.debug(operation[1].__str__())
+                        beautiful_logger.debug(str(operation[1]))
                 case 2:
                     rule = create_new_rule()
                     if rule and [(rule.get_current_rule_name(), rule.get_current_value()), rule] not in result_arr:
                         result_arr.append([(rule.get_current_rule_name(), rule.get_current_value()), rule])
                     else:
-                        # print("\nIncorrect rule! Try again!\n")
                         beautiful_logger.error("Incorrect rule or such rule always in rules! Try again!\n")
                 case 3:
                     if not result_arr:
-                        # print("\n You cant delete rule, because there are no rules!\n")
                         beautiful_logger.error("You cant delete rule, because there are no rules!\n")
                         # для красивого вывода в консоль
-                        time.sleep(0.05)
+                        time.sleep(0.1)
                         continue
                     try:
                         number_of_rule = int(input("Enter the number of rule, which you want to cat from rules: "))
                         if 0 <= number_of_rule-1 < len(result_arr):
                             result_arr.pop(number_of_rule-1)
                         else:
-                            # print("\n Number of rule is not correct!\n")
                             beautiful_logger.error("Number of rule is not correct!\n")
                     except ValueError:
-                        # print("\nIncorrect value, please try again!\n")
                         beautiful_logger.error("Incorrect value, please try again!\n")
                 case 4:
                     if not result_arr:
-                        # print("\n You cant change rule, because there are no rules!\n")
                         beautiful_logger.error("You cant change rule, because there are no rules!\n")
                         # для красивого вывода в консоль
-                        time.sleep(0.05)
+                        time.sleep(0.1)
                         continue
                     try:
                         number_of_rule = int(input("Enter the number of rule, which you want to edit: "))
@@ -92,42 +88,32 @@ def work_with_input_rules(result_arr):
                             if rule and [(rule.get_current_rule_name(), rule.get_current_value()), rule] not in result_arr:
                                 result_arr[number_of_rule-1] = [(rule.get_current_rule_name(), rule.get_current_value()), rule]
                             else:
-                                # print("\nIncorrect rule! Try again!\n")
                                 beautiful_logger.error("Incorrect rule or such rule always in rules! Try again!\n")
                         else:
-                            # print("\n Number of rule is not correct!\n")
                             beautiful_logger.error("Number of rule is not correct!\n")
                     except ValueError:
-                        # print("\nIncorrect value, please try again!\n")
                         beautiful_logger.error("Incorrect value, please try again!\n")
                 case 5:
-                    # print("\nYou successful leaved from changing your rules\n")
                     beautiful_logger.info("You successful leaved from changing your rules\n")
                 case _:
-                    # print("\nSorry, but you cant choose these operation!\n")
                     beautiful_logger.warning("Sorry, but you cant choose these operation!\n")
             # для красивого вывода в консоль
-            time.sleep(0.05)
+            time.sleep(0.1)
         except ValueError:
-            # print("\nIncorrect value, please try again!\n")
             beautiful_logger.error("Incorrect value, please try again!\n")
     return result_arr
-def main():
+def main()->None:
     """Эта главная функция, которая управляет ходом работы программы"""
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
     file_handler = logging.FileHandler('Turing_machine.log', mode='w')
     file_formatter = logging.Formatter('%(name)s -----> %(asctime)s - %(levelname)s - %(message)s')
     file_handler.setFormatter(file_formatter)
-    # stream_handler = logging.StreamHandler()
-    # stream_handler.setFormatter(ColoredFormatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
     logger.addHandler(file_handler)
-    # logger.addHandler(stream_handler)
 
     print("\n Enter the path to your input data:")
     parameters= input().split()
     if not parameters:
-        # print("\n Problem with getting path!")
         logger.error("Problems with your input parameters!")
         return
     is_log = False
@@ -160,24 +146,13 @@ def main():
                 rule_tuple = (list_of_keys[1], list_of_keys[2])
                 res_arr_of_rules.append([rule_tuple, rule])
 
-        print("\n Enter the start tape: ")
-        input_string = input()
+        input_string = input("\n Enter the start tape: ")
         carriage_position = dict_of_settings.get('carriage_position', 0) if dict_of_settings.get('carriage_position', 0) \
             < len(input_string) else 0
         carriage = carriage_position + dict_of_settings.get('len_of_tape', 0)
 
-        turing_machine = TuringMachine(carriage, input_string, 'qstart', input_string[0])
+        turing_machine = TuringMachine(carriage, 'qstart', input_string[0], Tape(input_string))
         res_arr_of_rules = work_with_input_rules(res_arr_of_rules)
-        # for el in res_arr_of_rules:
-        #     tuple_rule = el[0]
-        #     rule = el[1]
-        #     if not is_qstart and rule.get_current_rule_name()=="qstart":
-        #         is_qstart = True
-        #     turing_machine.extend_rules(tuple_rule, rule)
-        # if not is_qstart:
-        #     # print("\n qstart not in input!!!")
-        #     logger.error("qstart not in input!")
-        #     return
         is_qstart = turing_machine.extend_rules_using_list_of_keys(res_arr_of_rules)
         if not is_qstart:
             logger.error("qstart not in input!")

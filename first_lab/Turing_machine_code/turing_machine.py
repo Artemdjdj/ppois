@@ -10,33 +10,33 @@ from Turing_machine_code.utils import check_input_value
 
 class TuringMachine:
     """Этот класс является главным, в нем реализована каретка, а также сам механизм машины Тьюринга """
-    def __init__(self, carriage,string, start_state, start_value):
+    def __init__(self, carriage, start_state, start_value, tape:Tape=Tape(""))->None:
         self.__carriage = carriage
-        self.__tape = Tape(string)
+        self.__tape = tape
         self.__rules= {}
         self.__current_state = start_state
         self.__current_value = start_value
 
-    def __str__(self):
+    def __str__(self)->str:
         """Эта функция делает отчет о состоянии машины Тьюринга"""
         return (f"На данный момент:\
         каретка находится на позиции: {self.__carriage} \
         текущая операция: {self.__current_state} \
         текущее значение: {self.__current_value}")
 
-    def get_tape_to_turing_machine(self):
+    def get_tape_to_turing_machine(self)->str:
         """Эта функция возвращает ленту"""
         return self.__tape.get_tape()
 
-    def get_tape_from_turing_machine(self):
+    def get_tape_from_turing_machine(self)->Tape:
         """Эта функция возвращает ленту (как обьект)"""
         return self.__tape
 
-    def extend_rules(self, tuple_rule, rule):
+    def extend_rules(self, tuple_rule, rule)->None:
         """Эта функция добавляет правило в словарь правил для машины Тьюринга"""
         self.__rules[tuple_rule] = rule
 
-    def extend_rules_using_list_of_keys(self, res_arr_of_rules):
+    def extend_rules_using_list_of_keys(self, res_arr_of_rules)->bool:
         """Эта функция добавляет правила, используя весь готовый набор правил"""
         is_qstart = False
         for el in res_arr_of_rules:
@@ -49,7 +49,7 @@ class TuringMachine:
             return False
         return True
 
-    def set_current_rule_name_and_current_value(self, current_rule_name, current_value):
+    def set_current_rule_name_and_current_value(self, current_rule_name, current_value)->bool:
         """Ручная установка текущего правила"""
         if check_input_value(current_value):
             self.__current_state = current_rule_name
@@ -57,7 +57,7 @@ class TuringMachine:
             return True
         return False
 
-    def move_carriage_and_make_some_action(self, is_start):
+    def move_carriage_and_make_some_action(self, is_start)->bool:
         """Эта функция будет выполнять какое-то действие по правилу, либо, если правило не
          будет найдено, или действие будет последним, функция вернет значение False, иначе True"""
         if is_start:
