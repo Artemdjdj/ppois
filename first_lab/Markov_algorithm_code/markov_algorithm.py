@@ -1,4 +1,4 @@
-"""@package docstring
+"""
 В этом модуле описан класс, который определяет алгоритм Маркова
 """
 from Markov_algorithm_code.rule import Rule
