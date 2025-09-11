@@ -18,7 +18,7 @@ class Test_Markov_algorifm(TestCase):
 
     def test_filling_set_True(self):
         """Этот тест проверяет функцию заполнения правил"""
-        self.assertTrue(MarkovAlgorithm().filling_set("C:/Users/Redmi/Desktop/ppois/first_lab/input/Markov_input.txt"))
+        self.assertTrue(MarkovAlgorithm().filling_set("../input/Markov_input.txt"))
 
     def test_set_value_to_markov_string_True(self):
         """Этот тест проверяет функцию присваивания значений строке маркова"""
