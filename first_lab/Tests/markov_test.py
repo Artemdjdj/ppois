@@ -18,7 +18,7 @@ class Test_Markov_algorifm(TestCase):
 
     def test_filling_set_True(self):
         """Этот тест проверяет функцию заполнения правил"""
-        self.assertTrue(MarkovAlgorithm().filling_set("../input/Markov_input.txt"))
+        self.assertTrue(MarkovAlgorithm().filling_set("input/Markov_input.txt"))
 
     def test_set_value_to_markov_string_True(self):
         """Этот тест проверяет функцию присваивания значений строке маркова"""
@@ -31,14 +31,14 @@ class Test_Markov_algorifm(TestCase):
     def test_markov_algorithm_False(self):
         """Этот тест проверяет работоспособность алгоритма Маркова"""
         markov_algorithm = MarkovAlgorithm()
-        markov_algorithm.filling_set("C:/Users/Redmi/Desktop/ppois/first_lab/input/Markov_input.txt")
+        markov_algorithm.filling_set("input/Markov_input.txt")
         if markov_algorithm.set_string_value_for_test("1"):
             self.assertFalse(markov_algorithm.make_markov_algorithm())
 
     def test_markov_algorithm_True(self):
         """Этот тест проверяет работоспособность алгоритма Маркова"""
         markov_algorithm = MarkovAlgorithm()
-        markov_algorithm.filling_set("C:/Users/Redmi/Desktop/ppois/first_lab/input/Markov_input.txt")
+        markov_algorithm.filling_set("input/Markov_input.txt")
         if markov_algorithm.set_string_value_for_test("7898"):
             self.assertTrue(markov_algorithm.make_markov_algorithm())
 
