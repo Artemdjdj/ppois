@@ -1,6 +1,4 @@
-//
-// Created by Redmi on 14.09.2025.
-//
+
 
 #ifndef INCLUDE_BASIC_PARAMS_H
 #define INCLUDE_BASIC_PARAMS_H
