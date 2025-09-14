@@ -1,4 +1,4 @@
-#include "../include/include_door.h"
+#include "include_door.h"
 #include <gtest/gtest.h>
 
 TEST(TestDoor, GetSizeOfDoor) {
@@ -16,7 +16,3 @@ TEST(TestDoor, GetColorOfSideMirror) {
     EXPECT_EQ(res_color, "blue");
 }
 
-int main(int argc, char *argv[]) {
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}

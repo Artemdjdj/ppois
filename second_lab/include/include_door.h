@@ -7,29 +7,21 @@
 
 #include<string>
 #include <iostream>
+#include "include_basic_params.h"
 using namespace std;
-class SideMirror{
+class SideMirror: public BasicParams {
 private:
-    int height{0};
-    int width{0};
     string color;
 public:
     SideMirror(int height =0, int width =0, string color="black");
     ~SideMirror();
     void set_color(string color);
-    void set_size(int height, int width);
     void get_color(string & color);
-    void get_size(int & height, int & width);
 };
-class BackDoor {
-private:
-    int height{0};
-    int width{0};
+class BackDoor:public BasicParams {
 public:
     BackDoor(int height, int width);
     ~BackDoor();
-    void get_size(int & height, int & width);
-    void set_size(int height, int width);
 };
 
 class FrontDoor : public BackDoor {
