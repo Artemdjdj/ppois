@@ -1,25 +1,21 @@
 
 #include "include_door.h"
+#include "include_basic_params.h"
 
-SideMirror::SideMirror(int height, int width, string color):BasicParams(height, width) {
-    this->color = color;
-}
+SideMirror::SideMirror(int height, int width, string color):BasicParams(height, width), Color(color) {}
+
 SideMirror::~SideMirror() {}
-
-void SideMirror::set_color(string color) {
-    this->color = color;
-}
-
-void SideMirror::get_color(string & color) {
-    color = this->color;
-}
 
 BackDoor::BackDoor(int height, int width):BasicParams(height, width) {}
 
 BackDoor::~BackDoor(){}
 
-FrontDoor::FrontDoor(int height_door,int width_door,int height_mirror ,int width_mirror,bool is_lock ,string color) : mirror(height_mirror, width_mirror, color),BackDoor(height_door, width_door){
+FrontDoor::FrontDoor(int height_door,int width_door,int height_mirror ,int width_mirror,bool is_lock ,string color) :BackDoor(height_door, width_door), mirror(height_mirror, width_mirror, color){
         this->is_lock = is_lock;
+}
+
+bool FrontDoor::get_lock() {
+    return is_lock;
 }
 
 void FrontDoor::open_door() {
@@ -31,18 +27,6 @@ void FrontDoor::close_door() {
 }
 
 void FrontDoor::get_color_of_mirror(string& result_color) {
-    mirror.get_color(result_color);
+    result_color = mirror.get_color();
 }
 
-// int main() {
-//     BackDoor back_door = BackDoor(5,3);
-//     FrontDoor front_door = FrontDoor(7,8 ,1,2,true, "green");
-//     int height, width;
-//     front_door.get_size(height, width);
-//     front_door.set_size(89, 123);
-//     cout<<height<<" "<< width<<endl;
-//     front_door.get_size(height, width);
-//     cout<<height<<" "<< width<<endl;
-//
-//     return 0;
-// }

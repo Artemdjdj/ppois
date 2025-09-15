@@ -8,13 +8,13 @@ BasicParams::BasicParams(int height, int width) {
     this->width = width;
 }
 BasicParams::BasicParams(){}
-void BasicParams::set_height_basic_params(int height) {
+void BasicParams::set_height(int height) {
     this->height = height;
 }
-void BasicParams::set_width_basic_params(int width) {
+void BasicParams::set_width(int width) {
     this->width = width;
 }
-void BasicParams::set_size(int width, int height) {
+void BasicParams::set_size(int height,int width) {
     this->height = height;
     this->width = width;
 }
@@ -32,22 +32,29 @@ Color::Color(string color) {
     this->color = color;
 }
 Color::Color(){}
-void Color::set_color(string color) {
+
+void Color::set_color(string color){
+    if (!check_color(color)) {
+        return;
+    }
     this->color = color;
 }
+
 string Color::get_color() {
     return this->color;
 }
 
-bool check_color(string color) {
+bool check_color(string& color) {
     for (auto &good_color : colors) {
-        if (good_color==ToLower(color)) {
+        ToLower(color);
+        if (good_color==color) {
             return true;
         }
     }
     return false;
 }
-string ToLower(string str) {
+
+void ToLower(string& str) {
     transform(str.begin(), str.end(), str.begin(), ::tolower);
-    return str;
+
 }

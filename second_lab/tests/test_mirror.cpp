@@ -1,4 +1,5 @@
 #include "include_mirror.h"
+#include "include_basic_params.h"
 #include <gtest/gtest.h>
 
 TEST(TestMirror, TestSerialNumberCorrect) {

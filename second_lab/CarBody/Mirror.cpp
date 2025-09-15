@@ -1,4 +1,5 @@
 #include "include_mirror.h"
+#include "include_basic_params.h"
 Mirror::Mirror(int height, int width, int thickness, bool is_tinting, string serial_number):BasicParams(height, width) {
     this->thickness = thickness;
     this->is_tinting = is_tinting;

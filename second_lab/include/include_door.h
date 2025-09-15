@@ -9,14 +9,10 @@
 #include <iostream>
 #include "include_basic_params.h"
 using namespace std;
-class SideMirror: public BasicParams {
-private:
-    string color;
+class SideMirror: public BasicParams, public Color {
 public:
     SideMirror(int height =0, int width =0, string color="black");
     ~SideMirror();
-    void set_color(string color);
-    void get_color(string & color);
 };
 class BackDoor:public BasicParams {
 public:
@@ -39,6 +35,7 @@ public:
 );
     void open_door();
     void close_door();
+    bool get_lock();
     void get_color_of_mirror(string& result_color);
 };
 

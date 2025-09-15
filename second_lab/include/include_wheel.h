@@ -23,11 +23,13 @@ public:
 class BrakeShoe:public BasicParams, public Color {
 private:
     string type_of_material;
-    bool check_type_of_material(string material);
+    bool check_type_of_material(string& material);
 public:
     BrakeShoe();
     BrakeShoe(int height, int width, string material, string color);
     BrakeShoe(string material);
+    void set_material(string material);
+    string get_material();
 };
 
 #endif //INCLUDE_WHEEL_H

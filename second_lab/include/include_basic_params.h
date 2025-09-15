@@ -15,8 +15,8 @@ private:
 public:
     BasicParams(int height, int width);
     BasicParams();
-    void set_height_basic_params(int height);
-    void set_width_basic_params(int width);
+    void set_height(int height);
+    void set_width(int width);
     void set_size(int height, int width);
     int get_height();
     int get_width();
@@ -32,6 +32,6 @@ public:
     void set_color(string color);
     string get_color();
 };
-bool check_color(string color);
-string ToLower(string str);
+bool check_color(string& color);
+void ToLower(string& str);
 #endif //INCLUDE_BASIC_PARAMS_H
