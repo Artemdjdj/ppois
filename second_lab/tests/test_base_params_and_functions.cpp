@@ -1,6 +1,13 @@
 #include <gtest/gtest.h>
 #include "include_basic_params.h"
 
+class TestingColors:public ::testing::Test {
+public:
+    void SetUp() {
+        color =Color("green");
+    }
+    Color color;
+};
 TEST(Testingtolower, BigLetters) {
     string word = "GGGG";
     ToLower(word);
@@ -12,20 +19,17 @@ TEST(Testingtolower, SmallLettersWithBigletters) {
     ToLower(word);
     ASSERT_EQ(word, "hello world");
 }
-TEST(Testing_colors, TestCheckFunctionPositive) {
-    Color color = Color("green");
+TEST_F(TestingColors, TestCheckFunctionPositive) {
     color.set_color("blue");
     ASSERT_EQ(color.get_color(), "blue");
 }
 
-TEST(Testing_colors, TestCheckFunctionNegative) {
-    Color color = Color("green");
+TEST_F(TestingColors, TestCheckFunctionNegative) {
     color.set_color("KJhksfd");
     ASSERT_EQ(color.get_color(), "green");
 }
 
-TEST(Testing_colors, TestCheckFunctionPositiveAllLettersAreBig) {
-    Color color = Color("green");
+TEST_F(TestingColors, TestCheckFunctionPositiveAllLettersAreBig) {
     color.set_color("RED");
     ASSERT_EQ(color.get_color(), "red");
 }

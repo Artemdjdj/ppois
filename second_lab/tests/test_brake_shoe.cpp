@@ -8,7 +8,6 @@ protected:
         material = "low-metal";
         brake_shoe = BrakeShoe(12, 25, "ceramic", "green");
         brake_shoe.set_material(material);
-        brake_shoe.set_size(56, 70);
     }
     string material;
     BrakeShoe brake_shoe;
@@ -23,11 +22,31 @@ TEST_F(TestingBrakeShoe, TestMaterialNegative) {
 }
 
 TEST_F(TestingBrakeShoe, TestHeight) {
+    ASSERT_EQ(brake_shoe.get_height(),12);
+}
+
+TEST_F(TestingBrakeShoe, TestWidth){
+    ASSERT_EQ(brake_shoe.get_width(),25);
+}
+
+TEST_F(TestingBrakeShoe, TestSetHeight) {
+    brake_shoe.set_height(56);
     ASSERT_EQ(brake_shoe.get_height(),56);
 }
 
-TEST_F(TestingBrakeShoe, TestWidth) {
-    ASSERT_EQ(brake_shoe.get_width(),70);
+TEST_F(TestingBrakeShoe, TestSetWidth) {
+    brake_shoe.set_width(100);
+    ASSERT_EQ(brake_shoe.get_width(),100);
+}
+
+TEST_F(TestingBrakeShoe, TestSetHeightNegative) {
+    brake_shoe.set_height(-56);
+    ASSERT_EQ(brake_shoe.get_height(),12);
+}
+
+TEST_F(TestingBrakeShoe, TestSetWidthNegative) {
+    brake_shoe.set_width(-100);
+    ASSERT_EQ(brake_shoe.get_width(),25);
 }
 
 TEST(TestBrakeShoe, TestBigMaterial) {

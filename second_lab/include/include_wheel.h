@@ -16,6 +16,10 @@ class BaseCircle {
 private:
     int radius{0};
 public:
+    BaseCircle() {}
+    BaseCircle(int radius) {
+        this->radius = radius;
+    }
     void setRadius(int r);
     int getRadius();
 };
@@ -30,6 +34,26 @@ public:
     BrakeShoe(string material);
     void set_material(string material);
     string get_material();
+    // void display_info();
+};
+
+class Wheel {
+private:
+    BaseCircle radius;
+    BrakeShoe brake_shoe;
+    int count_of_bolts{0};
+    void set_count_of_bolts_private(int count);
+    void set_radius_private(int radius);
+    void set_type_of_material_to_brake_shoe_private(string material);
+public:
+    Wheel();
+    Wheel(int radius, int height, int width, string material, string color, int count_of_bolts);
+    bool set_count_of_bolts(int count_of_bolts);
+    int get_count_of_bolts();
+    int get_radius();
+    bool set_radius(int radius);
+    bool set_type_of_material_to_brake_shoe(string material);
+    string get_type_of_material_to_brake_shoe();
 };
 
 #endif //INCLUDE_WHEEL_H

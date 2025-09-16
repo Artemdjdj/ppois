@@ -4,5 +4,5 @@ void BaseCircle::setRadius(int r) {
     this->radius = r;
 }
 int BaseCircle::getRadius() {
-    return radius;
+    return this->radius;
 }
