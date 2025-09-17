@@ -63,4 +63,19 @@ int Wheel::get_radius() {
     return this->radius.getRadius();
 }
 
+bool Wheel::set_material(string material) {
+    return this->brake_shoe.set_material(material);
+}
+
+bool Wheel::set_color(string color) {
+    return this->brake_shoe.set_color(color);
+}
+
+bool Wheel::set_size(int height, int width) {
+    return this->brake_shoe.set_size(height, width);
+}
+
+string Wheel::get_type_of_material_to_brake_shoe() {
+    return this->brake_shoe.get_material();
+}
 

@@ -28,11 +28,12 @@ class BrakeShoe:public BasicParams, public Color {
 private:
     string type_of_material;
     bool check_type_of_material(string& material);
+    void set_material_private(string material);
 public:
     BrakeShoe();
     BrakeShoe(int height, int width, string material, string color);
     BrakeShoe(string material);
-    void set_material(string material);
+    bool set_material(string material);
     string get_material();
     // void display_info();
 };
@@ -44,7 +45,7 @@ private:
     int count_of_bolts{0};
     void set_count_of_bolts_private(int count);
     void set_radius_private(int radius);
-    void set_type_of_material_to_brake_shoe_private(string material);
+
 public:
     Wheel();
     Wheel(int radius, int height, int width, string material, string color, int count_of_bolts);
@@ -52,7 +53,9 @@ public:
     int get_count_of_bolts();
     int get_radius();
     bool set_radius(int radius);
-    bool set_type_of_material_to_brake_shoe(string material);
+    bool set_material(string material);
+    bool set_color(string color);
+    bool set_size(int height, int width);
     string get_type_of_material_to_brake_shoe();
 };
 
