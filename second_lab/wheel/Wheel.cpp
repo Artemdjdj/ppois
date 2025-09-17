@@ -3,11 +3,10 @@
 #include "include_exceptions.h"
 #include "include_wheel.h"
 #include <iostream>
-using namespace std;
 
 Wheel::Wheel(): radius(), brake_shoe() {}
 
-Wheel::Wheel(int radius, int height, int width, string material, string color, int count_of_bolts): radius(radius), brake_shoe(height, width, material, color) {
+Wheel::Wheel(int radius, int height, int width, std::string material, std::string color, int count_of_bolts): radius(radius), brake_shoe(height, width, material, color) {
     this->count_of_bolts = count_of_bolts;
 }
 
@@ -63,11 +62,11 @@ int Wheel::get_radius() {
     return this->radius.getRadius();
 }
 
-bool Wheel::set_material(string material) {
+bool Wheel::set_material(std::string material) {
     return this->brake_shoe.set_material(material);
 }
 
-bool Wheel::set_color(string color) {
+bool Wheel::set_color(std::string color) {
     return this->brake_shoe.set_color(color);
 }
 
@@ -75,7 +74,7 @@ bool Wheel::set_size(int height, int width) {
     return this->brake_shoe.set_size(height, width);
 }
 
-string Wheel::get_type_of_material_to_brake_shoe() {
+std::string Wheel::get_type_of_material_to_brake_shoe() {
     return this->brake_shoe.get_material();
 }
 

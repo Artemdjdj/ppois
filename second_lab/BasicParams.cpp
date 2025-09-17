@@ -6,7 +6,6 @@
 #include "include_exceptions.h"
 #include "include_basic_params.h"
 #include "settings.h"
-using namespace std;
 
 BasicParams::BasicParams(int height, int width) {
     this->height = height;
@@ -88,19 +87,19 @@ void BasicParams::get_size(int & height, int & width) {
     width = this->width;
 }
 
-Color::Color(string color) {
+Color::Color(std::string color) {
     this->color = color;
 }
 
 Color::Color(){}
 
-void Color::set_color_private(string color) {
+void Color::set_color_private(std::string color) {
     if (!check_color(color)) {
         throw ExceptionIncorrectColor("This color is not correct!");
     }
     this->color = color;
 }
-bool Color::set_color(string color){
+bool Color::set_color(std::string color){
     try {
         set_color_private(color);
         return true;
@@ -115,11 +114,11 @@ bool Color::set_color(string color){
     }
 }
 
-string Color::get_color() {
+std::string Color::get_color() {
     return this->color;
 }
 
-bool check_color(string& color) {
+bool check_color(std::string& color) {
     for (auto &good_color : colors) {
         ToLower(color);
         if (good_color==color) {
@@ -129,16 +128,16 @@ bool check_color(string& color) {
     return false;
 }
 
-void ToLower(string& str) {
+void ToLower(std::string& str) {
     transform(str.begin(), str.end(), str.begin(), ::tolower);
 }
 
 bool log_to_file(const char * message) {
-    ofstream file;
-    file.exceptions(ofstream::failbit | ofstream::badbit);
+    std::ofstream file;
+    file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
     try {
-        file.open(PATH_TO_FILE, ios::out );
-        file << endl<< message<<endl;
+        file.open(PATH_TO_FILE, std::ios::out );
+        file << std::endl<< message<<std::endl;
         file.close();
         return true;
     }

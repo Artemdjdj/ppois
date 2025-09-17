@@ -9,13 +9,13 @@ public:
     Color color;
 };
 TEST(Testingtolower, BigLetters) {
-    string word = "GGGG";
+    std::string word = "GGGG";
     ToLower(word);
     ASSERT_EQ(word, "gggg");
 }
 
 TEST(Testingtolower, SmallLettersWithBigletters) {
-    string word = "Hello wOrlD";
+    std::string word = "Hello wOrlD";
     ToLower(word);
     ASSERT_EQ(word, "hello world");
 }

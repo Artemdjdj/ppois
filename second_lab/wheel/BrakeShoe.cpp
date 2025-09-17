@@ -5,9 +5,8 @@
 #include <iostream>
 
 #include "include_exceptions.h"
-using namespace std;
 
-bool BrakeShoe::check_type_of_material(string &material) {
+bool BrakeShoe::check_type_of_material(std::string &material) {
     for (auto &good_material : type_of_materials_to_brake_shoe) {
         ToLower(material);
         if (material == good_material) {
@@ -17,19 +16,19 @@ bool BrakeShoe::check_type_of_material(string &material) {
     return false;
 }
 BrakeShoe::BrakeShoe():BasicParams(), Color() {}
-BrakeShoe::BrakeShoe(int height, int width, string material, string color):BasicParams(height, width), Color(color) {
+BrakeShoe::BrakeShoe(int height, int width, std::string material, std::string color):BasicParams(height, width), Color(color) {
     this->type_of_material = material;
 }
-BrakeShoe::BrakeShoe(string material):BasicParams() {
+BrakeShoe::BrakeShoe(std::string material):BasicParams() {
     this->type_of_material = material;
 }
-void BrakeShoe::set_material_private(string material) {
+void BrakeShoe::set_material_private(std::string material) {
     if (!check_type_of_material(material)) {
         throw ExceptionIncorrectMaterial("This material is not used!");
     }
     this->type_of_material = material;
 }
-bool BrakeShoe::set_material(string material) {
+bool BrakeShoe::set_material(std::string material) {
     try {
         set_material_private(material);
         return true;
@@ -44,7 +43,7 @@ bool BrakeShoe::set_material(string material) {
     }
 }
 
-string BrakeShoe::get_material() {
+std::string BrakeShoe::get_material() {
     return this->type_of_material;
 }
 

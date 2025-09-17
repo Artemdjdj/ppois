@@ -3,11 +3,11 @@
 #define INCLUDE_EXCEPTIONS_H
 #include <string>
 #include <exception>
-using namespace std;
 
-class Exception:public exception {
+
+class Exception:public std::exception {
 private:
-    string message;
+    std::string message;
 public:
     Exception(const char * msg);
     Exception(const Exception& other);

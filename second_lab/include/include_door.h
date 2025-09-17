@@ -8,10 +8,10 @@
 #include<string>
 #include <iostream>
 #include "include_basic_params.h"
-using namespace std;
+
 class SideMirror: public BasicParams, public Color {
 public:
-    SideMirror(int height =0, int width =0, string color="black");
+    SideMirror(int height =0, int width =0, std::string color="black");
     ~SideMirror();
 };
 class BackDoor:public BasicParams {
@@ -31,12 +31,12 @@ public:
     int height_mirror = 0,
     int width_mirror = 0,
     bool is_lock = false,
-    string color = "black"
+    std::string color = "black"
 );
     void open_door();
     void close_door();
     bool get_lock();
-    void get_color_of_mirror(string& result_color);
+    void get_color_of_mirror(std::string& result_color);
 };
 
 #endif //INCLUDE_DOOR_H

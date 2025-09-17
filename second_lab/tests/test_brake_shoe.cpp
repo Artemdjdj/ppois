@@ -9,7 +9,7 @@ protected:
         brake_shoe = BrakeShoe(12, 25, "ceramic", "green");
         brake_shoe.set_material(material);
     }
-    string material;
+    std::string material;
     BrakeShoe brake_shoe;
 };
 

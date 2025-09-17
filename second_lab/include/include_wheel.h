@@ -7,7 +7,7 @@
 #include <vector>
 #include <string>
 #include "include_basic_params.h"
-using namespace std;
+
 const std::vector<std::string> type_of_materials_to_brake_shoe = {
     "semi-metallic", "organic", "low-metal", "ceramic"
 };
@@ -26,15 +26,15 @@ public:
 
 class BrakeShoe:public BasicParams, public Color {
 private:
-    string type_of_material;
-    bool check_type_of_material(string& material);
-    void set_material_private(string material);
+    std::string type_of_material;
+    bool check_type_of_material(std::string& material);
+    void set_material_private(std::string material);
 public:
     BrakeShoe();
-    BrakeShoe(int height, int width, string material, string color);
-    BrakeShoe(string material);
-    bool set_material(string material);
-    string get_material();
+    BrakeShoe(int height, int width, std::string material, std::string color);
+    BrakeShoe(std::string material);
+    bool set_material(std::string material);
+    std::string get_material();
     // void display_info();
 };
 
@@ -48,15 +48,15 @@ private:
 
 public:
     Wheel();
-    Wheel(int radius, int height, int width, string material, string color, int count_of_bolts);
+    Wheel(int radius, int height, int width, std::string material, std::string color, int count_of_bolts);
     bool set_count_of_bolts(int count_of_bolts);
     int get_count_of_bolts();
     int get_radius();
     bool set_radius(int radius);
-    bool set_material(string material);
-    bool set_color(string color);
+    bool set_material(std::string material);
+    bool set_color(std::string color);
     bool set_size(int height, int width);
-    string get_type_of_material_to_brake_shoe();
+    std::string get_type_of_material_to_brake_shoe();
 };
 
 #endif //INCLUDE_WHEEL_H

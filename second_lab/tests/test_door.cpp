@@ -17,7 +17,7 @@ TEST_F(TestDoor, GetSizeOfDoor) {
 }
 
 TEST_F(TestDoor, GetColorOfSideMirror) {
-    string res_color;
+    std::string res_color;
     front_door.get_color_of_mirror(res_color);
     EXPECT_EQ(res_color, "blue");
 }
