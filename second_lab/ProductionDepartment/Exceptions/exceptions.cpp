@@ -1,6 +1,5 @@
 
 #include <string>
-
 #include "include_exceptions.h"
 using namespace std;
 
@@ -22,4 +21,8 @@ ExceptionIncorrectSize::ExceptionIncorrectSize(const char * msg): Exception(msg)
 
 ExceptionIncorrectSerialNumber::ExceptionIncorrectSerialNumber(const char * msg): Exception(msg) {}
 
-ExceptionIncorrectSerialNumberLength::ExceptionIncorrectSerialNumberLength(const char * msg): ExceptionIncorrectSerialNumber(msg){}
+ExceptionIncorrectSeason::ExceptionIncorrectSeason(const char * msg): Exception(msg){}
+
+ExceptionIncorrectFuel::ExceptionIncorrectFuel(const char * msg): Exception(msg){}
+
+ExceptionIncorrectProcent::ExceptionIncorrectProcent(const char *msg): ExceptionIncorrectSize(msg) {}

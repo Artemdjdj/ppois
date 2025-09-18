@@ -1,20 +1,11 @@
 
 #include "include_basic_params.h"
+#include "include_exceptions.h"
 #include "include_wheel.h"
+#include "settings.h"
 #include <string>
 #include <iostream>
 
-#include "include_exceptions.h"
-
-bool BrakeShoe::check_type_of_material(std::string &material) {
-    for (auto &good_material : type_of_materials_to_brake_shoe) {
-        ToLower(material);
-        if (material == good_material) {
-            return true;
-        }
-    }
-    return false;
-}
 BrakeShoe::BrakeShoe():BasicParams(), Color() {}
 BrakeShoe::BrakeShoe(int height, int width, std::string material, std::string color):BasicParams(height, width), Color(color) {
     this->type_of_material = material;
@@ -23,7 +14,7 @@ BrakeShoe::BrakeShoe(std::string material):BasicParams() {
     this->type_of_material = material;
 }
 void BrakeShoe::set_material_private(std::string material) {
-    if (!check_type_of_material(material)) {
+    if (!check_is_statement_correct(type_of_materials_to_brake_shoe,material)) {
         throw ExceptionIncorrectMaterial("This material is not used!");
     }
     this->type_of_material = material;

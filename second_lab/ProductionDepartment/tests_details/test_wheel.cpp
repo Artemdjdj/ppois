@@ -1,7 +1,7 @@
 
 #include "include_wheel.h"
 #include <gtest/gtest.h>
-class WheelTest: public ::testing::Test {
+class TestWheel: public ::testing::Test {
 public:
     void SetUp() {
         wheel = Wheel(12, 34, 100, "ceramic", "blue", 5);
@@ -11,50 +11,50 @@ public:
     Wheel wheel2;
 };
 
-TEST_F(WheelTest, TestGetter) {
+TEST_F(TestWheel, TestGetter) {
     ASSERT_EQ(wheel.get_count_of_bolts(), 5);
 }
 
-TEST_F(WheelTest, TestSetRadius) {
-   wheel2.set_radius(10);
+TEST_F(TestWheel, TestSetRadius) {
+    wheel2.set_radius(10);
     ASSERT_EQ(wheel2.get_radius(), 10);
 }
 
-TEST_F(WheelTest, TestSetRadiusNegative) {
+TEST_F(TestWheel, TestSetRadiusNegative) {
     ASSERT_FALSE(wheel2.set_radius(-10));
 }
 
-TEST_F(WheelTest, TestSetMaterial) {
+TEST_F(TestWheel, TestSetMaterial) {
     ASSERT_TRUE(wheel2.set_material("organic"));
 }
 
-TEST_F(WheelTest, TestSetMaterialBigLetters) {
+TEST_F(TestWheel, TestSetMaterialBigLetters) {
     wheel2.set_material("ORGANIC");
     ASSERT_EQ(wheel2.get_type_of_material_to_brake_shoe(), "organic");
 }
 
-TEST_F(WheelTest, TestSetMaterialNegative) {
+TEST_F(TestWheel, TestSetMaterialNegative) {
     ASSERT_FALSE(wheel2.set_material("Green"));
 }
 
-TEST_F(WheelTest, TestSetSizeNegativeHeight) {
+TEST_F(TestWheel, TestSetSizeNegativeHeight) {
     ASSERT_FALSE(wheel2.set_size(-10,5));
 }
 
-TEST_F(WheelTest, TestSetSizeNegativeWidth) {
+TEST_F(TestWheel, TestSetSizeNegativeWidth) {
     ASSERT_FALSE(wheel2.set_size(10,-15));
 }
 
-TEST_F(WheelTest, TestSetSizeCorrect) {
+TEST_F(TestWheel, TestSetSizeCorrect) {
     ASSERT_TRUE(wheel2.set_size(10,15));
 }
 
-TEST_F(WheelTest, TestSetCountOfBolts) {
+TEST_F(TestWheel, TestSetCountOfBolts) {
     wheel.set_count_of_bolts(3);
     ASSERT_EQ(wheel.get_count_of_bolts(), 3);
 }
 
-TEST_F(WheelTest, TestSetCountOfBoltsNegative) {
+TEST_F(TestWheel, TestSetCountOfBoltsNegative) {
     wheel.set_count_of_bolts(-3);
     ASSERT_EQ(wheel.get_count_of_bolts(), 5);
 }

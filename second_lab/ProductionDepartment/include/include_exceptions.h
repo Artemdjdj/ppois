@@ -39,8 +39,18 @@ public:
     ExceptionIncorrectSerialNumber(const char * msg);
 };
 
-class ExceptionIncorrectSerialNumberLength:public ExceptionIncorrectSerialNumber {
+class ExceptionIncorrectSeason :public Exception {
 public:
-    ExceptionIncorrectSerialNumberLength(const char * msg);
+    ExceptionIncorrectSeason(const char * msg);
+};
+
+class ExceptionIncorrectFuel :public Exception {
+public:
+    ExceptionIncorrectFuel(const char * msg);
+};
+
+class ExceptionIncorrectProcent :public ExceptionIncorrectSize {
+public:
+    ExceptionIncorrectProcent(const char * msg);
 };
 #endif

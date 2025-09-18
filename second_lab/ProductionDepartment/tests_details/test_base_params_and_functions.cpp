@@ -19,6 +19,7 @@ TEST(Testingtolower, SmallLettersWithBigletters) {
     ToLower(word);
     ASSERT_EQ(word, "hello world");
 }
+
 TEST_F(TestingColors, TestCheckFunctionPositive) {
     color.set_color("blue");
     ASSERT_EQ(color.get_color(), "blue");
@@ -32,4 +33,16 @@ TEST_F(TestingColors, TestCheckFunctionNegative) {
 TEST_F(TestingColors, TestCheckFunctionPositiveAllLettersAreBig) {
     color.set_color("RED");
     ASSERT_EQ(color.get_color(), "red");
+}
+
+TEST(TestVolume, TestSetCorrectVolume) {
+    Volume volume = Volume();
+    volume.set_volume(10);
+    ASSERT_EQ(volume.get_volume(), 10);
+}
+
+TEST(TestVolume, TestSetInCorrectVolume) {
+    Volume volume = Volume();
+    volume.set_volume(-10);
+    ASSERT_EQ(volume.get_volume(), 0);
 }

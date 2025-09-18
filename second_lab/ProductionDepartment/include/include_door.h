@@ -28,8 +28,8 @@ public:
     FrontDoor(
     int height_door = 0,
     int width_door = 0,
-    int height_mirror = 0,
-    int width_mirror = 0,
+    int height_Mirror = 0,
+    int width_Mirror = 0,
     bool is_lock = false,
     std::string color = "black"
 );
