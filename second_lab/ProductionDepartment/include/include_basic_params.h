@@ -5,6 +5,9 @@
 
 #include <string>
 #include <vector>
+#include "include_exceptions.h"
+
+#include "settings.h"
 
 class BasicParams {
 private:
@@ -18,9 +21,9 @@ public:
     bool set_height(int height);
     bool set_width(int width);
     bool set_size(int height, int width);
-    int get_height();
-    int get_width();
-    void get_size(int & height, int & width);
+    int get_height() const;
+    int get_width() const;
+    void get_size(int & height, int & width) const;
 };
 
 class Color {
@@ -37,13 +40,13 @@ public:
 class Volume {
 private:
     int volume{0};
-    void set_volume_private(int volume);
 public:
     Volume();
     Volume(int volume);
     bool set_volume(int volume);
-    int get_volume();
+    int get_volume() const;
 };
+
 void set_integer_number(int integer_number, const char * description);
 
 void set_procent(int percentage);
@@ -59,4 +62,6 @@ bool log_to_file(const char * message);
 bool check_is_statement_correct(const std::vector<std::string>& vector_of_string, std::string& statement);
 
 int get_new_value_after_multiplication(int number, int procent);
+
+double calculate_the_speed_of_sound_in_special_temperature(double temperature);
 #endif //INCLUDE_BASIC_PARAMS_H

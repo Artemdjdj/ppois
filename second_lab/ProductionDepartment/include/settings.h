@@ -9,4 +9,5 @@ const std::vector<std::string> colors = {"blue", "black", "grey", "green", "red"
 const std::vector<std::string> type_of_fuels  = {"petrol", "diesel","gas"};
 const std::vector<std::string> type_of_materials_to_brake_shoe = {"semi-metallic", "organic", "low-metal", "ceramic"};
 const std::vector<std::string> seasons={"winter", "summer"};
+const int speed_of_sound = 331;
 #endif //SETTINGS_H

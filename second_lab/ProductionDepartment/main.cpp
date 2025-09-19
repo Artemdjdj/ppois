@@ -11,5 +11,4 @@ int main() {
     brake_shoe.set_color("green");
     cout << brake_shoe.get_color() << endl;
     return 0;
-    return 0;
 }

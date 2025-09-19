@@ -4,7 +4,7 @@
 
 class TestHandbrake : public ::testing::Test {
 public:
-    void SetUp() {
+    void SetUp() override{
         handbrake = Handbrake();
     }
     Handbrake handbrake;

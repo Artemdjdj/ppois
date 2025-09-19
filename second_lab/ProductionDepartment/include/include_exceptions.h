@@ -9,48 +9,58 @@ class Exception:public std::exception {
 private:
     std::string message;
 public:
-    Exception(const char * msg);
-    Exception(const Exception& other);
+    explicit Exception(const char * msg);
+    explicit Exception(const Exception& other);
     const char * what() const noexcept override;
 };
 
-class ExceptionIncorrectRadius:public Exception {
+class ExceptionIncorrectRadius final:public Exception {
 public:
-    ExceptionIncorrectRadius(const char * msg);
+    explicit ExceptionIncorrectRadius(const char * msg);
 };
 
-class ExceptionIncorrectColor:public Exception {
+class ExceptionIncorrectColor final:public Exception {
 public:
-    ExceptionIncorrectColor(const char * msg);
+    explicit ExceptionIncorrectColor(const char * msg);
 };
 
-class ExceptionIncorrectMaterial:public Exception {
+class ExceptionIncorrectMaterial final:public Exception {
 public:
-    ExceptionIncorrectMaterial(const char * msg);
+    explicit ExceptionIncorrectMaterial(const char * msg);
 };
 
 class ExceptionIncorrectSize:public Exception {
 public:
-    ExceptionIncorrectSize(const char * msg);
+    explicit ExceptionIncorrectSize(const char * msg);
 };
 
-class ExceptionIncorrectSerialNumber:public Exception {
+class ExceptionIncorrectSerialNumber final:public Exception {
 public:
-    ExceptionIncorrectSerialNumber(const char * msg);
+    explicit ExceptionIncorrectSerialNumber(const char * msg);
 };
 
-class ExceptionIncorrectSeason :public Exception {
+class ExceptionIncorrectSeason final:public Exception {
 public:
-    ExceptionIncorrectSeason(const char * msg);
+    explicit ExceptionIncorrectSeason(const char * msg);
 };
 
-class ExceptionIncorrectFuel :public Exception {
+class ExceptionIncorrectFuel final:public Exception {
 public:
-    ExceptionIncorrectFuel(const char * msg);
+    explicit ExceptionIncorrectFuel(const char * msg);
 };
 
-class ExceptionIncorrectProcent :public ExceptionIncorrectSize {
+class ExceptionIncorrectProcent final:public ExceptionIncorrectSize {
 public:
-    ExceptionIncorrectProcent(const char * msg);
+    explicit ExceptionIncorrectProcent(const char * msg);
 };
+
+class ExceptionIncorrectVolume final :public ExceptionIncorrectSize {
+public:
+    explicit ExceptionIncorrectVolume(const char * msg);
+};
+
+// class ExceptionIncorrectWeight final:public ExceptionIncorrectSize {
+// public:
+//     explicit ExceptionIncorrectWeight(const char * msg);
+// };
 #endif

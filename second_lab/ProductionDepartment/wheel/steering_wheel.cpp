@@ -31,11 +31,13 @@ bool SteeringWheel::set_radius_of_center_logo(int radius) {
     return this->radius_of_center_logo.set_radius(radius);
 }
 
-void SteeringWheel::clicked_button_to_make_noise() {
+bool SteeringWheel::clicked_button_to_make_noise() {
     if (!signal_button.get_is_clicked()) {
         signal_button.clicked_button();
-        log_to_file("Car signal!!!!");
+        log_to_file("Car signal!!");
+        return true;
     }
+    return false;
 };
 
 bool SteeringWheel::get_is_clicked() const {

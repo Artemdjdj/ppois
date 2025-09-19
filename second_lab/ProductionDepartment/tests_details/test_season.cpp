@@ -4,7 +4,7 @@
 
 class TestSeason : public ::testing::Test {
 public:
-    void SetUp() {
+    void SetUp() override{
         season = Season();
     }
     Season season;

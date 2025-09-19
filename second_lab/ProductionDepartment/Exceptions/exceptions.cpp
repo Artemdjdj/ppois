@@ -26,3 +26,7 @@ ExceptionIncorrectSeason::ExceptionIncorrectSeason(const char * msg): Exception(
 ExceptionIncorrectFuel::ExceptionIncorrectFuel(const char * msg): Exception(msg){}
 
 ExceptionIncorrectProcent::ExceptionIncorrectProcent(const char *msg): ExceptionIncorrectSize(msg) {}
+
+ExceptionIncorrectVolume::ExceptionIncorrectVolume(const char *msg): ExceptionIncorrectSize(msg) {}
+
+// ExceptionIncorrectWeight::ExceptionIncorrectWeight(const char *msg): ExceptionIncorrectSize(msg) {}

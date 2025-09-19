@@ -4,7 +4,7 @@
 
 class TestMirror :public ::testing::Test {
 public:
-    void SetUp() {
+    void SetUp() override{
         mirror = Mirror();
     }
     Mirror mirror;

@@ -17,7 +17,7 @@ public:
         this->radius = radius;
     }
     bool set_radius(int r);
-    int get_radius();
+    int get_radius() const;
 };
 
 class BrakeShoe:public BasicParams, public Color {
@@ -74,7 +74,7 @@ public:
     SteeringWheel(int first_radius, int second_radius, int height_of_button, int width_of_button, bool is_clicked);
     bool set_radius_of_steering_wheel(int radius_of_steering_wheel);
     bool set_radius_of_center_logo(int radius_of_center_logo);
-    void clicked_button_to_make_noise();
+    bool clicked_button_to_make_noise();
     bool get_is_clicked() const;
     bool set_size_for_button(int height_of_button, int width_of_button);
 };

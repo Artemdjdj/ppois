@@ -1,6 +1,3 @@
-//
-// Created by Redmi on 18.09.2025.
-//
 
 #ifndef INCLUDE_RADIATOR_GRILLE_H
 #define INCLUDE_RADIATOR_GRILLE_H

@@ -3,7 +3,7 @@
 
 class TestingColors:public ::testing::Test {
 public:
-    void SetUp() {
+    void SetUp() override {
         color =Color("green");
     }
     Color color;

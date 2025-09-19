@@ -2,7 +2,6 @@
 #include <string>
 #include <algorithm>
 #include <fstream>
-#include <exception>
 #include "include_exceptions.h"
 #include "include_basic_params.h"
 #include "settings.h"
@@ -26,15 +25,15 @@ bool BasicParams::set_size(int height,int width) {
     return set_width(width);
 }
 
-int BasicParams::get_height() {
+int BasicParams::get_height() const {
     return this->height;
 }
 
-int BasicParams::get_width() {
+int BasicParams::get_width() const {
     return this->width;
 }
 
-void BasicParams::get_size(int & height, int & width) {
+void BasicParams::get_size(int & height, int & width) const {
     height = this->height;
     width = this->width;
 }
@@ -76,17 +75,10 @@ Volume::Volume(int volume) {
     this->volume = volume;
 }
 
-void Volume::set_volume_private(int volume) {
-    if (volume < 0) {
-        throw ExceptionIncorrectSize("The volume must be greater then zero!");
-    }
-    this->volume = volume;
-}
-
 bool Volume::set_volume(int volume) {
     return set_single_value(volume, "The volume must be greater then zero!", this->volume);
 }
-int Volume::get_volume() {
+int Volume::get_volume() const {
     return this->volume;
 }
 
@@ -133,6 +125,8 @@ bool set_single_value(int integer_number, const char * description, int &value) 
     }
 }
 
+
+
 bool check_is_statement_correct(const std::vector<std::string>& vector_of_string, std::string& statement) {
     for (auto &good_statement : vector_of_string) {
         ToLower(statement);
@@ -144,11 +138,15 @@ bool check_is_statement_correct(const std::vector<std::string>& vector_of_string
 }
 
 void ToLower(std::string& str) {
-    transform(str.begin(), str.end(), str.begin(), ::tolower);
+    std::ranges::transform(str, str.begin(), ::tolower);
 }
 
 int get_new_value_after_multiplication(int number, int procent) {
     return int(number * procent/100);
+}
+
+double calculate_the_speed_of_sound_in_special_temperature(double temperature) {
+    return speed_of_sound+0.61*temperature;
 }
 
 bool log_to_file(const char * message) {

@@ -3,7 +3,7 @@
 
 class TestGasTank : public ::testing::Test {
 public:
-    void SetUp() {
+    void SetUp() override {
         gas_tank = GasTank();
     }
     GasTank gas_tank;

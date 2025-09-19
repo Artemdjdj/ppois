@@ -3,7 +3,7 @@
 
 class TestFuel : public ::testing::Test {
 public:
-    void SetUp() {
+    void SetUp() override{
         fuel = Fuel();
     }
     Fuel fuel;

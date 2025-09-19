@@ -5,6 +5,6 @@ bool BaseCircle::set_radius(int radius) {
     return set_single_value(radius, "Radius of wheel can't be negative number!", this->radius);
 }
 
-int BaseCircle::get_radius() {
+int BaseCircle::get_radius() const {
     return this->radius;
 }
