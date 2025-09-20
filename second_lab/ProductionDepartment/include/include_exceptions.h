@@ -59,8 +59,9 @@ public:
     explicit ExceptionIncorrectVolume(const char * msg);
 };
 
-// class ExceptionIncorrectWeight final:public ExceptionIncorrectSize {
-// public:
-//     explicit ExceptionIncorrectWeight(const char * msg);
-// };
+class ExceptionIncorrectLevelOil final:public Exception {
+public:
+    explicit ExceptionIncorrectLevelOil(const char * msg);
+};
+
 #endif

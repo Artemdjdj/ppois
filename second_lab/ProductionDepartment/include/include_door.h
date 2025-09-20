@@ -14,6 +14,7 @@ public:
     SideMirror(int height =0, int width =0, std::string color="black");
     ~SideMirror();
 };
+
 class BackDoor:public BasicParams {
 public:
     BackDoor(int height, int width);

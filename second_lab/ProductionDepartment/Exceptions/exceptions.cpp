@@ -29,4 +29,4 @@ ExceptionIncorrectProcent::ExceptionIncorrectProcent(const char *msg): Exception
 
 ExceptionIncorrectVolume::ExceptionIncorrectVolume(const char *msg): ExceptionIncorrectSize(msg) {}
 
-// ExceptionIncorrectWeight::ExceptionIncorrectWeight(const char *msg): ExceptionIncorrectSize(msg) {}
+ExceptionIncorrectLevelOil::ExceptionIncorrectLevelOil(const char *msg): Exception(msg) {}

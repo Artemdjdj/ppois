@@ -125,8 +125,6 @@ bool set_single_value(int integer_number, const char * description, int &value) 
     }
 }
 
-
-
 bool check_is_statement_correct(const std::vector<std::string>& vector_of_string, std::string& statement) {
     for (auto &good_statement : vector_of_string) {
         ToLower(statement);

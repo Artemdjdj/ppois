@@ -1,4 +1,4 @@
-#include "include_tube.h"
+#include "tube.h"
 #include <gtest/gtest.h>
 
 TEST(TestTube, TestTubeGetHeight) {
