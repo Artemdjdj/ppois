@@ -1,13 +1,14 @@
-/*! \file include_metal_links.h
+/*! \file metal_links.h
  *  \brief Заголовочный файл с определением классов для металической цепи
  */
 #ifndef INCLUDE_METAL_LINKS_H
 #define INCLUDE_METAL_LINKS_H
-#include "include_basic_params.h"
+#include "../include/basic_params.h"
 #include "tube.h"
 #include <string>
 #include <utility>
 #include <vector>
+#include "../CarPart/car_part.h"
 
 /*! \class Plata
  *  \brief Класс для определения базовых параметров металлической пластины
@@ -134,10 +135,17 @@ public:
  *  \brief Класс для определения базовых параметров цепи двигателя
  *  \details Класс предоставляет возможность получения и изменения базовых параметров цепи двигателя
  */
-class MetalChain {
+class MetalChain:public CarPart {
 private:
     std::vector<MetalLink> chain;/*!< Массив соединителей */;
 public:
+
+	/*! \brief Переопределение унаследованной функции
+	*  \return Описание
+	*/
+	std::string get_info_about_part() const override {
+		return"This class describes metal chain in  engine";
+	}
 
     /*! \brief Функция добавляет  новый соединитель, то есть увеличивает длину цепи
     *  \param new_metal_link соединитель

@@ -1,5 +1,5 @@
 
-#include "include_wheel.h"
+#include "wheel.h"
 SignalButton::SignalButton():size(){}
 
 SignalButton::SignalButton(int height, int width, bool is_clicked):size(height, width) {

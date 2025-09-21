@@ -1,5 +1,5 @@
-#include "include_basic_params.h"
-#include "include_gear.h"
+#include "basic_params.h"
+#include "gear.h"
 #include <optional>
 #include <cmath>
 #include <iostream>

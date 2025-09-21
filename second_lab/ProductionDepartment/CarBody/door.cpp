@@ -1,6 +1,6 @@
 
-#include "include_door.h"
-#include "include_basic_params.h"
+#include "door.h"
+#include "basic_params.h"
 #include "settings.h"
 #include <iostream>
 #include <string>

@@ -1,4 +1,4 @@
-/*! \file include_electric_details.h
+/*! \file electric_details.h
  *  \brief Заголовочный файл с определениями классов электрических компонентов
  *  \details Классы для работы с электрическими компонентами, такими как стартеры и аккумуляторы
  */
@@ -6,18 +6,27 @@
 #ifndef INCLUDE_ELECTRIC_DETAILS_H
 #define INCLUDE_ELECTRIC_DETAILS_H
 #include <string>
+#include "../CarPart/car_part.h"
 
 /*! \class ElectroPart
  *  \brief Базовый абстрактный класс для электрических компонентов
  *  \details Класс предоставляет функциональность для работы с основными электрическими параметрами
  */
-class ElectroPart {
+class ElectroPart :public CarPart{
 private:
     int voltage{0};             //!< Значение напряжения в вольтах
     int power{0};              //!< Значение мощности в ваттах
     int current_strength{0};    //!< Сила тока в амперах
 
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes a default ElectroPart";
+    }
+
     /*! \brief Конструктор по умолчанию */
     ElectroPart();
 
@@ -64,10 +73,6 @@ public:
     /*! \brief Виртуальный деструктор */
     virtual ~ElectroPart()= default;
 
-    /*! \brief Чисто виртуальная функция, которая возвращает назначение компонента
-     *  \return Строка, описывающая назначение компонента
-     */
-    virtual std::string get_purpose()= 0;
 };
 
 /*! \class Starter
@@ -80,6 +85,14 @@ private:
     int count_of_prong{0};     //!< Количество штырей/контактов
 
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes electrto part Starter";
+    }
+
     /*! \brief Конструктор по умолчанию */
     Starter();
 
@@ -118,7 +131,6 @@ public:
     /*! \brief Возвращает назначение стартера
      *  \return Строка, описывающая назначение стартера
      */
-    std::string get_purpose() override;
 };
 
 /*! \class Battery
@@ -130,6 +142,14 @@ private:
     int cold_cranking_current{0};   //!< Рейтинг холодного пуска в амперах
 
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes electrto part Battery";
+    }
+
     /*! \brief Конструктор по умолчанию */
     Battery();
 
@@ -156,7 +176,6 @@ public:
     /*! \brief Возвращает назначение аккумулятора
      *  \return Строка, описывающая назначение аккумулятора
      */
-    std::string get_purpose() override;
 };
 
 #endif //INCLUDE_ELECTRIC_DETAILS_H

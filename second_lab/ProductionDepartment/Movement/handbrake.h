@@ -1,19 +1,27 @@
-/*! \file include_handbrake.h
+/*! \file handbrake.h
  *  \brief Заголовочный файл с определением класса ручника
  */
 #ifndef INCLUDE_HANDBRAKE_H
 #define INCLUDE_HANDBRAKE_H
-#include "include_basic_params.h"
-
+#include "../include/basic_params.h"
+#include "../CarPart/car_part.h"
 /*! \class Handbrake
  *  \brief Класс для определения базовых параметров ручника
  *  \details Класс предоставляет возможность получения и изменения базовых параметров ручника
  */
-class Handbrake {
+class Handbrake:public CarPart{
 private:
     BasicParams size;/*!< Размеры */;
     bool is_block{false};/*!< Активен ли ручник */;
 public:
+
+	/*! \brief Переопределение унаследованной функции
+	*  \return Описание
+	*/
+	std::string get_info_about_part() const override {
+		return"This class describes handbrake";
+	}
+
     /*! \brief Конструктор по умолчанию */
     Handbrake();
 

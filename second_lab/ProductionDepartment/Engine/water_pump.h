@@ -1,14 +1,14 @@
-/*! \file include_water_pump.h
+/*! \file water_pump.h
  *  \brief Заголовочный файл с определением класса водяного насоса
  */
 #ifndef INCLUDE_WATER_PUMP_H
 #define INCLUDE_WATER_PUMP_H
-
+#include "../CarPart/car_part.h"
 /*! \class WaterPump
  *  \brief Класс для определения базовых параметров водяного насоса
  *  \details Класс предоставляет возможность получения и изменения базовых параметров водяного насоса
  */
-class WaterPump{
+class WaterPump:public CarPart{
 private:
     int flow_rate{0};/*!< Скорость потока*/;
     int max_pressure{0};/*!< Максимальное давление */;
@@ -16,6 +16,13 @@ private:
     bool is_working{false};/*!< Включен ли */;
     int resource{0};/*!< Ресурс */;
 public:
+
+	/*! \brief Переопределение унаследованной функции
+	*  \return Описание
+	*/
+	std::string get_info_about_part() const override {
+		return"This class describes water pump in engine";
+	}
 
     /*! \brief Параметризованный конструктор
 	*  \param flow Начальная скорость потока

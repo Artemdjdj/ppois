@@ -1,4 +1,4 @@
-/*! \file include_season.h
+/*! \file season.h
  *  \brief Заголовочный файл с определением класса сезона года
  */
 #ifndef SEASON_H
@@ -6,6 +6,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "../CarPart/car_part.h"
+
 
 /*! \class Season
  *  \brief Класс для определения базовых параметров сезона года

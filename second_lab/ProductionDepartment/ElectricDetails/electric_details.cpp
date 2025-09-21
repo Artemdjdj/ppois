@@ -1,5 +1,5 @@
-#include "include_basic_params.h"
-#include "include_electric_details.h"
+#include "basic_params.h"
+#include "electric_details.h"
 
 ElectroPart::ElectroPart()=default;
 
@@ -55,10 +55,6 @@ bool Starter::get_direction() const {
     return this->is_left_direction;
 }
 
-std::string Starter::get_purpose(){
-    return "This electro part has name Starter!";
-}
-
 Battery::Battery(){};
 
 Battery::Battery(int voltage, int power, int current_strength, int cold_cranking_current):
@@ -70,8 +66,4 @@ bool Battery::set_cold_cranking_current(int cold_cranking_current) {
 
 int Battery::get_cold_cranking_current() const {
     return this->cold_cranking_current;
-}
-
-std::string Battery::get_purpose(){
-    return "This electro part has name Battery!";
 }

@@ -1,6 +1,6 @@
-#include "include_mirror.h"
-#include "include_basic_params.h"
-#include "include_exceptions.h"
+#include "mirror.h"
+#include "basic_params.h"
+#include "../Exceptions/exceptions.h"
 #include "settings.h"
 #include <iostream>
 #include <string>

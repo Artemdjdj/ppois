@@ -1,4 +1,4 @@
-#include "include_electric_details.h"
+#include "../ElectricDetails/electric_details.h"
 #include <gtest/gtest.h>
 
 class TestElectroDetails : public ::testing::Test {
@@ -31,9 +31,6 @@ TEST_F(TestElectroDetails, TestSetCountOfProngNegative) {
     ASSERT_EQ(starter.get_count_of_prog(), 9);
 }
 
-TEST_F(TestElectroDetails, TestStarterPurpose) {
-    ASSERT_EQ(starter.get_purpose(), "This electro part has name Starter!");
-}
 
 TEST_F(TestElectroDetails, TestSetColdCrankingCurrent) {
     battery.set_cold_cranking_current(111);
@@ -45,7 +42,4 @@ TEST_F(TestElectroDetails, TestSetColdCrankingCurrentNegative) {
     ASSERT_EQ(battery.get_cold_cranking_current(), 300);
 }
 
-TEST_F(TestElectroDetails, TestBatteryPurpose) {
-    ASSERT_EQ(battery.get_purpose(), "This electro part has name Battery!");
-}
 

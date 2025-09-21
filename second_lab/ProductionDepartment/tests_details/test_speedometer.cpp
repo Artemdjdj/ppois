@@ -1,4 +1,4 @@
-#include "include_speedometer.h"
+#include "../Speedometer/speedometer.h"
 #include <gtest/gtest.h>
 
 class TestSpeedometer : public ::testing::Test {

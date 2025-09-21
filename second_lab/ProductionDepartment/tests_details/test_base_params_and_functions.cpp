@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "include_basic_params.h"
+#include "basic_params.h"
 
 class TestingColors:public ::testing::Test {
 public:

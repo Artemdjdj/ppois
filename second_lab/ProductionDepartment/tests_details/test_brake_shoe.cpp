@@ -1,5 +1,5 @@
-#include "include_basic_params.h"
-#include "include_wheel.h"
+#include "basic_params.h"
+#include "../wheel/wheel.h"
 #include "gtest/gtest.h"
 
 class TestingBrakeShoe: public ::testing::Test {

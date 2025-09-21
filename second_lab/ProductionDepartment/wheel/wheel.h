@@ -1,12 +1,12 @@
-/*! \file include_wheel.h
+/*! \file wheel.h
  *  \brief Заголовочный файл с определением классов для колеса и руля
  */
 #ifndef INCLUDE_WHEEL_H
 #define INCLUDE_WHEEL_H
 #include <vector>
 #include <string>
-#include "include_basic_params.h"
-
+#include "../include/basic_params.h"
+#include "../CarPart/car_part.h"
 /*! \class BaseCircle
  *  \brief Класс для определения базовых параметров круга
  *  \details Класс предоставляет возможность работы с радиусом круга
@@ -39,11 +39,19 @@ public:
  *  \brief Класс для определения тормозной колодки
  *  \details Класс предоставляет возможность работы с параметрами тормозной колодки
  */
-class BrakeShoe:public BasicParams, public Color {
+class BrakeShoe:public CarPart, public BasicParams, public Color {
 private:
     std::string type_of_material;/*!< Тип материала */
     void set_material_private(std::string material);
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes brake shoe";
+    }
+
     /*! \brief Конструктор по умолчанию */
     BrakeShoe();
 
@@ -76,12 +84,20 @@ public:
  *  \brief Класс для определения колеса
  *  \details Класс предоставляет возможность работы с параметрами колеса
  */
-class Wheel{
+class Wheel:public CarPart{
 private:
     BaseCircle radius;/*!< Радиус колеса */
     BrakeShoe brake_shoe;/*!< Тормозная колодка */
     int count_of_bolts{0};/*!< Количество болтов */
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes wheel";
+    }
+
     /*! \brief Конструктор по умолчанию */
     Wheel();
 
@@ -181,12 +197,20 @@ public:
  *  \brief Класс для определения рулевого колеса
  *  \details Класс предоставляет возможность работы с рулевым колесом
  */
-class SteeringWheel{
+class SteeringWheel:public CarPart{
 private:
     BaseCircle radius_of_steering_wheel;/*!< Радиус руля */
     BaseCircle radius_of_center_logo;/*!< Радиус центрального логотипа */
     SignalButton signal_button;/*!< Кнопка сигнала */
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes steering wheel";
+    }
+
     /*! \brief Конструктор по умолчанию */
     SteeringWheel();
 

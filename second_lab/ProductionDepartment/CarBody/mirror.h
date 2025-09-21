@@ -1,16 +1,17 @@
-/*! \file include_Mirror.h
+/*! \file mirror.h
  *  \brief Заголовочный файл с определением класса для зеркала
  */
 #ifndef INCLUDE_Mirror_H
 #define INCLUDE_Mirror_H
 #include <string>
-#include "include_basic_params.h"
+#include "../include/basic_params.h"
+#include "../CarPart/car_part.h"
 
 /*! \class Mirror
  *  \brief Класс для определения параметров зеркала
  *  \details Класс предоставляет возможность работы с параметрами зеркала, включая тонировку
  */
-class Mirror:public BasicParams {
+class Mirror:public CarPart, BasicParams {
 private:
     std::string serial_number;/*!< Серийный номер */
     int thickness{0};/*!< Толщина */
@@ -27,6 +28,14 @@ private:
     */
     bool check_serial_number(const std::string &serial_number);
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes mirror";
+    }
+
     /*! \brief Параметризованный конструктор
     *  \param height Высота
     *  \param width Ширина

@@ -1,4 +1,4 @@
-#include "include_gas_tank.h"
+#include "../CarBody/gas_tank.h"
 #include <gtest/gtest.h>
 
 class TestGasTank : public ::testing::Test {

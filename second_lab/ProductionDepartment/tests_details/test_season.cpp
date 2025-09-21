@@ -1,5 +1,5 @@
 
-#include "include_season.h"
+#include "../Seasons/season.h"
 #include <gtest/gtest.h>
 
 class TestSeason : public ::testing::Test {

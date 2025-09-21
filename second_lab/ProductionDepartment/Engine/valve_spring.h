@@ -1,14 +1,15 @@
-/*! \file include_valve_spring.h
+/*! \file valve_spring.h
  *  \brief Заголовочный файл с определением класса для клапанной пружины
  */
 #ifndef INCLUDE_VALVE_SPRING_H
 #define INCLUDE_VALVE_SPRING_H
+#include "../CarPart/car_part.h"
 
 /*! \class ValveSpring
  *  \brief Класс для определения параметров клапанной пружины
  *  \details Класс предоставляет возможность работы с параметрами клапанной пружины, включая сжатие и деформацию
  */
-class ValveSpring {
+class ValveSpring:public CarPart {
 private:
     int diameter{0};         /*!< Диаметр пружины */
     int length{0};          /*!< Длина пружины */
@@ -16,6 +17,14 @@ private:
     bool is_compressed{false}; /*!< Состояние сжатия */
 
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes valve spring";
+    }
+
     /*! \brief Конструктор по умолчанию */
     ValveSpring();
 

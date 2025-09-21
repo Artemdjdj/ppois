@@ -1,5 +1,5 @@
-#include "include_wheel.h"
-#include "include_basic_params.h"
+#include "wheel.h"
+#include "basic_params.h"
 
 
 BaseCircle::BaseCircle(int radius): radius(radius) {}

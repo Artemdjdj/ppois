@@ -2,8 +2,8 @@
 #include <string>
 #include <algorithm>
 #include <fstream>
-#include "include_exceptions.h"
-#include "include_basic_params.h"
+#include "Exceptions/exceptions.h"
+#include "basic_params.h"
 #include "settings.h"
 
 BasicParams::BasicParams(int height, int width) {

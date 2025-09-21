@@ -1,10 +1,11 @@
-/*! \file include_fuel.h
+/*! \file fuel.h
  *  \brief Заголовочный файл с определением класса топлива
  */
 #ifndef INCLUDE_FUEL_H
 #define INCLUDE_FUEL_H
 #include <string>
-#include "include_season.h"
+#include "../Seasons/season.h"
+#include "../CarPart/car_part.h"
 
 /*! \class Fuel
  *  \brief Класс для определения топлива

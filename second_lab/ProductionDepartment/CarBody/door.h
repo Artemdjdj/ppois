@@ -1,4 +1,4 @@
-/*! \file include_door.h
+/*! \file door.h
  *  \brief Заголовочный файл с определением классов дверей
  *  \details Классы для упрощения работы
  */
@@ -7,14 +7,22 @@
 #define INCLUDE_DOOR_H
 #include<string>
 #include <iostream>
-#include "include_basic_params.h"
+#include "../include/basic_params.h"
+#include "../CarPart/car_part.h"
 
 /*! \class SideMirror
  *  \brief Класс для определения боковых зеркал
  *  \details Класс предоставляет возможность получения и изменения информации о боковых зеркалах
  */
-class SideMirror: public BasicParams, public Color {
+class SideMirror: public CarPart, public BasicParams, public Color {
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes the side mirror on the front doors.";
+    }
 
     /*! \brief Параметризованный конструктор
     *  \param height Начальная длина, базовое значение 0
@@ -31,8 +39,12 @@ public:
  *  \brief Класс для определения шаблона задних дверей
  *  \details Класс предоставляет возможность получения и изменения базовых параметров задних дверей
  */
-class BackDoor:public BasicParams {
+class BackDoor:public CarPart, public BasicParams {
 public:
+
+    std::string get_info_about_part() const override {
+        return"This class describes the backdoor door";
+    }
 
     /*! \brief Параметризованный конструктор
     *  \param height Начальная длина
@@ -53,6 +65,10 @@ private:
     bool is_lock = false;/*!< Закрыта ли дверь */;
     SideMirror mirror;/*!< Боковое зеркало */;
 public:
+
+    std::string get_info_about_part() const override {
+        return"This class describes the front door";
+    }
 
     /*! \brief Параметризованный конструктор
     *  \param height_door Начальная длина, 0

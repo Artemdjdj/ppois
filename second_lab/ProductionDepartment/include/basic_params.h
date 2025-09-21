@@ -1,4 +1,4 @@
-/*! \file include_basic_params.h
+/*! \file basic_params.h
  *  \brief Заголовочный файл с определением базовых классов и некоторых функций
  *  \details Классы для упрощения работы
  */
@@ -6,19 +6,18 @@
 #define INCLUDE_BASIC_PARAMS_H
 #include <string>
 #include <vector>
-#include "include_exceptions.h"
+#include "../CarPart/car_part.h"
 #include "settings.h"
 
 /*! \class BasicParams
  *  \brief Класс для определения базовых параметров
  *  \details Класс предоставляет возможность получения и изменения базовых параметров
  */
-class BasicParams {
+class BasicParams{
 private:
     int height{0}; /*!< Высота/длина объекта */
     int width{0}; /*!< Ширина объекта */
 public:
-
     /*! \brief Конструктор по умолчанию */
     BasicParams();
 
@@ -66,7 +65,7 @@ public:
  *  \brief Класс для работы с цветами
  *  \details Класс предоставляет возможность работы корректной работы с разными существующими цветами
  */
-class Color {
+class Color{
 private:
     std::string color;/*!< Цвет объекта */
 

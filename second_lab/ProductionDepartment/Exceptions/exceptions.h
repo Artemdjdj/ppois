@@ -1,4 +1,4 @@
-/*! \file include_exceptions.h
+/*! \file exceptions.h
  *  \brief Заголовочный файл с определениями классов исключений
  *  \details Содержит иерархию классов исключений для обработки различных ошибок
  */
@@ -7,6 +7,7 @@
 #define INCLUDE_EXCEPTIONS_H
 #include <string>
 #include <exception>
+#include "../CarPart/car_part.h"
 
 /*! \class Exception
  *  \brief Базовый класс для создания уникальных исключений

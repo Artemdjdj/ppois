@@ -1,4 +1,4 @@
-#include "include_gear.h"
+#include "../Engine/gear.h"
 #include <gtest/gtest.h>
 
 class TestGear: public testing::Test {

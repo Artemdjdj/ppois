@@ -1,23 +1,32 @@
-/*! \file include_intake_manifold.h
+/*! \file intake_manifold.h
  *  \brief Заголовочный файл с определением класса впускного коллектора
  */
 #ifndef INCLUDE_INTAKE_MANIFOLD_H
 #define INCLUDE_INTAKE_MANIFOLD_H
-#include "include_basic_params.h"
+#include "../include/basic_params.h"
 #include "tube.h"
 #include <optional>
+#include "../CarPart/car_part.h"
 
 /*! \class IntakeManifold 
  *  \brief Класс для определения базовых параметров впускного коллекторра
  *  \details Класс предоставляет возможность получения и изменения базовых параметров впускного коллектора
  */
-class IntakeManifold {
+class IntakeManifold:public CarPart {
 private:
     Volume main_volume;/*!< Главный объем */;
     Volume plenum_volume;/*!< Объем камеры */;
     Tube canal;/*!< Трубка */;
     int number_of_canals;/*!< Количество трубок */;
 public:
+
+	/*! \brief Переопределение унаследованной функции
+	*  \return Описание
+	*/
+	std::string get_info_about_part() const override {
+		return"This class describes intake manifold in engine";
+	}
+
     /*! \brief Конструктор по умолчанию */
     IntakeManifold();
 

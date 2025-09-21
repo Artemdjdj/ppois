@@ -1,8 +1,8 @@
 #include <string>
-#include "include_fuel.h"
-#include "include_basic_params.h"
+#include "fuel.h"
+#include "basic_params.h"
 #include "settings.h"
-#include "include_exceptions.h"
+#include "../Exceptions/exceptions.h"
 Fuel::Fuel() {}
 Fuel::Fuel(std::string type_of_fuel, std::string season):season(season) {
     this->type_of_fuel = type_of_fuel;

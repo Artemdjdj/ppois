@@ -1,4 +1,4 @@
-#include "include_valve_spring.h"
+#include "../Engine/valve_spring.h"
 #include <gtest/gtest.h>
 
 class TestValveSpring : public ::testing::Test {

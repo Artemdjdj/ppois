@@ -1,17 +1,18 @@
-/*! \file includde_feeler.h
+/*! \file feeler.h
  *  \brief Заголовочный файл с декларацией класса Feeler
  *  \details Содержит определение класса для работы с датчиком уровня
  */
 
 #ifndef INCLUDE_FEELER_H
 #define INCLUDE_FEELER_H
+#include "../CarPart/car_part.h"
 
 /*! \class Feeler
  *  \brief Класс для проверки уровня масла(щуп)
  *  \details Класс предоставляет функционал для установки и получения длины и уровня,
  *           а также проверки корректности состояния уровня
  */
-class Feeler {
+class Feeler:public CarPart {
 private:
     int length{0}; /*!< Длина  щупа */
     int level{0};  /*!< Текущий уровень */
@@ -22,6 +23,14 @@ private:
     void check_is_the_level_in_norm_state_private() const;
 
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes feeler, which help to see the level of oil in engine";
+    }
+
     /*! \brief Конструктор по умолчанию */
     Feeler();
 

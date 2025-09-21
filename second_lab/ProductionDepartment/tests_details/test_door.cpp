@@ -1,5 +1,5 @@
-#include "include_door.h"
-#include "include_basic_params.h"
+#include "../CarBody/door.h"
+#include "basic_params.h"
 #include <gtest/gtest.h>
 class TestDoor: public ::testing::Test {
 protected:

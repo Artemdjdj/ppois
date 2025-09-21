@@ -4,17 +4,26 @@
  */
 #ifndef TUBE_H
 #define TUBE_H
-#include "include_wheel.h"
+#include "../wheel/wheel.h"
+#include "../CarPart/car_part.h"
 
 /*! \class Tube
  *  \brief Класс для определения базовых параметров трубки
  *  \details Класс предоставляет возможность получения и изменения базовых параметров трубки
  */
-class Tube {
+class Tube:public CarPart{
 private:
     BaseCircle radius;/*!< Радиус трубки */;
     int height{0};/*!<Длина трубки */;
 public:
+
+	/*! \brief Переопределение унаследованной функции
+	*  \return Описание
+	*/
+	std::string get_info_about_part() const override {
+		return"This class describes tube";
+	}
+
     /*! \brief Конструктор по умолчанию */
     Tube();
 

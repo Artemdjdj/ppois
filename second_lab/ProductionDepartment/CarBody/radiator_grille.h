@@ -1,20 +1,28 @@
-/*! \file include_radiator_grille.h
+/*! \file radiator_grille.h
  *  \brief Заголовочный файл с определением класса радиаторной решетки
  */
 #ifndef INCLUDE_RADIATOR_GRILLE_H
 #define INCLUDE_RADIATOR_GRILLE_H
-#include "include_basic_params.h"
+#include "../include/basic_params.h"
+#include "../CarPart/car_part.h"
 
 /*! \class RadiatorGrille
  *  \brief Класс для определения базовых параметров  радиаторной решетки
  *  \details Класс предоставляет возможность получения и изменения базовых параметров радиаторной решетки
  */
-class RadiatorGrille {
+class RadiatorGrille:public CarPart {
 private:
     BasicParams size; /*!< Размеры */;
     int count_of_holes{0};/*!< Количество отверстий */;
     int diameter_of_hole{0};/*!< диаметр отверстий */;
 public:
+
+	/*! \brief Переопределение унаследованной функции
+	*  \return Описание
+	*/
+	std::string get_info_about_part() const override {
+		return"This class describes radiator grille";
+	}
 
     /*! \brief Конструктор по умолчанию */
     RadiatorGrille();

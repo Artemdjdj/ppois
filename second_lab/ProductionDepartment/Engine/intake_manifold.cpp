@@ -1,6 +1,6 @@
-#include "include_intake_manifold.h"
+#include "intake_manifold.h"
 #include <cmath>
-#include "include_exceptions.h"
+#include "../Exceptions/exceptions.h"
 #include <iostream>
 
 IntakeManifold::IntakeManifold()=default;

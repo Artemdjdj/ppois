@@ -1,7 +1,7 @@
 
-#include "include_basic_params.h"
-#include "include_exceptions.h"
-#include "include_wheel.h"
+#include "basic_params.h"
+#include "../Exceptions/exceptions.h"
+#include "wheel.h"
 #include "settings.h"
 #include <string>
 #include <iostream>

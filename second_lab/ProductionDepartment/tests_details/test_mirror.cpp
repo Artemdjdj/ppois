@@ -1,5 +1,5 @@
-#include "include_mirror.h"
-#include "include_basic_params.h"
+#include "../CarBody/mirror.h"
+#include "basic_params.h"
 #include <gtest/gtest.h>
 
 class TestMirror :public ::testing::Test {

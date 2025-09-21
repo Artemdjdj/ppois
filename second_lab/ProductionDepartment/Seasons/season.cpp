@@ -1,7 +1,7 @@
 
-#include "include_basic_params.h"
-#include "include_exceptions.h"
-#include "include_season.h"
+#include "basic_params.h"
+#include "../Exceptions/exceptions.h"
+#include "season.h"
 #include "settings.h"
 
 Season::Season(){}

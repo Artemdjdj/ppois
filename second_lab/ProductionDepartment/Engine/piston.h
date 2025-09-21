@@ -1,14 +1,16 @@
-/*! \file include_piston.h
+/*! \file piston.h
  *  \brief Заголовочный файл с определением базовых классов и некоторых функций класса поршень
  */
 #ifndef INCLUDE_PISTON_H
 #define INCLUDE_PISTON_H
+#include "../CarPart/car_part.h"
+
 
 /*! \class Piston
  *  \brief Класс для определения базовых параметров поршня
  *  \details Класс предоставляет возможность получения и изменения базовых параметров поршня
  */
-class Piston {
+class Piston:public CarPart {
 private:
     int diameter{0};/*!< Диаметр */;
     int height{0};/*!< Высота */;
@@ -16,6 +18,13 @@ private:
     int count_of_cycles{0};/*!< Количество циклов */;
     int weight{0};/*!< Масса */;
 public:
+
+	/*! \brief Переопределение унаследованной функции
+	*  \return Описание
+	*/
+	std::string get_info_about_part() const override {
+		return"This class describes piston in engine";
+	}
 
     /*! \brief Конструктор по умолчанию */
     Piston();

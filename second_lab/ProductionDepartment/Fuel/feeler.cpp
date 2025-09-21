@@ -1,5 +1,6 @@
-#include "include_basic_params.h"
-#include "include_feeler.h"
+#include "basic_params.h"
+#include "feeler.h"
+#include "../Exceptions/exceptions.h"
 
 Feeler::Feeler()=default;
 

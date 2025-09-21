@@ -1,10 +1,10 @@
-/*! \file include_gear.h
+/*! \file gear.h
  *  \brief Заголовочный файл с определением базовых класса деталей
  */
 #ifndef INCLUDE_GEAR_H
 #define INCLUDE_GEAR_H
 #include <optional>
-
+#include "../CarPart/car_part.h"
 /*! \class Figure
  *  \brief Абстрактный класс для определения фигур
  */
@@ -98,11 +98,19 @@ public:
  *  \brief Абстрактный класс для определения базовых параметров любой детали
  *  \details Класс предоставляет возможность получения и изменения базовых параметров детали
  */
-class Detail {
+class Detail:public CarPart {
 private:
     int thickness{0};/*!< Толщина */;
     int density{0};/*!< Плотность */;
 public:
+
+	/*! \brief Переопределение унаследованной функции
+	*  \return Описание
+	*/
+	std::string get_info_about_part() const override {
+		return"This class describes Detail, which can be rim or prong or others";
+	}
+
     /*! \brief Конструктор по умолчанию */
     Detail();
 
@@ -149,6 +157,14 @@ public:
  */
 class Prong : public Triangle, Detail {
 public:
+
+	/*! \brief Переопределение унаследованной функции
+	*  \return Описание
+	*/
+	std::string get_info_about_part() const override {
+		return"This class describes detail prong";
+	}
+
     /*! \brief Конструктор по умолчанию */
     Prong();
 
@@ -180,6 +196,14 @@ public:
  */
 class Rim: public Circle, public Detail {
 public:
+
+	/*! \brief Переопределение унаследованной функции
+	*  \return Описание
+	*/
+	std::string get_info_about_part() const override {
+		return"This class describes detail rim";
+	}
+
     /*! \brief Конструктор по умолчанию */
     Rim();
 

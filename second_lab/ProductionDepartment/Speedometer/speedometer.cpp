@@ -1,5 +1,5 @@
-#include "include_basic_params.h"
-#include "include_speedometer.h"
+#include "basic_params.h"
+#include "speedometer.h"
 
 DefaultSpeedometer::DefaultSpeedometer() = default;
 

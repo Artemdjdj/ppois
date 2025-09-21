@@ -1,18 +1,27 @@
-/*! \file include_speedometer.h
+/*! \file speedometer.h
  *  \brief Заголовочный файл с определением классов для спидометра
  */
 #ifndef INCLUDE_SPEEDOMETER_H
 #define INCLUDE_SPEEDOMETER_H
+#include "../CarPart/car_part.h"
 
 /*! \class DefaultSpeedometer
  *  \brief Базовый абстрактный класс для определения спидометра
  *  \details Класс предоставляет базовый интерфейс для работы со спидометром
  */
-class DefaultSpeedometer{
+class DefaultSpeedometer:public CarPart{
 protected:
     int speed{0};/*!< Текущая скорость */
     int mileage{0};/*!< Текущий пробег */
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes Default speedometer";
+    }
+
     /*! \brief Конструктор по умолчанию */
     DefaultSpeedometer();
 
@@ -54,6 +63,14 @@ public:
  */
 class SpeedometerInKilometers: public DefaultSpeedometer{
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes speedometer in kilometers";
+    }
+
     /*! \brief Конструктор по умолчанию */
     SpeedometerInKilometers();
 
@@ -82,6 +99,14 @@ public:
  */
 class SpeedometerInMiles: public DefaultSpeedometer{
 public:
+
+    /*! \brief Переопределение унаследованной функции
+    *  \return Описание
+    */
+    std::string get_info_about_part() const override {
+        return"This class describes speedometer in miles";
+    }
+
     /*! \brief Параметризованный конструктор
     *  \param speed Начальная скорость в милях/ч
     *  \param mileage Начальный пробег в милях

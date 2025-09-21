@@ -1,21 +1,30 @@
-/*! \file include_gas_tank.h
+/*! \file gas_tank.h
  *  \brief Заголовочный файл с определением класса бензобака
  */
 #ifndef INCLUDE_GAS_TANK_H
 #define INCLUDE_GAS_TANK_H
-#include "include_basic_params.h"
-#include "include_fuel.h"
+#include <string>
+#include "../include/basic_params.h"
+#include "../Fuel/fuel.h"
+#include "../CarPart/car_part.h"
 
 /*! \class GasTank
  *  \brief Класс для определения бензобака
  *  \details Класс предоставляет возможность получения и изменения базовых параметров бензобака
  */
-class GasTank {
+class GasTank:public CarPart {
 private:
     Volume volume;/*!< Объем бака */;
     Fuel fuel;/*!< Тип топлива */;
     int percentage_of_occupancy{0};/*!< Процент заполненности */;
 public:
+
+	/*! \brief Переопределение унаследованной функции
+	*  \return Описание
+	*/
+	std::string get_info_about_part() const override {
+		return"This class describes gas tank";
+	}
 
     /*! \brief Конструктор по умолчанию */
     GasTank();
