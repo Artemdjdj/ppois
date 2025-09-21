@@ -151,7 +151,7 @@ bool log_to_file(const char * message) {
     std::ofstream file;
     file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
     try {
-        file.open(PATH_TO_FILE, std::ios::out );
+        file.open(PATH_TO_FILE, std::ios::app);
         file << std::endl<< message<<std::endl;
         file.close();
         return true;
