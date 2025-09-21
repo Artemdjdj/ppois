@@ -11,11 +11,11 @@ public:
 };
 
 TEST_F(TestHandbrake, TestBlockCar) {
-    handbrake.block_car();
-    ASSERT_TRUE(handbrake.get_is_block());
+    handbrake.BlockCar();
+    ASSERT_TRUE(handbrake.GetIsBlock());
 }
 
-TEST_F(TestHandbrake, TestUnBlockCar) {
-    handbrake.unblock_car();
-    ASSERT_FALSE(handbrake.get_is_block());
+TEST_F(TestHandbrake, TestUnblockCar) {
+    handbrake.UnblockCar();
+    ASSERT_FALSE(handbrake.GetIsBlock());
 }

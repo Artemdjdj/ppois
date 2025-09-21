@@ -14,9 +14,6 @@
  *  \details Класс предоставляет возможность получения и изменения базовых параметров
  */
 class BasicParams{
-private:
-    int height{0}; /*!< Высота/длина объекта */
-    int width{0}; /*!< Ширина объекта */
 public:
     /*! \brief Конструктор по умолчанию */
     BasicParams();
@@ -31,34 +28,38 @@ public:
      *  \param height Новое значение длины
      *  \return true если установка прошла успешно, false в противном случае
      */
-    bool set_height(int height);
+    bool SetHeight(int height);
 
     /*! \brief Установка ширины
      *  \param width Новое значение ширины
      *  \return true если установка прошла успешно, false в противном случае
      */
-    bool set_width(int width);
+    bool SetWidth(int width);
 
     /*! \brief Установка длины и ширины
      *  \param height Новое значение длины
      *  \param width Новое значение ширины
      *  \return true если установка прошла успешно, false в противном случае
      */
-    bool set_size(int height, int width);
+    bool SetSize(int height, int width);
 
     /*! \brief Получение текущей длины
      *  \return Длина
      */
-    int get_height() const;
+    int GetHeight() const;
 
     /*! \brief Получение текущей ширины 
      *  \return Длина
      */
-    int get_width() const;
+    int GetWidth() const;
 
     /*! \brief Получение текущих размеров
      */
-    void get_size(int & height, int & width) const;
+    void GetSize(int & height, int & width) const;
+
+private:
+    int height_{0}; /*!< Высота/длина объекта */
+    int width_{0}; /*!< Ширина объекта */
 };
 
 /*! \class Color
@@ -66,13 +67,6 @@ public:
  *  \details Класс предоставляет возможность работы корректной работы с разными существующими цветами
  */
 class Color{
-private:
-    std::string color;/*!< Цвет объекта */
-
-    /*! \brief Функция проверяет цвет на корректность
-     *  \param color цвет
-     */
-    void set_color_private(std::string color);
 public:
 
     /*! \brief Конструктор по умолчанию */
@@ -87,12 +81,21 @@ public:
      *  \param color Новое значение цвета
      *  \return true если установка прошла успешно, false в противном случае
      */
-    bool set_color(std::string color);
+    bool SetColor(std::string color);
 
     /*! \brief Получение длины
      *  \return Цвет
      */
-    std::string get_color();
+    std::string GetColor();
+
+private:
+    /*! \brief Функция проверяет цвет на корректность
+    *  \param color цвет
+    */
+    void SetColor_private(std::string color);
+
+private:
+    std::string color_;/*!< Цвет объекта */
 };
 
 /*! \class Volume
@@ -100,8 +103,6 @@ public:
  *  \details Класс предоставляет возможность получения и изменения данных об объеме
  */
 class Volume {
-private:
-    int volume{0}; /*!< Объем*/;
 public:
 
     /*! \brief Конструктор по умолчанию */
@@ -116,31 +117,34 @@ public:
      *  \param volume Новое значение объема
      *  \return true если установка прошла успешно, false в противном случае
      */
-    bool set_volume(int volume);
+    bool SetVolume(int volume);
 
     /*! \brief Получение объема
      *  \return Объем
      */
-    int get_volume() const;
+    int GetVolume() const;
+
+private:
+    int volume_{0}; /*!< Объем*/;
 };
 
 /*! \brief Функция проверяет целое число на корректность
 *  \param integer_number целое число
 *  \param description строка описания ошибки
 */
-void set_integer_number(int integer_number, const char * description);
+void SetIntegerNumber(int integer_number, const char * description);
 
 /*! \brief Функция проверяет процент на корректность
 *  \param percentage Целое число
 */
-void set_procent(int percentage);
+void SetPercent(int percentage);
 
 /*! \brief Установка процента
 *  \param procent процент
 *  \param value куда присвоить
 *  \return true если установка прошла успешно, false в противном случае
 */
-bool set_single_procent(int procent, int& value);
+bool SetSinglePercent(int procent, int& value);
 
 /*! \brief Установка целого числа
 *  \param integer_number целое число
@@ -148,7 +152,7 @@ bool set_single_procent(int procent, int& value);
 *  \param value куда присвоить
 *  \return true если установка прошла успешно, false в противном случае
 */
-bool set_single_value(int integer_number, const char * description, int &value);
+bool SetSingleValue(int integer_number, const char * description, int &value);
 
 /*! \brief Функция переводит строку внижний регистр
 *  \param str строка
@@ -159,25 +163,25 @@ void ToLower(std::string& str);
 *  \param message сообщение
 *  \return true если запись прошла успешно, false в противном случае
 */
-bool log_to_file(const char * message);
+bool LogToFile(const char * message);
 
 /*! \brief Функция проверяет переданную строку на принадлежность массиву строк
 *  \param vector_of_string массив строк
 *  \param statement проверяемая строка
 *  \return true если строка принадлежит массиву, false в противном случае
 */
-bool check_is_statement_correct(const std::vector<std::string>& vector_of_string, std::string& statement);
+bool CheckIsStatementCorrect(const std::vector<std::string>& vector_of_string, std::string& statement);
 
 /*! \brief Получение числа, которое является частью передаваемого числа
 *  \param number исходное число
 *  \param procent процент от числа
 *  \return Новое число
 */
-int get_new_value_after_multiplication(int number, int procent);
+int GetNewValueAfterMultiplication(int number, int procent);
 
 /*! \brief  Рассчет скорости звука в определенной температуре
 *  \param temperature температура
 *  \return Скорость звука в определенной температуре
 */
-double calculate_the_speed_of_sound_in_special_temperature(double temperature);
+double CalculateTheSpeedOfSoundInSpecialTemperature(double temperature);
 #endif //INCLUDE_BASIC_PARAMS_H

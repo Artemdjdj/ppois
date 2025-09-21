@@ -16,12 +16,12 @@ public:
     /*! \brief Чисто виртуальная функция для получения площади фигуры
 	*  \return Площадь фигуры
 	*/
-    virtual double get_square() = 0;
+    virtual double GetSquare() = 0;
 
     /*! \brief Чисто виртуальная функция для получения периметра фигуры
 	*  \return Периметр фигуры
 	*/
-    virtual double get_perimeter() = 0;
+    virtual double GetPerimeter() = 0;
 };
 
 /*! \class Triangle
@@ -29,10 +29,6 @@ public:
  *  \details Класс предоставляет возможность получения и изменения базовых параметров треугольника
  */
 class Triangle : public Figure {
-private:
-    int first_side{0};/*!< Первая сторона */;
-    int second_side{0};/*!< Вторая сторона */;
-    int third_side{0};/*!< Третья сторона */;
 public:
 
     /*! \brief Конструктор по умолчанию */
@@ -51,16 +47,22 @@ public:
     *  \param third_side Длина третьей стороны
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_sides(int first_side, int second_side, int third_side);
+    bool SetSides(int first_side, int second_side, int third_side);
 
     /*! \brief Получение текущей длины стороны
     *  \param number_of_side Номер стороны
 	*  \return Длина стороны или nullodt
 	*/
-    std::optional<int> get_one_of_sides(int number_of_side) const;
+    std::optional<int> GetOneOfSides(int number_of_side) const;
 
-    double get_square() override;
-    double get_perimeter() override;
+    double GetSquare() override;
+
+    double GetPerimeter() override;
+
+private:
+	int first_side_{0};/*!< Первая сторона */;
+	int second_side_{0};/*!< Вторая сторона */;
+	int third_side_{0};/*!< Третья сторона */;
 };
 
 /*! \class Circle
@@ -68,8 +70,6 @@ public:
  *  \details Класс предоставляет возможность получения и изменения базовых параметров круга
  */
 class Circle : public Figure {
-private:
-    int radius{0};/*!< Радиус */;
 public:
     /*! \brief Конструктор по умолчанию */
     Circle();
@@ -83,15 +83,19 @@ public:
 	*  \param radius Радиус
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_radius(int radius);
+    bool SetRadius(int radius);
 
     /*! \brief Получение текущего радиуса
 	*  \return Длина радиуса
 	*/
-    int get_radius() const;
+    int GetRadius() const;
 
-    double get_square() override;
-    double get_perimeter() override;
+    double GetSquare() override;
+
+    double GetPerimeter() override;
+
+private:
+	int radius_{0};/*!< Радиус */;
 };
 
 /*! \class Detail
@@ -99,15 +103,12 @@ public:
  *  \details Класс предоставляет возможность получения и изменения базовых параметров детали
  */
 class Detail:public CarPart {
-private:
-    int thickness{0};/*!< Толщина */;
-    int density{0};/*!< Плотность */;
 public:
 
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
-	std::string get_info_about_part() const override {
+	std::string GetInfoAboutPart() const override {
 		return"This class describes Detail, which can be rim or prong or others";
 	}
 
@@ -127,28 +128,32 @@ public:
 	*  \param thickness Толщина
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_thickness(int thickness);
+    bool SetThickness(int thickness);
 
     /*! \brief Получение текущей толщины
 	*  \return Толщина
 	*/
-    int get_thickness() const;
+    int GetThickness() const;
 
     /*! \brief Установка плотности
 	*  \param density Плотность
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_density(int density);
+    bool SetDensity(int density);
 
     /*! \brief Получение текущей плотности
 	*  \return Плотность
 	*/
-    int get_density() const;
+    int GetDensity() const;
 
     /*! \brief Чисто виртуальная функция для получения массы детали
 	*  \return Масса
 	*/
-    virtual double get_weight() =0;
+    virtual double GetWeight() =0;
+
+private:
+	int thickness_{0};/*!< Толщина */;
+	int density_{0};/*!< Плотность */;
 };
 
 /*! \class Prong
@@ -161,7 +166,7 @@ public:
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
-	std::string get_info_about_part() const override {
+	std::string GetInfoAboutPart() const override {
 		return"This class describes detail prong";
 	}
 
@@ -185,9 +190,9 @@ public:
     *  \param density Плотность
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_data_prong(int first_side, int second_side, int third_side, int thickness, int density);
+    bool SetDataProng(int first_side, int second_side, int third_side, int thickness, int density);
 
-    double get_weight() override;
+    double GetWeight() override;
 };
 
 /*! \class Rim
@@ -200,7 +205,7 @@ public:
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
-	std::string get_info_about_part() const override {
+	std::string GetInfoAboutPart() const override {
 		return"This class describes detail rim";
 	}
 
@@ -220,9 +225,9 @@ public:
     *  \param density Плотность
     *  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_data_rim(int radius, int thickness, int density);
+    bool SetDataRim(int radius, int thickness, int density);
 
-    double get_weight() override;
+    double GetWeight() override;
 };
 
 #endif //INCLUDE_GEAR_H

@@ -21,28 +21,28 @@ TEST(Testingtolower, SmallLettersWithBigletters) {
 }
 
 TEST_F(TestingColors, TestCheckFunctionPositive) {
-    color.set_color("blue");
-    ASSERT_EQ(color.get_color(), "blue");
+    color.SetColor("blue");
+    ASSERT_EQ(color.GetColor(), "blue");
 }
 
 TEST_F(TestingColors, TestCheckFunctionNegative) {
-    color.set_color("KJhksfd");
-    ASSERT_EQ(color.get_color(), "green");
+    color.SetColor("KJhksfd");
+    ASSERT_EQ(color.GetColor(), "green");
 }
 
 TEST_F(TestingColors, TestCheckFunctionPositiveAllLettersAreBig) {
-    color.set_color("RED");
-    ASSERT_EQ(color.get_color(), "red");
+    color.SetColor("RED");
+    ASSERT_EQ(color.GetColor(), "red");
 }
 
 TEST(TestVolume, TestSetCorrectVolume) {
     Volume volume = Volume();
-    volume.set_volume(10);
-    ASSERT_EQ(volume.get_volume(), 10);
+    volume.SetVolume(10);
+    ASSERT_EQ(volume.GetVolume(), 10);
 }
 
 TEST(TestVolume, TestSetInCorrectVolume) {
     Volume volume = Volume();
-    volume.set_volume(-10);
-    ASSERT_EQ(volume.get_volume(), 0);
+    volume.SetVolume(-10);
+    ASSERT_EQ(volume.GetVolume(), 0);
 }

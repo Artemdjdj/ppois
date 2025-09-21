@@ -4,27 +4,27 @@
 
 Feeler::Feeler()=default;
 
-Feeler::Feeler(int length, int level): length(length), level(level) {}
+Feeler::Feeler(int length, int level): length_(length), level_(level) {}
 
-bool Feeler::set_length(int length) {
-    return set_single_value(length, "Length can't be negative or zero", this->length);
+bool Feeler::SetLength(int length) {
+    return SetSingleValue(length, "Length can't be negative or zero", this->length_);
 }
 
-bool Feeler::set_level(int level) {
-    if (level > this->length) return false;
-    return set_single_value(level, "Level can't be negative or zero", this->level);
+bool Feeler::SetLevel(int level) {
+    if (level > this->length_) return false;
+    return SetSingleValue(level, "Level can't be negative or zero", this->level_);
 }
 
-int Feeler::get_length() const {
-    return this->length;
+int Feeler::GetLength() const {
+    return this->length_;
 }
 
-int Feeler::get_level() const {
-    return this->level;
+int Feeler::GetLevel() const {
+    return this->level_;
 }
 
-void Feeler::check_is_the_level_in_norm_state_private() const {
-    int res_percent = static_cast<int>(100 * this->get_level() / this->get_length());
+void Feeler::CheckIsTheLevelInNormState_private() const {
+    int res_percent = static_cast<int>(100 * this->GetLevel() / this->GetLength());
     if (res_percent < 40) {
         throw ExceptionIncorrectLevelOil("The level of oil below norm!");
     }
@@ -33,17 +33,17 @@ void Feeler::check_is_the_level_in_norm_state_private() const {
     }
 }
 
-bool Feeler::check_is_the_level_in_norm_state() const {
+bool Feeler::CheckIsTheLevelInNormState() const {
     try {
-        check_is_the_level_in_norm_state_private();
+        CheckIsTheLevelInNormState_private();
         return true;
     }
     catch (const ExceptionIncorrectLevelOil& e) {
-        log_to_file(e.what());
+        LogToFile(e.what());
         return false;
     }
     catch (const Exception & e) {
-        log_to_file(e.what());
+        LogToFile(e.what());
         return false;
     }
 }

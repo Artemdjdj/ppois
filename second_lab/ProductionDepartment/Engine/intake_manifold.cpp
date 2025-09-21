@@ -5,64 +5,64 @@
 
 IntakeManifold::IntakeManifold()=default;
 
-IntakeManifold::IntakeManifold(int main_volume, int radius_canal, int height_canal, int number_of_canals):main_volume(main_volume), canal(radius_canal, height_canal) {
-    this->number_of_canals = number_of_canals;
+IntakeManifold::IntakeManifold(int main_volume, int radius_canal, int height_canal, int number_of_canals):main_volume_(main_volume), canal_(radius_canal, height_canal) {
+    this->number_of_canals_ = number_of_canals;
 }
 
-bool IntakeManifold::set_main_volume(int volume) {
-    return this->main_volume.set_volume(volume);
+bool IntakeManifold::SetMainVolume(int volume) {
+    return this->main_volume_.SetVolume(volume);
 }
 
-void IntakeManifold::set_plenum_volume() {
-    this->plenum_volume.set_volume(static_cast<int>(this->main_volume.get_volume() * 0.7));
+void IntakeManifold::SetPlenumVolume() {
+    this->plenum_volume_.SetVolume(static_cast<int>(this->main_volume_.GetVolume() * 0.7));
 }
 
-bool IntakeManifold::set_height_canal(int height_canal) {
-    return this->canal.set_height(height_canal);
+bool IntakeManifold::SetHeightCanal(int height_canal) {
+    return this->canal_.SetHeight(height_canal);
 }
 
-bool IntakeManifold::set_number_of_canals(int number_of_canals) {
-    return set_single_value(number_of_canals, "The number of canals can't be negative or zero!", this->number_of_canals);
+bool IntakeManifold::SetNumberOfCanals(int number_of_canals) {
+    return SetSingleValue(number_of_canals, "The number of canals can't be negative or zero!", this->number_of_canals_);
 }
 
-int IntakeManifold::get_number_of_canals() const {
-    return this->number_of_canals;
+int IntakeManifold::GetNumberOfCanals() const {
+    return this->number_of_canals_;
 }
 
-int IntakeManifold::get_radius_canal() const {
-    return this->canal.get_radius();
+int IntakeManifold::GetRadiusCanal() const {
+    return this->canal_.GetRadius();
 }
 
-int IntakeManifold::get_height_canal() const {
-    return this->canal.get_height();
+int IntakeManifold::GetHeightCanal() const {
+    return this->canal_.GetHeight();
 }
 
-bool IntakeManifold::set_radius_canal(int radius_canal) {
-    return this->canal.set_radius(radius_canal);
+bool IntakeManifold::SetRadiusCanal(int radius_canal) {
+    return this->canal_.SetRadius(radius_canal);
 }
 
-int IntakeManifold::get_plenum_volume() const {
-    return this->plenum_volume.get_volume();
+int IntakeManifold::GetPlenumVolume() const {
+    return this->plenum_volume_.GetVolume();
 }
 
-void IntakeManifold::checking_volume() const {
-    if (get_plenum_volume()<=0) {
+void IntakeManifold::CheckingVolume() const {
+    if (GetPlenumVolume()<=0) {
         throw ExceptionIncorrectVolume("Incorrect volume!");
     }
 }
 
-std::optional<double>  IntakeManifold::calculate_response_frequency(double temperature) const {
+std::optional<double>  IntakeManifold::CalculateResponseFrequency(double temperature) const {
     try {
-        checking_volume();
-        double speed = calculate_the_speed_of_sound_in_special_temperature(temperature);
-        return std::optional<double>(speed/(2*M_PI*pow(plenum_volume.get_volume()*canal.get_height()*pow(10, -6),0.5)));
+        CheckingVolume();
+        double speed = CalculateTheSpeedOfSoundInSpecialTemperature(temperature);
+        return std::optional<double>(speed/(2*M_PI*pow(plenum_volume_.GetVolume()*canal_.GetHeight()*pow(10, -6),0.5)));
     }
     catch (const ExceptionIncorrectVolume& e){
-        log_to_file(e.what());
+        LogToFile(e.what());
         return std::nullopt;
     }
     catch (const Exception & e) {
-        log_to_file(e.what());
+        LogToFile(e.what());
         return std::nullopt;
     }
 }

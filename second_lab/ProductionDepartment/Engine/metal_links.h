@@ -15,9 +15,6 @@
  *  \details Класс предоставляет возможность получения и изменения базовых параметров металлической пластины
  */
 class Plata{
-private:
-    BasicParams size;/*!< Размеры */;
-    std::string material{"steel"};/*!< Материал */;
 public:
 
     /*! \brief Конструктор по умолчанию */
@@ -34,22 +31,26 @@ public:
     *  \param width Новое значение ширины
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_plata_size(int height, int width);
+    bool SetPlataSize(int height, int width);
 
     /*! \brief Получение текущей длины
 	*  \return Длина
 	*/
-    int get_height_of_plata() const;
+    int GetHeightOfPlata() const;
 
     /*! \brief Получение текущей ширины
 	*  \return Ширина
 	*/
-    int get_width_of_plata() const;
+    int GetWidthOfPlata() const;
 
     /*! \brief Получение материала
 	*  \return Материал пластины
 	*/
-    std::string get_material() const;
+    std::string GetMaterial() const;
+
+private:
+	BasicParams size_;/*!< Размеры */;
+	std::string material_{"steel"};/*!< Материал */;
 };
 
 /*! \class MetalCylinder
@@ -57,8 +58,6 @@ public:
  *  \details Класс предоставляет возможность получения и изменения базовых параметров метааллического циллиндра
  */
 class MetalCylinder:public Tube{
-private:
-    int weight{0};/*!< Масса */;
 public:
     /*! \brief Конструктор по умолчанию */
     MetalCylinder();
@@ -74,12 +73,15 @@ public:
 	*  \param weight Новое значение массы
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_weight(int weight);
+    bool SetWeight(int weight);
 
     /*! \brief Получение текущей массы
 	*  \return Масса
 	*/
-    int get_weight() const;
+    int GetWeight() const;
+
+private:
+	int weight_{0};/*!< Масса */;
 };
 
 /*! \class MetalLink
@@ -87,9 +89,6 @@ public:
  *  \details Класс предоставляет возможность получения и изменения базовых параметров соединителя
  */
 class MetalLink {
-private:
-    std::pair<Plata, Plata> two_plats;/*!< Пара плат */;
-    MetalCylinder cylinder;/*!< Цилиндр */;
 public:
 
     /*! \brief Конструктор по умолчанию */
@@ -109,17 +108,17 @@ public:
 	*  \param width_of_plata Начальная ширина платы
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_data_for_two_plats(int height_of_plata, int width_of_plata);
+    bool SetDataForTwoPlats(int height_of_plata, int width_of_plata);
 
     /*! \brief Получение текущей длины платы
 	*  \return Длина
 	*/
-    int get_height_of_plata_for_user() const;
+    int GetHeightOfPlataForUser() const;
 
     /*! \brief Получение текущей ширины платы
 	*  \return Ширина
 	*/
-    int get_width_of_plata_for_user() const;
+    int GetWidthOfPlataForUser() const;
 
     /*! \brief Установка размеров цилиндра
     *  \param radius Начальный радиус
@@ -127,7 +126,11 @@ public:
 	*  \param weight Начальная масса
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_data_for_cylinder(int radius, int height, int weight);
+    bool SetDataForCylinder(int radius, int height, int weight);
+
+private:
+	std::pair<Plata, Plata> two_plats_;/*!< Пара плат */;
+	MetalCylinder cylinder_;/*!< Цилиндр */;
 };
 
 
@@ -136,29 +139,30 @@ public:
  *  \details Класс предоставляет возможность получения и изменения базовых параметров цепи двигателя
  */
 class MetalChain:public CarPart {
-private:
-    std::vector<MetalLink> chain;/*!< Массив соединителей */;
 public:
 
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
-	std::string get_info_about_part() const override {
+	std::string GetInfoAboutPart() const override {
 		return"This class describes metal chain in  engine";
 	}
 
     /*! \brief Функция добавляет  новый соединитель, то есть увеличивает длину цепи
     *  \param new_metal_link соединитель
     */
-    void add_new_metal_link(const MetalLink& new_metal_link);
+    void AddNewMetalLink(const MetalLink& new_metal_link);
 
     /*! \brief Функция удаляет один соединитель
     */
-    void delete_metal_link();
+    void DeleteMetalLink();
 
     /*! \brief Получение текущего размера цепи(длины)
 	*  \return Длина
 	*/
-    int get_lens_of_metal_chain() const;
+    int GetLensOfMetalChain() const;
+
+private:
+	std::vector<MetalLink> chain;/*!< Массив соединителей */;
 };
 #endif //INCLUDE_METAL_LINKS_H

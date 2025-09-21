@@ -1,44 +1,43 @@
-
 #include "basic_params.h"
 #include "../Exceptions/exceptions.h"
 #include "wheel.h"
 #include <iostream>
 
-Wheel::Wheel(): radius(), brake_shoe() {}
+Wheel::Wheel(): radius_(), brake_shoe_() {}
 
-Wheel::Wheel(int radius, int height, int width, std::string material, std::string color, int count_of_bolts): radius(radius), brake_shoe(height, width, material, color) {
-    this->count_of_bolts = count_of_bolts;
+Wheel::Wheel(int radius, int height, int width, std::string material, std::string color, int count_of_bolts): radius_(radius), brake_shoe_(height, width, material, color) {
+    this->count_of_bolts_ = count_of_bolts;
 }
 
-bool Wheel::set_count_of_bolts(int count_of_bolts) {
-    return set_single_value(count_of_bolts,"Count of bolts can't be smaller the null!", this->count_of_bolts);
+bool Wheel::SetCountOfBolts(int count_of_bolts) {
+    return SetSingleValue(count_of_bolts,"Count of bolts can't be smaller the null!", this->count_of_bolts_);
 }
 
-int Wheel::get_count_of_bolts() {
-    return count_of_bolts;
+int Wheel::GetCountOfBolts() const {
+    return count_of_bolts_;
 }
 
-bool Wheel::set_radius(int radius) {
-    return this->radius.set_radius(radius);
+bool Wheel::SetRadius(int radius) {
+    return this->radius_.SetRadius(radius);
 }
 
-int Wheel::get_radius() {
-    return this->radius.get_radius();
+int Wheel::GetRadius() const {
+    return this->radius_.GetRadius();
 }
 
-bool Wheel::set_material(std::string material) {
-    return this->brake_shoe.set_material(material);
+bool Wheel::SetMaterial(std::string material) {
+    return this->brake_shoe_.SetMaterial(material);
 }
 
-bool Wheel::set_color(std::string color) {
-    return this->brake_shoe.set_color(color);
+bool Wheel::SetColor(std::string color) {
+    return this->brake_shoe_.SetColor(color);
 }
 
-bool Wheel::set_size(int height, int width) {
-    return this->brake_shoe.set_size(height, width);
+bool Wheel::SetSize(int height, int width) {
+    return this->brake_shoe_.SetSize(height, width);
 }
 
-std::string Wheel::get_type_of_material_to_brake_shoe() {
-    return this->brake_shoe.get_material();
+std::string Wheel::GetTypeOfMaterialToBrakeShoe() {
+    return this->brake_shoe_.GetMaterial();
 }
 

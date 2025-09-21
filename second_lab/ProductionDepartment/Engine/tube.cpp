@@ -2,21 +2,21 @@
 
 Tube::Tube() = default;
 
-Tube::Tube(int radius, int height):radius(radius), height(height){}
+Tube::Tube(int radius, int height):radius_(radius), height_(height){}
 
-bool Tube::set_radius(int radius) {
-    return this->radius.set_radius(radius);
+bool Tube::SetRadius(int radius) {
+    return this->radius_.SetRadius(radius);
 }
 
-bool Tube::set_height(int height) {
-    return set_single_value(height, "Height should be bigger then zero!", this->height);
+bool Tube::SetHeight(int height) {
+    return SetSingleValue(height, "Height should be bigger then zero!", this->height_);
 }
 
-int Tube::get_radius() const {
-    return this->radius.get_radius();
+int Tube::GetRadius() const {
+    return this->radius_.GetRadius();
 }
-int Tube::get_height() const {
-    return this->height;
+int Tube::GetHeight() const {
+    return this->height_;
 }
 
 

@@ -13,17 +13,12 @@
  *  \details Класс предоставляет возможность получения и изменения базовых параметров впускного коллектора
  */
 class IntakeManifold:public CarPart {
-private:
-    Volume main_volume;/*!< Главный объем */;
-    Volume plenum_volume;/*!< Объем камеры */;
-    Tube canal;/*!< Трубка */;
-    int number_of_canals;/*!< Количество трубок */;
 public:
 
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
-	std::string get_info_about_part() const override {
+	std::string GetInfoAboutPart() const override {
 		return"This class describes intake manifold in engine";
 	}
 
@@ -42,57 +37,63 @@ public:
 	*  \param main_volume Новое значение добъема
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_main_volume(int main_volume);
+    bool SetMainVolume(int main_volume);
 
     /*! \brief Установка объема камеры
 	*/
-    void set_plenum_volume();
+    void SetPlenumVolume();
 
     /*! \brief Установка длины трубки
 	*  \param height_canal Новое значение длины
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_height_canal(int height_canal);
+    bool SetHeightCanal(int height_canal);
 
     /*! \brief Установка радиуса трубки
 	*  \param radius_canal Новое значение радиуса
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_radius_canal(int radius_canal);
+    bool SetRadiusCanal(int radius_canal);
 
      /*! \brief Установка количество трубок
 	*  \param number_of_canals Новое количество трубок
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_number_of_canals(int number_of_canals);
+    bool SetNumberOfCanals(int number_of_canals);
 
     /*! \brief Получение текущего количества трубок
 	*  \return Количество трубок
 	*/
-    int get_number_of_canals() const;
+    int GetNumberOfCanals() const;
 
     /*! \brief Получение текущего радиуса
 	*  \return Радиус
 	*/
-    int get_radius_canal() const;
+    int GetRadiusCanal() const;
 
     /*! \brief Получение длины трубки
 	*  \return Длина
 	*/
-    int get_height_canal() const;
+    int GetHeightCanal() const;
 
     /*! \brief Получение текущего объема камеры
 	*  \return Объем
 	*/
-    int get_plenum_volume() const;
+    int GetPlenumVolume() const;
 
     /*! \brief Рассчет текущей частоты
 	*  \return Частота, или если какие-то параметры некорректны, то nullodt
 	*/
-    std::optional<double> calculate_response_frequency(double temperature) const;
+    std::optional<double> CalculateResponseFrequency(double temperature) const;
 private:
     /*! \brief Функция проверяет объем на корректность
     */
-    void checking_volume() const;
+    void CheckingVolume() const;
+
+private:
+	Volume main_volume_;/*!< Главный объем */;
+	Volume plenum_volume_;/*!< Объем камеры */;
+	Tube canal_;/*!< Трубка */;
+	int number_of_canals_;/*!< Количество трубок */;
 };
 #endif

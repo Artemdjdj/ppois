@@ -11,18 +11,12 @@
  *  \details Класс предоставляет возможность получения и изменения базовых параметров поршня
  */
 class Piston:public CarPart {
-private:
-    int diameter{0};/*!< Диаметр */;
-    int height{0};/*!< Высота */;
-    int compression_height{0};/*!< Высота поднятия */;
-    int count_of_cycles{0};/*!< Количество циклов */;
-    int weight{0};/*!< Масса */;
 public:
 
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
-	std::string get_info_about_part() const override {
+	std::string GetInfoAboutPart() const override {
 		return"This class describes piston in engine";
 	}
 
@@ -32,7 +26,7 @@ public:
     /*! \brief Параметризованный конструктор
 	*  \param diameter Начальный диаметр
 	*  \param height Начальная высота
-    *  \param compression_height Начальная высота поднятия
+    *  \param Compression_height Начальная высота поднятия
 	*  \param count_of_cycles Начальное количество циклов
     *  \param weight Начальная масса
 	*/
@@ -41,36 +35,43 @@ public:
     /*! \brief Установка всех параметров
 	*  \param diameter Начальный диаметр
 	*  \param height Начальная высота
-    *  \param compression_height Начальная высота поднятия
+    *  \param Compression_height Начальная высота поднятия
 	*  \param count_of_cycles Начальное количество циклов
     *  \param weight Начальная масса
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_all_parameters(int diameter, int height, int compression_height, int count_of_cycles, int weight);
+    bool SetAllParameters(int diameter, int height, int compression_height, int count_of_cycles, int weight);
 
     /*! \brief Получение текущего диаметра
 	*  \return Диаметер
 	*/
-    int get_diameter() const;
+    int GetDiameter() const;
 
     /*! \brief Получение текущего количества циклов
 	*  \return Количество циклов
 	*/
-    int get_count_of_cycles() const;
+    int GetCountOfCycles() const;
 
     /*! \brief Получение текущей высоты
 	*  \return Высота
 	*/
-    int get_height() const;
+    int GetHeight() const;
 
     /*! \brief Получение текущей массы
 	*  \return Масса
 	*/
-    int get_weight() const;
+    int GetWeight() const;
 
     /*! \brief Проверка работоспособности поршня
 	*  \return true если износа нет, false в противном случае
 	*/
-    bool check_is_piston_in_working_condition() const;
+    bool CheckIsPistonInWorkingCondition() const;
+
+private:
+	int diameter_{0};/*!< Диаметр */;
+	int height_{0};/*!< Высота */;
+	int compression_height_{0};/*!< Высота поднятия */;
+	int count_of_cycles_{0};/*!< Количество циклов */;
+	int weight_{0};/*!< Масса */;
 };
 #endif //INCLUDE_PISTON_H

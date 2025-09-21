@@ -10,15 +10,12 @@
  *  \details Класс предоставляет возможность получения и изменения базовых параметров ручника
  */
 class Handbrake:public CarPart{
-private:
-    BasicParams size;/*!< Размеры */;
-    bool is_block{false};/*!< Активен ли ручник */;
 public:
 
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
-	std::string get_info_about_part() const override {
+	std::string GetInfoAboutPart() const override {
 		return"This class describes handbrake";
 	}
 
@@ -37,29 +34,33 @@ public:
     *  \param width Новое значение ширины
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_size(int height, int width);
+    bool SetSize(int height, int width);
 
     /*! \brief Получение текущей высоты
 	*  \return Высота
 	*/
-    int get_height();
+    int GetHeight() const;
 
     /*! \brief Получение текущей ширины
 	*  \return Ширина
 	*/
-    int get_width();
+    int GetWidth() const;
 
     /*! \brief Функция активирует ручник
     */
-    void block_car();
+    void BlockCar();
 
     /*! \brief Функция деактивирует ручник
     */
-    void unblock_car();
+    void UnblockCar();
 
     /*! \brief Функция проверяет активен ли ручник
     *  \return Активен ли
     */
-    bool get_is_block();
+    bool GetIsBlock() const;
+
+private:
+	BasicParams size_;/*!< Размеры */;
+	bool is_block_{false};/*!< Активен ли ручник */;
 };
 #endif //INCLUDE_HANDBRAKE_H

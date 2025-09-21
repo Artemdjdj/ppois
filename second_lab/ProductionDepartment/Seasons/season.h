@@ -14,13 +14,6 @@
  *  \details Класс предоставляет возможность получения и изменения базовых параметров сезона года
  */
 class Season {
-private:
-    std::string season;/*!< Сезон года */;
-
-    /*! \brief Функция проверяет сезон года на корректность
-    *  \param color Проверяемый сезон года
-    */
-    void set_season_private(std::string season);
 public:
 
     /*! \brief Конструктор по умолчанию */
@@ -35,11 +28,21 @@ public:
     *  \param color Новый сезон года
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_season(std::string season);
+    bool SetSeason(std::string season);
 
     /*! \brief Получение текущего сезона года
 	*  \return Сезон года
 	*/
-    std::string get_season();
+    std::string GetSeason();
+
+private:
+
+	/*! \brief Функция проверяет сезон года на корректность
+	*  \param color Проверяемый сезон года
+	*/
+	void SetSeasonPrivate(std::string season);
+
+private:
+	std::string season_;/*!< Сезон года */
 };
 #endif //SEASON_H

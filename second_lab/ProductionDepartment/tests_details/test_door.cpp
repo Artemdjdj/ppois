@@ -11,23 +11,23 @@ protected:
 
 TEST_F(TestDoor, GetSizeOfDoor) {
     int height, width;
-    front_door.get_size(height, width);
+    front_door.GetSize(height, width);
     EXPECT_EQ(78,height);
     EXPECT_EQ(100,width);
 }
 
 TEST_F(TestDoor, GetColorOfSideMirror) {
     std::string res_color;
-    front_door.get_color_of_mirror(res_color);
+    front_door.GetColorOfMirror(res_color);
     EXPECT_EQ(res_color, "blue");
 }
 
 TEST_F(TestDoor, SetLockIsFalse) {
-    front_door.close_door();
-    EXPECT_FALSE(front_door.get_lock());
+    front_door.CloseDoor();
+    EXPECT_FALSE(front_door.GetLock());
 }
 TEST_F(TestDoor, SetLockIsTrue) {
-    front_door.open_door();
-    EXPECT_TRUE(front_door.get_lock());
+    front_door.OpenDoor();
+    EXPECT_TRUE(front_door.GetLock());
 }
 

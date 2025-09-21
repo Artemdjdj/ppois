@@ -13,17 +13,12 @@
  *  \details Класс предоставляет функциональность для работы с основными электрическими параметрами
  */
 class ElectroPart :public CarPart{
-private:
-    int voltage{0};             //!< Значение напряжения в вольтах
-    int power{0};              //!< Значение мощности в ваттах
-    int current_strength{0};    //!< Сила тока в амперах
-
 public:
 
     /*! \brief Переопределение унаследованной функции
     *  \return Описание
     */
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes a default ElectroPart";
     }
 
@@ -41,37 +36,42 @@ public:
      *  \param voltage Новое значение напряжения
      *  \return true, если значение было установлено успешно
      */
-    bool set_voltage(int voltage);
+    bool SetVoltage(int voltage);
 
     /*! \brief Устанавливает значение мощности
      *  \param power Новое значение мощности
      *  \return true, если значение было установлено успешно
      */
-    bool set_power(int power);
+    bool SetPower(int power);
 
     /*! \brief Устанавливает значение силы тока
      *  \param current_strength Новое значение тока
      *  \return true, если значение было установлено успешно
      */
-    bool set_current_strength(int current_strength);
+    bool SetCurrentStrength(int current_strength);
 
     /*! \brief Получает значение напряжения
      *  \return Текущее значение напряжения
      */
-    int get_voltage() const;
+    int GetVoltage() const;
 
     /*! \brief Получает значение мощности
      *  \return Текущее значение мощности
      */
-    int get_power() const;
+    int GetPower() const;
 
     /*! \brief Получает значение силы тока
      *  \return Текущее значение силы тока
      */
-    int get_current_strength() const;
+    int GetCurrentStrength() const;
 
     /*! \brief Виртуальный деструктор */
     virtual ~ElectroPart()= default;
+
+private:
+    int voltage_{0};             //!< Значение напряжения в вольтах
+    int power_{0};              //!< Значение мощности в ваттах
+    int current_strength_{0};    //!< Сила тока в амперах
 
 };
 
@@ -80,16 +80,12 @@ public:
  *  \details Класс предоставляет функциональность для работы с параметрами стартера
  */
 class Starter : public ElectroPart {
-private:
-    bool is_left_direction;     //!< Флаг направления вращения
-    int count_of_prong{0};     //!< Количество штырей/контактов
-
 public:
 
     /*! \brief Переопределение унаследованной функции
     *  \return Описание
     */
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes electrto part Starter";
     }
 
@@ -107,30 +103,30 @@ public:
             bool is_left_direction, int count_of_prong);
 
     /*! \brief Устанавливает направление вращения вправо */
-    void choose_right_direction();
+    void ChooseRightDirection();
 
     /*! \brief Устанавливает направление вращения влево */
-    void choose_left_direction();
+    void ChooseLeftDirection();
 
     /*! \brief Устанавливает количество штырей
      *  \param count_of_prong Новое количество штырей
      *  \return true, если значение было установлено успешно
      */
-    bool set_count_of_prog(int count_of_prong);
+    bool SetCountOfProg(int count_of_prong);
 
     /*! \brief Получает количество штырей
      *  \return Текущее количество штырей
      */
-    int get_count_of_prog() const;
+    int GetCountOfProg() const;
 
     /*! \brief Получает направление вращения
      *  \return true для левого направления, false для правого
      */
-    bool get_direction() const;
+    bool GetDirection() const;
 
-    /*! \brief Возвращает назначение стартера
-     *  \return Строка, описывающая назначение стартера
-     */
+private:
+    bool is_left_direction_;     //!< Флаг направления вращения
+    int count_of_prong_{0};     //!< Количество штырей/контактов
 };
 
 /*! \class Battery
@@ -138,15 +134,12 @@ public:
  *  \details Класс предоставляет функциональность для работы с параметрами аккумулятора
  */
 class Battery : public ElectroPart {
-private:
-    int cold_cranking_current{0};   //!< Рейтинг холодного пуска в амперах
-
 public:
 
     /*! \brief Переопределение унаследованной функции
     *  \return Описание
     */
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes electrto part Battery";
     }
 
@@ -166,16 +159,15 @@ public:
      *  \param cold_cranking_current Новое значение холодного пуска
      *  \return true, если значение было установлено успешно
      */
-    bool set_cold_cranking_current(int cold_cranking_current);
+    bool SetColdCrankingCurrent(int cold_cranking_current);
 
     /*! \brief Получает холодный пуск
      *  \return Текущее значение холодного пуска
      */
-    int get_cold_cranking_current() const;
+    int GetColdCrankingCurrent() const;
 
-    /*! \brief Возвращает назначение аккумулятора
-     *  \return Строка, описывающая назначение аккумулятора
-     */
+private:
+    int cold_cranking_current_{0};   //!< Рейтинг холодного пуска в амперах
 };
 
 #endif //INCLUDE_ELECTRIC_DETAILS_H

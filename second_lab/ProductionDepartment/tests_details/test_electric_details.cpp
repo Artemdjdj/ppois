@@ -12,34 +12,34 @@ public:
 };
 
 TEST_F(TestElectroDetails, TestChooseLeftDirection) {
-    starter.choose_left_direction();
-    ASSERT_TRUE(starter.get_direction());
+    starter.ChooseLeftDirection();
+    ASSERT_TRUE(starter.GetDirection());
 }
 
 TEST_F(TestElectroDetails, TestChooseRightDirection) {
-    starter.choose_right_direction();
-    ASSERT_FALSE(starter.get_direction());
+    starter.ChooseRightDirection();
+    ASSERT_FALSE(starter.GetDirection());
 }
 
 TEST_F(TestElectroDetails, TestSetCountOfProng) {
-    starter.set_count_of_prog(10);
-    ASSERT_EQ(starter.get_count_of_prog(), 10);
+    starter.SetCountOfProg(10);
+    ASSERT_EQ(starter.GetCountOfProg(), 10);
 }
 
 TEST_F(TestElectroDetails, TestSetCountOfProngNegative) {
-    starter.set_count_of_prog(-10);
-    ASSERT_EQ(starter.get_count_of_prog(), 9);
+    starter.SetCountOfProg(-10);
+    ASSERT_EQ(starter.GetCountOfProg(), 9);
 }
 
 
 TEST_F(TestElectroDetails, TestSetColdCrankingCurrent) {
-    battery.set_cold_cranking_current(111);
-    ASSERT_EQ(battery.get_cold_cranking_current(), 111);
+    battery.SetColdCrankingCurrent(111);
+    ASSERT_EQ(battery.GetColdCrankingCurrent(), 111);
 }
 
 TEST_F(TestElectroDetails, TestSetColdCrankingCurrentNegative) {
-    battery.set_cold_cranking_current(-111);
-    ASSERT_EQ(battery.get_cold_cranking_current(), 300);
+    battery.SetColdCrankingCurrent(-111);
+    ASSERT_EQ(battery.GetColdCrankingCurrent(), 300);
 }
 
 

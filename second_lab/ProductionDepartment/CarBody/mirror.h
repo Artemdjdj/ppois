@@ -12,27 +12,12 @@
  *  \details Класс предоставляет возможность работы с параметрами зеркала, включая тонировку
  */
 class Mirror:public CarPart, BasicParams {
-private:
-    std::string serial_number;/*!< Серийный номер */
-    int thickness{0};/*!< Толщина */
-    bool is_tinting{false};/*!< Наличие тонировки */
-
-    /*! \brief Приватный метод установки серийного номера
-    *  \param serial_number Новый серийный номер
-    */
-    void set_serial_number_private(std::string serial_number);
-
-    /*! \brief Проверка корректности серийного номера
-    *  \param serial_number Проверяемый серийный номер
-    *  \return true если серийный номер корректен, false в противном случае
-    */
-    bool check_serial_number(const std::string &serial_number);
 public:
 
     /*! \brief Переопределение унаследованной функции
     *  \return Описание
     */
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes mirror";
     }
 
@@ -49,30 +34,30 @@ public:
     Mirror();
 
     /*! \brief Тонировка зеркала */
-    void make_mirror_tinting();
+    void MakeMirrorTinting();
 
     /*! \brief Установка толщины
     *  \param thickness Новая толщина
     *  \return true если установка прошла успешно, false в противном случае
     */
-    bool set_thickness(int thickness);
+    bool SetThickness(int thickness);
 
     /*! \brief Нанесение тонировки */
-    void make_tinting();
+    void MakeTinting();
 
     /*! \brief Очистка тонировки */
-    void clear_tinting();
+    void ClearTinting();
 
     /*! \brief Установка серийного номера
     *  \param serial_number Новый серийный номер
     *  \return true если установка прошла успешно, false в противном случае
     */
-    bool set_serial_number(std::string serial_number);
+    bool SetSerialNumber(std::string serial_number);
 
     /*! \brief Получение серийного номера
     *  \return Серийный номер
     */
-    std::string get_serial_number();
+    std::string GetSerialNumber();
 
     /*! \brief Получение всей информации о зеркале
     *  \param height Текущая высота
@@ -81,7 +66,26 @@ public:
     *  \param is_tinting Текущее состояние тонировки
     *  \param serial_number Текущий серийный номер
     */
-    void get_information_about_mirror(int &height, int&width, int&thickness, bool&is_tinting, std::string &serial_number);
+    void GetInformationAboutMirror(int &height, int&width, int&thickness, bool&is_tinting, std::string &serial_number) const;
+
+private:
+
+    /*! \brief Приватный метод установки серийного номера
+    *  \param serial_number Новый серийный номер
+    */
+    void CheckHowMuchEmptySpace(std::string serial_number);
+
+    /*! \brief Проверка корректности серийного номера
+    *  \param serial_number Проверяемый серийный номер
+    *  \return true если серийный номер корректен, false в противном случае
+    */
+    bool CheckSerialNumber(const std::string &serial_number);
+
+private:
+    std::string serial_number_;/*!< Серийный номер */
+    int thickness_{0};/*!< Толщина */
+    bool is_tinting_{false};/*!< Наличие тонировки */
+
 };
 
 #endif //INCLUDE_Mirror_H

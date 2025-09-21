@@ -14,58 +14,58 @@ public:
 };
 
 TEST_F(TestWheel, TestGetter) {
-    ASSERT_EQ(wheel.get_count_of_bolts(), 5);
+    ASSERT_EQ(wheel.GetCountOfBolts(), 5);
 }
 
 TEST_F(TestWheel, TestSetRadius) {
-    wheel2.set_radius(10);
-    ASSERT_EQ(wheel2.get_radius(), 10);
+    wheel2.SetRadius(10);
+    ASSERT_EQ(wheel2.GetRadius(), 10);
 }
 
 TEST_F(TestWheel, TestSetRadiusNegative) {
-    ASSERT_FALSE(wheel2.set_radius(-10));
+    ASSERT_FALSE(wheel2.SetRadius(-10));
 }
 
 TEST_F(TestWheel, TestSetMaterial) {
-    ASSERT_TRUE(wheel2.set_material("organic"));
+    ASSERT_TRUE(wheel2.SetMaterial("organic"));
 }
 
 TEST_F(TestWheel, TestSetMaterialBigLetters) {
-    wheel2.set_material("ORGANIC");
-    ASSERT_EQ(wheel2.get_type_of_material_to_brake_shoe(), "organic");
+    wheel2.SetMaterial("ORGANIC");
+    ASSERT_EQ(wheel2.GetTypeOfMaterialToBrakeShoe(), "organic");
 }
 
 TEST_F(TestWheel, TestSetMaterialNegative) {
-    ASSERT_FALSE(wheel2.set_material("Green"));
+    ASSERT_FALSE(wheel2.SetMaterial("Green"));
 }
 
 TEST_F(TestWheel, TestSetSizeNegativeHeight) {
-    ASSERT_FALSE(wheel2.set_size(-10,5));
+    ASSERT_FALSE(wheel2.SetSize(-10,5));
 }
 
 TEST_F(TestWheel, TestSetSizeNegativeWidth) {
-    ASSERT_FALSE(wheel2.set_size(10,-15));
+    ASSERT_FALSE(wheel2.SetSize(10,-15));
 }
 
 TEST_F(TestWheel, TestSetSizeCorrect) {
-    ASSERT_TRUE(wheel2.set_size(10,15));
+    ASSERT_TRUE(wheel2.SetSize(10,15));
 }
 
 TEST_F(TestWheel, TestSetCountOfBolts) {
-    wheel.set_count_of_bolts(3);
-    ASSERT_EQ(wheel.get_count_of_bolts(), 3);
+    wheel.SetCountOfBolts(3);
+    ASSERT_EQ(wheel.GetCountOfBolts(), 3);
 }
 
 TEST_F(TestWheel, TestSetCountOfBoltsNegative) {
-    wheel.set_count_of_bolts(-3);
-    ASSERT_EQ(wheel.get_count_of_bolts(), 5);
+    wheel.SetCountOfBolts(-3);
+    ASSERT_EQ(wheel.GetCountOfBolts(), 5);
 }
 
 TEST_F(TestWheel, TestSingalButtonMakeNoise) {
-    ASSERT_TRUE(steering_wheel.clicked_button_to_make_noise());
+    ASSERT_TRUE(steering_wheel.ClickedButtonToMakeNoise());
 }
 
 TEST(TestSignalButton, TestGetSignal) {
     SignalButton signal_button = SignalButton();
-    ASSERT_FALSE(signal_button.get_is_clicked());
+    ASSERT_FALSE(signal_button.GetIsClicked());
 }

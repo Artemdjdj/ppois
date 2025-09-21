@@ -8,24 +8,24 @@
 Triangle::Triangle() = default;
 
 Triangle::Triangle(int first_side, int second_side, int third_side):
-first_side(first_side), second_side(second_side), third_side(third_side) {}
+first_side_(first_side), second_side_(second_side), third_side_(third_side) {}
 
-bool Triangle::set_sides(int first_side, int second_side, int third_side) {
-    return set_single_value(first_side, "The side can't be negative or zero!", this->first_side) and
-    set_single_value(second_side, "The side can't be negative or zero!", this->second_side) and
-    set_single_value(third_side, "The side can't be negative or zero!", this->third_side);
+bool Triangle::SetSides(int first_side, int second_side, int third_side) {
+    return SetSingleValue(first_side, "The side can't be negative or zero!", this->first_side_) and
+    SetSingleValue(second_side, "The side can't be negative or zero!", this->second_side_) and
+    SetSingleValue(third_side, "The side can't be negative or zero!", this->third_side_);
 }
 
-std::optional<int> Triangle::get_one_of_sides(int number_of_side) const {
+std::optional<int> Triangle::GetOneOfSides(int number_of_side) const {
     switch (number_of_side) {
         case 1:{
-            return first_side;
+            return first_side_;
         }break;
         case 2:{
-            return second_side;
+            return second_side_;
         }break;
         case 3:{
-            return third_side;
+            return third_side_;
         }break;
         default: {
             return std::nullopt;
@@ -33,77 +33,77 @@ std::optional<int> Triangle::get_one_of_sides(int number_of_side) const {
     }
 }
 
-double Triangle::get_perimeter() {
-    return static_cast<double>(this->first_side + this->second_side + this->third_side);
+double Triangle::GetPerimeter() {
+    return static_cast<double>(this->first_side_ + this->second_side_ + this->third_side_);
 }
 
-double Triangle::get_square() {
-    double semiperimeter = get_perimeter() / 2;
-    return sqrt(semiperimeter * (semiperimeter - this->first_side) * (semiperimeter-this->second_side) * (semiperimeter-this->third_side));
+double Triangle::GetSquare() {
+    double semiperimeter = GetPerimeter() / 2;
+    return sqrt(semiperimeter * (semiperimeter - this->first_side_) * (semiperimeter-this->second_side_) * (semiperimeter-this->third_side_));
 }
 
 Circle::Circle() = default;
 
-Circle::Circle(int radius): radius(radius) {}
+Circle::Circle(int radius): radius_(radius) {}
 
-bool Circle::set_radius(int radius) {
-    return set_single_value(radius, "The radius can't be negative or zero!", this->radius);
+bool Circle::SetRadius(int radius) {
+    return SetSingleValue(radius, "The radius can't be negative or zero!", this->radius_);
 }
 
-int Circle::get_radius() const{
-    return this->radius;
+int Circle::GetRadius() const{
+    return this->radius_;
 }
 
-double Circle::get_perimeter() {
-    return 2*M_PI*this->radius;
+double Circle::GetPerimeter() {
+    return 2*M_PI*this->radius_;
 }
 
-double Circle::get_square() {
-    return M_PI* pow(this->radius, 2);
+double Circle::GetSquare() {
+    return M_PI* pow(this->radius_, 2);
 }
 
 Detail::Detail(){};
 
-Detail::Detail(const int thickness, const int density):thickness(thickness), density(density) {}
+Detail::Detail(const int thickness, const int density):thickness_(thickness), density_(density) {}
 
-bool Detail::set_thickness(int thickness) {
-    return set_single_value(thickness,"Thickness can't be negative or zero!", this->thickness);
+bool Detail::SetThickness(int thickness) {
+    return SetSingleValue(thickness,"Thickness can't be negative or zero!", this->thickness_);
 }
 
-bool Detail::set_density(int density) {
-    return set_single_value(density, "Density can't be negative or zero!", this->density);
+bool Detail::SetDensity(int density) {
+    return SetSingleValue(density, "Density can't be negative or zero!", this->density_);
 }
 
-int Detail::get_density() const {
-    return this->density;
+int Detail::GetDensity() const {
+    return this->density_;
 }
 
-int Detail::get_thickness() const {
-    return this->thickness;
+int Detail::GetThickness() const {
+    return this->thickness_;
 }
 
 Prong::Prong():Triangle(), Detail(){}
 
 Prong::Prong(int first_side, int second_side, int third_side, int thickness, int density):Triangle(first_side, second_side, third_side), Detail(thickness, density){}
 
-bool Prong::set_data_prong(int first_side, int second_side, int third_side, int thickness, int density) {
-    return set_sides(first_side, second_side, third_side) and set_thickness(thickness) and set_density(density);
+bool Prong::SetDataProng(int first_side, int second_side, int third_side, int thickness, int density) {
+    return SetSides(first_side, second_side, third_side) and SetThickness(thickness) and SetDensity(density);
 }
 
-double Prong::get_weight() {
-    return get_square()*get_thickness()*get_density()*pow(10, -6);
+double Prong::GetWeight() {
+    return GetSquare()*GetThickness()*GetDensity()*pow(10, -6);
 }
 
 Rim::Rim()=default;
 
 Rim::Rim(int radius, int thickness, int density):Circle(radius), Detail(thickness, density){}
 
-bool Rim::set_data_rim(int radius, int thickness, int density) {
-    return set_radius(radius) and set_thickness(thickness) and set_density(density);
+bool Rim::SetDataRim(int radius, int thickness, int density) {
+    return SetRadius(radius) and SetThickness(thickness) and SetDensity(density);
 }
 
-double Rim::get_weight() {
-    return get_square()*get_thickness()*get_density()*pow(10, -6);
+double Rim::GetWeight() {
+    return GetSquare()*GetThickness()*GetDensity()*pow(10, -6);
 }
 
 

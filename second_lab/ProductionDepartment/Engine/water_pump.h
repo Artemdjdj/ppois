@@ -4,23 +4,18 @@
 #ifndef INCLUDE_WATER_PUMP_H
 #define INCLUDE_WATER_PUMP_H
 #include "../CarPart/car_part.h"
+
 /*! \class WaterPump
  *  \brief Класс для определения базовых параметров водяного насоса
  *  \details Класс предоставляет возможность получения и изменения базовых параметров водяного насоса
  */
 class WaterPump:public CarPart{
-private:
-    int flow_rate{0};/*!< Скорость потока*/;
-    int max_pressure{0};/*!< Максимальное давление */;
-    int current_pressure{0};/*!< Текущее давление */;
-    bool is_working{false};/*!< Включен ли */;
-    int resource{0};/*!< Ресурс */;
 public:
 
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
-	std::string get_info_about_part() const override {
+	std::string GetInfoAboutPart() const override {
 		return"This class describes water pump in engine";
 	}
 
@@ -33,47 +28,54 @@ public:
     /*! \brief Запуск водяного насоса
 	*  \return true если запуск прошел успешно, false в противном случае
 	*/
-    bool start_pump();
+    bool StartPump();
 
     /*! \brief Остановка водяного насоса
 	*/
-    void stop_pump();
+    void StopPump();
 
     /*! \brief Рассчет текущей скорости потока
     *  \param pressure Текущее давление
 	*  \return Скорость потока
 	*/
-    int calculate_flow(int pressure);
+    int CalculateFlow(int pressure);
 
     /*! \brief Рассчет текущей мощности
     *  \param pressure Текущее давление
 	*  \return Мощность
 	*/
-    int calculate_power(int pressure) const;
+    int CalculatePower(int pressure) const;
 
     /*! \brief Получение текущего ресурса
 	*  \return Ресурс
 	*/
-    int get_resource() const;
+    int GetResource() const;
 
     /*! \brief Получение текущего давления
 	*  \return Давление
 	*/
-    int get_current_pressure() const;
+    int GetCurrentPressure() const;
 
     /*! \brief Получение максимального давления
 	*  \return Максимальное давление
 	*/
-    int get_max_pressure() const;
+    int GetMaxPressure() const;
 
     /*! \brief Получение текущей скорости потока
 	*  \return Скорость потока
 	*/
-    int get_flow_rate() const;
+    int GetFlowRate() const;
 
     /*! \brief Работает ли насос
 	*  \return true,  если работает, false - в противном случае
 	*/
-    bool get_working_state() const;
+    bool GetWorkingState() const;
+
+private:
+	int flow_rate_{0};/*!< Скорость потока*/;
+	int max_pressure_{0};/*!< Максимальное давление */;
+	int current_pressure_{0};/*!< Текущее давление */;
+	bool is_working_{false};/*!< Включен ли */;
+	int resource_{0};/*!< Ресурс */;
 };
 #endif //INCLUDE_WATER_PUMP_H

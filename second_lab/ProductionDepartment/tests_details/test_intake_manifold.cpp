@@ -12,29 +12,29 @@ class TestIntakeManifold : public ::testing::Test {
 };
 
 TEST_F(TestIntakeManifold, TestSetMainVolume) {
-    ASSERT_TRUE(intake_manifold_1.set_main_volume(100));
+    ASSERT_TRUE(intake_manifold_1.SetMainVolume(100));
 }
 
 TEST_F(TestIntakeManifold, TestSetMainVolumeNegative) {
-    ASSERT_FALSE(intake_manifold_1.set_main_volume(-100));
+    ASSERT_FALSE(intake_manifold_1.SetMainVolume(-100));
 }
 
 TEST_F(TestIntakeManifold, TestPlenumVolume) {
-    intake_manifold_2.set_plenum_volume();
-    ASSERT_EQ(intake_manifold_2.get_plenum_volume(), 8);
+    intake_manifold_2.SetPlenumVolume();
+    ASSERT_EQ(intake_manifold_2.GetPlenumVolume(), 8);
 }
 
 TEST_F(TestIntakeManifold, TestSetRadiusCanal) {
-    intake_manifold_2.set_radius_canal(66);
-    ASSERT_EQ(intake_manifold_2.get_radius_canal(), 66);
+    intake_manifold_2.SetRadiusCanal(66);
+    ASSERT_EQ(intake_manifold_2.GetRadiusCanal(), 66);
 }
 
 TEST_F(TestIntakeManifold, TestCalculateFunctionNulopt) {
-    ASSERT_EQ(intake_manifold_1.calculate_response_frequency(0.0), std::nullopt);
+    ASSERT_EQ(intake_manifold_1.CalculateResponseFrequency(0.0), std::nullopt);
 }
 
 TEST_F(TestIntakeManifold, TestCalculateFunction) {
-    intake_manifold_2.set_plenum_volume();
-    ASSERT_EQ(intake_manifold_2.calculate_response_frequency(0.0), 931.26468952500659);
+    intake_manifold_2.SetPlenumVolume();
+    ASSERT_EQ(intake_manifold_2.CalculateResponseFrequency(0.0), 931.26468952500659);
 }
 

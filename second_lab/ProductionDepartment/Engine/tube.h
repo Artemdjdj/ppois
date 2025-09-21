@@ -12,15 +12,12 @@
  *  \details Класс предоставляет возможность получения и изменения базовых параметров трубки
  */
 class Tube:public CarPart{
-private:
-    BaseCircle radius;/*!< Радиус трубки */;
-    int height{0};/*!<Длина трубки */;
 public:
 
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
-	std::string get_info_about_part() const override {
+	std::string GetInfoAboutPart() const override {
 		return"This class describes tube";
 	}
 
@@ -37,23 +34,27 @@ public:
 	*  \param radius Начальный радиус
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_radius(int radius);
+    bool SetRadius(int radius);
 
     /*! \brief Установка длины
 	*  \param height Начальная длина
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_height(int height);
+    bool SetHeight(int height);
 
     /*! \brief Получение текущего радиуса
 	*  \return Радиус
 	*/
-    int get_radius() const;
+    int GetRadius() const;
 
     /*! \brief Получение текущей длины
 	*  \return Длина
 	*/
-    int get_height() const;
+    int GetHeight() const;
+
+private:
+	BaseCircle radius_;/*!< Радиус трубки */;
+	int height_{0};/*!<Длина трубки */;
 
 };
 #endif //TUBE_H

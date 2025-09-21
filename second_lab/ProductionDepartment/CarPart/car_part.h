@@ -18,6 +18,6 @@ public:
     /*! \brief Чисто виртуальная функция
     *  \return возвращает строку, которая описывает класс(деталь)
     */
-    virtual std::string get_info_about_part() const = 0;
+    virtual std::string GetInfoAboutPart() const = 0;
 };
 #endif //CAR_PART_H

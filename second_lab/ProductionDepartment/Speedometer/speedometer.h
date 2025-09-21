@@ -10,15 +10,12 @@
  *  \details Класс предоставляет базовый интерфейс для работы со спидометром
  */
 class DefaultSpeedometer:public CarPart{
-protected:
-    int speed{0};/*!< Текущая скорость */
-    int mileage{0};/*!< Текущий пробег */
 public:
 
     /*! \brief Переопределение унаследованной функции
     *  \return Описание
     */
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes Default speedometer";
     }
 
@@ -35,26 +32,30 @@ public:
     *  \param speed Новое значение скорости
     *  \return true если установка прошла успешно, false в противном случае
     */
-    virtual bool set_speed(int speed) = 0;
+    virtual bool SetSpeed(int speed) = 0;
 
     /*! \brief Виртуальная функция установки пробега
     *  \param mileage Новое значение пробега
     *  \return true если установка прошла успешно, false в противном случае
     */
-    virtual bool set_mileage(int mileage) =0;
+    virtual bool SetMileage(int mileage) =0;
 
     /*! \brief Получение текущей скорости
     *  \return Скорость
     */
-    int get_speed() const;
+    int GetSpeed() const;
 
     /*! \brief Получение текущего пробега
     *  \return Пробег
     */
-    int get_mileage() const;
+    int GetMileage() const;
 
     /*! \brief Виртуальный деструктор */
     virtual ~DefaultSpeedometer()= default;
+
+protected:
+    int speed_{0};/*!< Текущая скорость */
+    int mileage_{0};/*!< Текущий пробег */
 };
 
 /*! \class SpeedometerInKilometers
@@ -67,7 +68,7 @@ public:
     /*! \brief Переопределение унаследованной функции
     *  \return Описание
     */
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes speedometer in kilometers";
     }
 
@@ -84,13 +85,13 @@ public:
     *  \param speed Новое значение скорости
     *  \return true если установка прошла успешно, false в противном случае
     */
-    bool set_speed(int speed) override;
+    bool SetSpeed(int speed) override;
 
     /*! \brief Установка пробега в километрах
     *  \param mileage Новое значение пробега
     *  \return true если установка прошла успешно, false в противном случае
     */
-    bool set_mileage(int mileage) override;
+    bool SetMileage(int mileage) override;
 };
 
 /*! \class SpeedometerInMiles
@@ -103,7 +104,7 @@ public:
     /*! \brief Переопределение унаследованной функции
     *  \return Описание
     */
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes speedometer in miles";
     }
 
@@ -120,12 +121,12 @@ public:
     *  \param speed Новое значение скорости
     *  \return true если установка прошла успешно, false в противном случае
     */
-    bool set_speed(int speed) override;
+    bool SetSpeed(int speed) override;
 
     /*! \brief Установка пробега в милях
     *  \param mileage Новое значение пробега
     *  \return true если установка прошла успешно, false в противном случае
     */
-    bool set_mileage(int mileage) override;
+    bool SetMileage(int mileage) override;
 };
 #endif //INCLUDE_SPEEDOMETER_H

@@ -10,53 +10,53 @@ public:
 };
 
 TEST_F(TestGasTank, TestSetFuel) {
-    gas_tank.set_fuel("petrol");
-    ASSERT_EQ(gas_tank.get_fuel(), "petrol");
+    gas_tank.SetFuel("petrol");
+    ASSERT_EQ(gas_tank.GetFuel(), "petrol");
 }
 
 TEST_F(TestGasTank, TestSetFuelNegativeResult) {
-    gas_tank.set_fuel("petrols");
-    ASSERT_EQ(gas_tank.get_fuel(), "");
+    gas_tank.SetFuel("petrols");
+    ASSERT_EQ(gas_tank.GetFuel(), "");
 }
 
 TEST_F(TestGasTank, TestSetFuelPositiveResultBigLetters) {
-    gas_tank.set_fuel("Petrol");
-    ASSERT_EQ(gas_tank.get_fuel(), "petrol");
+    gas_tank.SetFuel("Petrol");
+    ASSERT_EQ(gas_tank.GetFuel(), "petrol");
 }
 
 TEST_F(TestGasTank, TestSetVolume) {
-    gas_tank.set_volume(60);
-    ASSERT_EQ(gas_tank.get_volume(), 60);
+    gas_tank.SetVolume(60);
+    ASSERT_EQ(gas_tank.GetVolume(), 60);
 }
 
 TEST_F(TestGasTank, TestSetVolumeNegativeResult) {
-    gas_tank.set_volume(-60);
-    ASSERT_EQ(gas_tank.get_volume(), 0);
+    gas_tank.SetVolume(-60);
+    ASSERT_EQ(gas_tank.GetVolume(), 0);
 }
 
 TEST_F(TestGasTank, TestSetProcentOccupancy) {
-    gas_tank.set_percentage_of_occupancy(40);
-    ASSERT_EQ(gas_tank.get_percentage_of_occupancy(), 40);
+    gas_tank.SetPercentageOfOccupancy(40);
+    ASSERT_EQ(gas_tank.GetPercentageOfOccupancy(), 40);
 }
 
 TEST_F(TestGasTank, TestSetProcentOccupancyNegativeTooBig) {
-    gas_tank.set_percentage_of_occupancy(400);
-    ASSERT_EQ(gas_tank.get_percentage_of_occupancy(), 0);
+    gas_tank.SetPercentageOfOccupancy(400);
+    ASSERT_EQ(gas_tank.GetPercentageOfOccupancy(), 0);
 }
 
 TEST_F(TestGasTank, TestSetProcentOccupancyNegativeTooSmall) {
-    gas_tank.set_percentage_of_occupancy(-10);
-    ASSERT_EQ(gas_tank.get_percentage_of_occupancy(), 0);
+    gas_tank.SetPercentageOfOccupancy(-10);
+    ASSERT_EQ(gas_tank.GetPercentageOfOccupancy(), 0);
 }
 
 TEST_F(TestGasTank, TestSetSeason) {
-    gas_tank.set_season("summer");
-    ASSERT_EQ(gas_tank.get_season(), "summer");
+    gas_tank.SetSeason("summer");
+    ASSERT_EQ(gas_tank.GetSeason(), "summer");
 }
 
 TEST_F(TestGasTank, TestSetSeasonNegative) {
-    gas_tank.set_season("summerrs");
-    ASSERT_EQ(gas_tank.get_season(), "");
+    gas_tank.SetSeason("summerrs");
+    ASSERT_EQ(gas_tank.GetSeason(), "");
 }
 
 

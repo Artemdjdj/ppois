@@ -12,17 +12,17 @@ public:
 };
 
 TEST_F(TestSpeedometer, TestSpeedometerKilometersMileage) {
-    ASSERT_EQ(speedometer_k.get_mileage(),255533);
+    ASSERT_EQ(speedometer_k.GetMileage(),255533);
 }
 
 TEST_F(TestSpeedometer, TestSpeedometerKilometersSpeed) {
-    ASSERT_EQ(speedometer_k.get_speed(),77);
+    ASSERT_EQ(speedometer_k.GetSpeed(),77);
 }
 
 TEST_F(TestSpeedometer, TestSpeedometerMilesMileage) {
-    ASSERT_EQ(speedometer_m.get_mileage(),153319);
+    ASSERT_EQ(speedometer_m.GetMileage(),153319);
 }
 
 TEST_F(TestSpeedometer, TestSpeedometerMilesSpeed) {
-    ASSERT_EQ(speedometer_m.get_speed(),46);
+    ASSERT_EQ(speedometer_m.GetSpeed(),46);
 }

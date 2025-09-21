@@ -11,16 +11,12 @@
  *  \details Класс предоставляет возможность получения и изменения базовых параметров радиаторной решетки
  */
 class RadiatorGrille:public CarPart {
-private:
-    BasicParams size; /*!< Размеры */;
-    int count_of_holes{0};/*!< Количество отверстий */;
-    int diameter_of_hole{0};/*!< диаметр отверстий */;
 public:
 
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
-	std::string get_info_about_part() const override {
+	std::string GetInfoAboutPart() const override {
 		return"This class describes radiator grille";
 	}
 
@@ -40,33 +36,38 @@ public:
     *  \param width Новое значение ширины
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_size(int height, int width);
+    bool SetSize(int height, int width);
 
     /*! \brief Установка количества дырок
 	*  \param count_of_holes Новое значение количества дырок
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_count_of_holes(int count_of_holes);
+    bool SetCountOfHoles(int count_of_holes);
 
     /*! \brief Установка диаметра
 	*  \param diameter Новое значение диаметра
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_diameter(int diameter);
+    bool SetDiameter(int diameter);
 
     /*! \brief Получение текущего количества дырок
 	*  \return Количество дырок
 	*/
-    int get_count_of_holes() const;
+    int GetCountOfHoles() const;
 
     /*! \brief Получение текущего диаметра
 	*  \return Диаметр
 	*/
-    int get_diameter() const;
+    int GetDiameter() const;
 
     /*! \brief Проверка надежности решетки
 	*  \return true, если рещетка надежна, false  в обратном случае
 	*/
-    bool check_reliability_of_grille() const;
+    bool CheckReliabilityOfGrille() const;
+
+private:
+	BasicParams size_; /*!< Размеры */;
+	int count_of_holes_{0};/*!< Количество отверстий */;
+	int diameter_of_hole_{0};/*!< диаметр отверстий */;
 };
 #endif //INCLUDE_RADIATOR_GRILLE_H

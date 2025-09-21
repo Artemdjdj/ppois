@@ -6,63 +6,64 @@
 #include <string>
 
 Mirror::Mirror(int height, int width, int thickness, bool is_tinting, std::string serial_number):BasicParams(height, width) {
-    this->thickness = thickness;
-    this->is_tinting = is_tinting;
-    this->serial_number = serial_number;
+    this->thickness_ = thickness;
+    this->is_tinting_ = is_tinting;
+    this->serial_number_ = serial_number;
 }
 Mirror::Mirror():BasicParams(){}
-void Mirror::make_mirror_tinting() {
-    is_tinting = true;
+
+void Mirror::MakeMirrorTinting() {
+    is_tinting_ = true;
     std::cout << "Mirror is tinting" << std::endl;
 }
 
-bool Mirror::set_thickness(int thickness) {
-   return set_single_value(thickness, "The thickness can't be negative number!", thickness);
+bool Mirror::SetThickness(int thickness) {
+   return SetSingleValue(thickness, "The thickness can't be negative number!", thickness);
 }
 
-void Mirror::make_tinting() {
-    this->is_tinting = true;
+void Mirror::MakeTinting() {
+    this->is_tinting_ = true;
 }
 
-void Mirror::clear_tinting() {
-    this->is_tinting = false;
+void Mirror::ClearTinting() {
+    this->is_tinting_ = false;
 }
 
-void Mirror::set_serial_number_private(std::string serial_number) {
-    if (!check_serial_number(serial_number) or serial_number.length() !=8 ) {
+void Mirror::CheckHowMuchEmptySpace(std::string serial_number) {
+    if (!CheckSerialNumber(serial_number) or serial_number.length() !=8 ) {
         throw ExceptionIncorrectSerialNumber("Incorrect serial number!");
     }
-    this->serial_number = serial_number;
+    this->serial_number_ = serial_number;
 }
 
-bool Mirror::set_serial_number(std::string serial_number) {
+bool Mirror::SetSerialNumber(std::string serial_number) {
     try {
-        set_serial_number_private(serial_number);
+        CheckHowMuchEmptySpace(serial_number);
         return true;
     }
     catch (const ExceptionIncorrectSerialNumber& e) {
-        log_to_file(e.what());
+        LogToFile(e.what());
         return false;
     }
     catch (const Exception& e) {
-        log_to_file(e.what());
+        LogToFile(e.what());
         return false;
     }
 }
 
-void Mirror::get_information_about_mirror(int &height, int&width, int&thickness, bool&is_tinting, std::string &serial_number) {
-    height = get_height();
-    width = get_width();
-    thickness = this->thickness;
-    is_tinting = this->is_tinting;
-    serial_number = this->serial_number;
+void Mirror::GetInformationAboutMirror(int &height, int&width, int&thickness, bool&is_tinting, std::string &serial_number) const {
+    height = GetHeight();
+    width = GetWidth();
+    thickness = this->thickness_;
+    is_tinting = this->is_tinting_;
+    serial_number = this->serial_number_;
 }
 
-std::string Mirror::get_serial_number() {
-    return this->serial_number;
+std::string Mirror::GetSerialNumber() {
+    return this->serial_number_;
 }
 
-bool Mirror::check_serial_number(const std::string &serial_number) {
+bool Mirror::CheckSerialNumber(const std::string &serial_number) {
     if (!isupper(serial_number[0]) or !isupper(serial_number[1])) return false;
     for (int i =2; i < 8; i++) {
         if (!isdigit(serial_number[i])) {

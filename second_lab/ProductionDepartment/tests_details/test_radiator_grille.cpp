@@ -5,37 +5,37 @@ class TestRadiatorGrille : public ::testing::Test {
 public:
     void SetUp() {
         grille = RadiatorGrille();
-        grille.set_count_of_holes(210);
-        grille.set_diameter(7);
+        grille.SetCountOfHoles(210);
+        grille.SetDiameter(7);
     }
     RadiatorGrille grille;
 };
 
 TEST_F(TestRadiatorGrille, TestSetCountOfHoles) {
-    grille.set_count_of_holes(10);
-    ASSERT_EQ(grille.get_count_of_holes(), 10);
+    grille.SetCountOfHoles(10);
+    ASSERT_EQ(grille.GetCountOfHoles(), 10);
 }
 
 TEST_F(TestRadiatorGrille, TestSetNegativeCountOfHoles) {
-    grille.set_count_of_holes(-10);
-    ASSERT_EQ(grille.get_count_of_holes(), 210);
+    grille.SetCountOfHoles(-10);
+    ASSERT_EQ(grille.GetCountOfHoles(), 210);
 }
 
 TEST_F(TestRadiatorGrille, TestSetDiameter) {
-    grille.set_diameter(11);
-    ASSERT_EQ(grille.get_diameter(), 11);
+    grille.SetDiameter(11);
+    ASSERT_EQ(grille.GetDiameter(), 11);
 }
 
 TEST_F(TestRadiatorGrille, TestReabilityOfGrille) {
-    ASSERT_TRUE(grille.check_reliability_of_grille());
+    ASSERT_TRUE(grille.CheckReliabilityOfGrille());
 }
 
 TEST_F(TestRadiatorGrille, TestReabilityOfGrilleNegativeCountOfHoles) {
-    grille.set_count_of_holes(200);
-    ASSERT_FALSE(grille.check_reliability_of_grille());
+    grille.SetCountOfHoles(200);
+    ASSERT_FALSE(grille.CheckReliabilityOfGrille());
 }
 
 TEST_F(TestRadiatorGrille, TestReabilityOfGrilleNegativeDiameter) {
-    grille.set_diameter(10);
-    ASSERT_FALSE(grille.check_reliability_of_grille());
+    grille.SetDiameter(10);
+    ASSERT_FALSE(grille.CheckReliabilityOfGrille());
 }

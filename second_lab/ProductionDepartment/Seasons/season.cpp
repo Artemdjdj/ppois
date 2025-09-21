@@ -7,31 +7,31 @@
 Season::Season(){}
 
 Season::Season(std::string season) {
-    this->season = season;
+    this->season_ = season;
 }
 
-void Season::set_season_private(std::string season) {
-    if (!check_is_statement_correct(seasons,season)) {
+void Season::SetSeasonPrivate(std::string season) {
+    if (!CheckIsStatementCorrect(seasons,season)) {
         throw ExceptionIncorrectSeason("Incorrect season, you can write winter or summer!");
     }
-    this->season = season;
+    this->season_ = season;
 }
 
-bool Season::set_season(std::string season) {
+bool Season::SetSeason(std::string season) {
     try {
-        set_season_private(season);
+        SetSeasonPrivate(season);
         return true;
     }
     catch (const ExceptionIncorrectSeason &e) {
-        log_to_file(e.what());
+        LogToFile(e.what());
         return false;
     }
     catch (const Exception& e) {
-        log_to_file(e.what());
+        LogToFile(e.what());
         return false;
     }
 }
 
-std::string Season::get_season() {
-    return season;
+std::string Season::GetSeason() {
+    return season_;
 }

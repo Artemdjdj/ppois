@@ -10,30 +10,30 @@ public:
 };
 
 TEST_F(TestFeeler, TestSetLength) {
-    feeler.set_length(10);
-    ASSERT_EQ(feeler.get_length(), 10);
+    feeler.SetLength(10);
+    ASSERT_EQ(feeler.GetLength(), 10);
 }
 
 TEST_F(TestFeeler, TestSetLengthNegative) {
-    feeler.set_length(-110);
-    ASSERT_EQ(feeler.get_length(), 100);
+    feeler.SetLength(-110);
+    ASSERT_EQ(feeler.GetLength(), 100);
 }
 
 TEST_F(TestFeeler, TestSetLevelBiggerThenLengthHalf) {
-    feeler.set_level(110);
-    ASSERT_EQ(feeler.get_level(), 90);
+    feeler.SetLevel(110);
+    ASSERT_EQ(feeler.GetLevel(), 90);
 }
 
 TEST_F(TestFeeler, TestSetLevel) {
-    feeler.set_level(50);
-    ASSERT_EQ(feeler.get_level(), 50);
+    feeler.SetLevel(50);
+    ASSERT_EQ(feeler.GetLevel(), 50);
 }
 
 TEST_F(TestFeeler, TestCheckLevelNormState) {
-    feeler.set_level(50);
-    ASSERT_TRUE(feeler.check_is_the_level_in_norm_state());
+    feeler.SetLevel(50);
+    ASSERT_TRUE(feeler.CheckIsTheLevelInNormState());
 }
 TEST_F(TestFeeler, TestCheckLevelNormStateNegativeResult) {
-    ASSERT_FALSE(feeler.check_is_the_level_in_norm_state());
+    ASSERT_FALSE(feeler.CheckIsTheLevelInNormState());
 }
 

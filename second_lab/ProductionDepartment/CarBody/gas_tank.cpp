@@ -2,42 +2,42 @@
 
 GasTank::GasTank() {}
 
-GasTank::GasTank(int percentage, std::string type_of_fuel, std::string season, int volume):volume(volume),
-fuel(type_of_fuel, season) {
-    this->percentage_of_occupancy = percentage;
+GasTank::GasTank(int percentage, std::string type_of_fuel, std::string season, int volume):volume_(volume),
+fuel_(type_of_fuel, season) {
+    this->percentage_of_occupancy_ = percentage;
 }
 
-bool GasTank::set_percentage_of_occupancy(int procent) {
-    return set_single_procent(procent, this->percentage_of_occupancy);
+bool GasTank::SetPercentageOfOccupancy(int procent) {
+    return SetSinglePercent(procent, this->percentage_of_occupancy_);
 }
 
-int GasTank::get_percentage_of_occupancy() const {
-    return this->percentage_of_occupancy;
+int GasTank::GetPercentageOfOccupancy() const {
+    return this->percentage_of_occupancy_;
 }
 
-int GasTank::get_volume() {
-    return this->volume.get_volume();
+int GasTank::GetVolume() const {
+    return this->volume_.GetVolume();
 }
 
-std::string GasTank::get_fuel() {
-    return this->fuel.get_type_of_fuel();
+std::string GasTank::GetFuel() {
+    return this->fuel_.GetTypeOfFuel();
 }
 
-bool GasTank::set_volume(int volume) {
-    return this->volume.set_volume(volume);
+bool GasTank::SetVolume(int volume) {
+    return this->volume_.SetVolume(volume);
 }
-bool GasTank::set_fuel(std::string type_of_fuel) {
-    return this->fuel.set_type_of_fuel(type_of_fuel);
-}
-
-bool GasTank::set_season(std::string season) {
-    return this->fuel.set_season(season);
+bool GasTank::SetFuel(std::string type_of_fuel) {
+    return this->fuel_.SetTypeOfFuel(type_of_fuel);
 }
 
-std::string GasTank::get_season() {
-    return this->fuel.get_season();
+bool GasTank::SetSeason(std::string season) {
+    return this->fuel_.SetSeason(season);
 }
-int GasTank::check_how_much_empty_space() {
-    return this->volume.get_volume() - get_new_value_after_multiplication(
-        this->volume.get_volume(), this->percentage_of_occupancy);
+
+std::string GasTank::GetSeason() {
+    return this->fuel_.GetSeason();
+}
+int GasTank::CheckHowMuchEmptySpace() const {
+    return this->volume_.GetVolume() - GetNewValueAfterMultiplication(
+        this->volume_.GetVolume(), this->percentage_of_occupancy_);
 }

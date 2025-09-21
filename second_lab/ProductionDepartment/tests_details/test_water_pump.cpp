@@ -7,36 +7,36 @@ public:
 };
 
 TEST_F(TestWaterPump, TestStartPump) {
-    ASSERT_TRUE(water_pump.start_pump());
+    ASSERT_TRUE(water_pump.StartPump());
 }
 
 TEST_F(TestWaterPump, TestStopPump) {
-    water_pump.stop_pump();
-    ASSERT_FALSE(water_pump.get_working_state());
+    water_pump.StopPump();
+    ASSERT_FALSE(water_pump.GetWorkingState());
 }
 
 TEST_F(TestWaterPump, TestCalculateFlow) {
-    water_pump.start_pump();
-    ASSERT_EQ(water_pump.calculate_flow(67),11);
+    water_pump.StartPump();
+    ASSERT_EQ(water_pump.CalculateFlow(67),11);
 }
 
 TEST_F(TestWaterPump, TestCalculatePower) {
-    ASSERT_EQ(water_pump.calculate_power(67),0);
+    ASSERT_EQ(water_pump.CalculatePower(67),0);
 }
 
 TEST_F(TestWaterPump, TestGetResource) {
-    ASSERT_EQ(water_pump.get_resource(),100);
+    ASSERT_EQ(water_pump.GetResource(),100);
 }
 
 TEST_F(TestWaterPump, TestGetCurrentPressure) {
-    ASSERT_EQ(water_pump.get_current_pressure(),0);
+    ASSERT_EQ(water_pump.GetCurrentPressure(),0);
 }
 
 TEST_F(TestWaterPump, TestGetMaxPressure) {
-    ASSERT_EQ(water_pump.get_max_pressure(),200);
+    ASSERT_EQ(water_pump.GetMaxPressure(),200);
 }
 
 TEST_F(TestWaterPump, TestGetFlowRate) {
-    ASSERT_EQ(water_pump.get_flow_rate(),34);
+    ASSERT_EQ(water_pump.GetFlowRate(),34);
 }
 

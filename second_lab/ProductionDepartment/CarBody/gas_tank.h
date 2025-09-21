@@ -13,16 +13,12 @@
  *  \details Класс предоставляет возможность получения и изменения базовых параметров бензобака
  */
 class GasTank:public CarPart {
-private:
-    Volume volume;/*!< Объем бака */;
-    Fuel fuel;/*!< Тип топлива */;
-    int percentage_of_occupancy{0};/*!< Процент заполненности */;
 public:
 
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
-	std::string get_info_about_part() const override {
+	std::string GetInfoAboutPart() const override {
 		return"This class describes gas tank";
 	}
 
@@ -41,50 +37,55 @@ public:
 	*  \param procent Новое значение заполненности
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_percentage_of_occupancy(int procent);
+    bool SetPercentageOfOccupancy(int procent);
 
     /*! \brief Получение текущей заполненности
 	*  \return Заполненность
 	*/
-    int get_percentage_of_occupancy() const;
+    int GetPercentageOfOccupancy() const;
 
     /*! \brief Получение текущего объема
 	*  \return Объем
 	*/
-    int get_volume();
+    int GetVolume() const;
 
     /*! \brief Получение текущего вида топлива
 	*  \return Вид топлива
 	*/
-    std::string get_fuel();
+    std::string GetFuel();
 
     /*! \brief Установка объема
 	*  \param volume Новое значение объема
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_volume(int volume);
+    bool SetVolume(int volume);
 
     /*! \brief Установка типа топлива
 	*  \param type_of_fuel Новый вид топлива
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_fuel(std::string type_of_fuel);
+    bool SetFuel(std::string type_of_fuel);
 
     /*! \brief Установка сезона года
 	*  \param season Новый сезон года
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool set_season(std::string season);
+    bool SetSeason(std::string season);
 
     /*! \brief Получение текущего сезона года
 	*  \return Сезон года
 	*/
-    std::string get_season();
+    std::string GetSeason();
 
     /*! \brief Получение свободного места
 	*  \return Свободное место в баке
 	*/
-    int check_how_much_empty_space();
+    int CheckHowMuchEmptySpace() const;
+
+private:
+	Volume volume_;/*!< Объем бака */;
+	Fuel fuel_;/*!< Тип топлива */;
+	int percentage_of_occupancy_{0};/*!< Процент заполненности */;
 };
 
 #endif //INCLUDE_GAS_TANK_H

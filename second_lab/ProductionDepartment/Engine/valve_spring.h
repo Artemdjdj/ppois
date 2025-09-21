@@ -10,18 +10,12 @@
  *  \details Класс предоставляет возможность работы с параметрами клапанной пружины, включая сжатие и деформацию
  */
 class ValveSpring:public CarPart {
-private:
-    int diameter{0};         /*!< Диаметр пружины */
-    int length{0};          /*!< Длина пружины */
-    int count_of_coils{0};  /*!< Количество витков */
-    bool is_compressed{false}; /*!< Состояние сжатия */
-
 public:
 
     /*! \brief Переопределение унаследованной функции
     *  \return Описание
     */
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes valve spring";
     }
 
@@ -32,7 +26,7 @@ public:
      *  \param diameter Диаметр пружины
      *  \param length Длина пружины
      *  \param count_of_coils Количество витков
-     *  \param is_compressed Состояние сжатия
+     *  \param is_Compressed Состояние сжатия
      */
     ValveSpring(int diameter, int length, int count_of_coils, bool is_compressed);
 
@@ -42,38 +36,45 @@ public:
      *  \param count_of_coils Новое количество витков
      *  \return true если установка прошла успешно, false в противном случае
      */
-    bool set_all_parameters(int diameter, int length, int count_of_coils);
+    bool SetAllParameters(int diameter, int length, int count_of_coils);
 
     /*! \brief Сжатие пружины */
-    void compress();
+    void Compress();
 
     /*! \brief Разжатие пружины */
-    void decompress();
+    void DeCompress();
 
     /*! \brief Получение диаметра пружины
      *  \return Текущий диаметр
      */
-    int get_diameter() const;
+    int GetDiameter() const;
 
     /*! \brief Получение количества витков
      *  \return Текущее количество витков
      */
-    int get_count_of_coils() const;
+    int GetCountOfCoils() const;
 
     /*! \brief Получение длины пружины
      *  \return Текущая длина
      */
-    int get_length() const;
+    int GetLength() const;
 
     /*! \brief Проверка состояния сжатия
      *  \return true если пружина сжата, false в противном случае
      */
-    bool check_is_compressed() const;
+    bool CheckIsCompressed() const;
 
     /*! \brief Расчет расстояния между соседними витками
      *  \return Расстояние между соседними витками
      */
-    double dist_between_neighbours() const;
+    double DistBetweenNeighbours() const;
+
+private:
+    int diameter_{0};         /*!< Диаметр пружины */
+    int length_{0};          /*!< Длина пружины */
+    int count_of_coils_{0};  /*!< Количество витков */
+    bool is_compressed_{false}; /*!< Состояние сжатия */
+
 };
 
 #endif //INCLUDE_VALVE_SPRING_H

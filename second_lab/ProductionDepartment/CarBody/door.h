@@ -20,7 +20,7 @@ public:
     /*! \brief Переопределение унаследованной функции
     *  \return Описание
     */
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes the side mirror on the front doors.";
     }
 
@@ -42,7 +42,7 @@ public:
 class BackDoor:public CarPart, public BasicParams {
 public:
 
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes the backdoor door";
     }
 
@@ -61,12 +61,9 @@ public:
  *  \details Класс предоставляет возможность получения и изменения базовых параметров передних дверей
  */
 class FrontDoor : public BackDoor {
-private:
-    bool is_lock = false;/*!< Закрыта ли дверь */;
-    SideMirror mirror;/*!< Боковое зеркало */;
 public:
 
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes the front door";
     }
 
@@ -88,20 +85,24 @@ public:
 );
 
     /*! \brief Функция открывает дверь*/
-    void open_door();
+    void OpenDoor();
 
     /*! \brief Функция закрывает дверь*/
-    void close_door();
+    void CloseDoor();
 
     /*! \brief Функция проверяет открыта ли дверь
     *  \return true если открыта, false в противном случае
     */
-    bool get_lock();
+    bool GetLock() const;
 
     /*! \brief Функция получает цвет в переменную
     *  \param result_color цвет
     */
-    void get_color_of_mirror(std::string& result_color);
+    void GetColorOfMirror(std::string& result_color);
+
+private:
+    bool is_lock_ = false;/*!< Закрыта ли дверь */;
+    SideMirror mirror_;/*!< Боковое зеркало */;
 };
 
 #endif //INCLUDE_DOOR_H

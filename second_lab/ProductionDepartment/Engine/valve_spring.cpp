@@ -4,38 +4,38 @@
 ValveSpring::ValveSpring() = default;
 
 ValveSpring::ValveSpring(int diameter, int length, int count_of_coils, bool is_compressed):
-diameter(diameter), length(length), count_of_coils(count_of_coils), is_compressed(is_compressed){}
+diameter_(diameter), length_(length), count_of_coils_(count_of_coils), is_compressed_(is_compressed){}
 
-bool ValveSpring::set_all_parameters(int diameter, int length, int count_of_coils) {
-    return  set_single_value(diameter, "The diameter can't be negative or zero!", this->diameter) and
-    set_single_value(length, "The length can't be negative or zero!", this->length) and
-    set_single_value(count_of_coils, "Count of coils can't be bigger negative or zero", this->count_of_coils);
+bool ValveSpring::SetAllParameters(int diameter, int length, int count_of_coils) {
+    return  SetSingleValue(diameter, "The diameter can't be negative or zero!", this->diameter_) and
+    SetSingleValue(length, "The length can't be negative or zero!", this->length_) and
+    SetSingleValue(count_of_coils, "Count of coils can't be bigger negative or zero", this->count_of_coils_);
 }
 
-void ValveSpring::compress() {
-    this->is_compressed = true;
+void ValveSpring::Compress() {
+    this->is_compressed_ = true;
 }
 
-void ValveSpring::decompress() {
-    this->is_compressed = false;
+void ValveSpring::DeCompress() {
+    this->is_compressed_ = false;
 }
 
-int ValveSpring::get_diameter() const {
-    return this->diameter;
+int ValveSpring::GetDiameter() const {
+    return this->diameter_;
 }
 
-int ValveSpring::get_count_of_coils() const {
-    return this->count_of_coils;
+int ValveSpring::GetCountOfCoils() const {
+    return this->count_of_coils_;
 }
 
-int ValveSpring::get_length() const {
-    return this->length;
+int ValveSpring::GetLength() const {
+    return this->length_;
 }
 
-bool ValveSpring::check_is_compressed() const {
-    return this->is_compressed;
+bool ValveSpring::CheckIsCompressed() const {
+    return this->is_compressed_;
 }
 
-double ValveSpring::dist_between_neighbours() const {
-    return static_cast<double>(this->length / this->count_of_coils);
+double ValveSpring::DistBetweenNeighbours() const {
+    return static_cast<double>(this->length_ / this->count_of_coils_);
 }

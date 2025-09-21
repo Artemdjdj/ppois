@@ -7,20 +7,20 @@ public:
 };
 
 TEST_F(TestValveSpring, TestCompress) {
-    valve_spring.compress();
-    ASSERT_TRUE(valve_spring.check_is_compressed());
+    valve_spring.Compress();
+    ASSERT_TRUE(valve_spring.CheckIsCompressed());
 }
 
 TEST_F(TestValveSpring, TestDeCompress) {
-    valve_spring.decompress();
-    ASSERT_FALSE(valve_spring.check_is_compressed());
+    valve_spring.DeCompress();
+    ASSERT_FALSE(valve_spring.CheckIsCompressed());
 }
 
 TEST_F(TestValveSpring, TestDistBetweeNeighbours) {
-    ASSERT_EQ(valve_spring.dist_between_neighbours(),3);
+    ASSERT_EQ(valve_spring.DistBetweenNeighbours(),3);
 }
 
 TEST_F(TestValveSpring, TestGetCountOfCoils) {
-    ASSERT_EQ(valve_spring.get_count_of_coils(),30);
+    ASSERT_EQ(valve_spring.GetCountOfCoils(),30);
 }
 

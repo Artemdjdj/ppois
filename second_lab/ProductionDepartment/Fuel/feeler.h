@@ -13,21 +13,12 @@
  *           а также проверки корректности состояния уровня
  */
 class Feeler:public CarPart {
-private:
-    int length{0}; /*!< Длина  щупа */
-    int level{0};  /*!< Текущий уровень */
-
-    /*! \brief Приватный метод проверки корректности уровня
-     *  \details Выполняет внутреннюю проверку состояния уровня
-     */
-    void check_is_the_level_in_norm_state_private() const;
-
 public:
 
     /*! \brief Переопределение унаследованной функции
     *  \return Описание
     */
-    std::string get_info_about_part() const override {
+    std::string GetInfoAboutPart() const override {
         return"This class describes feeler, which help to see the level of oil in engine";
     }
 
@@ -44,28 +35,38 @@ public:
      *  \param length Новое значение длины
      *  \return true если установка прошла успешно, false в противном случае
      */
-    bool set_length(int length);
+    bool SetLength(int length);
 
     /*! \brief Установка уровня
      *  \param level Новое значение уровня
      *  \return true если установка прошла успешно, false в противном случае
      */
-    bool set_level(int level);
+    bool SetLevel(int level);
 
     /*! \brief Получение текущей длины щупа
      *  \return Текущая длина щупа
      */
-    int get_length() const;
+    int GetLength() const;
 
     /*! \brief Получение текущего уровня
      *  \return Текущий уровень
      */
-    int get_level() const;
+    int GetLevel() const;
 
     /*! \brief Проверка уровня
      *  \return true если уровень в норме, false в противном случае
      */
-    bool check_is_the_level_in_norm_state() const;
+    bool CheckIsTheLevelInNormState() const;
+
+private:
+    /*! \brief Приватный метод проверки корректности уровня
+    *  \details Выполняет внутреннюю проверку состояния уровня
+    */
+    void CheckIsTheLevelInNormState_private() const;
+
+private:
+    int length_{0}; /*!< Длина  щупа */
+    int level_{0};  /*!< Текущий уровень */
 };
 
 #endif //INCLUDE_FEELER_H

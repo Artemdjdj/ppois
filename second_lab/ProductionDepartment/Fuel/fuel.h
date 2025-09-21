@@ -12,14 +12,6 @@
  *  \details Класс предоставляет возможность получения и измененияинформации о топливе
  */
 class Fuel {
-private:
-    std::string type_of_fuel;/*!< Тип топлива */;
-    Season season;/*!< Сезон года */;
-
-    /*! \brief Функция проверяет топливо на корректность
-    *  \param type_of_fuel цвет
-    */
-    void set_type_of_fuel_private(std::string type_of_fuel);
 public:
 
     /*! \brief Конструктор по умолчанию */
@@ -35,23 +27,33 @@ public:
     *  \param type_of_fuel Новое топливо
     *  \return true если установка прошла успешно, false в противном случае
     */
-    bool set_type_of_fuel(std::string type_of_fuel);
+    bool SetTypeOfFuel(std::string type_of_fuel);
 
     /*! \brief Установка сезона года
     *  \param season Новый сезон
     *  \return true если установка прошла успешно, false в противном случае
     */
-    bool set_season(std::string season);
+    bool SetSeason(std::string season);
 
     /*! \brief Получение текущего вида топлива
     *  \return Тип топлива
     */
-    std::string get_type_of_fuel();
+    std::string GetTypeOfFuel();
 
     /*! \brief Получение текущего сезона года
     *  \return Сезон года
     */
-    std::string get_season();
+    std::string GetSeason();
+
+private:
+    /*! \brief Функция проверяет топливо на корректность
+    *  \param type_of_fuel цвет
+    */
+    void SetTypeOfFuelPrivate(std::string type_of_fuel);
+
+private:
+    std::string type_of_fuel_;/*!< Тип топлива */;
+    Season season_;/*!< Сезон года */;
 };
 
 #endif
