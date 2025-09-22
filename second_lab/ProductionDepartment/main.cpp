@@ -1,7 +1,7 @@
 #include <iostream>
 #include "CarBody/door.h"
 #include "basic_params.h"
-#include "wheel/wheel.h"
+#include "Wheel/wheel.h"
 
 int main() {
     BrakeShoe brake_shoe = BrakeShoe(45, 56, "ceramic", "red");

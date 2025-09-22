@@ -1,5 +1,5 @@
 
-#include "../wheel/wheel.h"
+#include "../Wheel/wheel.h"
 #include <gtest/gtest.h>
 class TestWheel: public ::testing::Test {
 public:

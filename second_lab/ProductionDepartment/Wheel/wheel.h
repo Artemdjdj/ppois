@@ -98,7 +98,7 @@ public:
     *  \return Описание
     */
     std::string GetInfoAboutPart() const override {
-        return"This class describes wheel";
+        return"This class describes Wheel";
     }
 
     /*! \brief Конструктор по умолчанию */
@@ -213,7 +213,7 @@ public:
     *  \return Описание
     */
     std::string GetInfoAboutPart() const override {
-        return"This class describes steering wheel";
+        return"This class describes steering Wheel";
     }
 
     /*! \brief Конструктор по умолчанию */

@@ -4,7 +4,7 @@
  */
 #ifndef TUBE_H
 #define TUBE_H
-#include "../wheel/wheel.h"
+#include "../Wheel/wheel.h"
 #include "../CarPart/car_part.h"
 
 /*! \class Tube
