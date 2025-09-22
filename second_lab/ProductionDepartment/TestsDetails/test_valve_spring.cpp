@@ -3,24 +3,61 @@
 
 class TestValveSpring : public ::testing::Test {
 public:
-    ValveSpring valve_spring = ValveSpring(13,90 ,30, false);
+	ValveSpring valve_spring = ValveSpring(13, 90, 30, false);
 };
 
 TEST_F(TestValveSpring, TestCompress) {
-    valve_spring.Compress();
-    ASSERT_TRUE(valve_spring.CheckIsCompressed());
+	valve_spring.Compress();
+	ASSERT_TRUE(valve_spring.CheckIsCompressed());
 }
 
 TEST_F(TestValveSpring, TestDeCompress) {
-    valve_spring.DeCompress();
-    ASSERT_FALSE(valve_spring.CheckIsCompressed());
+	valve_spring.DeCompress();
+	ASSERT_FALSE(valve_spring.CheckIsCompressed());
 }
 
 TEST_F(TestValveSpring, TestDistBetweeNeighbours) {
-    ASSERT_EQ(valve_spring.DistBetweenNeighbours(),3);
+	ASSERT_EQ(valve_spring.DistBetweenNeighbours(), 3);
 }
 
 TEST_F(TestValveSpring, TestGetCountOfCoils) {
-    ASSERT_EQ(valve_spring.GetCountOfCoils(),30);
+	ASSERT_EQ(valve_spring.GetCountOfCoils(), 30);
 }
 
+TEST_F(TestValveSpring, TestSetAllParameters) {
+	ASSERT_TRUE(valve_spring.SetAllParameters(10, 9,9));
+}
+
+TEST_F(TestValveSpring, TestSetAllParametersNegative1) {
+	ASSERT_FALSE(valve_spring.SetAllParameters(-10, 9,9));
+}
+
+TEST_F(TestValveSpring, TestSetAllParametersNegative2) {
+	ASSERT_FALSE(valve_spring.SetAllParameters(10, -9,9));
+}
+
+TEST_F(TestValveSpring, TestSetAllParametersNegative3) {
+	ASSERT_FALSE(valve_spring.SetAllParameters(10, 9,-9));
+}
+
+TEST_F(TestValveSpring, TestGetLength) {
+	ASSERT_EQ(valve_spring.GetLength(), 90);
+}
+
+TEST_F(TestValveSpring, TestGetCoils) {
+	ASSERT_EQ(valve_spring.GetCountOfCoils(), 30);
+}
+
+
+TEST_F(TestValveSpring, TestDistNeighbours) {
+	ASSERT_EQ(valve_spring.DistBetweenNeighbours(), 3);
+}
+
+TEST_F(TestValveSpring, TestDevisionByZero) {
+	valve_spring.SetAllParameters(1, 2, 0);
+	ASSERT_EQ(valve_spring.DistBetweenNeighbours(), 0);
+}
+
+TEST_F(TestValveSpring,ValveSpringDescription) {
+	EXPECT_EQ(valve_spring.GetInfoAboutPart(),"This detail name is valve spring");
+}

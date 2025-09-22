@@ -3,37 +3,42 @@
 
 class TestFeeler : public ::testing::Test {
 public:
-    void SetUp() override {
-        feeler = Feeler(100, 90);
-    }
-    Feeler feeler;
+	void SetUp() override {
+		feeler = Feeler(100, 90);
+	}
+
+	Feeler feeler;
 };
 
 TEST_F(TestFeeler, TestSetLength) {
-    feeler.SetLength(10);
-    ASSERT_EQ(feeler.GetLength(), 10);
+	feeler.SetLength(10);
+	ASSERT_EQ(feeler.GetLength(), 10);
 }
 
 TEST_F(TestFeeler, TestSetLengthNegative) {
-    feeler.SetLength(-110);
-    ASSERT_EQ(feeler.GetLength(), 100);
+	feeler.SetLength(-110);
+	ASSERT_EQ(feeler.GetLength(), 100);
 }
 
 TEST_F(TestFeeler, TestSetLevelBiggerThenLengthHalf) {
-    feeler.SetLevel(110);
-    ASSERT_EQ(feeler.GetLevel(), 90);
+	feeler.SetLevel(110);
+	ASSERT_EQ(feeler.GetLevel(), 90);
 }
 
 TEST_F(TestFeeler, TestSetLevel) {
-    feeler.SetLevel(50);
-    ASSERT_EQ(feeler.GetLevel(), 50);
+	feeler.SetLevel(50);
+	ASSERT_EQ(feeler.GetLevel(), 50);
 }
 
 TEST_F(TestFeeler, TestCheckLevelNormState) {
-    feeler.SetLevel(50);
-    ASSERT_TRUE(feeler.CheckIsTheLevelInNormState());
-}
-TEST_F(TestFeeler, TestCheckLevelNormStateNegativeResult) {
-    ASSERT_FALSE(feeler.CheckIsTheLevelInNormState());
+	feeler.SetLevel(50);
+	ASSERT_TRUE(feeler.CheckIsTheLevelInNormState());
 }
 
+TEST_F(TestFeeler, TestCheckLevelNormStateNegativeResult) {
+	ASSERT_FALSE(feeler.CheckIsTheLevelInNormState());
+}
+
+TEST_F(TestFeeler,FeelerDescription) {
+	EXPECT_EQ(feeler.GetInfoAboutPart(),"This detail name is feeler");
+}

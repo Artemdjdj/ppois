@@ -3,7 +3,7 @@
  */
 #ifndef INCLUDE_INTAKE_MANIFOLD_H
 #define INCLUDE_INTAKE_MANIFOLD_H
-#include "../include/basic_params.h"
+#include "../Include/basic_params.h"
 #include "tube.h"
 #include <optional>
 #include "../CarPart/car_part.h"
@@ -12,83 +12,83 @@
  *  \brief Класс для определения базовых параметров впускного коллекторра
  *  \details Класс предоставляет возможность получения и изменения базовых параметров впускного коллектора
  */
-class IntakeManifold:public CarPart {
+class IntakeManifold : public CarPart {
 public:
-
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
-		return"This class describes intake manifold in engine";
+		return "This detail name is intake manifold";
 	}
 
-    /*! \brief Конструктор по умолчанию */
-    IntakeManifold();
+	/*! \brief Конструктор по умолчанию */
+	IntakeManifold();
 
-    /*! \brief Параметризованный конструктор
+	/*! \brief Параметризованный конструктор
 	*  \param main_volume Начальный весь объем
 	*  \param width Начальный радиус трубки
-    *  \param height_canal Начальныая длина трубки
-    *  \param number_of_canals Начальное количество трубок
+	*  \param height_canal Начальныая длина трубки
+	*  \param number_of_canals Начальное количество трубок
 	*/
-    IntakeManifold(int main_volume, int radius_canal, int height_canal, int number_of_canals);
+	IntakeManifold(int main_volume, int radius_canal, int height_canal, int number_of_canals);
 
-    /*! \brief Установка всего объема
+	/*! \brief Установка всего объема
 	*  \param main_volume Новое значение добъема
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool SetMainVolume(int main_volume);
+	bool SetMainVolume(int main_volume);
 
-    /*! \brief Установка объема камеры
+	/*! \brief Установка объема камеры
 	*/
-    void SetPlenumVolume();
+	void SetPlenumVolume();
 
-    /*! \brief Установка длины трубки
+	/*! \brief Установка длины трубки
 	*  \param height_canal Новое значение длины
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool SetHeightCanal(int height_canal);
+	bool SetHeightCanal(int height_canal);
 
-    /*! \brief Установка радиуса трубки
+	/*! \brief Установка радиуса трубки
 	*  \param radius_canal Новое значение радиуса
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool SetRadiusCanal(int radius_canal);
+	bool SetRadiusCanal(int radius_canal);
 
-     /*! \brief Установка количество трубок
+	/*! \brief Установка количество трубок
 	*  \param number_of_canals Новое количество трубок
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool SetNumberOfCanals(int number_of_canals);
+	bool SetNumberOfCanals(int number_of_canals);
 
-    /*! \brief Получение текущего количества трубок
+	/*! \brief Получение текущего количества трубок
 	*  \return Количество трубок
 	*/
-    int GetNumberOfCanals() const;
+	int GetNumberOfCanals() const;
 
-    /*! \brief Получение текущего радиуса
+	/*! \brief Получение текущего радиуса
 	*  \return Радиус
 	*/
-    int GetRadiusCanal() const;
+	int GetRadiusCanal() const;
 
-    /*! \brief Получение длины трубки
+	/*! \brief Получение длины трубки
 	*  \return Длина
 	*/
-    int GetHeightCanal() const;
+	int GetHeightCanal() const;
 
-    /*! \brief Получение текущего объема камеры
+	/*! \brief Получение текущего объема камеры
 	*  \return Объем
 	*/
-    int GetPlenumVolume() const;
+	int GetPlenumVolume() const;
 
-    /*! \brief Рассчет текущей частоты
+	/*! \brief Рассчет текущей частоты
 	*  \return Частота, или если какие-то параметры некорректны, то nullodt
 	*/
-    std::optional<double> CalculateResponseFrequency(double temperature) const;
+	std::optional<double> CalculateResponseFrequency(double temperature) const;
+
 private:
-    /*! \brief Функция проверяет объем на корректность
-    */
-    void CheckingVolume() const;
+	/*! \brief Функция проверяет объем на корректность
+	*/
+	void CheckingVolume() const;
 
 private:
 	Volume main_volume_;/*!< Главный объем */;

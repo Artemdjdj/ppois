@@ -1,71 +1,104 @@
-
 #include "../Wheel/wheel.h"
 #include <gtest/gtest.h>
-class TestWheel: public ::testing::Test {
+
+class TestWheel : public ::testing::Test {
 public:
-    void SetUp() override{
-        wheel = Wheel(12, 34, 100, "ceramic", "blue", 5);
-        wheel2 = Wheel(1, 10, 100, "gsdsd", "Green", 4);
-        steering_wheel = SteeringWheel();
-    }
-    Wheel wheel;
-    Wheel wheel2;
-    SteeringWheel steering_wheel;
+	void SetUp() override {
+		wheel = Wheel(12, 34, 100, "ceramic", "blue", 5);
+		wheel2 = Wheel(1, 10, 100, "gsdsd", "Green", 4);
+		steering_wheel = SteeringWheel();
+	}
+
+	Wheel wheel;
+	Wheel wheel2;
+	SteeringWheel steering_wheel;
 };
 
 TEST_F(TestWheel, TestGetter) {
-    ASSERT_EQ(wheel.GetCountOfBolts(), 5);
+	ASSERT_EQ(wheel.GetCountOfBolts(), 5);
 }
 
 TEST_F(TestWheel, TestSetRadius) {
-    wheel2.SetRadius(10);
-    ASSERT_EQ(wheel2.GetRadius(), 10);
+	wheel2.SetRadius(10);
+	ASSERT_EQ(wheel2.GetRadius(), 10);
 }
 
 TEST_F(TestWheel, TestSetRadiusNegative) {
-    ASSERT_FALSE(wheel2.SetRadius(-10));
+	ASSERT_FALSE(wheel2.SetRadius(-10));
 }
 
 TEST_F(TestWheel, TestSetMaterial) {
-    ASSERT_TRUE(wheel2.SetMaterial("organic"));
+	ASSERT_TRUE(wheel2.SetMaterial("organic"));
 }
 
 TEST_F(TestWheel, TestSetMaterialBigLetters) {
-    wheel2.SetMaterial("ORGANIC");
-    ASSERT_EQ(wheel2.GetTypeOfMaterialToBrakeShoe(), "organic");
+	wheel2.SetMaterial("ORGANIC");
+	ASSERT_EQ(wheel2.GetTypeOfMaterialToBrakeShoe(), "organic");
 }
 
 TEST_F(TestWheel, TestSetMaterialNegative) {
-    ASSERT_FALSE(wheel2.SetMaterial("Green"));
+	ASSERT_FALSE(wheel2.SetMaterial("Green"));
 }
 
 TEST_F(TestWheel, TestSetSizeNegativeHeight) {
-    ASSERT_FALSE(wheel2.SetSize(-10,5));
+	ASSERT_FALSE(wheel2.SetSize(-10,5));
 }
 
 TEST_F(TestWheel, TestSetSizeNegativeWidth) {
-    ASSERT_FALSE(wheel2.SetSize(10,-15));
+	ASSERT_FALSE(wheel2.SetSize(10,-15));
 }
 
 TEST_F(TestWheel, TestSetSizeCorrect) {
-    ASSERT_TRUE(wheel2.SetSize(10,15));
+	ASSERT_TRUE(wheel2.SetSize(10,15));
 }
 
 TEST_F(TestWheel, TestSetCountOfBolts) {
-    wheel.SetCountOfBolts(3);
-    ASSERT_EQ(wheel.GetCountOfBolts(), 3);
+	wheel.SetCountOfBolts(3);
+	ASSERT_EQ(wheel.GetCountOfBolts(), 3);
 }
 
 TEST_F(TestWheel, TestSetCountOfBoltsNegative) {
-    wheel.SetCountOfBolts(-3);
-    ASSERT_EQ(wheel.GetCountOfBolts(), 5);
+	wheel.SetCountOfBolts(-3);
+	ASSERT_EQ(wheel.GetCountOfBolts(), 5);
 }
 
 TEST_F(TestWheel, TestSingalButtonMakeNoise) {
-    ASSERT_TRUE(steering_wheel.ClickedButtonToMakeNoise());
+	ASSERT_TRUE(steering_wheel.ClickedButtonToMakeNoise());
 }
 
 TEST(TestSignalButton, TestGetSignal) {
-    SignalButton signal_button = SignalButton();
-    ASSERT_FALSE(signal_button.GetIsClicked());
+	SignalButton signal_button = SignalButton();
+	ASSERT_FALSE(signal_button.GetIsClicked());
 }
+
+TEST(TestSignalButton, TestConstructor) {
+	SignalButton signal_button = SignalButton(10, 20, false);
+	signal_button.SetSizeForButton(11, 12);
+	int height, width;
+	signal_button.GetSize(height, width);
+	ASSERT_EQ(height, 11);
+	ASSERT_EQ(width, 12);
+}
+
+TEST_F(TestWheel, TestSteeringWheelRadius) {
+	steering_wheel.SetRadiusOfSteeringWheel(10);
+	ASSERT_EQ(steering_wheel.GetRadiusOfSteeringWheel(), 10);
+}
+
+TEST_F(TestWheel, TestSteeringWheelRadiusLogo) {
+	steering_wheel.SetRadiusOfCenterLogo(3);
+	ASSERT_EQ(steering_wheel.GetRadiusOfCenterLogo(), 3);
+}
+
+TEST_F(TestWheel, TestIsClicked) {
+	ASSERT_FALSE(steering_wheel.GetIsClicked());
+}
+
+TEST_F(TestWheel, SteeringWheelDescription) {
+	ASSERT_EQ(steering_wheel.GetInfoAboutPart(),"This detail name is steering wheel");
+}
+
+TEST_F(TestWheel, WheelDescription) {
+	ASSERT_EQ(wheel.GetInfoAboutPart(),"This detail name is wheel");
+}
+

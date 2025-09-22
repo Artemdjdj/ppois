@@ -11,13 +11,12 @@
   */
 class CarPart {
 public:
+	/*! \brief Виртуальный деструктор */
+	virtual ~CarPart() = default;
 
-    /*! \brief Виртуальный деструктор */
-    virtual ~CarPart() = default;
-
-    /*! \brief Чисто виртуальная функция
-    *  \return возвращает строку, которая описывает класс(деталь)
-    */
-    virtual std::string GetInfoAboutPart() const = 0;
+	/*! \brief Чисто виртуальная функция
+	*  \return возвращает строку, которая описывает класс(деталь)
+	*/
+	virtual std::string GetInfoAboutPart() const = 0;
 };
 #endif //CAR_PART_H

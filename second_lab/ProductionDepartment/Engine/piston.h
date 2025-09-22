@@ -10,62 +10,61 @@
  *  \brief Класс для определения базовых параметров поршня
  *  \details Класс предоставляет возможность получения и изменения базовых параметров поршня
  */
-class Piston:public CarPart {
+class Piston : public CarPart {
 public:
-
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
-		return"This class describes piston in engine";
+		return "This detail name is piston";
 	}
 
-    /*! \brief Конструктор по умолчанию */
-    Piston();
+	/*! \brief Конструктор по умолчанию */
+	Piston();
 
-    /*! \brief Параметризованный конструктор
+	/*! \brief Параметризованный конструктор
 	*  \param diameter Начальный диаметр
 	*  \param height Начальная высота
-    *  \param Compression_height Начальная высота поднятия
+	*  \param Compression_height Начальная высота поднятия
 	*  \param count_of_cycles Начальное количество циклов
-    *  \param weight Начальная масса
+	*  \param weight Начальная масса
 	*/
-    Piston(int diameter, int height, int compression_height, int count_of_cycles, int weight);
+	Piston(int diameter, int height, int compression_height, int count_of_cycles, int weight);
 
-    /*! \brief Установка всех параметров
+	/*! \brief Установка всех параметров
 	*  \param diameter Начальный диаметр
 	*  \param height Начальная высота
-    *  \param Compression_height Начальная высота поднятия
+	*  \param Compression_height Начальная высота поднятия
 	*  \param count_of_cycles Начальное количество циклов
-    *  \param weight Начальная масса
+	*  \param weight Начальная масса
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool SetAllParameters(int diameter, int height, int compression_height, int count_of_cycles, int weight);
+	bool SetAllParameters(int diameter, int height, int compression_height, int count_of_cycles, int weight);
 
-    /*! \brief Получение текущего диаметра
+	/*! \brief Получение текущего диаметра
 	*  \return Диаметер
 	*/
-    int GetDiameter() const;
+	int GetDiameter() const;
 
-    /*! \brief Получение текущего количества циклов
+	/*! \brief Получение текущего количества циклов
 	*  \return Количество циклов
 	*/
-    int GetCountOfCycles() const;
+	int GetCountOfCycles() const;
 
-    /*! \brief Получение текущей высоты
+	/*! \brief Получение текущей высоты
 	*  \return Высота
 	*/
-    int GetHeight() const;
+	int GetHeight() const;
 
-    /*! \brief Получение текущей массы
+	/*! \brief Получение текущей массы
 	*  \return Масса
 	*/
-    int GetWeight() const;
+	int GetWeight() const;
 
-    /*! \brief Проверка работоспособности поршня
+	/*! \brief Проверка работоспособности поршня
 	*  \return true если износа нет, false в противном случае
 	*/
-    bool CheckIsPistonInWorkingCondition() const;
+	bool CheckIsPistonInWorkingCondition() const;
 
 private:
 	int diameter_{0};/*!< Диаметр */;

@@ -15,34 +15,32 @@
  */
 class Season {
 public:
+	/*! \brief Конструктор по умолчанию */
+	Season();
 
-    /*! \brief Конструктор по умолчанию */
-    Season();
-
-    /*! \brief Параметризованный конструктор
-    *  \param color Сезон года
+	/*! \brief Параметризованный конструктор
+	*  \param color Сезон года
 	*/
-    Season(std::string season);
+	Season(std::string season);
 
-    /*! \brief Установка сезона длины года
-    *  \param color Новый сезон года
+	/*! \brief Установка сезона длины года
+	*  \param color Новый сезон года
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-    bool SetSeason(std::string season);
+	bool SetSeason(std::string season);
 
-    /*! \brief Получение текущего сезона года
+	/*! \brief Получение текущего сезона года
 	*  \return Сезон года
 	*/
-    std::string GetSeason();
+	std::string GetSeason();
 
 private:
-
 	/*! \brief Функция проверяет сезон года на корректность
 	*  \param color Проверяемый сезон года
 	*/
 	void SetSeasonPrivate(std::string season);
 
 private:
-	std::string season_;/*!< Сезон года */
+	std::string season_; /*!< Сезон года */
 };
 #endif //SEASON_H

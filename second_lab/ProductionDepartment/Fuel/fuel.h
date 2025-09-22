@@ -13,47 +13,46 @@
  */
 class Fuel {
 public:
+	/*! \brief Конструктор по умолчанию */
+	Fuel();
 
-    /*! \brief Конструктор по умолчанию */
-    Fuel();
+	/*! \brief Параметризованный конструктор
+	*  \param type_of_fuel Тип топлива
+	*  \param season Сезон года
+	*/
+	Fuel(std::string type_of_fuel, std::string season);
 
-    /*! \brief Параметризованный конструктор
-    *  \param type_of_fuel Тип топлива
-    *  \param season Сезон года
-    */
-    Fuel(std::string type_of_fuel, std::string season);
+	/*! \brief Установка топлива
+	*  \param type_of_fuel Новое топливо
+	*  \return true если установка прошла успешно, false в противном случае
+	*/
+	bool SetTypeOfFuel(std::string type_of_fuel);
 
-    /*! \brief Установка топлива
-    *  \param type_of_fuel Новое топливо
-    *  \return true если установка прошла успешно, false в противном случае
-    */
-    bool SetTypeOfFuel(std::string type_of_fuel);
+	/*! \brief Установка сезона года
+	*  \param season Новый сезон
+	*  \return true если установка прошла успешно, false в противном случае
+	*/
+	bool SetSeason(std::string season);
 
-    /*! \brief Установка сезона года
-    *  \param season Новый сезон
-    *  \return true если установка прошла успешно, false в противном случае
-    */
-    bool SetSeason(std::string season);
+	/*! \brief Получение текущего вида топлива
+	*  \return Тип топлива
+	*/
+	std::string GetTypeOfFuel();
 
-    /*! \brief Получение текущего вида топлива
-    *  \return Тип топлива
-    */
-    std::string GetTypeOfFuel();
-
-    /*! \brief Получение текущего сезона года
-    *  \return Сезон года
-    */
-    std::string GetSeason();
-
-private:
-    /*! \brief Функция проверяет топливо на корректность
-    *  \param type_of_fuel цвет
-    */
-    void SetTypeOfFuelPrivate(std::string type_of_fuel);
+	/*! \brief Получение текущего сезона года
+	*  \return Сезон года
+	*/
+	std::string GetSeason();
 
 private:
-    std::string type_of_fuel_;/*!< Тип топлива */;
-    Season season_;/*!< Сезон года */;
+	/*! \brief Функция проверяет топливо на корректность
+	*  \param type_of_fuel цвет
+	*/
+	void SetTypeOfFuelPrivate(std::string type_of_fuel);
+
+private:
+	std::string type_of_fuel_;/*!< Тип топлива */;
+	Season season_;/*!< Сезон года */;
 };
 
 #endif

@@ -1,7 +1,7 @@
 #include "basic_params.h"
-#include "../Exceptions/exceptions.h"
+#include "../../Exceptions/exceptions.h"
 #include "wheel.h"
-#include "settings.h"
+#include "../Include/settings.h"
 #include <string>
 #include <iostream>
 
@@ -28,11 +28,11 @@ bool BrakeShoe::SetMaterial(std::string material) {
         return true;
     }
     catch (const ExceptionIncorrectMaterial& e) {
-        LogToFile(e.what());
+        LogToFile(e.what(), PATH_TO_FILE);
         return false;
     }
     catch (const Exception&e) {
-        LogToFile(e.what());
+        LogToFile(e.what(), PATH_TO_FILE);
         return false;
     }
 }

@@ -2,31 +2,37 @@
 #include "basic_params.h"
 #include <iostream>
 #include <string>
-SideMirror::SideMirror(int height, int width, std::string color):BasicParams(height, width), Color(color) {}
 
-SideMirror::~SideMirror() {}
+SideMirror::SideMirror(int height, int width, std::string color): BasicParams(height, width), Color(color) {
+}
 
-BackDoor::BackDoor(int height, int width):BasicParams(height, width) {}
+SideMirror::~SideMirror() {
+}
 
-BackDoor::~BackDoor(){}
+BackDoor::BackDoor(int height, int width): BasicParams(height, width) {
+}
 
-FrontDoor::FrontDoor(int height_door,int width_door,int height_mirror ,int width_mirror,bool is_lock ,std::string color) :BackDoor(height_door, width_door), mirror_(height_mirror, width_mirror, color){
-        this->is_lock_ = is_lock;
+BackDoor::~BackDoor() {
+}
+
+FrontDoor::FrontDoor(int height_door, int width_door, int height_mirror, int width_mirror, bool is_lock,
+					std::string color) : BackDoor(height_door, width_door),
+										mirror_(height_mirror, width_mirror, color) {
+	this->is_lock_ = is_lock;
 }
 
 bool FrontDoor::GetLock() const {
-    return is_lock_;
+	return is_lock_;
 }
 
 void FrontDoor::OpenDoor() {
-    this->is_lock_ = true;
+	this->is_lock_ = true;
 }
 
 void FrontDoor::CloseDoor() {
-    this->is_lock_ = false;
+	this->is_lock_ = false;
 }
 
-void FrontDoor::GetColorOfMirror(std::string& result_color) {
-    result_color = mirror_.GetColor();
+void FrontDoor::GetColorOfMirror(std::string &result_color) {
+	result_color = mirror_.GetColor();
 }
-

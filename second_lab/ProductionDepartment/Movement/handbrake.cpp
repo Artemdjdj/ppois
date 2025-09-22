@@ -1,32 +1,32 @@
 #include "handbrake.h"
 
-Handbrake::Handbrake():size_(){}
+Handbrake::Handbrake(): size_() {
+}
 
-Handbrake::Handbrake(int height, int width, bool is_car_block_now):
-size_(height, width) {
-    this->is_block_ = is_car_block_now;
+Handbrake::Handbrake(int height, int width, bool is_car_block_now): size_(height, width) {
+	this->is_block_ = is_car_block_now;
 }
 
 bool Handbrake::SetSize(int height, int width) {
-    return this->size_.SetSize(height, width);
+	return this->size_.SetSize(height, width);
 }
 
 int Handbrake::GetHeight() const {
-    return this->size_.GetHeight();
+	return this->size_.GetHeight();
 }
 
 int Handbrake::GetWidth() const {
-    return this->size_.GetWidth();
+	return this->size_.GetWidth();
 }
 
 void Handbrake::BlockCar() {
-    this->is_block_ = true;
+	this->is_block_ = true;
 }
 
 void Handbrake::UnblockCar() {
-    this->is_block_ = false;
+	this->is_block_ = false;
 }
 
 bool Handbrake::GetIsBlock() const {
-    return this->is_block_;
+	return this->is_block_;
 }

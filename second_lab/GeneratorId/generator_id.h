@@ -1,25 +1,46 @@
-
+/*! \file generator_id.h
+ *  \brief Заголовочный файл с определением  класса генератора id
+ */
 #ifndef GENERATOR_ID_H
 #define GENERATOR_ID_H
-#include <vector>
-#include "string"
+#include <unordered_set>
+#include <string>
+#include <optional>
 
+/*! \class GeneratorId
+ *  \brief Класс для определения базовых параметров генератора id
+ *  \details Класс предоставляет некоторые возможности взаимодействия с генератором
+ */
 class GeneratorId {
-private:
-    GeneratorId()=default;
-
 public:
-    GeneratorId(const GeneratorId& ) = delete;
+	/*! \brief Конструктор по умолчанию */
+	GeneratorId() = default;
 
-    ~GeneratorId() { instance_ptr_ = nullptr; }
+	/*! \brief Генерирование нового id
+	*  \param id в нем на выходе будет уникальный id, либо параметр не изменится
+	*  \return true если генерация прошла успешно, false в противном случае
+	*/
+	bool GenerateNewId(std::string &id);
 
-    static GeneratorId* GetInstance();
+	/*! \brief Функция проверяет число на корректонсть
+	*  \param count_of_attempts Проверяемое число
+	*/
+	void CheckRuntimeError(int count_of_attempts);
 
-    std::string GenerateNewId();
+	/*! \brief Функция проверяет существует ли уже такой id
+	*  \param id Проверяемый id(строка)
+	*  \return true если  такой id  существует, false в противном случае
+	*/
+	bool CheckIdIsTaken(std::string id) const;
+
+	/*! \brief Функция удаляет id, если он существует
+	*  \param id Удаляемый id(строка)
+	*  \return true если  такой id  существует и он был успешно удален, false в противном случае
+	*/
+	bool DeleteId(const std::string &id);
 
 private:
-    std::vector<std::string> list_of_id_{};
-    static GeneratorId* instance_ptr_;
+	std::unordered_set<std::string> list_of_id_{};/*!< Список существующих id*/;
 };
 
 #endif //GENERATOR_ID_H
