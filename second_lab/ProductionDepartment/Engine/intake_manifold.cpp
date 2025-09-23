@@ -46,15 +46,11 @@ int IntakeManifold::GetPlenumVolume() const {
 	return this->plenum_volume_.GetVolume();
 }
 
-void IntakeManifold::CheckingVolume() const {
-	if (GetPlenumVolume() <= 0) {
-		throw ExceptionIncorrectVolume("Incorrect volume!");
-	}
-}
-
 std::optional<double> IntakeManifold::CalculateResponseFrequency(double temperature) const {
 	try {
-		CheckingVolume();
+		if (GetPlenumVolume() <= 0) {
+			throw ExceptionIncorrectVolume("Incorrect volume!");
+		}
 		double speed = CalculateTheSpeedOfSoundInSpecialTemperature(temperature);
 		return std::optional<double>(
 			speed / (2 * M_PI * pow(plenum_volume_.GetVolume() * canal_.GetHeight() * pow(10, -6), 0.5)));

@@ -4,8 +4,8 @@
 class TestWheel : public ::testing::Test {
 public:
 	void SetUp() override {
-		wheel = Wheel(12, 34, 100, "ceramic", "blue", 5);
-		wheel2 = Wheel(1, 10, 100, "gsdsd", "Green", 4);
+		wheel = Wheel(12, 34, 100, "ceramic", 5);
+		wheel2 = Wheel(1, 10, 100, "gsdsd",  4);
 		steering_wheel = SteeringWheel();
 	}
 

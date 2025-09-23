@@ -86,11 +86,6 @@ public:
 	std::optional<double> CalculateResponseFrequency(double temperature) const;
 
 private:
-	/*! \brief Функция проверяет объем на корректность
-	*/
-	void CheckingVolume() const;
-
-private:
 	Volume main_volume_;/*!< Главный объем */;
 	Volume plenum_volume_;/*!< Объем камеры */;
 	Tube canal_;/*!< Трубка */;

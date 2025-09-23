@@ -47,16 +47,12 @@ Color::Color(std::string color) {
 Color::Color() {
 }
 
-void Color::SetColor_private(std::string color) {
-	if (!CheckIsStatementCorrect(colors, color)) {
-		throw ExceptionIncorrectColor("This color is not correct!");
-	}
-	this->color_ = color;
-}
-
 bool Color::SetColor(std::string color) {
 	try {
-		SetColor_private(color);
+		if (!CheckIsStatementCorrect(colors, color)) {
+			throw ExceptionIncorrectColor("This color is not correct!");
+		}
+		this->color_ = color;
 		return true;
 	} catch (const ExceptionIncorrectColor &e) {
 		LogToFile(e.what(), PATH_TO_FILE);
@@ -87,21 +83,11 @@ int Volume::GetVolume() const {
 	return this->volume_;
 }
 
-void SetIntegerNumber(int integer_number, const char *description) {
-	if (integer_number < 0) {
-		throw ExceptionIncorrectSize(description);
-	}
-}
-
-void SetPercent(int percentage) {
-	if (percentage < 0 || percentage > 100) {
-		throw ExceptionIncorrectProcent("Percentage must be between 0 and 100!");
-	}
-}
-
 bool SetSinglePercent(int procent, int &value) {
 	try {
-		SetPercent(procent);
+		if (procent < 0 || procent > 100) {
+			throw ExceptionIncorrectProcent("Percentage must be between 0 and 100!");
+		}
 		value = procent;
 		return true;
 	} catch (const ExceptionIncorrectProcent &e) {
@@ -116,7 +102,9 @@ bool SetSinglePercent(int procent, int &value) {
 
 bool SetSingleValue(int integer_number, const char *description, int &value) {
 	try {
-		SetIntegerNumber(integer_number, description);
+		if (integer_number < 0) {
+			throw ExceptionIncorrectSize(description);
+		}
 		value = integer_number;
 		return true;
 	} catch (const ExceptionIncorrectSize &e) {

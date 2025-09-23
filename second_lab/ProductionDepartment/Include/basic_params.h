@@ -88,12 +88,6 @@ public:
 	std::string GetColor();
 
 private:
-	/*! \brief Функция проверяет цвет на корректность
-	*  \param color цвет
-	*/
-	void SetColor_private(std::string color);
-
-private:
 	std::string color_; /*!< Цвет объекта */
 };
 
@@ -125,17 +119,6 @@ public:
 private:
 	int volume_{0}; /*!< Объем*/;
 };
-
-/*! \brief Функция проверяет целое число на корректность
-*  \param integer_number целое число
-*  \param description строка описания ошибки
-*/
-void SetIntegerNumber(int integer_number, const char *description);
-
-/*! \brief Функция проверяет процент на корректность
-*  \param percentage Целое число
-*/
-void SetPercent(int percentage);
 
 /*! \brief Установка процента
 *  \param procent процент

@@ -25,18 +25,14 @@ int Feeler::GetLevel() const {
 	return this->level_;
 }
 
-void Feeler::CheckIsTheLevelInNormState_private() const {
-	int res_percent = static_cast<int>(100 * this->GetLevel() / this->GetLength());
-	if (res_percent < 40) {
-		throw ExceptionIncorrectLevelOil("The level of oil below norm!");
-	} else if (res_percent > 60) {
-		throw ExceptionIncorrectLevelOil("The level of oil above norm!");
-	}
-}
-
 bool Feeler::CheckIsTheLevelInNormState() const {
 	try {
-		CheckIsTheLevelInNormState_private();
+		int res_percent = static_cast<int>(100 * this->GetLevel() / this->GetLength());
+		if (res_percent < 40) {
+			throw ExceptionIncorrectLevelOil("The level of oil below norm!");
+		} else if (res_percent > 60) {
+			throw ExceptionIncorrectLevelOil("The level of oil above norm!");
+		}
 		return true;
 	} catch (const ExceptionIncorrectLevelOil &e) {
 		LogToFile(e.what(), PATH_TO_FILE);

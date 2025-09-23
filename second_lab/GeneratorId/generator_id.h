@@ -22,11 +22,6 @@ public:
 	*/
 	bool GenerateNewId(std::string &id);
 
-	/*! \brief Функция проверяет число на корректонсть
-	*  \param count_of_attempts Проверяемое число
-	*/
-	void CheckRuntimeError(int count_of_attempts);
-
 	/*! \brief Функция проверяет существует ли уже такой id
 	*  \param id Проверяемый id(строка)
 	*  \return true если  такой id  существует, false в противном случае

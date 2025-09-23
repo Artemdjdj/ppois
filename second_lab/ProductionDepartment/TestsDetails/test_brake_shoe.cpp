@@ -6,7 +6,7 @@ class TestingBrakeShoe : public ::testing::Test {
 protected:
 	void SetUp() override {
 		material = "low-metal";
-		brake_shoe = BrakeShoe(12, 25, "ceramic", "green");
+		brake_shoe = BrakeShoe(12, 25, "ceramic");
 		brake_shoe.SetMaterial(material);
 	}
 

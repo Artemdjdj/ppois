@@ -5,7 +5,7 @@
 
 Wheel::Wheel(): radius_(), brake_shoe_() {}
 
-Wheel::Wheel(int radius, int height, int width, std::string material, std::string color, int count_of_bolts): radius_(radius), brake_shoe_(height, width, material, color) {
+Wheel::Wheel(int radius, int height, int width, std::string material, int count_of_bolts): radius_(radius), brake_shoe_(height, width, material) {
     this->count_of_bolts_ = count_of_bolts;
 }
 

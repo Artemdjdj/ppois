@@ -42,3 +42,4 @@ bool SpeedometerInMiles::SetSpeed(int speed) {
 bool SpeedometerInMiles::SetMileage(int mileage) {
 	return SetSingleValue(static_cast<int>(mileage * 0.6), "The mileage should be bigger then zero!", this->mileage_);
 }
+

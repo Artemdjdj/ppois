@@ -35,12 +35,6 @@ public:
 	std::string GetSeason();
 
 private:
-	/*! \brief Функция проверяет сезон года на корректность
-	*  \param color Проверяемый сезон года
-	*/
-	void SetSeasonPrivate(std::string season);
-
-private:
 	std::string season_; /*!< Сезон года */
 };
 #endif //SEASON_H

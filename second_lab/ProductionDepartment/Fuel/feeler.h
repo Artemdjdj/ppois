@@ -58,12 +58,6 @@ public:
 	bool CheckIsTheLevelInNormState() const;
 
 private:
-	/*! \brief Приватный метод проверки корректности уровня
-	*  \details Выполняет внутреннюю проверку состояния уровня
-	*/
-	void CheckIsTheLevelInNormState_private() const;
-
-private:
 	int length_{0}; /*!< Длина  щупа */
 	int level_{0}; /*!< Текущий уровень */
 };

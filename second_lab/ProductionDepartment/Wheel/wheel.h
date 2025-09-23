@@ -42,7 +42,7 @@ private:
  *  \brief Класс для определения тормозной колодки
  *  \details Класс предоставляет возможность работы с параметрами тормозной колодки
  */
-class BrakeShoe : public CarPart, public BasicParams, public Color {
+class BrakeShoe : public CarPart, public BasicParams{
 public:
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
@@ -50,6 +50,17 @@ public:
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is brake shoe";
 	}
+
+	/*! \brief Установка цвета
+	*  \param color Новый цвет
+	*  \return true если установка прошла успешно, false в противном случае
+	*/
+	bool SetColor(std::string color);
+
+	/*! \brief Получение текущего цвета
+	*  \return Цвет
+	*/
+	std::string GetColor();
 
 	/*! \brief Конструктор по умолчанию */
 	BrakeShoe();
@@ -60,7 +71,7 @@ public:
 	*  \param material Материал
 	*  \param color Цвет
 	*/
-	BrakeShoe(int height, int width, std::string material, std::string color);
+	BrakeShoe(int height, int width, std::string material);
 
 	/*! \brief Параметризованный конструктор
 	*  \param material Материал
@@ -79,13 +90,8 @@ public:
 	std::string GetMaterial();
 
 private:
-	/*! \brief Функция для проверки материала
-	*  \param material Новый материал
-	*/
-	void SetMaterialPrivate(std::string material);
-
-private:
 	std::string type_of_material_; /*!< Тип материала */
+	Color color_;/*!< Цвет колодки */
 };
 
 /*! \class Wheel
@@ -112,7 +118,7 @@ public:
 	*  \param color Цвет
 	*  \param count_of_bolts Количество болтов
 	*/
-	Wheel(int radius, int height, int width, std::string material, std::string color, int count_of_bolts);
+	Wheel(int radius, int height, int width, std::string material, int count_of_bolts);
 
 	/*! \brief Установка количества болтов
 	*  \param count_of_bolts Новое количество болтов

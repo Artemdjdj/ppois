@@ -45,12 +45,6 @@ public:
 	std::string GetSeason();
 
 private:
-	/*! \brief Функция проверяет топливо на корректность
-	*  \param type_of_fuel цвет
-	*/
-	void SetTypeOfFuelPrivate(std::string type_of_fuel);
-
-private:
 	std::string type_of_fuel_;/*!< Тип топлива */;
 	Season season_;/*!< Сезон года */;
 };

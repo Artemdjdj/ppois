@@ -11,17 +11,13 @@ Fuel::Fuel(std::string type_of_fuel, std::string season): season_(season) {
 	this->type_of_fuel_ = type_of_fuel;
 }
 
-void Fuel::SetTypeOfFuelPrivate(std::string type_of_fuel) {
-	ToLower(type_of_fuel);
-	if (!CheckIsStatementCorrect(type_of_fuels, type_of_fuel)) {
-		throw ExceptionIncorrectFuel("This is incorrect type of fuel");
-	}
-	this->type_of_fuel_ = type_of_fuel;
-}
-
 bool Fuel::SetTypeOfFuel(std::string type_of_fuel) {
 	try {
-		SetTypeOfFuelPrivate(type_of_fuel);
+		ToLower(type_of_fuel);
+		if (!CheckIsStatementCorrect(type_of_fuels, type_of_fuel)) {
+			throw ExceptionIncorrectFuel("This is incorrect type of fuel");
+		}
+		this->type_of_fuel_ = type_of_fuel;
 		return true;
 	} catch (const ExceptionIncorrectFuel &e) {
 		LogToFile(e.what(), PATH_TO_FILE);

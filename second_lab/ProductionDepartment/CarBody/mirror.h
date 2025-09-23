@@ -73,10 +73,6 @@ public:
 									std::string &serial_number) const;
 
 private:
-	/*! \brief Приватный метод установки серийного номера
-	*  \param serial_number Новый серийный номер
-	*/
-	void CheckHowMuchEmptySpace(std::string serial_number);
 
 	/*! \brief Проверка корректности серийного номера
 	*  \param serial_number Проверяемый серийный номер

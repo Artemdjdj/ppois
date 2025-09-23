@@ -5,11 +5,7 @@
 #include <string>
 #include <random>
 
-void GeneratorId::CheckRuntimeError(int count_of_attempts) {
-	if (count_of_attempts >= max_count_of_attempts) {
-		throw ExceptionRuntimeError("Runtime error");
-	}
-}
+
 
 bool GeneratorId::CheckIdIsTaken(std::string id) const {
 	return list_of_id_.contains(id);
@@ -31,7 +27,9 @@ bool GeneratorId::GenerateNewId(std::string &id) {
 	}
 
 	try {
-		CheckRuntimeError(count_of_attempts);
+		if (count_of_attempts >= max_count_of_attempts) {
+			throw ExceptionRuntimeError("Runtime error");
+		}
 		list_of_id_.emplace(id);
 		return true;
 	} catch (const ExceptionRuntimeError &e) {
