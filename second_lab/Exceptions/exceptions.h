@@ -123,6 +123,10 @@ public:
 	explicit ExceptionIncorrectLevelOil(const char *msg);
 };
 
+/*! \class ExceptionRuntimeError
+ *  \brief Исключение при некорректном id
+ *  \details Выбрасывается при попытке установить недопустимый id, или id не может быть сгенерирован
+ */
 class ExceptionRuntimeError final : public Exception {
 public:
 	explicit ExceptionRuntimeError(const char *msg);
