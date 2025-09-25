@@ -36,16 +36,12 @@ void Mirror::ClearTinting() {
 	this->is_tinting_ = false;
 }
 
-void Mirror::CheckHowMuchEmptySpace(std::string serial_number) {
-	if (!CheckSerialNumber(serial_number) or serial_number.length() != 8) {
-		throw ExceptionIncorrectSerialNumber("Incorrect serial number!");
-	}
-	this->serial_number_ = serial_number;
-}
-
 bool Mirror::SetSerialNumber(std::string serial_number) {
 	try {
-		CheckHowMuchEmptySpace(serial_number);
+		if (!CheckSerialNumber(serial_number) or serial_number.length() != 8) {
+			throw ExceptionIncorrectSerialNumber("Incorrect serial number!");
+		}
+		this->serial_number_ = serial_number;
 		return true;
 	} catch (const ExceptionIncorrectSerialNumber &e) {
 		LogToFile(e.what(), PATH_TO_FILE);

@@ -3,10 +3,18 @@
 #include <iostream>
 #include <string>
 
-SideMirror::SideMirror(int height, int width, std::string color): BasicParams(height, width), Color(color) {
+SideMirror::SideMirror(int height, int width, std::string color): BasicParams(height, width), color_(color) {
 }
 
 SideMirror::~SideMirror() {
+}
+
+bool SideMirror::SetColor(std::string color) {
+	return this->color_.SetColor(color);
+}
+
+std::string SideMirror::GetColor() {
+	return this->color_.GetColor();
 }
 
 BackDoor::BackDoor(int height, int width): BasicParams(height, width) {

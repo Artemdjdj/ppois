@@ -14,7 +14,7 @@
  *  \brief Класс для определения боковых зеркал
  *  \details Класс предоставляет возможность получения и изменения информации о боковых зеркалах
  */
-class SideMirror : public CarPart, public BasicParams, public Color {
+class SideMirror : public CarPart, public BasicParams {
 public:
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
@@ -32,6 +32,21 @@ public:
 
 	/*! \brief Деструктор */
 	~SideMirror();
+
+	/*! \brief Установка цвета
+	*  \param color Новый цвет
+	*  \return true если установка прошла успешно, false в противном случае
+	*/
+	bool SetColor(std::string color);
+
+	/*! \brief Получение текущего цвета
+	*  \return Цвет
+	*/
+	std::string GetColor();
+
+private:
+	Color color_;
+
 };
 
 /*! \class BackDoor

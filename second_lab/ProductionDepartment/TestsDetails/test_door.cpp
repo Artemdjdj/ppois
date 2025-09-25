@@ -36,6 +36,16 @@ TEST_F(TestDoor, SetLockIsTrue) {
 	EXPECT_TRUE(front_door.GetLock());
 }
 
+TEST_F(TestDoor, SetColorMirror) {
+	mirror.SetColor("green");
+	EXPECT_EQ(mirror.GetColor(), "green");
+}
+
+TEST_F(TestDoor, SetColorMirrorNegative) {
+	mirror.SetColor("greens");
+	EXPECT_EQ(mirror.GetColor(), "black");
+}
+
 TEST_F(TestDoor, FrontDoorDescription) {
 	EXPECT_EQ(front_door.GetInfoAboutPart(), "This detail name is front door");
 }
