@@ -17,6 +17,9 @@ public:
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is water pump";
 	}
+	/*! \brief Конструктор по умолчанию
+	 */
+	WaterPump() = default;
 
 	/*! \brief Параметризованный конструктор
 	*  \param flow Начальная скорость потока

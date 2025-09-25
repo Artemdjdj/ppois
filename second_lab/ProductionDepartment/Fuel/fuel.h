@@ -20,7 +20,7 @@ public:
 	*  \param type_of_fuel Тип топлива
 	*  \param season Сезон года
 	*/
-	Fuel(std::string type_of_fuel, std::string season);
+	Fuel(const std::string& type_of_fuel, const std::string& season);
 
 	/*! \brief Установка топлива
 	*  \param type_of_fuel Новое топливо
@@ -32,17 +32,17 @@ public:
 	*  \param season Новый сезон
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSeason(std::string season);
+	bool SetSeason(const std::string& season);
 
 	/*! \brief Получение текущего вида топлива
 	*  \return Тип топлива
 	*/
-	std::string GetTypeOfFuel();
+	std::string GetTypeOfFuel() const;
 
 	/*! \brief Получение текущего сезона года
 	*  \return Сезон года
 	*/
-	std::string GetSeason();
+	std::string GetSeason() const;
 
 private:
 	std::string type_of_fuel_;/*!< Тип топлива */;

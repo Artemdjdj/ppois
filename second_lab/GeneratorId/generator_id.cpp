@@ -7,7 +7,7 @@
 
 
 
-bool GeneratorId::CheckIdIsTaken(std::string id) const {
+bool GeneratorId::CheckIdIsTaken(const std::string& id) const {
 	return list_of_id_.contains(id);
 }
 

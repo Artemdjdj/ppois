@@ -40,7 +40,7 @@ void BasicParams::GetSize(int &height, int &width) const {
 	width = this->width_;
 }
 
-Color::Color(std::string color) {
+Color::Color(const std::string &color) {
 	this->color_ = color;
 }
 
@@ -64,7 +64,7 @@ bool Color::SetColor(std::string color) {
 	}
 }
 
-std::string Color::GetColor() {
+std::string Color::GetColor() const {
 	return this->color_;
 }
 
@@ -139,7 +139,7 @@ double CalculateTheSpeedOfSoundInSpecialTemperature(double temperature) {
 	return speed_of_sound + 0.61 * temperature;
 }
 
-bool LogToFile(const char *message, std::string file_name) {
+bool LogToFile(const char *message, const std::string& file_name) {
 	std::ofstream file;
 	file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
 	try {

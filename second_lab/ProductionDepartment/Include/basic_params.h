@@ -74,7 +74,7 @@ public:
 	/*! \brief Параметризованный конструктор
 	*  \param сolor первоначальный цвет
 	*/
-	Color(std::string color);
+	Color(const std::string &color);
 
 	/*! \brief Установка цвета
 	*  \param color Новое значение цвета
@@ -85,7 +85,7 @@ public:
 	/*! \brief Получение длины
 	*  \return Цвет
 	*/
-	std::string GetColor();
+	std::string GetColor() const;
 
 private:
 	std::string color_; /*!< Цвет объекта */
@@ -144,7 +144,7 @@ void ToLower(std::string &str);
 *  \param message сообщение
 *  \return true если запись прошла успешно, false в противном случае
 */
-bool LogToFile(const char *message, std::string file_name);
+bool LogToFile(const char *message, const std::string &file_name);
 
 /*! \brief Функция проверяет переданную строку на принадлежность массиву строк
 *  \param vector_of_string массив строк

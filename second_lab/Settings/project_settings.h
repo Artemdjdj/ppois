@@ -12,5 +12,5 @@ constexpr int max_count_of_attempts = pow(10, 8);/*!< Количество ун�
 /*! \brief Очитска файла логирования, если он существует
 	*  \return Число 0 если все прошло успешно, 1 в обратном случае
 	*/
-int CheckFileLog(std::string file_name);
+int CheckFileLog(const std::string& file_name);
 #endif

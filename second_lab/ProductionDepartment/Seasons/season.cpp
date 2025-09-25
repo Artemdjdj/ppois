@@ -6,7 +6,7 @@
 Season::Season() {
 }
 
-Season::Season(std::string season) {
+Season::Season(const std::string& season) {
 	this->season_ = season;
 }
 
@@ -27,6 +27,6 @@ bool Season::SetSeason(std::string season) {
 	}
 }
 
-std::string Season::GetSeason() {
+std::string Season::GetSeason() const{
 	return season_;
 }

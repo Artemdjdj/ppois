@@ -7,7 +7,7 @@
 Fuel::Fuel() {
 }
 
-Fuel::Fuel(std::string type_of_fuel, std::string season): season_(season) {
+Fuel::Fuel(const std::string& type_of_fuel, const std::string& season): season_(season) {
 	this->type_of_fuel_ = type_of_fuel;
 }
 
@@ -29,14 +29,14 @@ bool Fuel::SetTypeOfFuel(std::string type_of_fuel) {
 	}
 }
 
-bool Fuel::SetSeason(std::string season) {
+bool Fuel::SetSeason(const std::string& season) {
 	return this->season_.SetSeason(season);
 }
 
-std::string Fuel::GetTypeOfFuel() {
+std::string Fuel::GetTypeOfFuel() const{
 	return this->type_of_fuel_;
 }
 
-std::string Fuel::GetSeason() {
+std::string Fuel::GetSeason() const {
 	return this->season_.GetSeason();
 }

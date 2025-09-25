@@ -21,7 +21,7 @@ public:
 	/*! \brief Параметризованный конструктор
 	*  \param color Сезон года
 	*/
-	Season(std::string season);
+	Season(const std::string &season);
 
 	/*! \brief Установка сезона длины года
 	*  \param color Новый сезон года
@@ -32,7 +32,7 @@ public:
 	/*! \brief Получение текущего сезона года
 	*  \return Сезон года
 	*/
-	std::string GetSeason();
+	std::string GetSeason() const;
 
 private:
 	std::string season_; /*!< Сезон года */

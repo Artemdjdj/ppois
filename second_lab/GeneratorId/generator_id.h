@@ -26,7 +26,7 @@ public:
 	*  \param id Проверяемый id(строка)
 	*  \return true если  такой id  существует, false в противном случае
 	*/
-	bool CheckIdIsTaken(std::string id) const;
+	bool CheckIdIsTaken(const std::string& id) const;
 
 	/*! \brief Функция удаляет id, если он существует
 	*  \param id Удаляемый id(строка)
