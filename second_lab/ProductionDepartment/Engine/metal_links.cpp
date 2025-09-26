@@ -62,14 +62,14 @@ int MetalLink::GetWidthOfPlataForUser() const {
 }
 
 void MetalChain::AddNewMetalLink(const MetalLink &new_metal_link) {
-	this->chain.push_back(new_metal_link);
+	this->chain_.push_back(new_metal_link);
 }
 
 void MetalChain::DeleteMetalLink() {
-	if (this->chain.size() <= 0) return;
-	this->chain.pop_back();
+	if (this->chain_.size() <= 0) return;
+	this->chain_.pop_back();
 }
 
 int MetalChain::GetLensOfMetalChain() const {
-	return this->chain.size();
+	return this->chain_.size();
 }

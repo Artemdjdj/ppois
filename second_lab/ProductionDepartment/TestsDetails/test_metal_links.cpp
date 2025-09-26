@@ -56,5 +56,5 @@ TEST_F(TestAllInMetalChain, TestMetalChain) {
 }
 
 TEST_F(TestAllInMetalChain,MetalChainDescription) {
-	EXPECT_EQ(metal_chain.GetInfoAboutPart(), "This detail name is metal chain");
+	EXPECT_EQ(metal_chain.GetInfoAboutPart(), "This detail name is metal chain and the length is 0");
 }

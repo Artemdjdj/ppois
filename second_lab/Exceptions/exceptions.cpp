@@ -44,3 +44,6 @@ ExceptionIncorrectLevelOil::ExceptionIncorrectLevelOil(const char *msg): Excepti
 
 ExceptionRuntimeError::ExceptionRuntimeError(const char *msg): Exception(msg) {
 }
+
+ExceptionWayError::ExceptionWayError(const char *msg): Exception(msg) {
+}

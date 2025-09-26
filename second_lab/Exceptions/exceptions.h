@@ -132,4 +132,13 @@ public:
 	explicit ExceptionRuntimeError(const char *msg);
 };
 
+/*! \class ExceptionWayError
+ *  \brief Исключение при некорректном пути
+ *  \details Выбрасывается при попытке установить некорректный путь
+ */
+class ExceptionWayError final : public Exception {
+public:
+	explicit ExceptionWayError(const char *msg);
+};
+
 #endif

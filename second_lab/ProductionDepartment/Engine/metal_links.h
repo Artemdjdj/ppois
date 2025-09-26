@@ -142,7 +142,7 @@ public:
 	*  \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
-		return "This detail name is metal chain";
+		return "This detail name is metal chain and the length is "+ std::to_string(this->chain_.size());
 	}
 
 	/*! \brief Функция добавляет  новый соединитель, то есть увеличивает длину цепи
@@ -160,6 +160,6 @@ public:
 	int GetLensOfMetalChain() const;
 
 private:
-	std::vector<MetalLink> chain;/*!< Массив соединителей */;
+	std::vector<MetalLink> chain_;/*!< Массив соединителей */;
 };
 #endif //INCLUDE_METAL_LINKS_H

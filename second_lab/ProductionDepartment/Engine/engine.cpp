@@ -1,6 +1,11 @@
 #include "engine.h"
 #include <iostream>
 
+#include "../../Exceptions/exceptions.h"
+
+Engine::Engine(bool is_worked, int engine_life): is_worked_(is_worked), engine_life_(engine_life) {
+}
+
 bool Engine::SetInfoAboutRim(int radius, int thickness, int density) {
 	return this->rim_.SetDataRim(radius, thickness, density);
 }
@@ -18,6 +23,7 @@ bool Engine::SetInfoAboutIntakeManifold(int main_volume, int radius_canal, int h
 
 bool Engine::SetInfoAboutMetalChain(int count_of_metal_links, int height_of_plata, int width_of_plata, int radius,
 									int height, int weight) {
+	if (count_of_metal_links <= 0) return false;
 	MetalLink metal_link{};
 	if (metal_link.SetDataForCylinder(radius, height, weight) and metal_link.SetDataForTwoPlats(
 			height_of_plata, width_of_plata)) {
@@ -32,6 +38,7 @@ bool Engine::SetInfoAboutMetalChain(int count_of_metal_links, int height_of_plat
 
 bool Engine::SetInfoAboutPistons(int count_of_pistons, int diameter, int height, int compression_height,
 								int count_of_cycles, int weight) {
+	if (count_of_pistons <= 0) return false;
 	Piston piston{};
 	if (piston.SetAllParameters(diameter, height, compression_height, count_of_cycles, weight)) {
 		for (int i = 0; i < count_of_pistons; i++) {
@@ -44,6 +51,7 @@ bool Engine::SetInfoAboutPistons(int count_of_pistons, int diameter, int height,
 }
 
 bool Engine::SetInfoAboutValveSprings(int count_of_valve_springs, int diameter, int length, int count_of_coils) {
+	if (count_of_valve_springs <= 0) return false;
 	if (ValveSpring valve_spring{}; valve_spring.SetAllParameters(diameter, length, count_of_coils)) {
 		for (int i = 0; i < count_of_valve_springs; i++) {
 			ValveSpring temp_valve_spring{valve_spring};
@@ -75,7 +83,7 @@ bool Engine::CheckIsEngineWorking() const {
 	return this->is_worked_;
 }
 
-std::string Engine::GetInfoAboutRim() const{
+std::string Engine::GetInfoAboutRim() const {
 	return this->rim_.GetInfoAboutPart();
 }
 
@@ -92,11 +100,16 @@ std::string Engine::GetInfoAboutMetalChain() const {
 }
 
 std::string Engine::GetInfoAboutPistons() const {
-	return (pistons_.size()==0)?"No any pistons in engine!":pistons_[0].GetInfoAboutPart();
+	return (pistons_.empty())
+				? "No any pistons in engine!"
+				: pistons_[0].GetInfoAboutPart() + " The count of pistons - " + std::to_string(pistons_.size());
 }
 
 std::string Engine::GetInfoAboutValveSprings() const {
-	return (valve_springs_.size()==0)?"No any valve springs!":valve_springs_[0].GetInfoAboutPart();
+	return (valve_springs_.empty())
+				? "No any valve springs!"
+				: valve_springs_[0].GetInfoAboutPart() + " The count of valve springs - " + std::to_string(
+					valve_springs_.size());
 }
 
 std::string Engine::GetInfoAboutTube() const {
@@ -107,8 +120,28 @@ std::string Engine::GetInfoAboutWaterPump() const {
 	return this->water_pump_.GetInfoAboutPart();
 }
 
+std::string Engine::CheckIsEngineShouldBeServed() const {
+	return (this->current_mileage_ > this->engine_life_)
+				? "You should undergo maintenance!"
+				: "You shouldn't undergo maintenance!";
+}
 
+int Engine::GetInfoAboutEngineLife() const {
+	return this->engine_life_;
+}
 
+int Engine::GetInfoAboutCurrentMileage() const {
+	return this->current_mileage_;
+}
 
-
-
+void Engine::DriveTheWay(int way) {
+	try {
+		if (way <= 0) throw ExceptionWayError("Wrong way");
+		this->current_mileage_ += way;
+	} catch (const ExceptionWayError &e) {
+		LogToFile(e.what(), PATH_TO_FILE);
+	}
+	catch (const Exception &e) {
+		LogToFile(e.what(), PATH_TO_FILE);
+	}
+}
