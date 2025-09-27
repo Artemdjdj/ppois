@@ -1,0 +1,30 @@
+#include "exceptions.h"
+
+Exception::Exception(const char *msg): message(msg) {
+}
+
+Exception::Exception(const Exception &other): message(other.message) {
+}
+
+const char *Exception::what() const noexcept {
+	return this->message.c_str();
+}
+
+ExceptionUserName::ExceptionUserName(const char *msg): Exception(msg) {
+}
+
+ExceptionName::ExceptionName(const char *msg): Exception(msg) {
+}
+
+ExceptionSurName::ExceptionSurName(const char *msg): Exception(msg) {
+}
+
+ExceptionEmail::ExceptionEmail(const char* msg): Exception(msg) {
+}
+
+ExceptionPhoneNumber::ExceptionPhoneNumber(const char *msg):Exception(msg) {
+}
+
+ExceptionPassword::ExceptionPassword(const char *msg):Exception(msg){
+}
+
