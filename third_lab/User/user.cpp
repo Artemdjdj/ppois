@@ -32,13 +32,13 @@ void User::SetSurname(const std::string &surname) {
 	this->surname_ = surname;
 }
 
-/*void User::SetEmail(const std::string &email) {
+void User::SetEmail(const std::string &email) {
 	std::string error_message;
 	if (!UserDataSyntax::CheckEmailForSyntaxError(email, error_message)) {
 		throw ExceptionEmail(error_message.c_str());
 	}
 	this->email_ = email;
-}*/
+}
 
 void User::SetPhoneNumber(const std::string &phone_number) {
 	std::string error_message;
@@ -48,13 +48,13 @@ void User::SetPhoneNumber(const std::string &phone_number) {
 	this->phone_number_ = phone_number;
 }
 
-/*void User::SetPassword(const std::string &password) {
+void User::SetPassword(const std::string &password) {
 	std::string error_message;
 	if (!UserDataSyntax::CheckPasswordForSyntaxError(password, error_message)) {
 		throw ExceptionPassword(error_message.c_str());
 	}
 	this->password_ = password;
-}*/
+}
 
 std::string User::GetUserName() {
 	return this->username_;

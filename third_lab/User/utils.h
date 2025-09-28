@@ -1,8 +1,7 @@
-
 #ifndef UTILS_H
 #define UTILS_H
+#include <regex>
 #include <string>
-#include "../Exceptions/exceptions.h"
 
 class UserDataSyntax {
 public:
@@ -16,5 +15,8 @@ public:
 
 	static bool CheckPasswordForSyntaxError(const std::string &password, std::string &error_message);
 
+private:
+	static bool CheckRegex(const std::regex &regex, const std::string &check_string, std::string &error,
+							const std::string &error_message);
 };
 #endif //UTILS_H
