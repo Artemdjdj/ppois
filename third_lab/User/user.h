@@ -4,7 +4,13 @@
 
 class User {
 public:
-	User(const std::string& username, const std::string& password);
+	User(const std::string &username, const std::string &password);
+
+	User(const User &other);
+
+	bool operator==(const User &other) const;
+
+	bool operator!=(const User &other) const;
 
 	void SetUserName(const std::string &username);
 
@@ -35,6 +41,7 @@ private:
 	std::string email_;
 	std::string phone_number_;
 	std::string password_;
-
 };
+
+
 #endif //USER_H

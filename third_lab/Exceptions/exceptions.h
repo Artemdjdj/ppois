@@ -44,4 +44,19 @@ class ExceptionPassword final :public Exception{
 public:
 	explicit ExceptionPassword(const char *msg);
 };
+
+class ExceptionIncorrectMessage final :public Exception{
+public:
+	explicit ExceptionIncorrectMessage(const char *msg);
+};
+
+class ExceptionIncorrectNumberOfMessage final :public Exception{
+public:
+	explicit ExceptionIncorrectNumberOfMessage(const char *msg);
+};
+
+class ExceptionAccess final :public Exception{
+public:
+	explicit ExceptionAccess(const char *msg);
+};
 #endif //EXCEPTIONS_H

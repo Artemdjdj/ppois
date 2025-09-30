@@ -19,12 +19,20 @@ ExceptionName::ExceptionName(const char *msg): Exception(msg) {
 ExceptionSurName::ExceptionSurName(const char *msg): Exception(msg) {
 }
 
-ExceptionEmail::ExceptionEmail(const char* msg): Exception(msg) {
+ExceptionEmail::ExceptionEmail(const char *msg): Exception(msg) {
 }
 
-ExceptionPhoneNumber::ExceptionPhoneNumber(const char *msg):Exception(msg) {
+ExceptionPhoneNumber::ExceptionPhoneNumber(const char *msg): Exception(msg) {
 }
 
-ExceptionPassword::ExceptionPassword(const char *msg):Exception(msg){
+ExceptionPassword::ExceptionPassword(const char *msg): Exception(msg) {
 }
 
+ExceptionIncorrectMessage::ExceptionIncorrectMessage(const char *msg): Exception(msg) {
+}
+
+ExceptionIncorrectNumberOfMessage::ExceptionIncorrectNumberOfMessage(const char *msg): Exception(msg) {
+}
+
+ExceptionAccess::ExceptionAccess(const char *msg): Exception(msg) {
+}
