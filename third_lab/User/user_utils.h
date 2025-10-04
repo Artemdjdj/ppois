@@ -5,18 +5,15 @@
 
 class UserDataSyntax {
 public:
-	static bool CheckUserNameForSyntaxError(const std::string &username, std::string &error_message);
+	static void CheckUserNameForSyntaxError(const std::string &username, const std::string &error_message, std::string& result);
 
-	static bool CheckNameOrSurnameForSyntaxError(const std::string &name, std::string &error_message);
+	static void CheckNameOrSurnameForSyntaxError(const std::string &name, const std::string &error_message, std::string& result);
 
-	static bool CheckEmailForSyntaxError(const std::string &email, std::string &error_message);
+	static void CheckEmailForSyntaxError(const std::string &email, const std::string &error_message, std::string& result);
 
-	static bool CheckPhoneNumberForSyntaxError(const std::string &phone_number, std::string &error_message);
+	static void CheckPhoneNumberForSyntaxError(const std::string &phone_number, const std::string &error_message, std::string& result);
 
-	static bool CheckPasswordForSyntaxError(const std::string &password, std::string &error_message);
+	static void CheckPasswordForSyntaxError(const std::string &password, const std::string &error_message, std::string& result);
 
-private:
-	static bool CheckRegex(const std::regex &regex, const std::string &check_string, std::string &error,
-							const std::string &error_message);
 };
 #endif //UTILS_H

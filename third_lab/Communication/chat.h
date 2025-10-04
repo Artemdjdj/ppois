@@ -5,6 +5,7 @@
 #include <vector>
 #include "../User/user.h"
 
+
 class Message {
 public:
 	Message();
@@ -15,9 +16,11 @@ public:
 
 	bool RefactorMessage(const std::string &message);
 
-	const User& GetUser();
+	const User &GetAuthor();
 
 	std::string GetMessage() const;
+
+	std::string GetMessageText() const;
 
 	static std::string GetRealTime();
 
@@ -29,15 +32,21 @@ private:
 
 class BaseChat {
 public:
+	BaseChat() = default;
+
 	virtual ~BaseChat() = default;
+
+	BaseChat(const BaseChat &) = delete;
 
 	bool WriteMessage(const std::string &message, const User &sender_user);
 
-	void ChangeMessage(const std::string &message, int number_of_message, const User &sender_user, bool is_delete);
-
 	void RefactorMessage(const std::string &message, int number_of_message, const User &sender_user);
 
-	void DeleteMessage(const std::string &message, int number_of_message, const User &sender_user);
+	void DeleteMessage(int number_of_message, const User &sender_user);
+
+	void CopyMessage(int number_of_message, std::string &copy_message) const;
+
+	int CountMessages() const;
 
 	void ViewHistory() const;
 
@@ -46,6 +55,8 @@ public:
 	virtual std::vector<std::string> ListMembers() =0;
 
 private:
+	void ChangeMessage(int number_of_message, const User &sender_user, bool is_delete, const std::string &message);
+
 	std::vector<Message> messages_;
 };
 
@@ -66,19 +77,22 @@ class Group final : public BaseChat {
 public:
 	explicit Group(const User &main_user);
 
-	void SetName(const std::string& name);
+	void SetName(const std::string &name);
 
 	std::string GetName() override;
 
 	std::vector<std::string> ListMembers() override;
 
-	
+	void AddUser(User &new_user, const User &main_user);
 
+	void DeleteUser(const std::string &delete_username, const User &main_user);
 
 private:
 	User main_user_;
 	std::string name_;
 	std::vector<User> users_;
+
+	int CheckUserExist(const std::string &username);
 };
 
 

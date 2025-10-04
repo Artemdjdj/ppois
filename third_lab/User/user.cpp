@@ -35,90 +35,72 @@ bool User::operator!=(const User &other) const {
 void User::SetUserName(const std::string &username) {
 	std::string error_message;
 	try {
-		if (!UserDataSyntax::CheckUserNameForSyntaxError(username, error_message)) {
-			throw ExceptionUserName(error_message.c_str());
-		}
-		this->username_ = username;
+		UserDataSyntax::CheckUserNameForSyntaxError(username, "Your username is not correct the length should be between 3 and 17 and starts with @", this->username_);
 	} catch (const ExceptionUserName &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 	catch (const std::exception &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 }
 
 void User::SetName(const std::string &name) {
 	std::string error_message;
 	try {
-		if (!UserDataSyntax::CheckNameOrSurnameForSyntaxError(name, error_message)) {
-			throw ExceptionName(error_message.c_str());
-		}
-		this->name_ = name;
+		UserDataSyntax::CheckNameOrSurnameForSyntaxError(name, "Your name or surname is not correct the length should be between 3 and 25", this->name_);
 	} catch (const ExceptionName &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 	catch (const std::exception &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 }
 
 void User::SetSurname(const std::string &surname) {
 	std::string error_message;
 	try {
-		if (!UserDataSyntax::CheckNameOrSurnameForSyntaxError(surname, error_message)) {
-			throw ExceptionSurName(error_message.c_str());
-		}
-		this->surname_ = surname;
+		UserDataSyntax::CheckNameOrSurnameForSyntaxError(surname, "Your name or surname is not correct the length should be between 3 and 25", this->surname_);
 	} catch (const ExceptionSurName &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 	catch (const std::exception &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 }
 
 void User::SetEmail(const std::string &email) {
 	std::string error_message;
 	try {
-		if (!UserDataSyntax::CheckEmailForSyntaxError(email, error_message)) {
-			throw ExceptionEmail(error_message.c_str());
-		}
-		this->email_ = email;
+		UserDataSyntax::CheckEmailForSyntaxError(email, "Your E-mail address is not valid", this->email_);
 	} catch (const ExceptionEmail &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 	catch (const std::exception &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 }
 
 void User::SetPhoneNumber(const std::string &phone_number) {
 	std::string error_message;
 	try {
-		if (!UserDataSyntax::CheckPhoneNumberForSyntaxError(phone_number, error_message)) {
-			throw ExceptionPhoneNumber(error_message.c_str());
-		}
-		this->phone_number_ = phone_number;
+		UserDataSyntax::CheckPhoneNumberForSyntaxError(phone_number, "Your phone number is not valid", this->phone_number_);
 	} catch (const ExceptionPhoneNumber &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 	catch (const std::exception &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 }
 
 void User::SetPassword(const std::string &password) {
 	std::string error_message;
 	try {
-		if (!UserDataSyntax::CheckPasswordForSyntaxError(password, error_message)) {
-			throw ExceptionPassword(error_message.c_str());
-		}
-		this->password_ = password;
+		UserDataSyntax::CheckPasswordForSyntaxError(password, "Your password is not valid", this->password_);
 	} catch (const ExceptionPassword &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 	catch (const std::exception &e) {
-		LogFile(e.what(), main_log_file);
+		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
 }
 

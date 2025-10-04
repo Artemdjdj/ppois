@@ -1,109 +1,181 @@
 #include "user_utils.h"
 #include <string>
 #include <gtest/gtest.h>
+#include <../Exceptions/exceptions.h>
 
 std::string error_message;
 
 TEST(TestCheckUserName, TestCorrectUserName) {
-	ASSERT_TRUE(UserDataSyntax::CheckUserNameForSyntaxError("@Artemdjdj", error_message));
+	std::string username;
+	UserDataSyntax::CheckUserNameForSyntaxError("@Artemdjdj", error_message, username);
+	ASSERT_EQ(username, "@Artemdjdj");
 }
 
 TEST(TestCheckUserName, TestCorrectUserNameSpecialSymbols) {
-	ASSERT_TRUE(UserDataSyntax::CheckUserNameForSyntaxError("@Artemd_jdj", error_message));
+	std::string username;
+	UserDataSyntax::CheckUserNameForSyntaxError("@Artemd_jdj", error_message, username);
+	ASSERT_EQ(username, "@Artemd_jdj");
 }
 
 
 TEST(TestCheckUserName, TestIncorrectUserName) {
-	ASSERT_FALSE(UserDataSyntax::CheckUserNameForSyntaxError("@Artemdjdj!", error_message));
+	std::string username;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckUserNameForSyntaxError("@Artemdjdj!", error_message, username),
+	   ExceptionUserName
+   );
 }
 
 TEST(TestCheckUserName, TestIncorrectLengthUserName) {
-	ASSERT_FALSE(UserDataSyntax::CheckUserNameForSyntaxError("@Artemdjdjlglsjldkgjskldjglskljgsfsdf", error_message));
+	std::string username;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckUserNameForSyntaxError("@Artemdjdjlglsjldkgjskldjglskljgsfsdf", error_message, username),
+	   ExceptionUserName
+   );
 }
 
 TEST(TestCheckName, TestCorrectName) {
-	ASSERT_TRUE(UserDataSyntax::CheckNameOrSurnameForSyntaxError("Artemdjdj", error_message));
+	std::string name;
+	UserDataSyntax::CheckNameOrSurnameForSyntaxError("Artemdjdj", error_message, name);
+	ASSERT_EQ(name, "Artemdjdj");
 }
 
 TEST(TestCheckName, TestCorrectNameWithHyphen) {
-	ASSERT_TRUE(UserDataSyntax::CheckNameOrSurnameForSyntaxError("Artemdjdj-legend", error_message));
+	std::string name;
+	UserDataSyntax::CheckNameOrSurnameForSyntaxError("Artemdjdj-legend", error_message, name);
+	ASSERT_EQ(name, "Artemdjdj-legend");
 }
 
 TEST(TestCheckName, TestIncorrectNameFirstSymbolHyphen) {
-	ASSERT_FALSE(UserDataSyntax::CheckNameOrSurnameForSyntaxError("-Artemdjdj", error_message));
+	std::string name;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckNameOrSurnameForSyntaxError("-Artemdjdj", error_message, name),
+	   ExceptionName
+   );
 }
 
 TEST(TestCheckName, TestIncorrectNameLastSymbolHyphen) {
-	ASSERT_FALSE(UserDataSyntax::CheckNameOrSurnameForSyntaxError("Artemdjdj-", error_message));
+	std::string name;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckNameOrSurnameForSyntaxError("Artemdjdj-", error_message, name),
+	   ExceptionName
+   );
 }
 
 TEST(TestCheckName, TestIncorrectLengthName) {
-	ASSERT_FALSE(
-		UserDataSyntax::CheckNameOrSurnameForSyntaxError(
-			"Artemdjdjhfjkshfkhsdkfkjdhfkjhskfhkhfkjhjkfhjiksdhfjkhsdhjkhkhkjgjdfljgljdflgjldfkjgldjflgjdflgjlkdfjsgflk;fjglkjskljglkjslkgjdklf"
-			, error_message));
+	std::string name;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckNameOrSurnameForSyntaxError("Artemdjdjhfjkshfkhsdkfkjdhfkjhskfhkhfkjhjkfhjiksdhfjkhsdhjkhkhkjgjdfljgljdflgjldfkjgldjflgjdflgjlkdfjsgflk;fjglkjskljglkjslkgjdklf", error_message, name),
+	   ExceptionName
+   );
 }
 
 TEST(TestCheckEmail, TestCorrectEmailGmail) {
-	ASSERT_TRUE(UserDataSyntax::CheckEmailForSyntaxError("vlad2007@gmail.com", error_message));
+	std::string email;
+	UserDataSyntax::CheckEmailForSyntaxError("vlad2007@gmail.com", error_message, email);
+	ASSERT_EQ(email, "vlad2007@gmail.com");
 }
 
 TEST(TestCheckEmail, TestCorrectEmailYandex) {
-	ASSERT_TRUE(UserDataSyntax::CheckEmailForSyntaxError("vlad2007@yandex.ru", error_message));
+	std::string email;
+	UserDataSyntax::CheckEmailForSyntaxError("vlad2007@yandex.ru", error_message, email);
+	ASSERT_EQ(email, "vlad2007@yandex.ru");
 }
 
 TEST(TestCheckEmail, TestIncorrectEmail) {
-	ASSERT_FALSE(UserDataSyntax::CheckEmailForSyntaxError("hello world", error_message));
+	std::string email;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckEmailForSyntaxError("hello world", error_message, email),
+	   ExceptionEmail
+   );
 }
 
 TEST(TestCheckEmail, TestIncorrectEmailEmpty) {
-	ASSERT_FALSE(UserDataSyntax::CheckEmailForSyntaxError("", error_message));
+	std::string email;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckEmailForSyntaxError("", error_message, email),
+	   ExceptionEmail
+   );
 }
 
 TEST(TestCheckPhoneNumber, TestCorrectPhoneNumberCodeOne) {
-	ASSERT_TRUE(UserDataSyntax::CheckPhoneNumberForSyntaxError("+375291111345", error_message));
+	std::string phone_number;
+	UserDataSyntax::CheckPhoneNumberForSyntaxError("+375291111345", error_message, phone_number);
+	ASSERT_EQ(phone_number, "+375291111345");
 }
 
 TEST(TestCheckPhoneNumber, TestCorrectPhoneNumberCodeTwo) {
-	ASSERT_TRUE(UserDataSyntax::CheckPhoneNumberForSyntaxError("+375251111345", error_message));
+	std::string phone_number;
+	UserDataSyntax::CheckPhoneNumberForSyntaxError("+375251111345", error_message, phone_number);
+	ASSERT_EQ(phone_number, "+375251111345");
 }
 
 TEST(TestCheckPhoneNumber, TestCorrectPhoneNumberCodeThree) {
-	ASSERT_TRUE(UserDataSyntax::CheckPhoneNumberForSyntaxError("+375331111345", error_message));
+	std::string phone_number;
+	UserDataSyntax::CheckPhoneNumberForSyntaxError("+375331111345", error_message, phone_number);
+	ASSERT_EQ(phone_number, "+375331111345");
 }
 
 TEST(TestCheckPhoneNumber, TestCorrectPhoneNumberCodeFour) {
-	ASSERT_TRUE(UserDataSyntax::CheckPhoneNumberForSyntaxError("80291111345", error_message));
+	std::string phone_number;
+	UserDataSyntax::CheckPhoneNumberForSyntaxError("80291111345", error_message, phone_number);
+	ASSERT_EQ(phone_number, "80291111345");
 }
 
 TEST(TestCheckPhoneNumber, TestCorrectPhoneNumberCodeFive) {
-	ASSERT_TRUE(UserDataSyntax::CheckPhoneNumberForSyntaxError("80441111345", error_message));
+	std::string phone_number;
+	UserDataSyntax::CheckPhoneNumberForSyntaxError("80441111345", error_message, phone_number);
+	ASSERT_EQ(phone_number, "80441111345");
 }
 
 TEST(TestCheckPhoneNumber, TestCorrectPhoneNumberCodeSix) {
-	ASSERT_TRUE(UserDataSyntax::CheckPhoneNumberForSyntaxError("80251111345", error_message));
+	std::string phone_number;
+	UserDataSyntax::CheckPhoneNumberForSyntaxError("80251111345", error_message, phone_number);
+	ASSERT_EQ(phone_number, "80251111345");
 }
 
 TEST(TestCheckPhoneNumber, TestIncorrectPhoneNumberLength) {
-	ASSERT_FALSE(UserDataSyntax::CheckPhoneNumberForSyntaxError("+3752911113456", error_message));
+	std::string phone_number;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckPhoneNumberForSyntaxError("+3752911113456", error_message, phone_number),
+	   ExceptionPhoneNumber
+   );
 }
 
 TEST(TestCheckPhoneNumber, TestIncorrectPhoneNumberCode) {
-	ASSERT_FALSE(UserDataSyntax::CheckPhoneNumberForSyntaxError("+3752711113456", error_message));
+	std::string phone_number;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckPhoneNumberForSyntaxError("+3752711113456", error_message, phone_number),
+	   ExceptionPhoneNumber
+   );
 }
 
 TEST(TestCheckPhoneNumber, TestIncorrectPhoneNumber) {
-	ASSERT_FALSE(UserDataSyntax::CheckPhoneNumberForSyntaxError("3752911113456", error_message));
+	std::string phone_number;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckPhoneNumberForSyntaxError("3752911113456", error_message, phone_number),
+	   ExceptionPhoneNumber
+   );
 }
 
 TEST(TestCheckPassword, TestCorrectPassword) {
-	ASSERT_TRUE(UserDataSyntax::CheckPasswordForSyntaxError("hffw5443hs", error_message));
+	std::string password;
+	UserDataSyntax::CheckPasswordForSyntaxError("hffw5443hs", error_message, password);
+	ASSERT_EQ(password, "hffw5443hs");
 }
 
 TEST(TestCheckPassword, TestInorrectPasswordShortLength) {
-	ASSERT_FALSE(UserDataSyntax::CheckPasswordForSyntaxError("hf4gd", error_message));
+	std::string password;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckPasswordForSyntaxError("hf4gd", error_message, password),
+	   ExceptionPassword
+   );
 }
 
 TEST(TestCheckPassword, TestInorrectPasswordLongLength) {
-	ASSERT_FALSE(UserDataSyntax::CheckPasswordForSyntaxError("gdfgljsljlgjldjlgjldfjogi435034503485348590gkjdfhglkdfsj89wutonoy834", error_message));
+	std::string password;
+	ASSERT_THROW(
+	   UserDataSyntax::CheckPasswordForSyntaxError("gdfgljsljlgjldjlgjldfjogi435034503485348590gkjdfhglkdfsj89wutonoy834", error_message, password),
+	   ExceptionPassword
+   );
 }

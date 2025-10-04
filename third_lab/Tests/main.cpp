@@ -2,6 +2,6 @@
 #include "../Utils/project_utils.h"
 int main(int argc, char **argv) {
 	testing::InitGoogleTest(&argc, argv);
-	ClearFile(main_log_file);
+	DefaultProjectSettings::ClearFile(main_log_file);
 	return RUN_ALL_TESTS();
 }

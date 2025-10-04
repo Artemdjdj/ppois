@@ -36,3 +36,9 @@ ExceptionIncorrectNumberOfMessage::ExceptionIncorrectNumberOfMessage(const char 
 
 ExceptionAccess::ExceptionAccess(const char *msg): Exception(msg) {
 }
+
+ExceptionUserExist::ExceptionUserExist(const char *msg): Exception(msg) {
+}
+
+ExceptionNothingToPrint::ExceptionNothingToPrint(const char *msg): Exception(msg) {
+}

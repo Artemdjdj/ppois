@@ -8,6 +8,8 @@ public:
 
 	User(const User &other);
 
+	User() = default;
+
 	bool operator==(const User &other) const;
 
 	bool operator!=(const User &other) const;

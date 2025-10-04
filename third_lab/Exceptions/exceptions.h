@@ -59,4 +59,14 @@ class ExceptionAccess final :public Exception{
 public:
 	explicit ExceptionAccess(const char *msg);
 };
+
+class ExceptionUserExist final :public Exception{
+public:
+	explicit ExceptionUserExist(const char *msg);
+};
+
+class ExceptionNothingToPrint final :public Exception{
+public:
+	explicit ExceptionNothingToPrint(const char *msg);
+};
 #endif //EXCEPTIONS_H
