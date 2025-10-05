@@ -14,6 +14,7 @@ public:
 	static bool CheckIsStatementInAllowed(const std::string &statement, std::unordered_set<std::string> allowed_values);
 
 	static void ToLower(std::string &str);
+
 };
 
 class Menu {

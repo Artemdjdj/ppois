@@ -69,4 +69,14 @@ class ExceptionNothingToPrint final :public Exception{
 public:
 	explicit ExceptionNothingToPrint(const char *msg);
 };
+
+class ExceptionIncorrectReaction final :public Exception{
+public:
+	explicit ExceptionIncorrectReaction(const char *msg);
+};
+
+class ExceptionIncorrectHashTag final :public Exception{
+public:
+	explicit ExceptionIncorrectHashTag(const char *msg);
+};
 #endif //EXCEPTIONS_H

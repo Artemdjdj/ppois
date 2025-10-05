@@ -42,3 +42,9 @@ ExceptionUserExist::ExceptionUserExist(const char *msg): Exception(msg) {
 
 ExceptionNothingToPrint::ExceptionNothingToPrint(const char *msg): Exception(msg) {
 }
+
+ExceptionIncorrectReaction::ExceptionIncorrectReaction(const char *msg): Exception(msg) {
+}
+
+ExceptionIncorrectHashTag::ExceptionIncorrectHashTag(const char *msg): Exception(msg) {
+}
