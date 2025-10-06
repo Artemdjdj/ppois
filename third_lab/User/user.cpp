@@ -7,7 +7,7 @@
 
 User::User(const std::string &username, const std::string &password) {
 	SetUserName(username);
-	SetName(password);
+	SetPassword(password);
 }
 
 User::User(const User &other) {
@@ -104,22 +104,22 @@ void User::SetPassword(const std::string &password) {
 	}
 }
 
-std::string User::GetUserName() {
+std::string User::GetUserName() const{
 	return this->username_;
 }
 
-std::string User::GetName() {
+std::string User::GetName() const{
 	return this->name_;
 }
 
-std::string User::GetSurName() {
+std::string User::GetSurName() const{
 	return this->surname_;
 }
 
-std::string User::GetEmail() {
+std::string User::GetEmail() const{
 	return this->email_;
 }
 
-std::string User::GetPhoneNumber() {
+std::string User::GetPhoneNumber() const{
 	return this->phone_number_;
 }

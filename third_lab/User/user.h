@@ -26,15 +26,15 @@ public:
 
 	void SetPassword(const std::string &password);
 
-	std::string GetUserName();
+	std::string GetUserName() const;
 
-	std::string GetName();
+	std::string GetName() const;
 
-	std::string GetSurName();
+	std::string GetSurName() const;
 
-	std::string GetEmail();
+	std::string GetEmail() const;
 
-	std::string GetPhoneNumber();
+	std::string GetPhoneNumber() const;
 
 private:
 	std::string username_;

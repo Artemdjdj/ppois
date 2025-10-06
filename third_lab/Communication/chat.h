@@ -10,13 +10,13 @@ class Message {
 public:
 	Message();
 
-	Message(const std::string &message, const User &user);
+	Message(const std::string &message, User *user);
 
-	bool CreateMessage(const std::string &message, const User &user);
+	bool CreateMessage(const std::string &message, User *user);
 
 	bool RefactorMessage(const std::string &message);
 
-	const User &GetAuthor();
+	User * GetAuthor() const;
 
 	std::string GetMessage() const;
 
@@ -27,7 +27,7 @@ public:
 private:
 	std::pair<std::string, std::string> message_;
 	bool is_refactor_{false};
-	User author_;
+	User *author_;
 };
 
 class BaseChat {
@@ -38,13 +38,15 @@ public:
 
 	BaseChat(const BaseChat &) = delete;
 
-	bool WriteMessage(const std::string &message, const User &sender_user);
+	bool WriteMessage(const std::string &message, User *sender_user);
 
-	void RefactorMessage(const std::string &message, int number_of_message, const User &sender_user);
+	void RefactorMessage(const std::string &message, int number_of_message, const User *sender_user);
 
-	void DeleteMessage(int number_of_message, const User &sender_user);
+	void DeleteMessage(int number_of_message, const User *sender_user);
 
 	void CopyMessage(int number_of_message, std::string &copy_message) const;
+
+	void DeleteAllMessages();
 
 	int CountMessages() const;
 
@@ -55,27 +57,27 @@ public:
 	virtual std::vector<std::string> ListMembers() =0;
 
 private:
-	void ChangeMessage(int number_of_message, const User &sender_user, bool is_delete, const std::string &message);
+	void ChangeMessage(int number_of_message, const User *sender_user, bool is_delete, const std::string &message);
 
 	std::vector<Message> messages_;
 };
 
 class Chat final : public BaseChat {
 public:
-	Chat(const User &active_user, const User &second_user);
+	Chat(User *active_user, User *second_user);
 
 	std::string GetName() override;
 
 	std::vector<std::string> ListMembers() override;
 
 private:
-	User active_user_;
-	std::pair<User, User> users_;
+	User* active_user_;
+	std::pair<User*, User*> users_;
 };
 
 class Group final : public BaseChat {
 public:
-	explicit Group(const User &main_user);
+	explicit Group(User *main_user);
 
 	void SetName(const std::string &name);
 
@@ -83,16 +85,16 @@ public:
 
 	std::vector<std::string> ListMembers() override;
 
-	void AddUser(User &new_user, const User &main_user);
+	void AddUser(User *new_user, const User *main_user);
 
-	void DeleteUser(const std::string &delete_username, const User &main_user);
+	void DeleteUser(const std::string &delete_username, const User *main_user);
 
 private:
-	User main_user_;
+	User* main_user_;
 	std::string name_;
-	std::vector<User> users_;
+	std::vector<User*> users_;
 
-	int CheckUserExist(const std::string &username);
+	int CheckUserExist(const std::string &username) const;
 };
 
 
