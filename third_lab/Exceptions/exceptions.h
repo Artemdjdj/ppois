@@ -79,4 +79,9 @@ class ExceptionIncorrectHashTag final :public Exception{
 public:
 	explicit ExceptionIncorrectHashTag(const char *msg);
 };
+
+class ExceptionRuntimeError final : public Exception {
+public:
+	explicit ExceptionRuntimeError(const char *msg);
+};
 #endif //EXCEPTIONS_H

@@ -15,6 +15,7 @@ public:
 
 	static void ToLower(std::string &str);
 
+	static std::string GetRealTime();
 };
 
 class Menu {

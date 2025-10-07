@@ -16,7 +16,7 @@ bool Message::CreateMessage(const std::string &message, User *user) {
 		if (message.empty()) {
 			throw ExceptionIncorrectMessage(message.c_str());
 		}
-		std::string real_time = GetRealTime();
+		std::string real_time = DefaultProjectSettings::GetRealTime();
 		this->author_ = user;
 		this->message_ = std::make_pair(message, real_time);
 		return true;
@@ -48,12 +48,6 @@ std::string Message::GetMessage() const {
 
 std::string Message::GetMessageText() const {
 	return message_.first;
-}
-
-std::string Message::GetRealTime() {
-	const time_t realtime = time(nullptr);
-	const struct tm tm = *localtime(&realtime);
-	return std::to_string(tm.tm_hour) + ":" + std::to_string(tm.tm_min);
 }
 
 bool BaseChat::WriteMessage(const std::string &message, User *sender_user) {

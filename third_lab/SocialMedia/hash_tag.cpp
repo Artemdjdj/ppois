@@ -5,13 +5,15 @@
 
 HashTag::HashTag() = default;
 
-HashTag::HashTag(const std::string &hash_tag) {
-	SetHashTag(hash_tag);
+HashTag::HashTag(const std::string &hash_tag, User * author) {
+	SetHashTag(hash_tag, author);
 }
 
-void HashTag::SetHashTag(const std::string &hash_tag) {
+void HashTag::SetHashTag(const std::string &hash_tag, User * author) {
 	try {
 		DataSyntax::CheckHashTagForSyntaxError(hash_tag, "Your hash tag is not correct!", this->hash_tag_);
+		this->date_time_ = DefaultProjectSettings::GetRealTime();
+		this->author_ = author;
 	} catch (const ExceptionIncorrectHashTag &e) {
 		DefaultProjectSettings::LogFile(e.what(), main_log_file);
 	}
@@ -22,4 +24,8 @@ void HashTag::SetHashTag(const std::string &hash_tag) {
 
 std::string HashTag::GetHashTag() const {
 	return this->hash_tag_;
+}
+
+std::string HashTag::SeeAuthor() const {
+	return this->author_->GetUserName();
 }

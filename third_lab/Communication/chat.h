@@ -16,13 +16,11 @@ public:
 
 	bool RefactorMessage(const std::string &message);
 
-	User * GetAuthor() const;
+	User *GetAuthor() const;
 
 	std::string GetMessage() const;
 
 	std::string GetMessageText() const;
-
-	static std::string GetRealTime();
 
 private:
 	std::pair<std::string, std::string> message_;
@@ -64,6 +62,8 @@ private:
 
 class Chat final : public BaseChat {
 public:
+	Chat() = default;
+
 	Chat(User *active_user, User *second_user);
 
 	std::string GetName() override;
@@ -71,12 +71,14 @@ public:
 	std::vector<std::string> ListMembers() override;
 
 private:
-	User* active_user_;
-	std::pair<User*, User*> users_;
+	User *active_user_;
+	std::pair<User *, User *> users_;
 };
 
 class Group final : public BaseChat {
 public:
+	Group() = default;
+
 	explicit Group(User *main_user);
 
 	void SetName(const std::string &name);
@@ -90,9 +92,9 @@ public:
 	void DeleteUser(const std::string &delete_username, const User *main_user);
 
 private:
-	User* main_user_;
+	User *main_user_;
 	std::string name_;
-	std::vector<User*> users_;
+	std::vector<User *> users_;
 
 	int CheckUserExist(const std::string &username) const;
 };

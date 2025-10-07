@@ -32,6 +32,12 @@ void DefaultProjectSettings::ToLower(std::string &str) {
 	std::ranges::transform(str, str.begin(),::tolower);
 }
 
+std::string DefaultProjectSettings::GetRealTime() {
+	const time_t realtime = time(nullptr);
+	const struct tm tm = *localtime(&realtime);
+	return std::to_string(tm.tm_hour) + ":" + std::to_string(tm.tm_min);
+}
+
 void Menu::PrintMainMenu() {
 	std::cout << std::endl << "===============Social Network Art===============" << std::endl;
 	std::cout << std::endl << "1 - View Profile";

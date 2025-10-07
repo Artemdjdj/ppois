@@ -10,16 +10,17 @@ class Reaction {
 public:
 	Reaction();
 
-	explicit Reaction(const std::string &type_of_reaction);
+	explicit Reaction(const std::string &type_of_reaction, User * author);
 
-	void SetReaction(std::string type_of_reaction);
+	void SetReaction(std::string type_of_reaction, User * author);
 
-	void DeleteReaction();
+	std::string SeeAuthor() const;
 
-	std::string GetReaction();
+	std::string GetReaction() const;;
 
 private:
 	std::string type_of_reaction_;
-	// User * author_;
+	std::string date_time_;
+	User * author_;
 };
 #endif //REACTION_H

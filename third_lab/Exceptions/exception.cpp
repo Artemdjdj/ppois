@@ -48,3 +48,6 @@ ExceptionIncorrectReaction::ExceptionIncorrectReaction(const char *msg): Excepti
 
 ExceptionIncorrectHashTag::ExceptionIncorrectHashTag(const char *msg): Exception(msg) {
 }
+
+ExceptionRuntimeError::ExceptionRuntimeError(const char *msg): Exception(msg) {
+}

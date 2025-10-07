@@ -1,46 +1,48 @@
 #include "profile.h"
 
+#include "../Utils/project_utils.h"
+
 Profile::Profile() = default;
 
-Profile::Profile(const User& user, const std::string& location, const std::string& biography) {
+Profile::Profile(const User &user, const std::string &location, const std::string &biography) {
 	this->user_ = user;
 	SetLocation(location);
 	SetBiography(biography);
 }
 
-void Profile::SetUserUserName(const std::string& username) {
+void Profile::SetUserUserName(const std::string &username) {
 	this->user_.SetUserName(username);
 }
 
-void Profile::SetUserName(const std::string& name) {
+void Profile::SetUserName(const std::string &name) {
 	this->user_.SetName(name);
 }
 
-void Profile::SetUserSurname(const std::string& surname) {
+void Profile::SetUserSurname(const std::string &surname) {
 	this->user_.SetSurname(surname);
 }
 
-void Profile::SetUserEmail(const std::string& email) {
+void Profile::SetUserEmail(const std::string &email) {
 	this->user_.SetEmail(email);
 }
 
-void Profile::SetUserPhoneNumber(const std::string& phone_number) {
+void Profile::SetUserPhoneNumber(const std::string &phone_number) {
 	this->user_.SetPhoneNumber(phone_number);
 }
 
-void Profile::SetUserPassword(const std::string& password) {
+void Profile::SetUserPassword(const std::string &password) {
 	this->user_.SetPassword(password);
 }
 
-void Profile::SetLocation(const std::string& location) {
+void Profile::SetLocation(const std::string &location) {
 	this->location_ = location;
 }
 
-void Profile::SetBiography(const std::string& biography) {
+void Profile::SetBiography(const std::string &biography) {
 	this->biography_ = biography;
 }
 
-void Profile::SetGender(const std::string& gender) {
+void Profile::SetGender(const std::string &gender) {
 	this->gender_ = gender;
 }
 
@@ -48,7 +50,7 @@ void Profile::SetAge(int age) {
 	this->age_ = age;
 }
 
-std::string Profile::GetUserUserName() const{
+std::string Profile::GetUserUserName() const {
 	return this->user_.GetUserName();
 }
 
@@ -82,4 +84,30 @@ std::string Profile::GetBiography() const {
 
 int Profile::GetAge() const {
 	return this->age_;
+}
+
+void Profile::CreateNewChat(User *user2) {
+	const auto chat = Chat(&this->user_, user2);
+	std::string id;
+	this->generator_id_for_chats_.GenerateNewId(id);
+	this->chats_[id] = chat;
+}
+
+void Profile::RemoveChat(const std::string &chat_id) {
+	if (const auto it = chats_.erase(chat_id); it == 0) {
+		DefaultProjectSettings::LogFile("This chat is not in exist, you can't delete it", main_log_file);
+	}
+}
+
+void Profile::CreateNewGroup(const std::string &name_of_group) {
+	const auto group = Group(&this->user_);
+	std::string id;
+	this->generator_id_for_groups_.GenerateNewId(id);
+	this->groups_[id] = group;
+}
+
+void Profile::RemoveGroup(const std::string &group_id) {
+	if (const auto it = groups_.erase(group_id); it == 0) {
+		DefaultProjectSettings::LogFile("This group is not exist, you can't delete it", main_log_file);
+	}
 }

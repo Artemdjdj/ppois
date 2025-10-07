@@ -38,7 +38,7 @@ void DataSyntax::CheckPasswordForSyntaxError(const std::string &password, const 
 }
 
 void DataSyntax::CheckHashTagForSyntaxError(const std::string &hash_tag, const std::string &error_message, std::string& result) {
-	if (const std::regex rx(R"(^#[a-zA-Z0-9\_\-]{3,17}$)"); !std::regex_match(hash_tag, rx)) {
+	if (const std::regex rx(R"(^#[a-zA-Z0-9]{3,17}(?:[-][a-zA-Z0-9]{3,10})?$)"); !std::regex_match(hash_tag, rx)) {
 		throw ExceptionIncorrectHashTag(error_message.c_str());
 	}
 	result = hash_tag;
