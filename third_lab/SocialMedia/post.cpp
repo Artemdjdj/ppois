@@ -1,5 +1,4 @@
 #include "post.h"
-
 #include "exceptions.h"
 #include "../Utils/project_utils.h"
 
