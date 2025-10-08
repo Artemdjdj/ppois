@@ -84,4 +84,10 @@ class ExceptionRuntimeError final : public Exception {
 public:
 	explicit ExceptionRuntimeError(const char *msg);
 };
+
+class ExceptionIncorrectRole final : public Exception {
+public:
+	explicit ExceptionIncorrectRole(const char *msg);
+};
+
 #endif //EXCEPTIONS_H

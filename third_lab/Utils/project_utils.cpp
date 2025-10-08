@@ -24,7 +24,7 @@ void DefaultProjectSettings::ClearFile(const std::string &file_name) {
 	}
 }
 
-bool DefaultProjectSettings::CheckIsStatementInAllowed(const std::string &statement, std::unordered_set<std::string> allowed_values) {
+bool DefaultProjectSettings::CheckIsStatementInAllowed(const std::string &statement, const std::unordered_set<std::string> &allowed_values) {
 	return allowed_values.contains(statement);
 }
 

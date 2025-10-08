@@ -1,8 +1,12 @@
 #ifndef PROJECT_UTILS_H
 #define PROJECT_UTILS_H
 #define NUMBER_OF_VERSION "1.0.0"
+#define GREEN "\033[32m"
+#define CYAN "\033[36m"
+#define RESET "\033[0m"
 #include <string>
 #include <unordered_set>
+
 const std::string main_log_file = "../Logs/main_log.txt";
 
 class DefaultProjectSettings {
@@ -11,7 +15,7 @@ public:
 
 	static void ClearFile(const std::string &file_name);
 
-	static bool CheckIsStatementInAllowed(const std::string &statement, std::unordered_set<std::string> allowed_values);
+	static bool CheckIsStatementInAllowed(const std::string &statement, const std::unordered_set<std::string> &allowed_values);
 
 	static void ToLower(std::string &str);
 

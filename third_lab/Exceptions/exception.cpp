@@ -51,3 +51,6 @@ ExceptionIncorrectHashTag::ExceptionIncorrectHashTag(const char *msg): Exception
 
 ExceptionRuntimeError::ExceptionRuntimeError(const char *msg): Exception(msg) {
 }
+
+ExceptionIncorrectRole::ExceptionIncorrectRole(const char *msg): Exception(msg) {
+}
