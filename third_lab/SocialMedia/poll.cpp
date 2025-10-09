@@ -58,6 +58,13 @@ void PollWithoutRefactoringChoose::SeeStatistics() const {
 	}
 }
 
+PollWithRefactoringChoose::PollWithRefactoringChoose() = default;
+
+PollWithRefactoringChoose::PollWithRefactoringChoose(const std::string &question,
+													const std::vector<std::string> &
+													answers): PollWithoutRefactoringChoose(question, answers) {
+}
+
 void PollWithRefactoringChoose::RefactorYourChoose(const User *user, int new_answer) {
 	const int number_of_answer = GetAnswerOfUser(user);
 	if (number_of_answer == -1) {
@@ -68,6 +75,14 @@ void PollWithRefactoringChoose::RefactorYourChoose(const User *user, int new_ans
 	const std::string new_answer_str = this->answers_[new_answer - 1];
 	this->statistics_[old_answer_str]--;
 	this->statistics_[new_answer_str]++;
+}
+
+PollWithGettingAnswer::PollWithGettingAnswer() = default;
+
+PollWithGettingAnswer::PollWithGettingAnswer(const std::string &question, const std::vector<std::string> &answers,
+											int number_of_correct_answer): PollWithoutRefactoringChoose(
+																				question, answers),
+																			correct_answer_(number_of_correct_answer) {
 }
 
 void PollWithGettingAnswer::AddAnswer(int number_of_answer, const User *user) {

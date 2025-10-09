@@ -32,15 +32,18 @@ protected:
 
 class PollWithRefactoringChoose : public PollWithoutRefactoringChoose {
 public:
+	PollWithRefactoringChoose();
+
+	PollWithRefactoringChoose(const std::string &question, const std::vector<std::string> &answers);
+
 	void RefactorYourChoose(const User *user, int new_answer);
 };
 
 class PollWithGettingAnswer : public PollWithoutRefactoringChoose {
 public:
-	PollWithGettingAnswer(const std::string &question, const std::vector<std::string> &answers,
-						int number_of_correct_answer): PollWithoutRefactoringChoose(question, answers),
-														correct_answer_(number_of_correct_answer) {
-	}
+	PollWithGettingAnswer();
+
+	PollWithGettingAnswer(const std::string &question, const std::vector<std::string> &answers,int number_of_correct_answer);
 
 	void AddAnswer(int number_of_answer, const User *user);
 
