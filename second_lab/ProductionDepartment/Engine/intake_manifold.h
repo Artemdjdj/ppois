@@ -34,9 +34,8 @@ public:
 
 	/*! \brief Установка всего объема
 	*  \param main_volume Новое значение добъема
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetMainVolume(int main_volume);
+	void SetMainVolume(int main_volume);
 
 	/*! \brief Установка объема камеры
 	*/
@@ -44,21 +43,18 @@ public:
 
 	/*! \brief Установка длины трубки
 	*  \param height_canal Новое значение длины
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetHeightCanal(int height_canal);
+	void SetHeightCanal(int height_canal);
 
 	/*! \brief Установка радиуса трубки
 	*  \param radius_canal Новое значение радиуса
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetRadiusCanal(int radius_canal);
+	void SetRadiusCanal(int radius_canal);
 
 	/*! \brief Установка количество трубок
 	*  \param number_of_canals Новое количество трубок
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetNumberOfCanals(int number_of_canals);
+	void SetNumberOfCanals(int number_of_canals);
 
 	/*! \brief Получение текущего количества трубок
 	*  \return Количество трубок

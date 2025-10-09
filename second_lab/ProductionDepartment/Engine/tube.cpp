@@ -5,12 +5,12 @@ Tube::Tube() = default;
 Tube::Tube(int radius, int height): radius_(radius), height_(height) {
 }
 
-bool Tube::SetRadius(int radius) {
-	return this->radius_.SetRadius(radius);
+void Tube::SetRadius(int radius) {
+	this->radius_.SetRadius(radius);
 }
 
-bool Tube::SetHeight(int height) {
-	return SetSingleValue(height, "Height should be bigger then zero!", this->height_);
+void Tube::SetHeight(int height) {
+	SetSingleValue(height, "Height should be bigger then zero!", this->height_);
 }
 
 int Tube::GetRadius() const {

@@ -28,9 +28,8 @@ public:
 	/*! \brief Установка длины
 	*  \param height Новое значение длины
 	*  \param width Новое значение ширины
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetPlataSize(int height, int width);
+	void SetPlataSize(int height, int width);
 
 	/*! \brief Получение текущей длины
 	*  \return Длина
@@ -70,9 +69,8 @@ public:
 
 	/*! \brief Установка массы
 	*  \param weight Новое значение массы
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetWeight(int weight);
+	void SetWeight(int weight);
 
 	/*! \brief Получение текущей массы
 	*  \return Масса
@@ -104,9 +102,8 @@ public:
 	/*! \brief Установка размеров платы
 	*  \param height_of_plata Начальная длина платы
 	*  \param width_of_plata Начальная ширина платы
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetDataForTwoPlats(int height_of_plata, int width_of_plata);
+	void SetDataForTwoPlats(int height_of_plata, int width_of_plata);
 
 	/*! \brief Получение текущей длины платы
 	*  \return Длина
@@ -122,9 +119,8 @@ public:
 	*  \param radius Начальный радиус
 	*  \param height Начальная высота
 	*  \param weight Начальная масса
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetDataForCylinder(int radius, int height, int weight);
+	void SetDataForCylinder(int radius, int height, int weight);
 
 private:
 	std::pair<Plata, Plata> two_plats_;/*!< Пара плат */;

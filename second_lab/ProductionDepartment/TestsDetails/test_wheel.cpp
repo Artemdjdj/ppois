@@ -1,5 +1,6 @@
 #include "../Wheel/wheel.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestWheel : public ::testing::Test {
 public:
@@ -24,11 +25,15 @@ TEST_F(TestWheel, TestSetRadius) {
 }
 
 TEST_F(TestWheel, TestSetRadiusNegative) {
-	ASSERT_FALSE(wheel2.SetRadius(-10));
+	ASSERT_THROW(
+		wheel2.SetRadius(-10),
+		ExceptionIncorrectSize
+	);
+
 }
 
 TEST_F(TestWheel, TestSetMaterial) {
-	ASSERT_TRUE(wheel2.SetMaterial("organic"));
+	wheel2.SetMaterial("organic");
 }
 
 TEST_F(TestWheel, TestSetMaterialBigLetters) {
@@ -37,19 +42,28 @@ TEST_F(TestWheel, TestSetMaterialBigLetters) {
 }
 
 TEST_F(TestWheel, TestSetMaterialNegative) {
-	ASSERT_FALSE(wheel2.SetMaterial("Green"));
+	ASSERT_THROW(
+		wheel2.SetMaterial("Green"),
+		ExceptionIncorrectMaterial
+	);
 }
 
 TEST_F(TestWheel, TestSetSizeNegativeHeight) {
-	ASSERT_FALSE(wheel2.SetSize(-10,5));
+	ASSERT_THROW(
+		wheel2.SetSize(-10,5),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestWheel, TestSetSizeNegativeWidth) {
-	ASSERT_FALSE(wheel2.SetSize(10,-15));
+	ASSERT_THROW(
+		wheel2.SetSize(10,-15),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestWheel, TestSetSizeCorrect) {
-	ASSERT_TRUE(wheel2.SetSize(10,15));
+	wheel2.SetSize(10,15);
 }
 
 TEST_F(TestWheel, TestSetCountOfBolts) {
@@ -58,7 +72,10 @@ TEST_F(TestWheel, TestSetCountOfBolts) {
 }
 
 TEST_F(TestWheel, TestSetCountOfBoltsNegative) {
-	wheel.SetCountOfBolts(-3);
+	ASSERT_THROW(
+		wheel.SetCountOfBolts(-3),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(wheel.GetCountOfBolts(), 5);
 }
 

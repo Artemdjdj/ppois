@@ -9,11 +9,11 @@ SideMirror::SideMirror(int height, int width, std::string color): BasicParams(he
 SideMirror::~SideMirror() {
 }
 
-bool SideMirror::SetColor(std::string color) {
-	return this->color_.SetColor(color);
+void SideMirror::SetColor(std::string color) {
+	this->color_.SetColor(color);
 }
 
-std::string SideMirror::GetColor() {
+std::string SideMirror::GetColor() const {
 	return this->color_.GetColor();
 }
 

@@ -6,65 +6,59 @@
 Engine::Engine(bool is_worked, int engine_life): is_worked_(is_worked), engine_life_(engine_life) {
 }
 
-bool Engine::SetInfoAboutRim(int radius, int thickness, int density) {
-	return this->rim_.SetDataRim(radius, thickness, density);
+void Engine::SetInfoAboutRim(int radius, int thickness, int density) {
+	this->rim_.SetDataRim(radius, thickness, density);
 }
 
-bool Engine::SetInfoAboutProng(int first_side, int second_side, int third_side, int thickness, int density) {
-	return this->prong_.SetDataProng(first_side, second_side, third_side, thickness, density);
+void Engine::SetInfoAboutProng(int first_side, int second_side, int third_side, int thickness, int density) {
+	this->prong_.SetDataProng(first_side, second_side, third_side, thickness, density);
 }
 
-bool Engine::SetInfoAboutIntakeManifold(int main_volume, int radius_canal, int height_canal, int number_of_canals) {
-	return this->intake_manifold_.SetMainVolume(main_volume) and
-			this->intake_manifold_.SetRadiusCanal(radius_canal) and
-			this->intake_manifold_.SetHeightCanal(height_canal) and
-			this->intake_manifold_.SetNumberOfCanals(number_of_canals);
+void Engine::SetInfoAboutIntakeManifold(int main_volume, int radius_canal, int height_canal, int number_of_canals) {
+	this->intake_manifold_.SetMainVolume(main_volume);
+	this->intake_manifold_.SetRadiusCanal(radius_canal);
+	this->intake_manifold_.SetHeightCanal(height_canal);
+	this->intake_manifold_.SetNumberOfCanals(number_of_canals);
 }
 
-bool Engine::SetInfoAboutMetalChain(int count_of_metal_links, int height_of_plata, int width_of_plata, int radius,
+void Engine::SetInfoAboutMetalChain(int count_of_metal_links, int height_of_plata, int width_of_plata, int radius,
 									int height, int weight) {
-	if (count_of_metal_links <= 0) return false;
+	if (count_of_metal_links <= 0) return;
 	MetalLink metal_link{};
-	if (metal_link.SetDataForCylinder(radius, height, weight) and metal_link.SetDataForTwoPlats(
-			height_of_plata, width_of_plata)) {
-		for (int i = 0; i < count_of_metal_links; i++) {
-			MetalLink temp_metal_link{metal_link};
-			this->metal_chain_.AddNewMetalLink(temp_metal_link);
-		}
-		return true;
+	metal_link.SetDataForCylinder(radius, height, weight);
+	metal_link.SetDataForTwoPlats(
+		height_of_plata, width_of_plata);
+	for (int i = 0; i < count_of_metal_links; i++) {
+		MetalLink temp_metal_link{metal_link};
+		this->metal_chain_.AddNewMetalLink(temp_metal_link);
 	}
-	return false;
 }
 
-bool Engine::SetInfoAboutPistons(int count_of_pistons, int diameter, int height, int compression_height,
+void Engine::SetInfoAboutPistons(int count_of_pistons, int diameter, int height, int compression_height,
 								int count_of_cycles, int weight) {
-	if (count_of_pistons <= 0) return false;
+	if (count_of_pistons <= 0) return;
 	Piston piston{};
-	if (piston.SetAllParameters(diameter, height, compression_height, count_of_cycles, weight)) {
-		for (int i = 0; i < count_of_pistons; i++) {
-			Piston temp_piston{piston};
-			this->pistons_.push_back(temp_piston);
-		}
-		return true;
+	piston.SetAllParameters(diameter, height, compression_height, count_of_cycles, weight);
+	for (int i = 0; i < count_of_pistons; i++) {
+		Piston temp_piston{piston};
+		this->pistons_.push_back(temp_piston);
 	}
-	return false;
 }
 
-bool Engine::SetInfoAboutValveSprings(int count_of_valve_springs, int diameter, int length, int count_of_coils) {
-	if (count_of_valve_springs <= 0) return false;
-	if (ValveSpring valve_spring{}; valve_spring.SetAllParameters(diameter, length, count_of_coils)) {
-		for (int i = 0; i < count_of_valve_springs; i++) {
-			ValveSpring temp_valve_spring{valve_spring};
-			this->valve_springs_.push_back(temp_valve_spring);
-		}
-		return true;
+void Engine::SetInfoAboutValveSprings(int count_of_valve_springs, int diameter, int length, int count_of_coils) {
+	if (count_of_valve_springs <= 0) return;
+	ValveSpring valve_spring{};
+	valve_spring.SetAllParameters(diameter, length, count_of_coils);
+	for (int i = 0; i < count_of_valve_springs; i++) {
+		ValveSpring temp_valve_spring{valve_spring};
+		this->valve_springs_.push_back(temp_valve_spring);
 	}
-	return false;
 }
 
 
-bool Engine::SetInfoAboutTube(int radius_tube, int height_tube) {
-	return this->tube_.SetHeight(height_tube) and this->tube_.SetRadius(radius_tube);
+void Engine::SetInfoAboutTube(int radius_tube, int height_tube) {
+	this->tube_.SetHeight(height_tube);
+	this->tube_.SetRadius(radius_tube);
 }
 
 void Engine::SetInfoAboutWaterPump(int flow, int density) {
@@ -135,13 +129,6 @@ int Engine::GetInfoAboutCurrentMileage() const {
 }
 
 void Engine::DriveTheWay(int way) {
-	try {
-		if (way <= 0) throw ExceptionWayError("Wrong way");
-		this->current_mileage_ += way;
-	} catch (const ExceptionWayError &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-	}
-	catch (const Exception &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-	}
+	if (way <= 0) throw ExceptionWayError("Wrong way");
+	this->current_mileage_ += way;
 }

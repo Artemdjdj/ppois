@@ -14,17 +14,17 @@ BasicParams::BasicParams(int height, int width) {
 BasicParams::BasicParams() {
 }
 
-bool BasicParams::SetHeight(int height) {
-	return SetSingleValue(height, "The height must be greater then zero!", this->height_);
+void BasicParams::SetHeight(int height) {
+	SetSingleValue(height, "The height must be greater then zero!", this->height_);
 }
 
-bool BasicParams::SetWidth(int width) {
-	return SetSingleValue(width, "The width must be greater then zero!", this->width_);
+void BasicParams::SetWidth(int width) {
+	SetSingleValue(width, "The width must be greater then zero!", this->width_);
 }
 
-bool BasicParams::SetSize(int height, int width) {
-	if (!SetHeight(height)) return false;
-	return SetWidth(width);
+void BasicParams::SetSize(int height, int width) {
+	SetHeight(height);
+	SetWidth(width);
 }
 
 int BasicParams::GetHeight() const {
@@ -47,21 +47,11 @@ Color::Color(const std::string &color) {
 Color::Color() {
 }
 
-bool Color::SetColor(std::string color) {
-	try {
-		if (!CheckIsStatementCorrect(colors, color)) {
-			throw ExceptionIncorrectColor("This color is not correct!");
-		}
-		this->color_ = color;
-		return true;
-	} catch (const ExceptionIncorrectColor &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
+void Color::SetColor(std::string color) {
+	if (!CheckIsStatementCorrect(colors, color)) {
+		throw ExceptionIncorrectColor("This color is not correct!");
 	}
-	catch (const Exception &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
-	}
+	this->color_ = color;
 }
 
 std::string Color::GetColor() const {
@@ -75,46 +65,26 @@ Volume::Volume(int volume) {
 	this->volume_ = volume;
 }
 
-bool Volume::SetVolume(int volume) {
-	return SetSingleValue(volume, "The volume must be greater then zero!", this->volume_);
+void Volume::SetVolume(int volume) {
+	SetSingleValue(volume, "The volume must be greater then zero!", this->volume_);
 }
 
 int Volume::GetVolume() const {
 	return this->volume_;
 }
 
-bool SetSinglePercent(int procent, int &value) {
-	try {
-		if (procent < 0 || procent > 100) {
-			throw ExceptionIncorrectProcent("Percentage must be between 0 and 100!");
-		}
-		value = procent;
-		return true;
-	} catch (const ExceptionIncorrectProcent &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
+void SetSinglePercent(int procent, int &value) {
+	if (procent < 0 || procent > 100) {
+		throw ExceptionIncorrectProcent("Percentage must be between 0 and 100!");
 	}
-	catch (const Exception &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
-	}
+	value = procent;
 }
 
-bool SetSingleValue(int integer_number, const char *description, int &value) {
-	try {
-		if (integer_number < 0) {
-			throw ExceptionIncorrectSize(description);
-		}
-		value = integer_number;
-		return true;
-	} catch (const ExceptionIncorrectSize &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
+void SetSingleValue(int integer_number, const char *description, int &value) {
+	if (integer_number < 0) {
+		throw ExceptionIncorrectSize(description);
 	}
-	catch (const Exception &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
-	}
+	value = integer_number;
 }
 
 bool CheckIsStatementCorrect(const std::vector<std::string> &vector_of_string, std::string &statement) {
@@ -139,7 +109,7 @@ double CalculateTheSpeedOfSoundInSpecialTemperature(double temperature) {
 	return speed_of_sound + 0.61 * temperature;
 }
 
-bool LogToFile(const char *message, const std::string& file_name) {
+bool LogToFile(const char *message, const std::string &file_name) {
 	std::ofstream file;
 	file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
 	try {

@@ -6,27 +6,17 @@
 Season::Season() {
 }
 
-Season::Season(const std::string& season) {
+Season::Season(const std::string &season) {
 	this->season_ = season;
 }
 
-bool Season::SetSeason(std::string season) {
-	try {
-		if (!CheckIsStatementCorrect(seasons, season)) {
-			throw ExceptionIncorrectSeason("Incorrect season, you can write winter or summer!");
-		}
-		this->season_ = season;
-		return true;
-	} catch (const ExceptionIncorrectSeason &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
+void Season::SetSeason(std::string season) {
+	if (!CheckIsStatementCorrect(seasons, season)) {
+		throw ExceptionIncorrectSeason("Incorrect season, you can write winter or summer!");
 	}
-	catch (const Exception &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
-	}
+	this->season_ = season;
 }
 
-std::string Season::GetSeason() const{
+std::string Season::GetSeason() const {
 	return season_;
 }

@@ -34,9 +34,8 @@ public:
 
 	/*! \brief Установка процента заполненности
 	*  \param procent Новое значение заполненности
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetPercentageOfOccupancy(int procent);
+	void SetPercentageOfOccupancy(int procent);
 
 	/*! \brief Получение текущей заполненности
 	*  \return Заполненность
@@ -55,21 +54,18 @@ public:
 
 	/*! \brief Установка объема
 	*  \param volume Новое значение объема
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetVolume(int volume);
+	void SetVolume(int volume);
 
 	/*! \brief Установка типа топлива
 	*  \param type_of_fuel Новый вид топлива
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetFuel(std::string type_of_fuel);
+	void SetFuel(std::string type_of_fuel);
 
 	/*! \brief Установка сезона года
 	*  \param season Новый сезон года
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSeason(std::string season);
+	void SetSeason(std::string season);
 
 	/*! \brief Получение текущего сезона года
 	*  \return Сезон года

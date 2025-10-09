@@ -37,9 +37,8 @@ public:
 
 	/*! \brief Установка толщины
 	*  \param thickness Новая толщина
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetThickness(int thickness);
+	void SetThickness(int thickness);
 
 	/*! \brief Нанесение тонировки */
 	void MakeTinting();
@@ -53,9 +52,8 @@ public:
 
 	/*! \brief Установка серийного номера
 	*  \param serial_number Новый серийный номер
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSerialNumber(std::string serial_number);
+	void SetSerialNumber(std::string serial_number);
 
 	/*! \brief Получение серийного номера
 	*  \return Серийный номер
@@ -73,7 +71,6 @@ public:
 									std::string &serial_number) const;
 
 private:
-
 	/*! \brief Проверка корректности серийного номера
 	*  \param serial_number Проверяемый серийный номер
 	*  \return true если серийный номер корректен, false в противном случае

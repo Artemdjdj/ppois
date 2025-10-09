@@ -1,6 +1,7 @@
 #include "basic_params.h"
 #include "../Wheel/wheel.h"
 #include "gtest/gtest.h"
+#include "../../Exceptions/exceptions.h"
 
 class TestingBrakeShoe : public ::testing::Test {
 protected:
@@ -19,7 +20,10 @@ TEST_F(TestingBrakeShoe, TestMaterialPositive) {
 }
 
 TEST_F(TestingBrakeShoe, TestMaterialNegative) {
-	brake_shoe.SetMaterial("low-m");
+	ASSERT_THROW(
+		brake_shoe.SetMaterial("low-m"),
+		ExceptionIncorrectMaterial
+	);
 	ASSERT_EQ("low-metal", brake_shoe.GetMaterial());
 }
 
@@ -42,12 +46,18 @@ TEST_F(TestingBrakeShoe, TestSetWidth) {
 }
 
 TEST_F(TestingBrakeShoe, TestSetHeightNegative) {
-	brake_shoe.SetHeight(-56);
+	ASSERT_THROW(
+		brake_shoe.SetHeight(-56),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(brake_shoe.GetHeight(), 12);
 }
 
 TEST_F(TestingBrakeShoe, TestSetWidthNegative) {
-	brake_shoe.SetWidth(-100);
+	ASSERT_THROW(
+		brake_shoe.SetWidth(-100),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(brake_shoe.GetWidth(), 25);
 }
 

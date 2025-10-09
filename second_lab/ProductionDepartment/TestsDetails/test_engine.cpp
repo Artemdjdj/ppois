@@ -1,6 +1,8 @@
 #include "../Engine/engine.h"
 #include <gtest/gtest.h>
 
+#include "../../Exceptions/exceptions.h"
+
 class TestEngine : public ::testing::Test {
 public:
 	Engine engine = Engine(false, 400000);
@@ -11,67 +13,88 @@ TEST_F(TestEngine, TestGetInfoAboutPart) {
 }
 
 TEST_F(TestEngine, TestSetInfoRim) {
-	ASSERT_TRUE(engine.SetInfoAboutRim(11,4,4343));
+	engine.SetInfoAboutRim(11, 4, 4343);
 }
 
 TEST_F(TestEngine, TestSetInfoRimNegative) {
-	ASSERT_FALSE(engine.SetInfoAboutRim(-11,4,4343));
+	ASSERT_THROW(
+		engine.SetInfoAboutRim(-11,4,4343),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestEngine, TestSetInfoProng) {
-	ASSERT_TRUE(engine.SetInfoAboutProng(1,2,3,4,4343));
+	engine.SetInfoAboutProng(1, 2, 3, 4, 4343);
 }
 
 TEST_F(TestEngine, TestSetInfoProngNegative) {
-	ASSERT_FALSE(engine.SetInfoAboutProng(-11,2,3,4,4343));
+	ASSERT_THROW(
+		engine.SetInfoAboutProng(-11,2,3,4,4343),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestEngine, SetInfoAboutIntakeManifold) {
-	ASSERT_TRUE(engine.SetInfoAboutIntakeManifold(34,45,56,7));
+	engine.SetInfoAboutIntakeManifold(34, 45, 56, 7);
 }
 
 TEST_F(TestEngine, SetInfoAboutIntakeManifoldNegative) {
-	ASSERT_FALSE(engine.SetInfoAboutIntakeManifold(34,45,-56,7));
+	ASSERT_THROW(
+		engine.SetInfoAboutIntakeManifold(34,45,-56,7),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestEngine, TestSetInfoAboutMetalChain) {
-	ASSERT_TRUE(engine.SetInfoAboutMetalChain(1,2,3,4,5,8));
+	engine.SetInfoAboutMetalChain(1, 2, 3, 4, 5, 8);
 }
 
 TEST_F(TestEngine, TestSetInfoAboutMetalChainNegative) {
-	ASSERT_FALSE(engine.SetInfoAboutMetalChain(1,-2,3,4,5,8));
+	ASSERT_THROW(
+		engine.SetInfoAboutMetalChain(1,-2,3,4,5,8),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestEngine, TestSetInfoAboutPistons) {
-	ASSERT_TRUE(engine.SetInfoAboutPistons(1,2,3,4,5,7));
+	engine.SetInfoAboutPistons(1, 2, 3, 4, 5, 7);
 }
 
 TEST_F(TestEngine, TestSetInfoAboutPistonsNegative) {
-	ASSERT_FALSE(engine.SetInfoAboutPistons(11,2,33,47,95,-8));
+	ASSERT_THROW(
+		engine.SetInfoAboutPistons(11,2,33,47,95,-8),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestEngine, TestSetInfoAboutPistonsNegativeCount) {
-	ASSERT_FALSE(engine.SetInfoAboutPistons(-11,2,33,47,95,8));
+	engine.SetInfoAboutPistons(-11, 2, 33, 47, 95, 8);
 }
 
 TEST_F(TestEngine, TestSetInfoAboutValveSprings) {
-	ASSERT_TRUE(engine.SetInfoAboutValveSprings(1,2,3,4));
+	engine.SetInfoAboutValveSprings(1, 2, 3, 4);
 }
 
 TEST_F(TestEngine, TestSetInfoAboutValveSpringsNegative) {
-	ASSERT_FALSE(engine.SetInfoAboutValveSprings(1,-2,33,47));
+	ASSERT_THROW(
+		engine.SetInfoAboutValveSprings(1,-2,33,47),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestEngine, TestSetInfoAboutValveSpringsNegativeCount) {
-	ASSERT_FALSE(engine.SetInfoAboutValveSprings(-11,2,33,47));
+	engine.SetInfoAboutValveSprings(-11, 2, 33, 47);
 }
 
 TEST_F(TestEngine, TestSetInfoAboutTubeSprings) {
-	ASSERT_TRUE(engine.SetInfoAboutTube(1,2));
+	engine.SetInfoAboutTube(1, 2);
 }
 
 TEST_F(TestEngine, TestSetInfoAboutTubeNegative) {
-	ASSERT_FALSE(engine.SetInfoAboutTube(1,-2));
+	ASSERT_THROW(
+		engine.SetInfoAboutTube(1,-2),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestEngine, TestStartEngine) {
@@ -142,6 +165,8 @@ TEST_F(TestEngine, TestDriveTheWay) {
 }
 
 TEST_F(TestEngine, TestDriveTheWayNegative) {
-	engine.DriveTheWay(-10);
-	ASSERT_EQ(engine.GetInfoAboutCurrentMileage(), 0);
+	ASSERT_THROW(
+		engine.DriveTheWay(-10);,
+		ExceptionWayError
+	);
 }

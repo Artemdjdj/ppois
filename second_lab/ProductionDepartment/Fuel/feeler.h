@@ -32,15 +32,13 @@ public:
 
 	/*! \brief Установка длины щупа
 	*  \param length Новое значение длины
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetLength(int length);
+	void SetLength(int length);
 
 	/*! \brief Установка уровня
 	*  \param level Новое значение уровня
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetLevel(int level);
+	void SetLevel(int level);
 
 	/*! \brief Получение текущей длины щупа
 	*  \return Текущая длина щупа
@@ -55,7 +53,7 @@ public:
 	/*! \brief Проверка уровня
 	*  \return true если уровень в норме, false в противном случае
 	*/
-	bool CheckIsTheLevelInNormState() const;
+	void CheckIsTheLevelInNormState() const;
 
 private:
 	int length_{0}; /*!< Длина  щупа */

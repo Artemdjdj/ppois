@@ -11,7 +11,7 @@ bool GeneratorId::CheckIdIsTaken(const std::string& id) const {
 	return list_of_id_.contains(id);
 }
 
-bool GeneratorId::GenerateNewId(std::string &id) {
+void GeneratorId::GenerateNewId(std::string &id) {
 	static std::random_device rd;
 	static std::mt19937 gen(rd());
 	static std::uniform_int_distribution<int> dis(0, 9);
@@ -26,20 +26,10 @@ bool GeneratorId::GenerateNewId(std::string &id) {
 		count_of_attempts++;
 	}
 
-	try {
-		if (count_of_attempts >= max_count_of_attempts) {
-			throw ExceptionRuntimeError("Runtime error");
-		}
-		list_of_id_.emplace(id);
-		return true;
-	} catch (const ExceptionRuntimeError &e) {
-		LogToFile(e.what(), NAME_OF_FILE_LOGS_GENERATE_ID);
-		return false;
+	if (count_of_attempts >= max_count_of_attempts) {
+		throw ExceptionRuntimeError("Runtime error");
 	}
-	catch (const std::exception &e) {
-		LogToFile(e.what(), NAME_OF_FILE_LOGS_GENERATE_ID);
-		return false;
-	}
+	list_of_id_.emplace(id);
 }
 
 bool GeneratorId::DeleteId(const std::string &id) {

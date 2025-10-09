@@ -25,9 +25,8 @@ public:
 
 	/*! \brief Установка сезона длины года
 	*  \param color Новый сезон года
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSeason(std::string season);
+	void SetSeason(std::string season);
 
 	/*! \brief Получение текущего сезона года
 	*  \return Сезон года

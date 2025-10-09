@@ -25,9 +25,8 @@ public:
 
 	/*! \brief Установка радиуса
 	*  \param r Новое значение радиуса
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetRadius(int r);
+	void SetRadius(int r);
 
 	/*! \brief Получение текущего радиуса
 	*  \return Радиус
@@ -42,7 +41,7 @@ private:
  *  \brief Класс для определения тормозной колодки
  *  \details Класс предоставляет возможность работы с параметрами тормозной колодки
  */
-class BrakeShoe : public CarPart, public BasicParams{
+class BrakeShoe : public CarPart, public BasicParams {
 public:
 	/*! \brief Переопределение унаследованной функции
 	*  \return Описание
@@ -53,9 +52,8 @@ public:
 
 	/*! \brief Установка цвета
 	*  \param color Новый цвет
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetColor(std::string color);
+	void SetColor(std::string color);
 
 	/*! \brief Получение текущего цвета
 	*  \return Цвет
@@ -80,9 +78,8 @@ public:
 
 	/*! \brief Установка материала
 	*  \param material Новый материал
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetMaterial(std::string material);
+	void SetMaterial(std::string material);
 
 	/*! \brief Получение текущего материала
 	*  \return Материал
@@ -91,7 +88,7 @@ public:
 
 private:
 	std::string type_of_material_; /*!< Тип материала */
-	Color color_;/*!< Цвет колодки */
+	Color color_; /*!< Цвет колодки */
 };
 
 /*! \class Wheel
@@ -122,9 +119,8 @@ public:
 
 	/*! \brief Установка количества болтов
 	*  \param count_of_bolts Новое количество болтов
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetCountOfBolts(int count_of_bolts);
+	void SetCountOfBolts(int count_of_bolts);
 
 	/*! \brief Получение количества болтов
 	*  \return Количество болтов
@@ -138,28 +134,24 @@ public:
 
 	/*! \brief Установка радиуса
 	*  \param radius Новый радиус
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetRadius(int radius);
+	void SetRadius(int radius);
 
 	/*! \brief Установка материала
 	*  \param material Новый материал
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetMaterial(std::string material);
+	void SetMaterial(std::string material);
 
 	/*! \brief Установка цвета
 	*  \param color Новый цвет
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetColor(std::string color);
+	void SetColor(std::string color);
 
 	/*! \brief Установка размера
 	*  \param height Новая высота
 	*  \param width Новая ширина
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSize(int height, int width);
+	void SetSize(int height, int width);
 
 	/*! \brief Получение типа материала тормозной колодки
 	*  \return Тип материала
@@ -203,9 +195,8 @@ public:
 	/*! \brief Установка размера кнопки
 	*  \param height Новая высота
 	*  \param width Новая ширина
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSizeForButton(int height, int width);
+	void SetSizeForButton(int height, int width);
 
 private:
 	BasicParams size_; /*!< Размеры кнопки */
@@ -241,13 +232,13 @@ public:
 	*  \param radius_of_steering_wheel Новый радиус
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetRadiusOfSteeringWheel(int radius_of_steering_wheel);
+	void SetRadiusOfSteeringWheel(int radius_of_steering_wheel);
 
 	/*! \brief Установка радиуса логотипа
 	*  \param radius_of_center_logo Новый радиус
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetRadiusOfCenterLogo(int radius_of_center_logo);
+	void SetRadiusOfCenterLogo(int radius_of_center_logo);
 
 	/*! \brief Получение радиуса руля
 	*  \return Радиус
@@ -274,7 +265,7 @@ public:
 	*  \param width_of_button Новая ширина
 	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSizeForButton(int height_of_button, int width_of_button);
+	void SetSizeForButton(int height_of_button, int width_of_button);
 
 private:
 	BaseCircle radius_of_steering_wheel_; /*!< Радиус руля */

@@ -1,6 +1,6 @@
 #include "../Movement/handbrake.h"
 #include <gtest/gtest.h>
-
+#include "../../Exceptions/exceptions.h"
 
 class TestHandbrake : public ::testing::Test {
 public:
@@ -29,17 +29,23 @@ TEST(TestHandbrakeConstructor, TestConstructor) {
 }
 
 TEST_F(TestHandbrake, TestSetSize) {
-	ASSERT_TRUE(handbrake.SetSize(70, 50));
+	handbrake.SetSize(70, 50);
 }
 
 TEST_F(TestHandbrake, TestSetIncorrectSize1) {
-	ASSERT_FALSE(handbrake.SetSize(-70, 50));
+	ASSERT_THROW(
+		handbrake.SetSize(-70, 50),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestHandbrake, TestSetIncorrectSize2) {
-	ASSERT_FALSE(handbrake.SetSize(70, -50));
+	ASSERT_THROW(
+		handbrake.SetSize(70, -50);,
+		ExceptionIncorrectSize
+	);
 }
 
-TEST_F(TestHandbrake,FeelerDescription) {
-	EXPECT_EQ(handbrake.GetInfoAboutPart(),"This detail name is handbrake");
+TEST_F(TestHandbrake, FeelerDescription) {
+	EXPECT_EQ(handbrake.GetInfoAboutPart(), "This detail name is handbrake");
 }

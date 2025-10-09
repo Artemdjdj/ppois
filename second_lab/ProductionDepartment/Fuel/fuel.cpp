@@ -7,33 +7,23 @@
 Fuel::Fuel() {
 }
 
-Fuel::Fuel(const std::string& type_of_fuel, const std::string& season): season_(season) {
+Fuel::Fuel(const std::string &type_of_fuel, const std::string &season): season_(season) {
 	this->type_of_fuel_ = type_of_fuel;
 }
 
-bool Fuel::SetTypeOfFuel(std::string type_of_fuel) {
-	try {
-		ToLower(type_of_fuel);
-		if (!CheckIsStatementCorrect(type_of_fuels, type_of_fuel)) {
-			throw ExceptionIncorrectFuel("This is incorrect type of fuel");
-		}
-		this->type_of_fuel_ = type_of_fuel;
-		return true;
-	} catch (const ExceptionIncorrectFuel &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
+void Fuel::SetTypeOfFuel(std::string type_of_fuel) {
+	ToLower(type_of_fuel);
+	if (!CheckIsStatementCorrect(type_of_fuels, type_of_fuel)) {
+		throw ExceptionIncorrectFuel("This is incorrect type of fuel");
 	}
-	catch (const std::exception &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
-	}
+	this->type_of_fuel_ = type_of_fuel;
 }
 
-bool Fuel::SetSeason(const std::string& season) {
-	return this->season_.SetSeason(season);
+void Fuel::SetSeason(const std::string &season) {
+	this->season_.SetSeason(season);
 }
 
-std::string Fuel::GetTypeOfFuel() const{
+std::string Fuel::GetTypeOfFuel() const {
 	return this->type_of_fuel_;
 }
 

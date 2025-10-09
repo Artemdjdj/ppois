@@ -37,9 +37,8 @@ public:
 	*  \param Compression_height Начальная высота поднятия
 	*  \param count_of_cycles Начальное количество циклов
 	*  \param weight Начальная масса
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetAllParameters(int diameter, int height, int compression_height, int count_of_cycles, int weight);
+	void SetAllParameters(int diameter, int height, int compression_height, int count_of_cycles, int weight);
 
 	/*! \brief Получение текущего диаметра
 	*  \return Диаметер

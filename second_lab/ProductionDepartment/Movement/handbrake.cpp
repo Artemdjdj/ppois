@@ -7,8 +7,8 @@ Handbrake::Handbrake(int height, int width, bool is_car_block_now): size_(height
 	this->is_block_ = is_car_block_now;
 }
 
-bool Handbrake::SetSize(int height, int width) {
-	return this->size_.SetSize(height, width);
+void Handbrake::SetSize(int height, int width) {
+	this->size_.SetSize(height, width);
 }
 
 int Handbrake::GetHeight() const {

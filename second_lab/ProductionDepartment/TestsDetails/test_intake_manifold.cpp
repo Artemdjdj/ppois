@@ -1,5 +1,6 @@
 #include "../Engine/intake_manifold.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestIntakeManifold : public ::testing::Test {
 public:
@@ -13,11 +14,14 @@ public:
 };
 
 TEST_F(TestIntakeManifold, TestSetMainVolume) {
-	ASSERT_TRUE(intake_manifold_1.SetMainVolume(100));
+	intake_manifold_1.SetMainVolume(100);
 }
 
 TEST_F(TestIntakeManifold, TestSetMainVolumeNegative) {
-	ASSERT_FALSE(intake_manifold_1.SetMainVolume(-100));
+	ASSERT_THROW(
+		intake_manifold_1.SetMainVolume(-100),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestIntakeManifold, TestPlenumVolume) {
@@ -39,6 +43,6 @@ TEST_F(TestIntakeManifold, TestCalculateFunction) {
 	ASSERT_EQ(intake_manifold_2.CalculateResponseFrequency(0.0), 931.26468952500659);
 }
 
-TEST_F(TestIntakeManifold,IntakeManifoldDescription) {
+TEST_F(TestIntakeManifold, IntakeManifoldDescription) {
 	EXPECT_EQ(intake_manifold_1.GetInfoAboutPart(), "This detail name is intake manifold");
 }

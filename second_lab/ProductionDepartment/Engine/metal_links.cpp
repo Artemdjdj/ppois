@@ -5,8 +5,8 @@ Plata::Plata() = default;
 Plata::Plata(int height, int width): size_(height, width) {
 }
 
-bool Plata::SetPlataSize(int height, int width) {
-	return this->size_.SetSize(height, width);
+void Plata::SetPlataSize(int height, int width) {
+	this->size_.SetSize(height, width);
 }
 
 int Plata::GetHeightOfPlata() const {
@@ -27,8 +27,8 @@ MetalCylinder::MetalCylinder(): Tube() {
 MetalCylinder::MetalCylinder(int radius, int height, int weight): Tube(radius, height), weight_(weight) {
 }
 
-bool MetalCylinder::SetWeight(int weight) {
-	return SetSingleValue(weight, "Weight, can't be negative or zero!", this->weight_);
+void MetalCylinder::SetWeight(int weight) {
+	SetSingleValue(weight, "Weight, can't be negative or zero!", this->weight_);
 }
 
 int MetalCylinder::GetWeight() const {
@@ -44,12 +44,15 @@ MetalLink::MetalLink(int height_of_plata, int width_of_plata, int radius, int he
 											Plata(height_of_plata, width_of_plata)) {
 }
 
-bool MetalLink::SetDataForCylinder(int radius, int height, int weight) {
-	return cylinder_.SetWeight(weight) and cylinder_.SetRadius(radius) and cylinder_.SetHeight(height);
+void MetalLink::SetDataForCylinder(int radius, int height, int weight) {
+	cylinder_.SetWeight(weight);
+	cylinder_.SetRadius(radius);
+	cylinder_.SetHeight(height);
 }
 
-bool MetalLink::SetDataForTwoPlats(int height_of_plata, int width_of_plata) {
-	return this->two_plats_.first.SetPlataSize(height_of_plata, width_of_plata) and two_plats_.second.SetPlataSize(
+void::MetalLink::SetDataForTwoPlats(int height_of_plata, int width_of_plata) {
+	this->two_plats_.first.SetPlataSize(height_of_plata, width_of_plata);
+	two_plats_.second.SetPlataSize(
 				height_of_plata, width_of_plata);
 }
 

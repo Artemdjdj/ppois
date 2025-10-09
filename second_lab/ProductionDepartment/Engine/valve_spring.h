@@ -33,9 +33,8 @@ public:
 	*  \param diameter Новый диаметр
 	*  \param length Новая длина
 	*  \param count_of_coils Новое количество витков
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetAllParameters(int diameter, int length, int count_of_coils);
+	void SetAllParameters(int diameter, int length, int count_of_coils);
 
 	/*! \brief Сжатие пружины */
 	void Compress();

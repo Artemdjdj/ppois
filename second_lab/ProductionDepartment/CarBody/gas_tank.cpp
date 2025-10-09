@@ -8,8 +8,8 @@ GasTank::GasTank(int percentage, std::string type_of_fuel, std::string season, i
 	this->percentage_of_occupancy_ = percentage;
 }
 
-bool GasTank::SetPercentageOfOccupancy(int procent) {
-	return SetSinglePercent(procent, this->percentage_of_occupancy_);
+void GasTank::SetPercentageOfOccupancy(int procent) {
+	SetSinglePercent(procent, this->percentage_of_occupancy_);
 }
 
 int GasTank::GetPercentageOfOccupancy() const {
@@ -24,16 +24,16 @@ std::string GasTank::GetFuel() {
 	return this->fuel_.GetTypeOfFuel();
 }
 
-bool GasTank::SetVolume(int volume) {
-	return this->volume_.SetVolume(volume);
+void GasTank::SetVolume(int volume) {
+	this->volume_.SetVolume(volume);
 }
 
-bool GasTank::SetFuel(std::string type_of_fuel) {
-	return this->fuel_.SetTypeOfFuel(type_of_fuel);
+void GasTank::SetFuel(std::string type_of_fuel) {
+	this->fuel_.SetTypeOfFuel(type_of_fuel);
 }
 
-bool GasTank::SetSeason(std::string season) {
-	return this->fuel_.SetSeason(season);
+void GasTank::SetSeason(std::string season) {
+	this->fuel_.SetSeason(season);
 }
 
 std::string GasTank::GetSeason() {

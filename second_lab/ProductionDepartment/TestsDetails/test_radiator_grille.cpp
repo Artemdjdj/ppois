@@ -1,9 +1,10 @@
 #include "../CarBody/radiator_grille.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestRadiatorGrille : public ::testing::Test {
 public:
-	void SetUp() override{
+	void SetUp() override {
 		grille = RadiatorGrille();
 		grille.SetCountOfHoles(210);
 		grille.SetDiameter(7);
@@ -18,7 +19,10 @@ TEST_F(TestRadiatorGrille, TestSetCountOfHoles) {
 }
 
 TEST_F(TestRadiatorGrille, TestSetNegativeCountOfHoles) {
-	grille.SetCountOfHoles(-10);
+	ASSERT_THROW(
+		grille.SetCountOfHoles(-10),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(grille.GetCountOfHoles(), 210);
 }
 
@@ -42,11 +46,14 @@ TEST_F(TestRadiatorGrille, TestReabilityOfGrilleNegativeDiameter) {
 }
 
 TEST_F(TestRadiatorGrille, TestSetSize) {
-	ASSERT_TRUE(grille.SetSize(10,10));
+	grille.SetSize(10, 10);
 }
 
 TEST_F(TestRadiatorGrille, TestSetIncorrectSize) {
-	ASSERT_FALSE(grille.SetSize(-10,10));
+	ASSERT_THROW(
+		grille.SetSize(-10,10),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestRadiatorGrille, RadiatorGrilleDescription) {

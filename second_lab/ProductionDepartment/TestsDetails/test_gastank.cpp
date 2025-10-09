@@ -1,5 +1,6 @@
 #include "../CarBody/gas_tank.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestGasTank : public ::testing::Test {
 public:
@@ -16,7 +17,10 @@ TEST_F(TestGasTank, TestSetFuel) {
 }
 
 TEST_F(TestGasTank, TestSetFuelNegativeResult) {
-	gas_tank.SetFuel("petrols");
+	ASSERT_THROW(
+		gas_tank.SetFuel("petrols"),
+		ExceptionIncorrectFuel
+	);
 	ASSERT_EQ(gas_tank.GetFuel(), "");
 }
 
@@ -31,7 +35,10 @@ TEST_F(TestGasTank, TestSetVolume) {
 }
 
 TEST_F(TestGasTank, TestSetVolumeNegativeResult) {
-	gas_tank.SetVolume(-60);
+	ASSERT_THROW(
+		gas_tank.SetVolume(-60),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(gas_tank.GetVolume(), 0);
 }
 
@@ -41,12 +48,18 @@ TEST_F(TestGasTank, TestSetProcentOccupancy) {
 }
 
 TEST_F(TestGasTank, TestSetProcentOccupancyNegativeTooBig) {
-	gas_tank.SetPercentageOfOccupancy(400);
+	ASSERT_THROW(
+		gas_tank.SetPercentageOfOccupancy(400),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(gas_tank.GetPercentageOfOccupancy(), 0);
 }
 
 TEST_F(TestGasTank, TestSetProcentOccupancyNegativeTooSmall) {
-	gas_tank.SetPercentageOfOccupancy(-10);
+	ASSERT_THROW(
+		gas_tank.SetPercentageOfOccupancy(-10),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(gas_tank.GetPercentageOfOccupancy(), 0);
 }
 
@@ -56,7 +69,10 @@ TEST_F(TestGasTank, TestSetSeason) {
 }
 
 TEST_F(TestGasTank, TestSetSeasonNegative) {
-	gas_tank.SetSeason("summerrs");
+	ASSERT_THROW(
+		gas_tank.SetSeason("summerrs"),
+		ExceptionIncorrectSeason
+	);
 	ASSERT_EQ(gas_tank.GetSeason(), "");
 }
 

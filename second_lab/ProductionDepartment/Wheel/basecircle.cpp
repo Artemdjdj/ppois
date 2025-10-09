@@ -3,8 +3,8 @@
 
 BaseCircle::BaseCircle(int radius): radius_(radius) {}
 
-bool BaseCircle::SetRadius(int radius) {
-    return SetSingleValue(radius, "Radius of wheel can't be negative number!", this->radius_);
+void BaseCircle::SetRadius(int radius) {
+    SetSingleValue(radius, "Radius of wheel can't be negative number!", this->radius_);
 }
 
 int BaseCircle::GetRadius() const {

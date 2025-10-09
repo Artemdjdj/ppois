@@ -31,15 +31,13 @@ public:
 
 	/*! \brief Установка радиуса
 	*  \param radius Начальный радиус
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetRadius(int radius);
+	void SetRadius(int radius);
 
 	/*! \brief Установка длины
 	*  \param height Начальная длина
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetHeight(int height);
+	void SetHeight(int height);
 
 	/*! \brief Получение текущего радиуса
 	*  \return Радиус

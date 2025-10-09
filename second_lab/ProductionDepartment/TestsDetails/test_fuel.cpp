@@ -1,5 +1,6 @@
 #include "../Fuel/fuel.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestFuel : public ::testing::Test {
 public:
@@ -11,11 +12,14 @@ public:
 };
 
 TEST_F(TestFuel, TestSetCorrectFuel) {
-	ASSERT_TRUE(fuel.SetTypeOfFuel("gas"));
+	fuel.SetTypeOfFuel("gas");
 }
 
 TEST_F(TestFuel, TestSetIncorrectFuel) {
-	ASSERT_FALSE(fuel.SetTypeOfFuel("gass"));
+	ASSERT_THROW(
+		fuel.SetTypeOfFuel("gass"),
+		ExceptionIncorrectFuel
+	);
 }
 
 TEST_F(TestFuel, TestSetCorrectFuelBigLetters) {
@@ -29,7 +33,7 @@ TEST_F(TestFuel, TestGetSeason) {
 }
 
 TEST(TestFuelConstructor, TestConstructor) {
-	Fuel fuel = Fuel("petrol","summer");
+	const auto fuel = Fuel("petrol", "summer");
 	ASSERT_EQ(fuel.GetSeason(), "summer");
 	ASSERT_EQ(fuel.GetTypeOfFuel(), "petrol");
 }

@@ -7,31 +7,17 @@ Post::Post(const std::string &name, const std::string &info, User *author): name
 };
 
 void Post::SetName(const std::string &name, const User *author) {
-	try {
-		if (author_ != author) {
-			throw ExceptionAccess("You don't have access to changing this post");
-		}
-		this->name_ = name;
-	} catch (const ExceptionAccess &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
+	if (author_ != author) {
+		throw ExceptionAccess("You don't have access to changing this post");
 	}
-	catch (const std::exception &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
+	this->name_ = name;
 }
 
 void Post::SetInfo(const std::string &info, const User *author) {
-	try {
-		if (author_ != author) {
-			throw ExceptionAccess("You don't have access to changing this post");
-		}
-		this->info_ = info;
-	} catch (const ExceptionAccess &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
+	if (author_ != author) {
+		throw ExceptionAccess("You don't have access to changing this post");
 	}
-	catch (const std::exception &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
+	this->info_ = info;
 }
 
 std::string Post::GetName() const {
@@ -44,7 +30,7 @@ std::string Post::GetInfo() const {
 
 void Post::AddReaction(const std::string &reaction_of_user, User *author) {
 	const auto reaction = Reaction(reaction_of_user, author);
-	if (reaction.GetReaction() != "") {
+	if (!reaction.GetReaction().empty()) {
 		this->reactions_[author->GetUserName()] = reaction;
 	}
 }
@@ -58,7 +44,7 @@ void Post::RemoveReaction(const std::string &username) {
 
 void Post::AddHashTag(const std::string &hash_tag_of_user, User *author) {
 	const auto hash_tag = HashTag(hash_tag_of_user, author);
-	if (hash_tag.GetHashTag() != "") {
+	if (!hash_tag.GetHashTag().empty()) {
 		this->hash_tags_[author->GetUserName()] = hash_tag;
 	}
 }

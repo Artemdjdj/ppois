@@ -13,11 +13,6 @@ public:
 	GeneratorId generated_id;
 };
 
-TEST_F(TestGeneratorId, TestGeneratorId) {
-	std::string id;
-	ASSERT_TRUE(generated_id.GenerateNewId(id));
-}
-
 TEST_F(TestGeneratorId, TestGeneratorCheckIdTrue) {
 	std::string id;
 	generated_id.GenerateNewId(id);

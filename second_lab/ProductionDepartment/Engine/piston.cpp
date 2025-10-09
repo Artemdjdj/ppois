@@ -9,14 +9,14 @@ Piston::Piston(int diameter_p, int height_p, int compression_height_p, int count
 								weight_(weight_p) {
 }
 
-bool Piston::SetAllParameters(int diameter, int height, int compression_height, int count_of_cycles, int weight) {
-	return SetSingleValue(diameter, "The diameter should be bigger then 0!", this->diameter_)
-			and SetSingleValue(height, "The height should be bigger then 0!", this->height_) and
-			SetSingleValue(compression_height, "The Compression height should be bigger then 0!",
-							this->compression_height_)
-			and SetSingleValue(count_of_cycles, "The count_of_cycles should be bigger then 0!",
-								this->count_of_cycles_) and
-			SetSingleValue(weight, "The weight should be bigger then 0!", this->weight_);
+void Piston::SetAllParameters(int diameter, int height, int compression_height, int count_of_cycles, int weight) {
+	SetSingleValue(diameter, "The diameter should be bigger then 0!", this->diameter_);
+	SetSingleValue(height, "The height should be bigger then 0!", this->height_);
+	SetSingleValue(compression_height, "The Compression height should be bigger then 0!",
+							this->compression_height_);
+	SetSingleValue(count_of_cycles, "The count_of_cycles should be bigger then 0!",
+								this->count_of_cycles_) ;
+	SetSingleValue(weight, "The weight should be bigger then 0!", this->weight_);
 }
 
 int Piston::GetDiameter() const {

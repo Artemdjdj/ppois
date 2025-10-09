@@ -31,9 +31,8 @@ public:
 	/*! \brief Установка длины и ширины
 	*  \param height Новое значение высоты
 	*  \param width Новое значение ширины
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSize(int height, int width);
+	void SetSize(int height, int width);
 
 	/*! \brief Получение текущей высоты
 	*  \return Высота

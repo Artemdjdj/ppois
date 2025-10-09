@@ -24,15 +24,13 @@ public:
 
 	/*! \brief Установка топлива
 	*  \param type_of_fuel Новое топливо
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetTypeOfFuel(std::string type_of_fuel);
+	void SetTypeOfFuel(std::string type_of_fuel);
 
 	/*! \brief Установка сезона года
 	*  \param season Новый сезон
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSeason(const std::string& season);
+	void SetSeason(const std::string& season);
 
 	/*! \brief Получение текущего вида топлива
 	*  \return Тип топлива

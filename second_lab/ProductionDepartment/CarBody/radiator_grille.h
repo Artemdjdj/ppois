@@ -33,21 +33,18 @@ public:
 	/*! \brief Установка размеров
 	*  \param height Новое значение длины
 	*  \param width Новое значение ширины
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSize(int height, int width);
+	void SetSize(int height, int width);
 
 	/*! \brief Установка количества дырок
 	*  \param count_of_holes Новое значение количества дырок
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetCountOfHoles(int count_of_holes);
+	void SetCountOfHoles(int count_of_holes);
 
 	/*! \brief Установка диаметра
 	*  \param diameter Новое значение диаметра
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetDiameter(int diameter);
+	void SetDiameter(int diameter);
 
 	/*! \brief Получение текущего количества дырок
 	*  \return Количество дырок

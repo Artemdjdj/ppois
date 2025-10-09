@@ -35,18 +35,16 @@ public:
 
 	/*! \brief Установка цвета
 	*  \param color Новый цвет
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetColor(std::string color);
+	void SetColor(std::string color);
 
 	/*! \brief Получение текущего цвета
 	*  \return Цвет
 	*/
-	std::string GetColor();
+	std::string GetColor() const;
 
 private:
 	Color color_;
-
 };
 
 /*! \class BackDoor

@@ -24,8 +24,8 @@ void Mirror::MakeMirrorTinting() {
 	std::cout << "Mirror is tinting" << std::endl;
 }
 
-bool Mirror::SetThickness(int thickness) {
-	return SetSingleValue(thickness, "The thickness can't be negative number!", thickness);
+void Mirror::SetThickness(int thickness) {
+	SetSingleValue(thickness, "The thickness can't be negative number!", thickness);
 }
 
 void Mirror::MakeTinting() {
@@ -36,21 +36,11 @@ void Mirror::ClearTinting() {
 	this->is_tinting_ = false;
 }
 
-bool Mirror::SetSerialNumber(std::string serial_number) {
-	try {
-		if (!CheckSerialNumber(serial_number) or serial_number.length() != 8) {
-			throw ExceptionIncorrectSerialNumber("Incorrect serial number!");
-		}
-		this->serial_number_ = serial_number;
-		return true;
-	} catch (const ExceptionIncorrectSerialNumber &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
+void Mirror::SetSerialNumber(std::string serial_number) {
+	if (!CheckSerialNumber(serial_number) or serial_number.length() != 8) {
+		throw ExceptionIncorrectSerialNumber("Incorrect serial number!");
 	}
-	catch (const Exception &e) {
-		LogToFile(e.what(), PATH_TO_FILE);
-		return false;
-	}
+	this->serial_number_ = serial_number;
 }
 
 void Mirror::GetInformationAboutMirror(int &height, int &width, int &thickness, bool &is_tinting,

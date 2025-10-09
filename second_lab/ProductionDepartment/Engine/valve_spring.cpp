@@ -7,10 +7,10 @@ ValveSpring::ValveSpring(int diameter, int length, int count_of_coils, bool is_c
 	length_(length), count_of_coils_(count_of_coils), is_compressed_(is_compressed) {
 }
 
-bool ValveSpring::SetAllParameters(int diameter, int length, int count_of_coils) {
-	return SetSingleValue(diameter, "The diameter can't be negative or zero!", this->diameter_) and
-			SetSingleValue(length, "The length can't be negative or zero!", this->length_) and
-			SetSingleValue(count_of_coils, "Count of coils can't be bigger negative or zero", this->count_of_coils_);
+void ValveSpring::SetAllParameters(int diameter, int length, int count_of_coils) {
+	SetSingleValue(diameter, "The diameter can't be negative or zero!", this->diameter_);
+	SetSingleValue(length, "The length can't be negative or zero!", this->length_);
+	SetSingleValue(count_of_coils, "Count of coils can't be bigger negative or zero", this->count_of_coils_);
 }
 
 void ValveSpring::Compress() {

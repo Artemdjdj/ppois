@@ -33,21 +33,18 @@ public:
 
 	/*! \brief Устанавливает значение напряжения
 	*  \param voltage Новое значение напряжения
-	*  \return true, если значение было установлено успешно
 	*/
-	bool SetVoltage(int voltage);
+	void SetVoltage(int voltage);
 
 	/*! \brief Устанавливает значение мощности
 	*  \param power Новое значение мощности
-	*  \return true, если значение было установлено успешно
 	*/
-	bool SetPower(int power);
+	void SetPower(int power);
 
 	/*! \brief Устанавливает значение силы тока
 	*  \param current_strength Новое значение тока
-	*  \return true, если значение было установлено успешно
 	*/
-	bool SetCurrentStrength(int current_strength);
+	void SetCurrentStrength(int current_strength);
 
 	/*! \brief Получает значение напряжения
 	*  \return Текущее значение напряжения
@@ -65,7 +62,7 @@ public:
 	int GetCurrentStrength() const;
 
 	/*! \brief Виртуальный деструктор */
-	virtual ~ElectroPart() = default;
+	virtual ~ElectroPart() override = default;
 
 private:
 	int voltage_{0}; //!< Значение напряжения в вольтах
@@ -107,9 +104,8 @@ public:
 
 	/*! \brief Устанавливает количество штырей
 	*  \param count_of_prong Новое количество штырей
-	*  \return true, если значение было установлено успешно
 	*/
-	bool SetCountOfProg(int count_of_prong);
+	void SetCountOfProg(int count_of_prong);
 
 	/*! \brief Получает количество штырей
 	*  \return Текущее количество штырей
@@ -153,9 +149,8 @@ public:
 
 	/*! \brief Устанавливает холодный пуск
 	*  \param cold_cranking_current Новое значение холодного пуска
-	*  \return true, если значение было установлено успешно
 	*/
-	bool SetColdCrankingCurrent(int cold_cranking_current);
+	void SetColdCrankingCurrent(int cold_cranking_current);
 
 	/*! \brief Получает холодный пуск
 	*  \return Текущее значение холодного пуска

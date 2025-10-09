@@ -36,9 +36,8 @@ public:
 	*  \param radius Радиус обода
 	*  \param thickness Толщина обода
 	*  \param density Плотность материала
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetInfoAboutRim(int radius, int thickness, int density);
+	void SetInfoAboutRim(int radius, int thickness, int density);
 
 	/*! \brief Установка параметров зубца
 	*  \param first_side Первая сторона
@@ -46,18 +45,16 @@ public:
 	*  \param third_side Третья сторона
 	*  \param thickness Толщина
 	*  \param density Плотность материала
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetInfoAboutProng(int first_side, int second_side, int third_side, int thickness, int density);
+	void SetInfoAboutProng(int first_side, int second_side, int third_side, int thickness, int density);
 
 	/*! \brief Установка параметров впускного коллектора
 	*  \param main_volume Основной объем
 	*  \param radius_canal Радиус канала
 	*  \param height_canal Высота канала
 	*  \param number_of_canals Количество каналов
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetInfoAboutIntakeManifold(int main_volume, int radius_canal, int height_canal, int number_of_canals);
+	void SetInfoAboutIntakeManifold(int main_volume, int radius_canal, int height_canal, int number_of_canals);
 
 	/*! \brief Установка параметров металлической цепи
 	*  \param count_of_metal_links Количество звеньев
@@ -66,9 +63,8 @@ public:
 	*  \param radius Радиус
 	*  \param height Высота
 	*  \param weight Вес
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetInfoAboutMetalChain(int count_of_metal_links, int height_of_plata, int width_of_plata,
+	void SetInfoAboutMetalChain(int count_of_metal_links, int height_of_plata, int width_of_plata,
 								int radius, int height, int weight);
 
 	/*! \brief Установка параметров поршней
@@ -78,9 +74,8 @@ public:
 	*  \param compression_height Высота сжатия
 	*  \param count_of_cycles Количество циклов
 	*  \param weight Вес
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetInfoAboutPistons(int count_of_pistons, int diameter, int height, int compression_height,
+	void SetInfoAboutPistons(int count_of_pistons, int diameter, int height, int compression_height,
 							int count_of_cycles, int weight);
 
 	/*! \brief Установка параметров клапанных пружин
@@ -88,16 +83,14 @@ public:
 	*  \param diameter Диаметр
 	*  \param length Длина
 	*  \param count_of_coils Количество витков
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetInfoAboutValveSprings(int count_of_valve_springs, int diameter, int length, int count_of_coils);
+	void SetInfoAboutValveSprings(int count_of_valve_springs, int diameter, int length, int count_of_coils);
 
 	/*! \brief Установка параметров трубы
 	*  \param radius_tube Радиус трубы
 	*  \param height_tube Высота трубы
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetInfoAboutTube(int radius_tube, int height_tube);
+	void SetInfoAboutTube(int radius_tube, int height_tube);
 
 	/*! \brief Установка параметров водяного насоса
 	*  \param flow Поток

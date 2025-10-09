@@ -26,22 +26,19 @@ public:
 
 	/*! \brief Установка длины
 	*  \param height Новое значение длины
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetHeight(int height);
+	void SetHeight(int height);
 
 	/*! \brief Установка ширины
 	*  \param width Новое значение ширины
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetWidth(int width);
+	void SetWidth(int width);
 
 	/*! \brief Установка длины и ширины
 	*  \param height Новое значение длины
 	*  \param width Новое значение ширины
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSize(int height, int width);
+	void SetSize(int height, int width);
 
 	/*! \brief Получение текущей длины
 	*  \return Длина
@@ -78,9 +75,8 @@ public:
 
 	/*! \brief Установка цвета
 	*  \param color Новое значение цвета
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetColor(std::string color);
+	void SetColor(std::string color);
 
 	/*! \brief Получение длины
 	*  \return Цвет
@@ -107,9 +103,8 @@ public:
 
 	/*! \brief Установка объема
 	*  \param volume Новое значение объема
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetVolume(int volume);
+	void SetVolume(int volume);
 
 	/*! \brief Получение объема
 	*  \return Объем
@@ -123,17 +118,15 @@ private:
 /*! \brief Установка процента
 *  \param procent процент
 *  \param value куда присвоить
-*  \return true если установка прошла успешно, false в противном случае
 */
-bool SetSinglePercent(int procent, int &value);
+void SetSinglePercent(int procent, int &value);
 
 /*! \brief Установка целого числа
 *  \param integer_number целое число
 *  \param description описание ошибки
 *  \param value куда присвоить
-*  \return true если установка прошла успешно, false в противном случае
 */
-bool SetSingleValue(int integer_number, const char *description, int &value);
+void SetSingleValue(int integer_number, const char *description, int &value);
 
 /*! \brief Функция переводит строку внижний регистр
 *  \param str строка

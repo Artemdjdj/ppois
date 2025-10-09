@@ -8,16 +8,16 @@ RadiatorGrille::RadiatorGrille(int height, int width, int count_of_holes, int di
 	this->diameter_of_hole_ = diameter;
 }
 
-bool RadiatorGrille::SetSize(int height, int width) {
-	return this->size_.SetSize(height, width);
+void RadiatorGrille::SetSize(int height, int width) {
+	this->size_.SetSize(height, width);
 }
 
-bool RadiatorGrille::SetCountOfHoles(int count_of_holes) {
-	return SetSingleValue(count_of_holes, "The number of holes should be positive", this->count_of_holes_);
+void RadiatorGrille::SetCountOfHoles(int count_of_holes) {
+	SetSingleValue(count_of_holes, "The number of holes should be positive", this->count_of_holes_);
 }
 
-bool RadiatorGrille::SetDiameter(int diameter) {
-	return SetSingleValue(diameter, "The diameter of hole should be positive", this->diameter_of_hole_);
+void RadiatorGrille::SetDiameter(int diameter) {
+	SetSingleValue(diameter, "The diameter of hole should be positive", this->diameter_of_hole_);
 }
 
 int RadiatorGrille::GetCountOfHoles() const {

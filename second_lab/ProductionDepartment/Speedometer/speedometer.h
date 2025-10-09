@@ -29,15 +29,13 @@ public:
 
 	/*! \brief Виртуальная функция установки скорости
 	*  \param speed Новое значение скорости
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	virtual bool SetSpeed(int speed) = 0;
+	virtual void SetSpeed(int speed) = 0;
 
 	/*! \brief Виртуальная функция установки пробега
 	*  \param mileage Новое значение пробега
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	virtual bool SetMileage(int mileage) =0;
+	virtual void SetMileage(int mileage) =0;
 
 	/*! \brief Получение текущей скорости
 	*  \return Скорость
@@ -81,15 +79,13 @@ public:
 
 	/*! \brief Установка скорости в километрах в час
 	*  \param speed Новое значение скорости
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSpeed(int speed) override;
+	void SetSpeed(int speed) override;
 
 	/*! \brief Установка пробега в километрах
 	*  \param mileage Новое значение пробега
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetMileage(int mileage) override;
+	void SetMileage(int mileage) override;
 };
 
 /*! \class SpeedometerInMiles
@@ -116,14 +112,12 @@ public:
 
 	/*! \brief Установка скорости в милях в час
 	*  \param speed Новое значение скорости
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSpeed(int speed) override;
+	void SetSpeed(int speed) override;
 
 	/*! \brief Установка пробега в милях
 	*  \param mileage Новое значение пробега
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetMileage(int mileage) override;
+	void SetMileage(int mileage) override;
 };
 #endif //INCLUDE_SPEEDOMETER_H

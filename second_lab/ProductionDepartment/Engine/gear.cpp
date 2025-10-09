@@ -11,10 +11,10 @@ Triangle::Triangle(int first_side, int second_side, int third_side): first_side_
 																	third_side_(third_side) {
 }
 
-bool Triangle::SetSides(int first_side, int second_side, int third_side) {
-	return SetSingleValue(first_side, "The side can't be negative or zero!", this->first_side_) and
-			SetSingleValue(second_side, "The side can't be negative or zero!", this->second_side_) and
-			SetSingleValue(third_side, "The side can't be negative or zero!", this->third_side_);
+void Triangle::SetSides(int first_side, int second_side, int third_side) {
+	SetSingleValue(first_side, "The side can't be negative or zero!", this->first_side_);
+	SetSingleValue(second_side, "The side can't be negative or zero!", this->second_side_);
+	SetSingleValue(third_side, "The side can't be negative or zero!", this->third_side_);
 }
 
 std::optional<int> Triangle::GetOneOfSides(int number_of_side) const {
@@ -53,8 +53,8 @@ Circle::Circle() = default;
 Circle::Circle(int radius): radius_(radius) {
 }
 
-bool Circle::SetRadius(int radius) {
-	return SetSingleValue(radius, "The radius can't be negative or zero!", this->radius_);
+void Circle::SetRadius(int radius) {
+	SetSingleValue(radius, "The radius can't be negative or zero!", this->radius_);
 }
 
 int Circle::GetRadius() const {
@@ -75,12 +75,12 @@ Detail::Detail() {
 Detail::Detail(const int thickness, const int density): thickness_(thickness), density_(density) {
 }
 
-bool Detail::SetThickness(int thickness) {
-	return SetSingleValue(thickness, "Thickness can't be negative or zero!", this->thickness_);
+void Detail::SetThickness(int thickness) {
+	SetSingleValue(thickness, "Thickness can't be negative or zero!", this->thickness_);
 }
 
-bool Detail::SetDensity(int density) {
-	return SetSingleValue(density, "Density can't be negative or zero!", this->density_);
+void Detail::SetDensity(int density) {
+	SetSingleValue(density, "Density can't be negative or zero!", this->density_);
 }
 
 int Detail::GetDensity() const {
@@ -98,8 +98,10 @@ Prong::Prong(int first_side, int second_side, int third_side, int thickness, int
 	second_side, third_side), Detail(thickness, density) {
 }
 
-bool Prong::SetDataProng(int first_side, int second_side, int third_side, int thickness, int density) {
-	return SetSides(first_side, second_side, third_side) and SetThickness(thickness) and SetDensity(density);
+void Prong::SetDataProng(int first_side, int second_side, int third_side, int thickness, int density) {
+	SetSides(first_side, second_side, third_side);
+	SetThickness(thickness);
+	SetDensity(density);
 }
 
 double Prong::GetWeight() {
@@ -111,8 +113,10 @@ Rim::Rim() = default;
 Rim::Rim(int radius, int thickness, int density): Circle(radius), Detail(thickness, density) {
 }
 
-bool Rim::SetDataRim(int radius, int thickness, int density) {
-	return SetRadius(radius) and SetThickness(thickness) and SetDensity(density);
+void Rim::SetDataRim(int radius, int thickness, int density) {
+	SetRadius(radius);
+	SetThickness(thickness);
+	SetDensity(density);
 }
 
 double Rim::GetWeight() {

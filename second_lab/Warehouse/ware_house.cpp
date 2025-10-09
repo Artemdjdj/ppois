@@ -2,14 +2,11 @@
 #include "../GeneratorId/generator_id.h"
 #include <iostream>
 
-bool WareHouse::AddNewDetail(CarPart *new_detail, std::string &my_id) {
+void WareHouse::AddNewDetail(CarPart *new_detail, std::string &my_id) {
 	std::string id;
-	if (!generated_id_.GenerateNewId(id)) {
-		return false;
-	}
+	generated_id_.GenerateNewId(id);
 	my_id = id;
 	warehouse_.insert(std::make_pair(id, new_detail));
-	return true;
 }
 
 bool WareHouse::DeleteDetailById(const std::string &id) {

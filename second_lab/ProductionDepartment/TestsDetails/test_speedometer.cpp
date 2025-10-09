@@ -1,5 +1,6 @@
 #include "../Speedometer/speedometer.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestSpeedometer : public ::testing::Test {
 public:
@@ -36,7 +37,10 @@ TEST(TestSpeedometerSet, TestSetKilometersSpeed) {
 
 TEST(TestSpeedometerSet, TestSetKilometersSpeedNegative) {
 	SpeedometerInKilometers speedometer_k = SpeedometerInKilometers();
-	ASSERT_FALSE(speedometer_k.SetSpeed(-200));
+	ASSERT_THROW(
+		speedometer_k.SetSpeed(-200),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST(TestSpeedometerSet, TestSetKilometersMileage) {
@@ -47,7 +51,10 @@ TEST(TestSpeedometerSet, TestSetKilometersMileage) {
 
 TEST(TestSpeedometerSet, TestSetKilometersMileageNegative) {
 	SpeedometerInKilometers speedometer_k = SpeedometerInKilometers();
-	ASSERT_FALSE(speedometer_k.SetMileage(-200));
+	ASSERT_THROW(
+		speedometer_k.SetMileage(-200),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST(TestSpeedometerSet, TestSetMilesSpeed) {
@@ -58,7 +65,10 @@ TEST(TestSpeedometerSet, TestSetMilesSpeed) {
 
 TEST(TestSpeedometerSet, TestSetMilesSpeedNegative) {
 	SpeedometerInMiles speedometer_m = SpeedometerInMiles();
-	ASSERT_FALSE(speedometer_m.SetSpeed(-200));
+	ASSERT_THROW(
+		speedometer_m.SetSpeed(-200),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST(TestSpeedometerSet, TestSetMilesMileage) {
@@ -69,15 +79,18 @@ TEST(TestSpeedometerSet, TestSetMilesMileage) {
 
 TEST(TestSpeedometerSet, TestSetMilesMileageNegative) {
 	SpeedometerInMiles speedometer_m = SpeedometerInMiles();
-	ASSERT_FALSE(speedometer_m.SetMileage(-200));
+	ASSERT_THROW(
+		speedometer_m.SetMileage(-200),
+		ExceptionIncorrectSize
+	);
 }
 
-TEST(TestSpeedometerK,SpeedometerKDescription) {
+TEST(TestSpeedometerK, SpeedometerKDescription) {
 	SpeedometerInKilometers speedometer_k = SpeedometerInKilometers();
-	EXPECT_EQ(speedometer_k.GetInfoAboutPart(),"This detail name is speedometer in kilometers");
+	EXPECT_EQ(speedometer_k.GetInfoAboutPart(), "This detail name is speedometer in kilometers");
 }
 
-TEST(TestSpeedometerM,SpeedometerMDescription) {
+TEST(TestSpeedometerM, SpeedometerMDescription) {
 	SpeedometerInMiles speedometer_m = SpeedometerInMiles();
-	EXPECT_EQ(speedometer_m.GetInfoAboutPart(),"This detail name is speedometer in miles");
+	EXPECT_EQ(speedometer_m.GetInfoAboutPart(), "This detail name is speedometer in miles");
 }

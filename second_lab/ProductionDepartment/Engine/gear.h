@@ -45,9 +45,8 @@ public:
 	*  \param first_side Длина первой стороны
 	*  \param second_side Длина второй стороны
 	*  \param third_side Длина третьей стороны
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetSides(int first_side, int second_side, int third_side);
+	void SetSides(int first_side, int second_side, int third_side);
 
 	/*! \brief Получение текущей длины стороны
 	*  \param number_of_side Номер стороны
@@ -81,9 +80,8 @@ public:
 
 	/*! \brief Установка радиуса
 	*  \param radius Радиус
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetRadius(int radius);
+	void SetRadius(int radius);
 
 	/*! \brief Получение текущего радиуса
 	*  \return Длина радиуса
@@ -126,9 +124,8 @@ public:
 
 	/*! \brief Установка толщины
 	*  \param thickness Толщина
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetThickness(int thickness);
+	void SetThickness(int thickness);
 
 	/*! \brief Получение текущей толщины
 	*  \return Толщина
@@ -137,9 +134,8 @@ public:
 
 	/*! \brief Установка плотности
 	*  \param density Плотность
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetDensity(int density);
+	void SetDensity(int density);
 
 	/*! \brief Получение текущей плотности
 	*  \return Плотность
@@ -187,9 +183,8 @@ public:
 	*  \param third_side Длина третьей стороны
 	*  \param thickness Толщина
 	*  \param density Плотность
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetDataProng(int first_side, int second_side, int third_side, int thickness, int density);
+	void SetDataProng(int first_side, int second_side, int third_side, int thickness, int density);
 
 	double GetWeight() override;
 };
@@ -221,9 +216,8 @@ public:
 	*  \param radius Радиус
 	*  \param thickness Толщина
 	*  \param density Плотность
-	*  \return true если установка прошла успешно, false в противном случае
 	*/
-	bool SetDataRim(int radius, int thickness, int density);
+	void SetDataRim(int radius, int thickness, int density);
 
 	double GetWeight() override;
 };

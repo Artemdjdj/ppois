@@ -7,16 +7,16 @@ ElectroPart::ElectroPart(int voltage, int power, int current_strength): voltage_
 																		current_strength_(current_strength) {
 }
 
-bool ElectroPart::SetVoltage(int voltage) {
-	return SetSingleValue(voltage, "Voltage in electro part can't be smaller then zero!", this->voltage_);
+void ElectroPart::SetVoltage(int voltage) {
+	SetSingleValue(voltage, "Voltage in electro part can't be smaller then zero!", this->voltage_);
 }
 
-bool ElectroPart::SetPower(int power) {
-	return SetSingleValue(power, "Power in electro part can't be smaller then zero!", this->power_);
+void ElectroPart::SetPower(int power) {
+	SetSingleValue(power, "Power in electro part can't be smaller then zero!", this->power_);
 }
 
-bool ElectroPart::SetCurrentStrength(int strength) {
-	return SetSingleValue(strength, "Current strength in electro part can't be smaller then zero!",
+void ElectroPart::SetCurrentStrength(int strength) {
+	SetSingleValue(strength, "Current strength in electro part can't be smaller then zero!",
 						this->current_strength_);
 }
 
@@ -48,8 +48,8 @@ void Starter::ChooseLeftDirection() {
 	this->is_left_direction_ = true;
 }
 
-bool Starter::SetCountOfProg(int count_of_prong) {
-	return SetSingleValue(count_of_prong, "Count of prong can't be negative or zero!", this->count_of_prong_);
+void Starter::SetCountOfProg(int count_of_prong) {
+	SetSingleValue(count_of_prong, "Count of prong can't be negative or zero!", this->count_of_prong_);
 }
 
 int Starter::GetCountOfProg() const {
@@ -67,8 +67,8 @@ Battery::Battery(int voltage, int power, int current_strength, int cold_cranking
 	current_strength), cold_cranking_current_(cold_cranking_current) {
 }
 
-bool Battery::SetColdCrankingCurrent(int cold_cranking_current) {
-	return SetSingleValue(cold_cranking_current, "The cold cranking current can't be negative or zero!",
+void Battery::SetColdCrankingCurrent(int cold_cranking_current) {
+	SetSingleValue(cold_cranking_current, "The cold cranking current can't be negative or zero!",
 						this->cold_cranking_current_);
 }
 

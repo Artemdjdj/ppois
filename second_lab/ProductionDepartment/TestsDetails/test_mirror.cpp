@@ -1,6 +1,7 @@
 #include "../CarBody/mirror.h"
 #include "basic_params.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestMirror : public ::testing::Test {
 public:
@@ -17,22 +18,34 @@ TEST_F(TestMirror, TestSerialNumberCorrect) {
 }
 
 TEST_F(TestMirror, TestSerialNumberSmallLetters) {
-	mirror.SetSerialNumber("tR898989");
+	ASSERT_THROW(
+		mirror.SetSerialNumber("tR898989"),
+		ExceptionIncorrectSerialNumber
+	);
 	EXPECT_EQ(mirror.GetSerialNumber(), "");
 }
 
 TEST_F(TestMirror, TestSerialNumberIncorrectStructure) {
-	mirror.SetSerialNumber("5R898989");
+	ASSERT_THROW(
+		mirror.SetSerialNumber("5R898989"),
+		ExceptionIncorrectSerialNumber
+	);
 	EXPECT_EQ(mirror.GetSerialNumber(), "");
 }
 
 TEST_F(TestMirror, TestSerialNumberIncorrectLength) {
-	mirror.SetSerialNumber("ER89898955");
+	ASSERT_THROW(
+		mirror.SetSerialNumber("ER89898955"),
+		ExceptionIncorrectSerialNumber
+	);
 	EXPECT_EQ(mirror.GetSerialNumber(), "");
 }
 
 TEST_F(TestMirror, TestSerialNumberIncorrectSmallLength) {
-	mirror.SetSerialNumber("ER898");
+	ASSERT_THROW(
+		mirror.SetSerialNumber("ER898"),
+		ExceptionIncorrectSerialNumber
+	);
 	EXPECT_EQ(mirror.GetSerialNumber(), "");
 }
 

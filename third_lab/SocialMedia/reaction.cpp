@@ -11,20 +11,13 @@ Reaction::Reaction(const std::string &type_of_reaction, User * author) {
 }
 
 void Reaction::SetReaction(std::string type_of_reaction, User * author) {
-	try {
-		DefaultProjectSettings::ToLower(type_of_reaction);
-		if (!DefaultProjectSettings::CheckIsStatementInAllowed(type_of_reaction, reactions)) {
-			throw ExceptionIncorrectReaction("This reaction is not allowed!");
-		}
-		this->type_of_reaction_ = type_of_reaction;
-		this->date_time_ = DefaultProjectSettings::GetRealTime();
-		author_ = author;
-	} catch (const ExceptionIncorrectReaction &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
+	DefaultProjectSettings::ToLower(type_of_reaction);
+	if (!DefaultProjectSettings::CheckIsStatementInAllowed(type_of_reaction, reactions)) {
+		throw ExceptionIncorrectReaction("This reaction is not allowed!");
 	}
-	catch (const Exception &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
+	this->type_of_reaction_ = type_of_reaction;
+	this->date_time_ = DefaultProjectSettings::GetRealTime();
+	author_ = author;
 }
 
 std::string Reaction::GetReaction() const {

@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "../SocialMedia/reaction.h"
 #include "../SocialMedia/hash_tag.h"
+#include "../Exceptions/exceptions.h"
 
 class TestReaction : public testing::Test {
 public:
@@ -9,7 +10,7 @@ public:
 		hash_tag = HashTag();
 	}
 
-	User user = User("@Artemdjdj", "hello world");
+	User user = User("@Artemdjdj", "hello6546world");
 	HashTag hash_tag;
 	Reaction reaction;
 };
@@ -20,8 +21,10 @@ TEST_F(TestReaction, TestReactionConstructorWithParams) {
 }
 
 TEST_F(TestReaction, TestReactionConstructorWithParamsNegative) {
-	auto new_reaction = Reaction("likss", &user);
-	ASSERT_EQ("", new_reaction.GetReaction());
+	ASSERT_THROW(
+		Reaction("likss", &user),
+		ExceptionIncorrectReaction
+	);
 }
 
 TEST_F(TestReaction, TestSetReactionSomeLetterInUpperCase) {
@@ -45,8 +48,10 @@ TEST_F(TestReaction, TestHashTagConstructorWithParams) {
 }
 
 TEST_F(TestReaction, TestHashTagConstructorWithParamsNegative) {
-	const auto new_hash_tag = HashTag("likss", &user);
-	ASSERT_EQ("", new_hash_tag.GetHashTag());
+	ASSERT_THROW(
+		HashTag("likss", &user),
+		ExceptionIncorrectHashTag
+	);
 }
 
 TEST_F(TestReaction, TestSetHashTag) {
@@ -60,30 +65,40 @@ TEST_F(TestReaction, TestSetCorrectHashTag) {
 }
 
 TEST_F(TestReaction, TestSetIncorrectHashTagLength) {
-	hash_tag.SetHashTag(
-		"#sjgljsljglsdjglkjslkgjlsjdlkjslkjglksjglkjslkgjlksdjgljsdklgjlkdsjgl"
-		"kjdskgjlsdjglfjsfljsdlfjs", &user);
-	ASSERT_EQ("", hash_tag.GetHashTag());
+	ASSERT_THROW(
+		hash_tag.SetHashTag(
+			"#sjgljsljglsdjglkjslkgjlsjdlkjslkjglksjglkjslkgjlksdjgljsdklgjlkdsjgl"
+			"kjdskgjlsdjglfjsfljsdlfjs", &user),
+		ExceptionIncorrectHashTag
+	);
 }
 
 TEST_F(TestReaction, TestSetHashTagIncorrectSymbols) {
-	hash_tag.SetHashTag("#Like_-", &user);
-	ASSERT_EQ("", hash_tag.GetHashTag());
+	ASSERT_THROW(
+		hash_tag.SetHashTag("#Like_-", &user),
+		ExceptionIncorrectHashTag
+	);
 }
 
 TEST_F(TestReaction, TestSetHashTagIncorrect) {
-	hash_tag.SetHashTag("LIKE", &user);
-	ASSERT_EQ("", hash_tag.GetHashTag());
+	ASSERT_THROW(
+		hash_tag.SetHashTag("LIKE", &user),
+		ExceptionIncorrectHashTag
+	);
 }
 
 TEST_F(TestReaction, TestSetHashTagIncorrectSymbol1) {
-	hash_tag.SetHashTag("#like!", &user);
-	ASSERT_EQ("", hash_tag.GetHashTag());
+	ASSERT_THROW(
+		hash_tag.SetHashTag("#like!", &user),
+		ExceptionIncorrectHashTag
+	);
 }
 
 TEST_F(TestReaction, TestSetHashTagIncorrectSymbol2) {
-	hash_tag.SetHashTag("#like$", &user);
-	ASSERT_EQ("", hash_tag.GetHashTag());
+	ASSERT_THROW(
+		hash_tag.SetHashTag("#like$", &user),
+		ExceptionIncorrectHashTag
+	);
 }
 
 TEST_F(TestReaction, TestSeeHashTagAuthor) {

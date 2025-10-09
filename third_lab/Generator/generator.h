@@ -19,7 +19,7 @@ public:
 	* \param id в нем на выходе будет уникальный id, либо параметр не изменится
 	* \return true если генерация прошла успешно, false в противном случае
 	*/
-	bool GenerateNewId(std::string &id);
+	void GenerateNewId(std::string &id);
 
 	/*! \brief Функция проверяет существует ли уже такой id
 	* \param id Проверяемый id(строка)

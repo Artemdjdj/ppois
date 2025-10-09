@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "basic_params.h"
 #include "settings.h"
+#include "../../Exceptions/exceptions.h"
 
 class TestingBasicParams : public ::testing::Test {
 public:
@@ -31,7 +32,10 @@ TEST_F(TestingBasicParams, TestCheckFunctionPositive) {
 }
 
 TEST_F(TestingBasicParams, TestCheckFunctionNegative) {
-	color.SetColor("KJhksfd");
+	ASSERT_THROW(
+		color.SetColor("KJhksfd"),
+		ExceptionIncorrectColor
+	);
 	ASSERT_EQ(color.GetColor(), "green");
 }
 
@@ -48,7 +52,10 @@ TEST(TestVolume, TestSetCorrectVolume) {
 
 TEST(TestVolume, TestSetInCorrectVolume) {
 	Volume volume = Volume();
-	volume.SetVolume(-10);
+	ASSERT_THROW(
+		volume.SetVolume(-10),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(volume.GetVolume(), 0);
 }
 
@@ -64,15 +71,21 @@ TEST_F(TestingBasicParams, TestSetWidth) {
 }
 
 TEST_F(TestingBasicParams, TestSetWidthNegative) {
-	ASSERT_FALSE(basic_params.SetWidth(-11));
+	ASSERT_THROW(
+		basic_params.SetWidth(-11),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestingBasicParams, TestSetHeightNegative) {
-	ASSERT_FALSE(basic_params.SetHeight(-1));
+	ASSERT_THROW(
+		basic_params.SetHeight(-1),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestingBasicParams, TestSetSize) {
-	ASSERT_TRUE(basic_params.SetSize(10, 10));
+	basic_params.SetSize(10, 10);
 }
 
 TEST_F(TestingBasicParams, TestSetSizeCheckValues) {
@@ -91,18 +104,27 @@ TEST(TestSetSinglePercent, TestCorrectPercent) {
 
 TEST(TestSetSinglePercent, TestInCorrectPercentNegativeNumber) {
 	int value;
-	ASSERT_FALSE(SetSinglePercent(-30,value ));
+	ASSERT_THROW(
+		SetSinglePercent(-30,value ),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST(TestSetSinglePercent, TestInCorrectPercentNumberBiggerThenOneHundred) {
 	int value;
-	ASSERT_FALSE(SetSinglePercent(3000,value ));
+	ASSERT_THROW(
+		SetSinglePercent(3000,value ),
+		ExceptionIncorrectSize
+	);
 }
 
 
 TEST(TestSetSingleValue, TestInCorrectPercentNegativeNumber) {
 	int value;
-	ASSERT_FALSE(SetSingleValue(-30,"some information",value ));
+	ASSERT_THROW(
+		SetSingleValue(-30,"some information",value ),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST(TestSetSingleValue, TestCorrectNumber) {

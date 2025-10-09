@@ -1,5 +1,6 @@
 #include "../Seasons/season.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestSeason : public ::testing::Test {
 public:
@@ -21,12 +22,18 @@ TEST_F(TestSeason, TestSeasonSetFunctionBigLetters) {
 }
 
 TEST_F(TestSeason, TestSeasonSetFunctionNegativeResult) {
-	season.SetSeason("Winner");
+	ASSERT_THROW(
+		season.SetSeason("Winner");,
+		ExceptionIncorrectSeason
+	);
 	ASSERT_EQ(season.GetSeason(), "");
 }
 
 TEST_F(TestSeason, TestSeasonSetFunctionEmptyString) {
-	ASSERT_FALSE(season.SetSeason(""));
+	ASSERT_THROW(
+		season.SetSeason("");,
+		ExceptionIncorrectSeason
+	);
 }
 
 TEST(TestSeasonConstructor, TestSeasonConstructor) {

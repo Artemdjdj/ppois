@@ -15,12 +15,6 @@ public:
 	WareHouse ware_house;
 };
 
-TEST_F(TestWareHouse, TestAddNewElement) {
-	CarPart *detail = new GasTank();
-	std::string my_id;
-	ASSERT_TRUE(ware_house.AddNewDetail(detail, my_id));
-	delete detail;
-}
 
 TEST_F(TestWareHouse, TestDeleteById) {
 	CarPart *detail = new GasTank();

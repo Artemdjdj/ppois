@@ -2,6 +2,8 @@
 #include "basic_params.h"
 #include <gtest/gtest.h>
 
+#include "../../Exceptions/exceptions.h"
+
 class TestDoor : public ::testing::Test {
 protected:
 	void SetUp() override {
@@ -42,7 +44,10 @@ TEST_F(TestDoor, SetColorMirror) {
 }
 
 TEST_F(TestDoor, SetColorMirrorNegative) {
-	mirror.SetColor("greens");
+	ASSERT_THROW(
+		mirror.SetColor("greens"),
+		ExceptionIncorrectColor
+	);
 	EXPECT_EQ(mirror.GetColor(), "black");
 }
 

@@ -15,8 +15,8 @@ bool SignalButton::GetIsClicked() const {
 	return this->is_clicked_;
 }
 
-bool SignalButton::SetSizeForButton(int height, int width) {
-	return this->size_.SetSize(height, width);
+void SignalButton::SetSizeForButton(int height, int width) {
+	this->size_.SetSize(height, width);
 }
 
 void SignalButton::GetSize(int &height, int &width) const {
@@ -33,12 +33,12 @@ SteeringWheel::SteeringWheel(int first_radius, int second_radius, int height_of_
 											signal_button_(height_of_button, width_of_button, is_clicked) {
 }
 
-bool SteeringWheel::SetRadiusOfSteeringWheel(int radius) {
-	return this->radius_of_steering_wheel_.SetRadius(radius);
+void SteeringWheel::SetRadiusOfSteeringWheel(int radius) {
+	this->radius_of_steering_wheel_.SetRadius(radius);
 }
 
-bool SteeringWheel::SetRadiusOfCenterLogo(int radius) {
-	return this->radius_of_center_logo_.SetRadius(radius);
+void SteeringWheel::SetRadiusOfCenterLogo(int radius) {
+	this->radius_of_center_logo_.SetRadius(radius);
 }
 
 int SteeringWheel::GetRadiusOfSteeringWheel() const {
@@ -61,6 +61,6 @@ bool SteeringWheel::GetIsClicked() const {
 	return this->signal_button_.GetIsClicked();
 }
 
-bool SteeringWheel::SetSizeForButton(int height, int width) {
-	return signal_button_.SetSizeForButton(height, width);
+void SteeringWheel::SetSizeForButton(int height, int width) {
+	signal_button_.SetSizeForButton(height, width);
 }

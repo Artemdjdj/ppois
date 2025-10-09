@@ -1,5 +1,6 @@
 #include "../Fuel/feeler.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestFeeler : public ::testing::Test {
 public:
@@ -16,7 +17,10 @@ TEST_F(TestFeeler, TestSetLength) {
 }
 
 TEST_F(TestFeeler, TestSetLengthNegative) {
-	feeler.SetLength(-110);
+	ASSERT_THROW(
+		feeler.SetLength(-110),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(feeler.GetLength(), 100);
 }
 
@@ -32,13 +36,16 @@ TEST_F(TestFeeler, TestSetLevel) {
 
 TEST_F(TestFeeler, TestCheckLevelNormState) {
 	feeler.SetLevel(50);
-	ASSERT_TRUE(feeler.CheckIsTheLevelInNormState());
+	feeler.CheckIsTheLevelInNormState();
 }
 
 TEST_F(TestFeeler, TestCheckLevelNormStateNegativeResult) {
-	ASSERT_FALSE(feeler.CheckIsTheLevelInNormState());
+	ASSERT_THROW(
+		feeler.CheckIsTheLevelInNormState(),
+		ExceptionIncorrectLevelOil
+	);
 }
 
-TEST_F(TestFeeler,FeelerDescription) {
-	EXPECT_EQ(feeler.GetInfoAboutPart(),"This detail name is feeler");
+TEST_F(TestFeeler, FeelerDescription) {
+	EXPECT_EQ(feeler.GetInfoAboutPart(), "This detail name is feeler");
 }

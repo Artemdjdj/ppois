@@ -1,5 +1,6 @@
 #include "../Engine/metal_links.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestAllInMetalChain : public ::testing::Test {
 public:
@@ -40,7 +41,10 @@ TEST_F(TestAllInMetalChain, TestSetDataForTwoPlats) {
 }
 
 TEST_F(TestAllInMetalChain, TestSetDataForTwoPlatsNegative) {
-	metal_link.SetDataForTwoPlats(-45, 77);
+	ASSERT_THROW(
+		metal_link.SetDataForTwoPlats(-45, 77),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(metal_link.GetHeightOfPlataForUser(), 0);
 	ASSERT_EQ(metal_link.GetWidthOfPlataForUser(), 0);
 }
@@ -55,6 +59,6 @@ TEST_F(TestAllInMetalChain, TestMetalChain) {
 	ASSERT_EQ(metal_chain.GetLensOfMetalChain(), 0);
 }
 
-TEST_F(TestAllInMetalChain,MetalChainDescription) {
+TEST_F(TestAllInMetalChain, MetalChainDescription) {
 	EXPECT_EQ(metal_chain.GetInfoAboutPart(), "This detail name is metal chain and the length is 0");
 }

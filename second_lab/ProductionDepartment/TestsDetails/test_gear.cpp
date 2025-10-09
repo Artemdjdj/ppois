@@ -1,5 +1,6 @@
 #include "../Engine/gear.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestGear : public testing::Test {
 public:
@@ -27,7 +28,10 @@ TEST_F(TestGear, TestCalculatePerimeterTriangle) {
 }
 
 TEST_F(TestGear, TestSetRadiusNegative) {
-	circle.SetRadius(-3);
+	ASSERT_THROW(
+		circle.SetRadius(-3),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(circle.GetRadius(), 3);
 }
 
@@ -41,11 +45,14 @@ TEST_F(TestGear, TestCalculatePerimeterCircle) {
 
 
 TEST_F(TestGear, TestSetValueProng) {
-	ASSERT_TRUE(prong.SetDataProng(1,2,3,2,8000));
+	prong.SetDataProng(1, 2, 3, 2, 8000);
 }
 
 TEST_F(TestGear, TestSetValueProngNegative) {
-	prong.SetDataProng(-3, 2, 3, 2, 8000);
+	ASSERT_THROW(
+		prong.SetDataProng(-3, 2, 3, 2, 8000),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(prong.GetOneOfSides(1), 7);
 	ASSERT_EQ(prong.GetOneOfSides(2), 8);
 }
@@ -56,21 +63,24 @@ TEST_F(TestGear, TestWeightProng) {
 }
 
 TEST_F(TestGear, TestSetValueRim) {
-	ASSERT_TRUE(rim.SetDataRim(1,2,8888));
+	rim.SetDataRim(1, 2, 8888);
 }
 
 TEST_F(TestGear, TestSetValueRimNegative) {
-	ASSERT_FALSE(rim.SetDataRim(-3,2,8000));
+	ASSERT_THROW(
+		rim.SetDataRim(-3,2,8000),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestGear, TestWeightRim) {
 	ASSERT_EQ(rim.GetWeight(), 0.19729201864543899);
 }
 
-TEST_F(TestGear,RimDescription) {
+TEST_F(TestGear, RimDescription) {
 	EXPECT_EQ(rim.GetInfoAboutPart(), "This detail name is rim");
 }
 
-TEST_F(TestGear,ProngDescription) {
+TEST_F(TestGear, ProngDescription) {
 	EXPECT_EQ(prong.GetInfoAboutPart(), "This detail name is prong");
 }

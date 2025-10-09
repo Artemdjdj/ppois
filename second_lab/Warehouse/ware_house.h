@@ -21,9 +21,8 @@ public:
 	/*! \brief Добавление новой детали на склад
 	*  \param new_detail Новая деталь
 	*  \param id получаем id, под которым будет записана деталь
-	*  \return true если добавление прошло успешно, false в противном случае
 	*/
-	bool AddNewDetail(CarPart *new_detail, std::string &id);
+	void AddNewDetail(CarPart *new_detail, std::string &id);
 
 	/*! \brief Удаление детали со склада
 	*  \param id id детали

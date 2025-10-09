@@ -1,5 +1,6 @@
 #include "../ElectricDetails/electric_details.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestElectroDetails : public ::testing::Test {
 public:
@@ -28,7 +29,10 @@ TEST_F(TestElectroDetails, TestSetCountOfProng) {
 }
 
 TEST_F(TestElectroDetails, TestSetCountOfProngNegative) {
-	starter.SetCountOfProg(-10);
+	ASSERT_THROW(
+		starter.SetCountOfProg(-10),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(starter.GetCountOfProg(), 9);
 }
 
@@ -39,7 +43,10 @@ TEST_F(TestElectroDetails, TestSetColdCrankingCurrent) {
 }
 
 TEST_F(TestElectroDetails, TestSetColdCrankingCurrentNegative) {
-	battery.SetColdCrankingCurrent(-111);
+	ASSERT_THROW(
+		battery.SetColdCrankingCurrent(-111),
+		ExceptionIncorrectSize
+	);
 	ASSERT_EQ(battery.GetColdCrankingCurrent(), 300);
 }
 

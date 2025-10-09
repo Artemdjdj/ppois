@@ -1,5 +1,6 @@
 #include "../Engine/valve_spring.h"
 #include <gtest/gtest.h>
+#include "../../Exceptions/exceptions.h"
 
 class TestValveSpring : public ::testing::Test {
 public:
@@ -25,19 +26,28 @@ TEST_F(TestValveSpring, TestGetCountOfCoils) {
 }
 
 TEST_F(TestValveSpring, TestSetAllParameters) {
-	ASSERT_TRUE(valve_spring.SetAllParameters(10, 9,9));
+	valve_spring.SetAllParameters(10, 9, 9);
 }
 
 TEST_F(TestValveSpring, TestSetAllParametersNegative1) {
-	ASSERT_FALSE(valve_spring.SetAllParameters(-10, 9,9));
+	ASSERT_THROW(
+		valve_spring.SetAllParameters(-10, 9,9);,
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestValveSpring, TestSetAllParametersNegative2) {
-	ASSERT_FALSE(valve_spring.SetAllParameters(10, -9,9));
+	ASSERT_THROW(
+		valve_spring.SetAllParameters(10, -9,9),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestValveSpring, TestSetAllParametersNegative3) {
-	ASSERT_FALSE(valve_spring.SetAllParameters(10, 9,-9));
+	ASSERT_THROW(
+		valve_spring.SetAllParameters(10, 9,-9),
+		ExceptionIncorrectSize
+	);
 }
 
 TEST_F(TestValveSpring, TestGetLength) {
@@ -58,6 +68,6 @@ TEST_F(TestValveSpring, TestDevisionByZero) {
 	ASSERT_EQ(valve_spring.DistBetweenNeighbours(), 0);
 }
 
-TEST_F(TestValveSpring,ValveSpringDescription) {
-	EXPECT_EQ(valve_spring.GetInfoAboutPart(),"This detail name is valve spring");
+TEST_F(TestValveSpring, ValveSpringDescription) {
+	EXPECT_EQ(valve_spring.GetInfoAboutPart(), "This detail name is valve spring");
 }
