@@ -1,11 +1,12 @@
 #include "../User/user.h"
+#include "../Exceptions/exceptions.h"
 #include <iostream>
 #include <gtest/gtest.h>
 
 class TestUser : public ::testing::Test {
 	public:
 	void SetUp() override {
-		user = User("Artemdjdj", "55434434");
+		user = User("@Artemdjdj", "554shflsd34434");
 	}
 	User user;
 };
@@ -16,8 +17,10 @@ TEST_F(TestUser, TestSetName) {
 }
 
 TEST_F(TestUser, TestSetNameNegative) {
-	user.SetName("-Artemflsdhjfglsjlksdkfjsdlgjflsghlshgggsfddfse");
-	ASSERT_EQ(user.GetName(), "");
+	ASSERT_THROW(
+	   user.SetName("-Artemflsdhjfglsjlksdkfjsdlgjflsghlshgggsfddfse"),
+	   ExceptionName
+   );
 }
 
 TEST_F(TestUser, TestSetUserName) {
@@ -26,8 +29,10 @@ TEST_F(TestUser, TestSetUserName) {
 }
 
 TEST_F(TestUser, TestSetUserNameNegative) {
-	user.SetUserName("Artemflsdhjfglsjlksdkfjsdlgjflsghlshgggsfddfse");
-	ASSERT_EQ(user.GetUserName(), "");
+	ASSERT_THROW(
+	   user.SetUserName("Artemflsdhjfglsjlksdkfjsdlgjflsghlshgggsfddfse"),
+	   ExceptionUserName
+   );
 }
 
 TEST_F(TestUser, TestSetSurName) {
@@ -36,8 +41,10 @@ TEST_F(TestUser, TestSetSurName) {
 }
 
 TEST_F(TestUser, TestSetSurNameNegative) {
-	user.SetSurname("Artemflsdhjfglsjlk-");
-	ASSERT_EQ(user.GetSurName(), "");
+	ASSERT_THROW(
+	   user.SetSurname("Artemflsdhjfglsjlk-"),
+	   ExceptionName
+   );
 }
 
 TEST_F(TestUser, TestEmail) {
@@ -46,8 +53,10 @@ TEST_F(TestUser, TestEmail) {
 }
 
 TEST_F(TestUser, TestEmailNegative) {
-	user.SetEmail("$%%$art@gmail.com");
-	ASSERT_EQ(user.GetEmail(), "");
+	ASSERT_THROW(
+	   user.SetEmail("$%%$art@gmail.com"),
+	   ExceptionEmail
+   );
 }
 
 TEST_F(TestUser, TestSetPhoneNumber) {
@@ -56,8 +65,10 @@ TEST_F(TestUser, TestSetPhoneNumber) {
 }
 
 TEST_F(TestUser, TestSetPhoneNumberNegative) {
-	user.SetPhoneNumber("+375661111111");
-	ASSERT_EQ(user.GetPhoneNumber(), "");
+	ASSERT_THROW(
+	   user.SetPhoneNumber("+375661111111"),
+	   ExceptionPhoneNumber
+   );
 }
 
 

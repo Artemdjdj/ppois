@@ -1,20 +1,20 @@
 /*! \file tube.h
- *  \brief Заголовочный файл с определением класса трубки
- *  \details Классы для упрощения работы
- */
+* \brief Заголовочный файл с определением класса трубки
+* \details Классы для упрощения работы
+*/
 #ifndef TUBE_H
 #define TUBE_H
 #include "../Wheel/wheel.h"
 #include "../CarPart/car_part.h"
 
 /*! \class Tube
- *  \brief Класс для определения базовых параметров трубки
- *  \details Класс предоставляет возможность получения и изменения базовых параметров трубки
- */
+* \brief Класс для определения базовых параметров трубки
+* \details Класс предоставляет возможность получения и изменения базовых параметров трубки
+*/
 class Tube : public CarPart {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is tube";
@@ -24,28 +24,28 @@ public:
 	Tube();
 
 	/*! \brief Параметризованный конструктор
-	*  \param radius Начальный радиус
-	*  \param height Начальная длина
+	* \param radius Начальный радиус
+	* \param height Начальная длина
 	*/
 	Tube(int radius, int height);
 
 	/*! \brief Установка радиуса
-	*  \param radius Начальный радиус
+	* \param radius Начальный радиус
 	*/
 	void SetRadius(int radius);
 
 	/*! \brief Установка длины
-	*  \param height Начальная длина
+	* \param height Начальная длина
 	*/
 	void SetHeight(int height);
 
 	/*! \brief Получение текущего радиуса
-	*  \return Радиус
+	* \return Радиус
 	*/
 	int GetRadius() const;
 
 	/*! \brief Получение текущей длины
-	*  \return Длина
+	* \return Длина
 	*/
 	int GetHeight() const;
 

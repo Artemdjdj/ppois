@@ -44,7 +44,7 @@ private:
 class BrakeShoe : public CarPart, public BasicParams {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is brake shoe";
@@ -98,7 +98,7 @@ private:
 class Wheel : public CarPart {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is wheel";
@@ -210,7 +210,7 @@ private:
 class SteeringWheel : public CarPart {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is steering wheel";

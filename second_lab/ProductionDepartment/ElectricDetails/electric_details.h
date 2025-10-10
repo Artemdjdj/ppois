@@ -15,7 +15,7 @@
 class ElectroPart : public CarPart {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is default electro part";
@@ -77,7 +77,7 @@ private:
 class Starter : public ElectroPart {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is starter";
@@ -129,7 +129,7 @@ private:
 class Battery : public ElectroPart {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is battery";

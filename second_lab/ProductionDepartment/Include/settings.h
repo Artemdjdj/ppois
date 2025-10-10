@@ -1,6 +1,6 @@
 /*! \file settings.h
- *  \brief Заголовочный файл с определением константных переменных
- */
+* \brief Заголовочный файл с определением константных переменных
+*/
 #ifndef SETTINGS_H
 #define SETTINGS_H
 #define PATH_TO_FILE "C:/Users/Redmi/Desktop/ppois/second_lab/Logs/production_development.txt"

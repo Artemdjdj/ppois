@@ -69,17 +69,17 @@ public:
 	Color();
 
 	/*! \brief Параметризованный конструктор
-	*  \param сolor первоначальный цвет
+	* \param сolor первоначальный цвет
 	*/
 	Color(const std::string &color);
 
 	/*! \brief Установка цвета
-	*  \param color Новое значение цвета
+	* \param color Новое значение цвета
 	*/
 	void SetColor(std::string color);
 
 	/*! \brief Получение длины
-	*  \return Цвет
+	* \return Цвет
 	*/
 	std::string GetColor() const;
 
@@ -88,26 +88,26 @@ private:
 };
 
 /*! \class Volume
- *  \brief Класс для определения объема
- *  \details Класс предоставляет возможность получения и изменения данных об объеме
- */
+* \brief Класс для определения объема
+* \details Класс предоставляет возможность получения и изменения данных об объеме
+*/
 class Volume {
 public:
 	/*! \brief Конструктор по умолчанию */
 	Volume();
 
 	/*! \brief Параметризованный конструктор
-	*  \param volume Начальный объем
+	* \param volume Начальный объем
 	*/
 	Volume(int volume);
 
 	/*! \brief Установка объема
-	*  \param volume Новое значение объема
+	* \param volume Новое значение объема
 	*/
 	void SetVolume(int volume);
 
 	/*! \brief Получение объема
-	*  \return Объем
+	* \return Объем
 	*/
 	int GetVolume() const;
 
@@ -116,46 +116,46 @@ private:
 };
 
 /*! \brief Установка процента
-*  \param procent процент
-*  \param value куда присвоить
+* \param procent процент
+* \param value куда присвоить
 */
 void SetSinglePercent(int procent, int &value);
 
 /*! \brief Установка целого числа
-*  \param integer_number целое число
-*  \param description описание ошибки
-*  \param value куда присвоить
+* \param integer_number целое число
+* \param description описание ошибки
+* \param value куда присвоить
 */
 void SetSingleValue(int integer_number, const char *description, int &value);
 
 /*! \brief Функция переводит строку внижний регистр
-*  \param str строка
+* \param str строка
 */
 void ToLower(std::string &str);
 
 /*! \brief Функция записывает сообщение в файл
-*  \param message сообщение
-*  \return true если запись прошла успешно, false в противном случае
+* \param message сообщение
+* \return true если запись прошла успешно, false в противном случае
 */
 bool LogToFile(const char *message, const std::string &file_name);
 
 /*! \brief Функция проверяет переданную строку на принадлежность массиву строк
-*  \param vector_of_string массив строк
-*  \param statement проверяемая строка
-*  \return true если строка принадлежит массиву, false в противном случае
+* \param vector_of_string массив строк
+* \param statement проверяемая строка
+* \return true если строка принадлежит массиву, false в противном случае
 */
 bool CheckIsStatementCorrect(const std::vector<std::string> &vector_of_string, std::string &statement);
 
 /*! \brief Получение числа, которое является частью передаваемого числа
-*  \param number исходное число
-*  \param procent процент от числа
-*  \return Новое число
+* \param number исходное число
+* \param procent процент от числа
+* \return Новое число
 */
 int GetNewValueAfterMultiplication(int number, int procent);
 
 /*! \brief  Рассчет скорости звука в определенной температуре
-*  \param temperature температура
-*  \return Скорость звука в определенной температуре
+* \param temperature температура
+* \return Скорость звука в определенной температуре
 */
 double CalculateTheSpeedOfSoundInSpecialTemperature(double temperature);
 #endif //INCLUDE_BASIC_PARAMS_H

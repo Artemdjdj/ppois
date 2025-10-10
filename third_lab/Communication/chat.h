@@ -12,9 +12,9 @@ public:
 
 	Message(const std::string &message, User *user);
 
-	bool CreateMessage(const std::string &message, User *user);
+	void CreateMessage(const std::string &message, User *user);
 
-	bool RefactorMessage(const std::string &message);
+	void RefactorMessage(const std::string &message);
 
 	User *GetAuthor() const;
 
@@ -25,7 +25,7 @@ public:
 private:
 	std::pair<std::string, std::string> message_;
 	bool is_refactor_{false};
-	User *author_;
+	User *author_{};
 };
 
 class BaseChat {
@@ -36,7 +36,7 @@ public:
 
 	BaseChat(const BaseChat &) = delete;
 
-	bool WriteMessage(const std::string &message, User *sender_user);
+	 void WriteMessage(const std::string &message, User *sender_user);
 
 	void RefactorMessage(const std::string &message, int number_of_message, const User *sender_user);
 

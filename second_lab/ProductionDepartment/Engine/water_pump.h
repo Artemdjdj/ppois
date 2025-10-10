@@ -1,18 +1,18 @@
 /*! \file water_pump.h
- *  \brief Заголовочный файл с определением класса водяного насоса
- */
+* \brief Заголовочный файл с определением класса водяного насоса
+*/
 #ifndef INCLUDE_WATER_PUMP_H
 #define INCLUDE_WATER_PUMP_H
 #include "../CarPart/car_part.h"
 
 /*! \class WaterPump
- *  \brief Класс для определения базовых параметров водяного насоса
- *  \details Класс предоставляет возможность получения и изменения базовых параметров водяного насоса
- */
+* \brief Класс для определения базовых параметров водяного насоса
+* \details Класс предоставляет возможность получения и изменения базовых параметров водяного насоса
+*/
 class WaterPump : public CarPart {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is water pump";
@@ -22,13 +22,13 @@ public:
 	WaterPump() = default;
 
 	/*! \brief Параметризованный конструктор
-	*  \param flow Начальная скорость потока
-	*  \param max_pressure Максимальное давление
+	* \param flow Начальная скорость потока
+	* \param max_pressure Максимальное давление
 	*/
 	WaterPump(int flow, int max_pressure);
 
 	/*! \brief Запуск водяного насоса
-	*  \return true если запуск прошел успешно, false в противном случае
+	* \return true если запуск прошел успешно, false в противном случае
 	*/
 	bool StartPump();
 
@@ -37,39 +37,39 @@ public:
 	void StopPump();
 
 	/*! \brief Рассчет текущей скорости потока
-	*  \param pressure Текущее давление
-	*  \return Скорость потока
+	* \param pressure Текущее давление
+	* \return Скорость потока
 	*/
 	int CalculateFlow(int pressure);
 
 	/*! \brief Рассчет текущей мощности
-	*  \param pressure Текущее давление
-	*  \return Мощность
+	* \param pressure Текущее давление
+	* \return Мощность
 	*/
 	int CalculatePower(int pressure) const;
 
 	/*! \brief Получение текущего ресурса
-	*  \return Ресурс
+	* \return Ресурс
 	*/
 	int GetResource() const;
 
 	/*! \brief Получение текущего давления
-	*  \return Давление
+	* \return Давление
 	*/
 	int GetCurrentPressure() const;
 
 	/*! \brief Получение максимального давления
-	*  \return Максимальное давление
+	* \return Максимальное давление
 	*/
 	int GetMaxPressure() const;
 
 	/*! \brief Получение текущей скорости потока
-	*  \return Скорость потока
+	* \return Скорость потока
 	*/
 	int GetFlowRate() const;
 
 	/*! \brief Работает ли насос
-	*  \return true,  если работает, false - в противном случае
+	* \return true,  если работает, false - в противном случае
 	*/
 	bool GetWorkingState() const;
 

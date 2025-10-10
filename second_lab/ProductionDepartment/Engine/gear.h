@@ -1,13 +1,13 @@
 /*! \file gear.h
- *  \brief Заголовочный файл с определением базовых класса деталей
- */
+* \brief Заголовочный файл с определением базовых класса деталей
+*/
 #ifndef INCLUDE_GEAR_H
 #define INCLUDE_GEAR_H
 #include <optional>
 #include "../CarPart/car_part.h"
 /*! \class Figure
- *  \brief Абстрактный класс для определения фигур
- */
+* \brief Абстрактный класс для определения фигур
+*/
 class Figure {
 public:
 	/*! \brief Деструктор */
@@ -15,42 +15,42 @@ public:
 	};
 
 	/*! \brief Чисто виртуальная функция для получения площади фигуры
-	*  \return Площадь фигуры
+	* \return Площадь фигуры
 	*/
 	virtual double GetSquare() = 0;
 
 	/*! \brief Чисто виртуальная функция для получения периметра фигуры
-	*  \return Периметр фигуры
+	* \return Периметр фигуры
 	*/
 	virtual double GetPerimeter() = 0;
 };
 
 /*! \class Triangle
- *  \brief Класс для определения фигуры треугольника
- *  \details Класс предоставляет возможность получения и изменения базовых параметров треугольника
- */
+* \brief Класс для определения фигуры треугольника
+* \details Класс предоставляет возможность получения и изменения базовых параметров треугольника
+*/
 class Triangle : public Figure {
 public:
 	/*! \brief Конструктор по умолчанию */
 	Triangle();
 
 	/*! \brief Параметризованный конструктор
-	*  \param first_side Длина первой стороны
-	*  \param second_side Длина второй стороны
-	*  \param third_side Длина третьей стороны
+	* \param first_side Длина первой стороны
+	* \param second_side Длина второй стороны
+	* \param third_side Длина третьей стороны
 	*/
 	Triangle(int first_side, int second_side, int third_side);
 
 	/*! \brief Установка всех сторон
-	*  \param first_side Длина первой стороны
-	*  \param second_side Длина второй стороны
-	*  \param third_side Длина третьей стороны
+	* \param first_side Длина первой стороны
+	* \param second_side Длина второй стороны
+	* \param third_side Длина третьей стороны
 	*/
 	void SetSides(int first_side, int second_side, int third_side);
 
 	/*! \brief Получение текущей длины стороны
-	*  \param number_of_side Номер стороны
-	*  \return Длина стороны или nullodt
+	* \param number_of_side Номер стороны
+	* \return Длина стороны или nullodt
 	*/
 	std::optional<int> GetOneOfSides(int number_of_side) const;
 
@@ -65,26 +65,26 @@ private:
 };
 
 /*! \class Circle
- *  \brief Класс для определения круга
- *  \details Класс предоставляет возможность получения и изменения базовых параметров круга
- */
+* \brief Класс для определения круга
+* \details Класс предоставляет возможность получения и изменения базовых параметров круга
+*/
 class Circle : public Figure {
 public:
 	/*! \brief Конструктор по умолчанию */
 	Circle();
 
 	/*! \brief Параметризованный конструктор
-	*  \param radius Радиус
+	* \param radius Радиус
 	*/
 	Circle(int radius);
 
 	/*! \brief Установка радиуса
-	*  \param radius Радиус
+	* \param radius Радиус
 	*/
 	void SetRadius(int radius);
 
 	/*! \brief Получение текущего радиуса
-	*  \return Длина радиуса
+	* \return Длина радиуса
 	*/
 	int GetRadius() const;
 
@@ -97,13 +97,13 @@ private:
 };
 
 /*! \class Detail
- *  \brief Абстрактный класс для определения базовых параметров любой детали
- *  \details Класс предоставляет возможность получения и изменения базовых параметров детали
- */
+* \brief Абстрактный класс для определения базовых параметров любой детали
+* \details Класс предоставляет возможность получения и изменения базовых параметров детали
+*/
 class Detail : public CarPart {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is default detail";
@@ -113,8 +113,8 @@ public:
 	Detail();
 
 	/*! \brief Параметризованный конструктор
-	*  \param thickness Начальная толщина
-	*  \param density Начальная плотность
+	* \param thickness Начальная толщина
+	* \param density Начальная плотность
 	*/
 	Detail(int thickness, int density);
 
@@ -123,27 +123,27 @@ public:
 	};
 
 	/*! \brief Установка толщины
-	*  \param thickness Толщина
+	* \param thickness Толщина
 	*/
 	void SetThickness(int thickness);
 
 	/*! \brief Получение текущей толщины
-	*  \return Толщина
+	* \return Толщина
 	*/
 	int GetThickness() const;
 
 	/*! \brief Установка плотности
-	*  \param density Плотность
+	* \param density Плотность
 	*/
 	void SetDensity(int density);
 
 	/*! \brief Получение текущей плотности
-	*  \return Плотность
+	* \return Плотность
 	*/
 	int GetDensity() const;
 
 	/*! \brief Чисто виртуальная функция для получения массы детали
-	*  \return Масса
+	* \return Масса
 	*/
 	virtual double GetWeight() =0;
 
@@ -153,13 +153,13 @@ private:
 };
 
 /*! \class Prong
- *  \brief Класс для определения зубца
- *  \details Класс предоставляет возможность получения и изменения базовых параметров зубца
- */
+* \brief Класс для определения зубца
+* \details Класс предоставляет возможность получения и изменения базовых параметров зубца
+*/
 class Prong : public Triangle, Detail {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is prong";
@@ -169,19 +169,19 @@ public:
 	Prong();
 
 	/*! \brief Параметризованный конструктор
-	*  \param first_side Длина первой стороны
-	*  \param second_side Длина второй стороны
-	*  \param third_side Длина третьей стороны
-	*  \param thickness Начальная толщина
-	*  \param density Начальная плотность
+	* \param first_side Длина первой стороны
+	* \param second_side Длина второй стороны
+	* \param third_side Длина третьей стороны
+	* \param thickness Начальная толщина
+	* \param density Начальная плотность
 	*/
 	Prong(int first_side, int seconde_side, int third_side, int thickness, int density);
 
 	/*! \brief Установка всех сторон, толщины и плонтости
-	*  \param first_side Длина первой стороны
-	*  \param second_side Длина второй стороны
-	*  \param third_side Длина третьей стороны
-	*  \param thickness Толщина
+	* \param first_side Длина первой стороны
+	* \param second_side Длина второй стороны
+	* \param third_side Длина третьей стороны
+	* \param thickness Толщина
 	*  \param density Плотность
 	*/
 	void SetDataProng(int first_side, int second_side, int third_side, int thickness, int density);
@@ -190,13 +190,13 @@ public:
 };
 
 /*! \class Rim
- *  \brief Класс для определения обода
- *  \details Класс предоставляет возможность получения и изменения базовых параметров обода
- */
+* \brief Класс для определения обода
+* \details Класс предоставляет возможность получения и изменения базовых параметров обода
+*/
 class Rim : public Circle, public Detail {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is rim";
@@ -206,14 +206,14 @@ public:
 	Rim();
 
 	/*! \brief Параметризованный конструктор
-	*  \param radius Радиус
+	* \param radius Радиус
 	*  \param thickness Толщина
 	*  \param density Плотность
 	*/
 	Rim(int radius, int thickness, int density);
 
 	/*! \brief Установка радиуса, толщины и плонтости
-	*  \param radius Радиус
+	* \param radius Радиус
 	*  \param thickness Толщина
 	*  \param density Плотность
 	*/

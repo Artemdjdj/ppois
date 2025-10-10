@@ -1,6 +1,6 @@
 #include "../Communication/chat.h"
 #include <gtest/gtest.h>
-
+#include "../Exceptions/exceptions.h"
 
 class TestChatsMessageAndGroups : public ::testing::Test {
 public:
@@ -15,8 +15,8 @@ public:
 		user2.SetName("Johnatan");
 	}
 	User user1 = User("@Artemdjdj", "sldfk54353");
-	User user2 = User("@Vlad53334", "hfdhh634u233");
-	User user3 = User("@Vsdf34", "hfdhh633");
+	User user2 = User("@Vladgjhgj53334", "hfdhh634u233");
+	User user3 = User("@Vsdffgjjg34", "hfdhh6357573");
 	Message  message = Message();
 	Message  message2 = Message("Some info", &user2);
 	Chat chat = Chat(&user1, &user2);
@@ -25,10 +25,15 @@ public:
 };
 
 TEST_F(TestChatsMessageAndGroups, TestMessageCreation) {
-	ASSERT_TRUE(message.CreateMessage("Hello world", &user1));
+	message.CreateMessage("Hello world", &user1);
+	ASSERT_EQ(message.GetMessageText(), "Hello world");
+
 }
 TEST_F(TestChatsMessageAndGroups, TestMessageNegativeCreation) {
-	ASSERT_FALSE(message.CreateMessage("", &user1));
+	ASSERT_THROW(
+		message.CreateMessage("", &user1),
+		ExceptionIncorrectMessage
+	);
 }
 
 TEST_F(TestChatsMessageAndGroups, TestGetAuthor) {
@@ -42,7 +47,10 @@ TEST_F(TestChatsMessageAndGroups, TestRefactorMessage) {
 }
 
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorect) {
-	message2.RefactorMessage("");
+	ASSERT_THROW(
+		message2.RefactorMessage("");,
+		ExceptionIncorrectMessage
+	);
 	ASSERT_EQ(message2.GetMessageText(), "Some info");
 }
 
@@ -54,7 +62,10 @@ TEST_F(TestChatsMessageAndGroups, TestWriteMessageInChat) {
 }
 
 TEST_F(TestChatsMessageAndGroups, TestWriteMessageInChatIncorrect) {
-	ASSERT_FALSE(chat2.WriteMessage("", &user1));
+	ASSERT_THROW(
+		chat2.WriteMessage("", &user1),
+		ExceptionIncorrectMessage
+	);
 }
 
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessageChat) {
@@ -65,14 +76,20 @@ TEST_F(TestChatsMessageAndGroups, TestRefactorMessageChat) {
 }
 
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorrectNumberChat) {
-	chat.RefactorMessage("New hello", -1, &user1);
+	ASSERT_THROW(
+		chat.RefactorMessage("New hello", -1, &user1),
+		ExceptionIncorrectNumberOfMessage
+	);
 	std::string copy;
 	chat.CopyMessage(0, copy);
 	ASSERT_EQ(copy, "hello");
 }
 
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorrectAuthorChat) {
-	chat.RefactorMessage("New hello", 0, &user2);
+	ASSERT_THROW(
+		chat.RefactorMessage("New hello", 0, &user2),
+		ExceptionAccess
+	);
 	std::string copy;
 	chat.CopyMessage(0, copy);
 	ASSERT_EQ(copy, "hello");
@@ -86,14 +103,20 @@ TEST_F(TestChatsMessageAndGroups, TestDeleteMessageChat) {
 }
 
 TEST_F(TestChatsMessageAndGroups, TestDeleteMessageIncorrectNumberOfMessage) {
-	chat.DeleteMessage(-1, &user1);
+	ASSERT_THROW(
+		chat.DeleteMessage(-1, &user1),
+		ExceptionIncorrectNumberOfMessage
+	);
 	std::string copy;
 	chat.CopyMessage(0, copy);
 	ASSERT_EQ(copy, "hello");
 }
 
 TEST_F(TestChatsMessageAndGroups, TestDeleteMessageIncorrectAuthorOfMessage) {
-	chat.DeleteMessage(0, &user2);
+	ASSERT_THROW(
+		chat.DeleteMessage(0, &user2),
+		ExceptionAccess
+	);
 	std::string copy;
 	chat.CopyMessage(0, copy);
 	ASSERT_EQ(copy, "hello");
@@ -116,7 +139,7 @@ TEST_F(TestChatsMessageAndGroups, TestGetName) {
 }
 
 TEST_F(TestChatsMessageAndGroups, TestGetCountOfChatMembers) {
-	ASSERT_EQ(chat.ListMembers(), (std::vector<std::string> {"@Artemdjdj", "@Vlad53334"}));
+	ASSERT_EQ(chat.ListMembers(), (std::vector<std::string> {"@Artemdjdj", "@Vladgjhgj53334"}));
 }
 
 TEST_F(TestChatsMessageAndGroups, TestGroupSetName) {
@@ -130,37 +153,37 @@ TEST_F(TestChatsMessageAndGroups, TestGetCountOfGroupMembers) {
 
 TEST_F(TestChatsMessageAndGroups, TestCheckUserIsNotExistInGroup) {
 	group.AddUser(&user3, &user1);
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj", "@Vsdf34"}));
+	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj", "@Vsdffgjjg34"}));
 }
 
 TEST_F(TestChatsMessageAndGroups, TestCheckUserIsExistInGroup) {
 	group.AddUser(&user3, &user1);
 	group.AddUser(&user3, &user1);
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj", "@Vsdf34"}));
+	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj", "@Vsdffgjjg34"}));
 }
 
 TEST_F(TestChatsMessageAndGroups, TestDeleteUser) {
 	group.AddUser(&user3, &user1);
-	group.DeleteUser("@Vsdf34", &user1);
+	group.DeleteUser("@Vsdffgjjg34", &user1);
 	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj"}));
 }
 
 TEST_F(TestChatsMessageAndGroups, TestDeleteAdmin) {
 	group.AddUser(&user3, &user1);
 	group.DeleteUser("@Artemdjdj", &user1);
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj","@Vsdf34"}));
+	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj","@Vsdffgjjg34"}));
 }
 
 TEST_F(TestChatsMessageAndGroups, TestDeleteIncorrectUserName) {
 	group.AddUser(&user3, &user1);
 	group.DeleteUser("jsdlfjlsdjlfjs", &user1);
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj","@Vsdf34"}));
+	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj","@Vsdffgjjg34"}));
 }
 
 TEST_F(TestChatsMessageAndGroups, TestDeleteIncorrectAdmin) {
 	group.AddUser(&user3, &user1);
-	group.DeleteUser("@Vsdf34", &user2);
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj","@Vsdf34"}));
+	group.DeleteUser("@Vsdffgjjg34", &user2);
+	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj","@Vsdffgjjg34"}));
 }
 
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessageGroup) {
@@ -171,14 +194,20 @@ TEST_F(TestChatsMessageAndGroups, TestRefactorMessageGroup) {
 }
 
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorrectNumberGroup) {
-	group.RefactorMessage("New hello", -1, &user1);
+	ASSERT_THROW(
+		group.RefactorMessage("New hello", -1, &user1),
+		ExceptionIncorrectNumberOfMessage
+	);
 	std::string copy;
 	group.CopyMessage(0, copy);
 	ASSERT_EQ(copy, "hello");
 }
 
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorrectAuthorGroup) {
-	group.RefactorMessage("New hello", 0, &user2);
+	ASSERT_THROW(
+		group.RefactorMessage("New hello", 0, &user2),
+		ExceptionAccess
+	);
 	std::string copy;
 	group.CopyMessage(0, copy);
 	ASSERT_EQ(copy, "hello");
@@ -192,14 +221,20 @@ TEST_F(TestChatsMessageAndGroups, TestDeleteMessageGroup) {
 }
 
 TEST_F(TestChatsMessageAndGroups, TestDeleteMessageIncorrectNumberOfMessageGroup) {
-	group.DeleteMessage(-1, &user1);
+	ASSERT_THROW(
+		group.DeleteMessage(-1, &user1),
+		ExceptionIncorrectNumberOfMessage
+	);
 	std::string copy;
 	group.CopyMessage(0, copy);
 	ASSERT_EQ(copy, "hello");
 }
 
 TEST_F(TestChatsMessageAndGroups, TestDeleteMessageIncorrectAuthorOfMessageGroup) {
-	group.DeleteMessage(0, &user2);
+	ASSERT_THROW(
+		group.DeleteMessage(0, &user2),
+		ExceptionAccess
+	);
 	std::string copy;
 	group.CopyMessage(0, copy);
 	ASSERT_EQ(copy, "hello");

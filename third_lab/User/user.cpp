@@ -34,74 +34,33 @@ bool User::operator!=(const User &other) const {
 
 void User::SetUserName(const std::string &username) {
 	std::string error_message;
-	try {
-		DataSyntax::CheckUserNameForSyntaxError(username, "Your username is not correct the length should be between 3 and 17 and starts with @", this->username_);
-	} catch (const ExceptionUserName &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
-	catch (const std::exception &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
+	DataSyntax::CheckUserNameForSyntaxError(username, "Your username is not correct the length should be between 3 and 17 and starts with @", this->username_);
 }
 
 void User::SetName(const std::string &name) {
 	std::string error_message;
-	try {
-		DataSyntax::CheckNameOrSurnameForSyntaxError(name, "Your name or surname is not correct the length should be between 3 and 25", this->name_);
-	} catch (const ExceptionName &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
-	catch (const std::exception &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
+	DataSyntax::CheckNameOrSurnameForSyntaxError(name, "Your name or surname is not correct the length should be between 3 and 25", this->name_);
 }
 
 void User::SetSurname(const std::string &surname) {
 	std::string error_message;
-	try {
-		DataSyntax::CheckNameOrSurnameForSyntaxError(surname, "Your name or surname is not correct the length should be between 3 and 25", this->surname_);
-	} catch (const ExceptionSurName &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
-	catch (const std::exception &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
+	DataSyntax::CheckNameOrSurnameForSyntaxError(surname, "Your name or surname is not correct the length should be between 3 and 25", this->surname_);
 }
 
 void User::SetEmail(const std::string &email) {
 	std::string error_message;
-	try {
-		DataSyntax::CheckEmailForSyntaxError(email, "Your E-mail address is not valid", this->email_);
-	} catch (const ExceptionEmail &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
-	catch (const std::exception &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
+	DataSyntax::CheckEmailForSyntaxError(email, "Your E-mail address is not valid", this->email_);
+
 }
 
 void User::SetPhoneNumber(const std::string &phone_number) {
 	std::string error_message;
-	try {
-		DataSyntax::CheckPhoneNumberForSyntaxError(phone_number, "Your phone number is not valid", this->phone_number_);
-	} catch (const ExceptionPhoneNumber &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
-	catch (const std::exception &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
+	DataSyntax::CheckPhoneNumberForSyntaxError(phone_number, "Your phone number is not valid", this->phone_number_);
 }
 
 void User::SetPassword(const std::string &password) {
 	std::string error_message;
-	try {
-		DataSyntax::CheckPasswordForSyntaxError(password, "Your password is not valid", this->password_);
-	} catch (const ExceptionPassword &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
-	catch (const std::exception &e) {
-		DefaultProjectSettings::LogFile(e.what(), main_log_file);
-	}
+	DataSyntax::CheckPasswordForSyntaxError(password, "Your password is not valid", this->password_);
 }
 
 std::string User::GetUserName() const{

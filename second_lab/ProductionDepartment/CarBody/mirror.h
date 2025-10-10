@@ -14,7 +14,7 @@
 class Mirror : public CarPart, BasicParams {
 public:
 	/*! \brief Переопределение унаследованной функции
-	*  \return Описание
+	* \return Описание
 	*/
 	std::string GetInfoAboutPart() const override {
 		return "This detail name is mirror";
