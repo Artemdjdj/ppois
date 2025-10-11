@@ -4,6 +4,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <optional>
 #include "../User/user.h"
 
 class PollWithoutRefactoringChoose {
@@ -19,6 +20,8 @@ public:
 	void SeeUserAnswer(const User *user, std::string &result) const;
 
 	void SeeStatistics() const;
+
+	std::optional<int> GetAuthorAndHisAnswer(const User * user, int new_answer);
 
 protected:
 	std::string question_;

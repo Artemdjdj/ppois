@@ -50,9 +50,9 @@ public:
 	explicit ExceptionIncorrectMessage(const char *msg);
 };
 
-class ExceptionIncorrectNumberOfMessage final :public Exception{
+class ExceptionIncorrectNumber final :public Exception{
 public:
-	explicit ExceptionIncorrectNumberOfMessage(const char *msg);
+	explicit ExceptionIncorrectNumber(const char *msg);
 };
 
 class ExceptionAccess final :public Exception{

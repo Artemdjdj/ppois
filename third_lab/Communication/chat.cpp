@@ -46,7 +46,7 @@ void BaseChat::WriteMessage(const std::string &message, User *sender_user) {
 void BaseChat::ChangeMessage(int number_of_message, const User *sender_user,
 							bool is_delete, const std::string &message = "") {
 	if (number_of_message < 0 or number_of_message > this->messages_.size()) {
-		throw ExceptionIncorrectNumberOfMessage("Incorrect number of messages");
+		throw ExceptionIncorrectNumber("Incorrect number of messages");
 	}
 	if (sender_user != this->messages_[number_of_message].GetAuthor()) {
 		throw ExceptionAccess("Such user didn't create this message and he can't to refactor it!!!!!");
@@ -68,7 +68,7 @@ void BaseChat::DeleteMessage(int number_of_message, const User *sender_user) {
 
 void BaseChat::CopyMessage(int number_of_message, std::string &copy_message) const {
 	if (number_of_message < 0 and number_of_message > this->messages_.size()) {
-		throw ExceptionIncorrectNumberOfMessage("Incorrect number of messages");
+		throw ExceptionIncorrectNumber("Incorrect number of messages");
 	}
 	copy_message = this->messages_[number_of_message].GetMessageText();
 }

@@ -78,7 +78,7 @@ TEST_F(TestChatsMessageAndGroups, TestRefactorMessageChat) {
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorrectNumberChat) {
 	ASSERT_THROW(
 		chat.RefactorMessage("New hello", -1, &user1),
-		ExceptionIncorrectNumberOfMessage
+		ExceptionIncorrectNumber
 	);
 	std::string copy;
 	chat.CopyMessage(0, copy);
@@ -105,7 +105,7 @@ TEST_F(TestChatsMessageAndGroups, TestDeleteMessageChat) {
 TEST_F(TestChatsMessageAndGroups, TestDeleteMessageIncorrectNumberOfMessage) {
 	ASSERT_THROW(
 		chat.DeleteMessage(-1, &user1),
-		ExceptionIncorrectNumberOfMessage
+		ExceptionIncorrectNumber
 	);
 	std::string copy;
 	chat.CopyMessage(0, copy);
@@ -196,7 +196,7 @@ TEST_F(TestChatsMessageAndGroups, TestRefactorMessageGroup) {
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorrectNumberGroup) {
 	ASSERT_THROW(
 		group.RefactorMessage("New hello", -1, &user1),
-		ExceptionIncorrectNumberOfMessage
+		ExceptionIncorrectNumber
 	);
 	std::string copy;
 	group.CopyMessage(0, copy);
@@ -223,7 +223,7 @@ TEST_F(TestChatsMessageAndGroups, TestDeleteMessageGroup) {
 TEST_F(TestChatsMessageAndGroups, TestDeleteMessageIncorrectNumberOfMessageGroup) {
 	ASSERT_THROW(
 		group.DeleteMessage(-1, &user1),
-		ExceptionIncorrectNumberOfMessage
+		ExceptionIncorrectNumber
 	);
 	std::string copy;
 	group.CopyMessage(0, copy);

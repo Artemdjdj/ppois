@@ -31,7 +31,7 @@ ExceptionPassword::ExceptionPassword(const char *msg): Exception(msg) {
 ExceptionIncorrectMessage::ExceptionIncorrectMessage(const char *msg): Exception(msg) {
 }
 
-ExceptionIncorrectNumberOfMessage::ExceptionIncorrectNumberOfMessage(const char *msg): Exception(msg) {
+ExceptionIncorrectNumber::ExceptionIncorrectNumber(const char *msg): Exception(msg) {
 }
 
 ExceptionAccess::ExceptionAccess(const char *msg): Exception(msg) {
