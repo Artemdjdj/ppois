@@ -1,5 +1,5 @@
-#ifndef PollWithoutRefactoringChoose_H
-#define PollWithoutRefactoringChoose_H
+#ifndef Poll_H
+#define Poll_H
 #include <map>
 #include <string>
 #include <utility>
@@ -7,52 +7,60 @@
 #include <optional>
 #include "../User/user.h"
 
-class PollWithoutRefactoringChoose {
+
+class Poll {
 public:
-	PollWithoutRefactoringChoose();
+    Poll() = default;
 
-	PollWithoutRefactoringChoose(const std::string &question, const std::vector<std::string> &answers);
+    Poll(const std::string &question, const std::vector<std::string> &answers);
 
-	void SeeAnswer() const;
+    bool operator==(const Poll &other) const {
+        return this->question_ == other.question_ and this->answers_ == other.answers_;
+    }
 
-	void AddAnswer(int number_of_answer, const User *user);
+    void SeeAnswer() const;
 
-	void SeeUserAnswer(const User *user, std::string &result) const;
+    void AddAnswer(int number_of_answer, const User *user);
 
-	void SeeStatistics() const;
+    void SeeUserAnswer(const User *user, std::string &result) const;
 
-	std::optional<int> GetAuthorAndHisAnswer(const User * user, int new_answer);
+    void SeeStatistics() const;
+
+    std::optional<int> GetAuthorAndHisAnswer(const User *user, int new_answer);
+
+    std::string GetQuestion() const;
 
 protected:
-	std::string question_;
-	std::vector<std::string> answers_;
-	std::map<std::string, int> statistics_;
-	std::vector<std::pair<const User *, int> > users_and_their_answers_;
-	int result_count_of_voices_{0};
+    std::string question_;
+    std::vector<std::string> answers_;
+    std::map<std::string, int> statistics_;
+    std::vector<std::pair<const User *, int> > users_and_their_answers_;
+    int result_count_of_voices_{0};
 
-	int GetAnswerOfUser(const User *user) const;
+    int GetAnswerOfUser(const User *user) const;
 };
 
-class PollWithRefactoringChoose : public PollWithoutRefactoringChoose {
+class PollWithRefactoringChoose : public Poll {
 public:
-	PollWithRefactoringChoose();
+    PollWithRefactoringChoose();
 
-	PollWithRefactoringChoose(const std::string &question, const std::vector<std::string> &answers);
+    PollWithRefactoringChoose(const std::string &question, const std::vector<std::string> &answers);
 
-	void RefactorYourChoose(const User *user, int new_answer);
+    void RefactorYourChoose(const User *user, int new_answer);
 };
 
-class PollWithGettingAnswer : public PollWithoutRefactoringChoose {
+class PollWithGettingAnswer : public Poll {
 public:
-	PollWithGettingAnswer();
+    PollWithGettingAnswer();
 
-	PollWithGettingAnswer(const std::string &question, const std::vector<std::string> &answers,int number_of_correct_answer);
+    PollWithGettingAnswer(const std::string &question, const std::vector<std::string> &answers,
+                          int number_of_correct_answer);
 
-	void AddAnswer(int number_of_answer, const User *user);
+    void AddAnswer(int number_of_answer, const User *user);
 
 private:
-	int correct_answer_;
+    int correct_answer_;
 
-	void SeeAnswer() const;
+    void SeeAnswer() const;
 };
-#endif //PollWithoutRefactoringChoose_H
+#endif //Poll_H

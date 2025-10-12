@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-
+#include <sstream>
 #include "exceptions.h"
 #include "../SocialMedia/poll.h"
 #include "../User/user.h"
@@ -7,7 +7,7 @@
 class TestAllTypesOfPoll : public::testing::Test {
 public:
     void SetUp() override {
-        poll_without_refactoring_choose = PollWithoutRefactoringChoose("The capital of Belarus",
+        poll_without_refactoring_choose = Poll("The capital of Belarus",
                                                                        (std::vector<std::string>{
                                                                            "Minsk", "Washington", "Moscow"
                                                                        }));
@@ -24,10 +24,58 @@ public:
 
     User user = User("@Artemdjdj", "252352353");
     User user2 = User("@Eugen2007", "fshdjkfhsk4343");
-    PollWithoutRefactoringChoose poll_without_refactoring_choose;
+    Poll poll_without_refactoring_choose;
     PollWithRefactoringChoose poll_with_refactoring_choose;
     PollWithGettingAnswer poll_with_getting_answer;
 };
+
+TEST_F(TestAllTypesOfPoll, TestOperatorEqPollWithoutRefactoringFalse) {
+    auto poll_without_refactoring_choose2 = Poll("The result of 2+2",
+                                                                       (std::vector<std::string>{
+                                                                           "1", "2", "4"
+                                                                       }));
+    ASSERT_FALSE(poll_without_refactoring_choose2 == poll_without_refactoring_choose);
+}
+
+TEST_F(TestAllTypesOfPoll, TestOperatorEqPollWithoutRefactoringTrue) {
+    auto poll_without_refactoring_choose2 = Poll("The capital of Belarus",
+                                                                       (std::vector<std::string>{
+                                                                           "Minsk", "Washington", "Moscow"
+                                                                       }));
+    ASSERT_TRUE(poll_without_refactoring_choose2 == poll_without_refactoring_choose);
+}
+
+TEST_F(TestAllTypesOfPoll, TestOperatorEqPollWithoRefactoringFalse) {
+    auto poll_with_refactoring_choose2 = PollWithRefactoringChoose("The result of 2+2",
+                                                                       (std::vector<std::string>{
+                                                                           "1", "2", "4"
+                                                                       }));
+    ASSERT_FALSE(poll_with_refactoring_choose2 == poll_with_refactoring_choose);
+}
+
+TEST_F(TestAllTypesOfPoll, TestOperatorEqPollWithRefactoringTrue) {
+    auto poll_with_refactoring_choose2 = PollWithRefactoringChoose("The capital of Russia",
+                                                                 (std::vector<std::string>{
+                                                                     "Minsk", "Washington", "Moscow"
+                                                                 }));
+    ASSERT_TRUE(poll_with_refactoring_choose2 == poll_with_refactoring_choose);
+}
+
+TEST_F(TestAllTypesOfPoll, TestOperatorEqPollWithGettingFalse) {
+    auto poll_with_getting_answer2 = PollWithGettingAnswer("The result of 2+2",
+                                                                       (std::vector<std::string>{
+                                                                           "1", "2", "4"
+                                                                       }),3);
+    ASSERT_FALSE(poll_with_getting_answer2 == poll_with_refactoring_choose);
+}
+
+TEST_F(TestAllTypesOfPoll, TestOperatorEqPollPollWithGettingTrue) {
+    auto poll_with_getting_answer2 = PollWithGettingAnswer("The capital of USA",
+                                                         (std::vector<std::string>{
+                                                             "Minsk", "Washington", "Moscow"
+                                                         }), 2);
+    ASSERT_TRUE(poll_with_getting_answer2 == poll_with_getting_answer);
+}
 
 TEST_F(TestAllTypesOfPoll, TestAddAnswer) {
     poll_without_refactoring_choose.AddAnswer(1, &user);
@@ -98,4 +146,34 @@ TEST_F(TestAllTypesOfPoll, TestRefactorAnswerIncorrectAuthor) {
     ASSERT_THROW(
         poll_with_refactoring_choose.RefactorYourChoose(&user2, 1),
         ExceptionAccess);
+}
+
+TEST_F(TestAllTypesOfPoll, TestAddAnswerToPollWithGettingAnswerSmallerThenZero) {
+    ASSERT_THROW(
+        poll_with_getting_answer.AddAnswer(-11, &user),
+        ExceptionIncorrectNumber);
+}
+
+TEST_F(TestAllTypesOfPoll, TestAddAnswerToPollWithGettingAnswerSoBig) {
+    ASSERT_THROW(
+        poll_with_getting_answer.AddAnswer(11, &user),
+        ExceptionIncorrectNumber);
+}
+
+TEST_F(TestAllTypesOfPoll, TestAddAnswerToPollWithGettingAnswerUserExists) {
+    poll_with_getting_answer.AddAnswer(1, &user);
+    ASSERT_THROW(
+        poll_with_getting_answer.AddAnswer(1, &user),
+        ExceptionUserExist);
+}
+
+TEST_F(TestAllTypesOfPoll, AddGettingAnswer) {
+    std::stringstream buffer;
+    std::streambuf *oldCout = std::cout.rdbuf();
+    std::cout.rdbuf(buffer.rdbuf());
+    poll_with_getting_answer.AddAnswer(1, &user);
+    std::cout.rdbuf(oldCout);
+    const std::string expected_cout =
+            "The answers on this question: The capital of USA\n\n\x1B[36m1) Minsk\x1B[0m\n\x1B[32m2) Washington\x1B[0m\n\x1B[36m3) Moscow\x1B[0m";
+    ASSERT_EQ(expected_cout, buffer.str());
 }

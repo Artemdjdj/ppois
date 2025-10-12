@@ -4,14 +4,12 @@
 #include "exceptions.h"
 #include "../Utils/project_utils.h"
 
-PollWithoutRefactoringChoose::PollWithoutRefactoringChoose() = default;
-
-PollWithoutRefactoringChoose::PollWithoutRefactoringChoose(const std::string &question,
+Poll::Poll(const std::string &question,
 															const std::vector<std::string> &
 															answers): question_(question), answers_(answers) {
 }
 
-int PollWithoutRefactoringChoose::GetAnswerOfUser(const User *user) const {
+int Poll::GetAnswerOfUser(const User *user) const {
 	for (const auto &answer: this->users_and_their_answers_) {
 		if (answer.first == user) {
 			return answer.second;
@@ -20,7 +18,7 @@ int PollWithoutRefactoringChoose::GetAnswerOfUser(const User *user) const {
 	return -1;
 }
 
-void PollWithoutRefactoringChoose::SeeAnswer() const {
+void Poll::SeeAnswer() const {
 	std::cout << "The answers on this question:" << " " << this->question_ << std::endl;
 	int index = 1;
 	for (const auto &answer: this->answers_) {
@@ -29,7 +27,7 @@ void PollWithoutRefactoringChoose::SeeAnswer() const {
 	}
 }
 
-void PollWithoutRefactoringChoose::AddAnswer(int number_of_answer, const User *user) {
+void Poll::AddAnswer(int number_of_answer, const User *user) {
 	if (number_of_answer > answers_.size() or number_of_answer < 1) {
 		throw ExceptionIncorrectNumber("Incorrect answer, such answer is not in list of answers");
 	}
@@ -42,7 +40,7 @@ void PollWithoutRefactoringChoose::AddAnswer(int number_of_answer, const User *u
 	users_and_their_answers_.emplace_back(user, number_of_answer);
 }
 
-void PollWithoutRefactoringChoose::SeeUserAnswer(const User *user, std::string &result) const {
+void Poll::SeeUserAnswer(const User *user, std::string &result) const {
 	const int number_of_answer = GetAnswerOfUser(user);
 	if (number_of_answer == -1) {
 		DefaultProjectSettings::LogFile("You do not have any answer!", main_log_file);
@@ -51,7 +49,7 @@ void PollWithoutRefactoringChoose::SeeUserAnswer(const User *user, std::string &
 	result = answers_[number_of_answer - 1];
 }
 
-std::optional<int> PollWithoutRefactoringChoose::GetAuthorAndHisAnswer(const User *user, int new_answer) {
+std::optional<int> Poll::GetAuthorAndHisAnswer(const User *user, int new_answer) {
 	for (auto &pair: this->users_and_their_answers_) {
 		if (user == pair.first) {
 			int old_answer = pair.second;
@@ -62,19 +60,23 @@ std::optional<int> PollWithoutRefactoringChoose::GetAuthorAndHisAnswer(const Use
 	return std::nullopt;
 }
 
-void PollWithoutRefactoringChoose::SeeStatistics() const {
-	std::cout << "The result of PollWithoutRefactoringChoose!" << std::endl;
+void Poll::SeeStatistics() const {
+	std::cout << "The result of Poll!" << std::endl;
 	for (const auto &answer: statistics_) {
 		std::cout << std::endl << answer.first << " --- " << static_cast<double>(
 			answer.second * 100 / result_count_of_voices_) << "%" << std::endl;
 	}
 }
 
+std::string Poll::GetQuestion() const {
+	return this->question_;
+}
+
 PollWithRefactoringChoose::PollWithRefactoringChoose() = default;
 
 PollWithRefactoringChoose::PollWithRefactoringChoose(const std::string &question,
 													const std::vector<std::string> &
-													answers): PollWithoutRefactoringChoose(question, answers) {
+													answers): Poll(question, answers) {
 }
 
 void PollWithRefactoringChoose::RefactorYourChoose(const User *user, int new_answer) {
@@ -94,7 +96,7 @@ void PollWithRefactoringChoose::RefactorYourChoose(const User *user, int new_ans
 PollWithGettingAnswer::PollWithGettingAnswer() = default;
 
 PollWithGettingAnswer::PollWithGettingAnswer(const std::string &question, const std::vector<std::string> &answers,
-											int number_of_correct_answer): PollWithoutRefactoringChoose(
+											int number_of_correct_answer): Poll(
 																				question, answers),
 																			correct_answer_(number_of_correct_answer) {
 }
@@ -118,9 +120,9 @@ void PollWithGettingAnswer::SeeAnswer() const {
 	int index = 1;
 	for (const auto &answer: this->answers_) {
 		if (index == this->correct_answer_)
-			std::cout << std::endl << GREEN << index << ")" << answer << RESET;
+			std::cout << std::endl << GREEN << index << ") " << answer << RESET;
 		else {
-			std::cout << std::endl << CYAN << index << ")" << answer << RESET;
+			std::cout << std::endl << CYAN << index << ") " << answer << RESET;
 		}
 		index++;
 	}

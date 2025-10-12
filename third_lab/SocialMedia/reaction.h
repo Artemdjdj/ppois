@@ -4,7 +4,7 @@
 #include <string>
 #include <unordered_set>
 #include "user.h"
-const std::unordered_set<std::string> reactions{"anger", "sadness", "love", "like"};
+const std::unordered_set<std::string> reactions{"angry", "sadness", "love", "like"};
 
 class Reaction {
 public:
