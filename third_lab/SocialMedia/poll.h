@@ -12,7 +12,7 @@ class Poll {
 public:
     Poll() = default;
 
-    Poll(const std::string &question, const std::vector<std::string> &answers);
+    Poll(const std::string &question, const std::vector<std::string> &answers, User *user);
 
     bool operator==(const Poll &other) const {
         return this->question_ == other.question_ and this->answers_ == other.answers_;
@@ -24,7 +24,7 @@ public:
 
     void SeeUserAnswer(const User *user, std::string &result) const;
 
-    void SeeStatistics() const;
+    // void SeeStatistics() const;
 
     std::optional<int> GetAuthorAndHisAnswer(const User *user, int new_answer);
 
@@ -36,31 +36,35 @@ protected:
     std::map<std::string, int> statistics_;
     std::vector<std::pair<const User *, int> > users_and_their_answers_;
     int result_count_of_voices_{0};
+    User *author_;
 
     int GetAnswerOfUser(const User *user) const;
 };
 
 class PollWithRefactoringChoose : public Poll {
 public:
-    PollWithRefactoringChoose();
+    PollWithRefactoringChoose() = default;
 
-    PollWithRefactoringChoose(const std::string &question, const std::vector<std::string> &answers);
+    PollWithRefactoringChoose(const std::string &question, const std::vector<std::string> &answers, User *user);
 
     void RefactorYourChoose(const User *user, int new_answer);
 };
 
 class PollWithGettingAnswer : public Poll {
 public:
-    PollWithGettingAnswer();
+    PollWithGettingAnswer() = default;
 
     PollWithGettingAnswer(const std::string &question, const std::vector<std::string> &answers,
-                          int number_of_correct_answer);
+                          int number_of_correct_answer, User *user);
 
     void AddAnswer(int number_of_answer, const User *user);
 
-private:
-    int correct_answer_;
+    std::vector<std::string> SeeAnswers() const;
 
-    void SeeAnswer() const;
+private:
+    int correct_answer_{};
+
+    // void SeeAnswer() const;
 };
+
 #endif //Poll_H

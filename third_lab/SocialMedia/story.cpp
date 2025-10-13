@@ -1,51 +1,81 @@
 #include "story.h"
 
+#include <stdexcept>
+
+#include "exceptions.h"
 #include "../Utils/project_utils.h"
 
-Story::Story() = default;
-
-Story::Story(const std::string &name, const std::string &info, const std::string &category,
-			const bool is_for_all): name_(name), info_(info), is_for_all_(is_for_all) {
-	SetStoryCategory(category);
+StorySettings::StorySettings(const std::string &category, bool is_public): is_public_(is_public) {
+    SetCategory(category);
 }
 
-void Story::SetStoryName(const std::string &name) {
-	name_ = name;
+bool StorySettings::CheckIsCategoryCorrect(const std::string &category) {
+    const auto it = stories_categories.find(category);
+    if (it == stories_categories.end()) {
+        return false;
+    }
+    return true;
 }
 
-void Story::SetStoryInfo(const std::string &info) {
-	info_ = info;
+void StorySettings::SetCategory(std::string category) {
+    DefaultProjectSettings::ToLower(category);
+    if (!CheckIsCategoryCorrect(category)) {
+        throw std::invalid_argument("Invalid category!");
+    }
+    this->category_ = category;
 }
 
-void Story::SetStoryCategory(std::string category) {
-	DefaultProjectSettings::ToLower(category);
-	if (DefaultProjectSettings::CheckIsStatementInAllowed(category, stories_categories)) {
-		category_ = category;
-	} else {
-		DefaultProjectSettings::LogFile("Incorrect Category", main_log_file);
-	}
+void StorySettings::MakeStoryPublic() {
+    this->is_public_ = true;
 }
 
-void Story::MakeStoryForFriends() {
-	this->is_for_all_ = false;
+void StorySettings::MakeStoryPrivate() {
+    this->is_public_ = false;
 }
 
-void Story::MakeStoryForAll() {
-	this->is_for_all_ = true;
+std::string StorySettings::GetCategory() const {
+    return this->category_;
+}
+
+bool StorySettings::GetTypeOfVisibility() const {
+    return this->is_public_;
+}
+
+Story::Story(const std::string &name, const std::string &info, const StorySettings &settings,
+             User *author): name_(name), info_(info),
+                            settings_(settings), author_(author) {
+}
+
+void Story::SetStoryName(const std::string &name, const User *user) {
+    DefaultProjectSettings::SetValue(this->name_, name, this->author_, user, "You can't changing info about story",
+                                     "You can't set name of your stories empty");
+}
+
+void Story::SetStoryInfo(const std::string &info, const User *user) {
+    DefaultProjectSettings::SetValue(this->info_, info, this->author_, user, "You can't changing info about story",
+                                     "You can't set name of your stories empty");
+}
+
+void Story::ChangeVisibility(const bool is_public) {
+    if (is_public) {
+        settings_.MakeStoryPublic();
+    } else {
+        settings_.MakeStoryPrivate();
+    }
 }
 
 std::string Story::GetStoryName() {
-	return this->name_;
+    return this->name_;
 }
 
 std::string Story::GetStoryInfo() {
-	return this->info_;
+    return this->info_;
 }
 
-std::string Story::GetStoryCategory() {
-	return this->category_;
+std::string Story::GetStoryCategory() const {
+    return this->settings_.GetCategory();
 }
 
 bool Story::GetIsForAll() const {
-	return this->is_for_all_;
+    return this->settings_.GetTypeOfVisibility();
 }

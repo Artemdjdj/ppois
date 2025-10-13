@@ -2,37 +2,57 @@
 #define STORY_H
 #include <string>
 #include <unordered_set>
+#include <../User/user.h>
 const std::unordered_set<std::string> stories_categories{"default", "worth a look", "important"};
+
+class StorySettings {
+public:
+    StorySettings() = default;
+
+    StorySettings(const std::string &category, bool is_public);
+
+    void SetCategory(std::string category);
+
+    void MakeStoryPublic();
+
+    void MakeStoryPrivate();
+
+    std::string GetCategory() const;
+
+    bool GetTypeOfVisibility() const;
+
+private:
+    std::string category_;
+    bool is_public_{false};
+
+    static bool CheckIsCategoryCorrect(const std::string& category);
+};
 
 class Story {
 public:
-	Story();
+    Story() = default;
 
-	Story(const std::string &name, const std::string &info, const std::string &category, bool is_for_all = false);
+    Story(const std::string &name, const std::string &info, const StorySettings &settings, User * author);
 
-	void SetStoryName(const std::string &name);
+    void SetStoryName(const std::string &name, const User * user);
 
-	void SetStoryInfo(const std::string &info);
+    void SetStoryInfo(const std::string &info, const User *user);
 
-	void SetStoryCategory(std::string category);
+    void ChangeVisibility(bool is_public);
 
-	void MakeStoryForFriends();
+    std::string GetStoryName();
 
-	void MakeStoryForAll();
+    std::string GetStoryInfo();
 
-	std::string GetStoryName();
+    std::string GetStoryCategory() const;
 
-	std::string GetStoryInfo();
-
-	std::string GetStoryCategory();
-
-	bool GetIsForAll() const;
+    bool GetIsForAll() const;
 
 private:
-	std::string name_;
-	std::string info_;
-	std::string category_;
-	bool is_for_all_;
+    std::string name_;
+    std::string info_;
+    StorySettings settings_;
+    User* author_;
 };
 
 #endif //STORY_H

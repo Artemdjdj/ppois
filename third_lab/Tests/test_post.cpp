@@ -21,7 +21,7 @@ public:
     Poll poll = Poll("The capital of Belarus",
                      (std::vector<std::string>{
                          "Minsk", "Washington", "Moscow"
-                     }));
+                     }), &user);
 };
 
 TEST_F(TestPost, TestSetName) {
@@ -37,6 +37,14 @@ TEST_F(TestPost, TestSetNameIncorrectAuthor) {
     ASSERT_EQ("The problem of global warming", post.GetName());
 }
 
+TEST_F(TestPost, TestSetNameIncorrect) {
+    ASSERT_THROW(
+        post.SetName("", &user),
+        std::invalid_argument
+    );
+    ASSERT_EQ("The problem of global warming", post.GetName());
+}
+
 TEST_F(TestPost, TestSetInfo) {
     post.SetInfo("Hello world!", &user);
     ASSERT_EQ("Hello world!", post.GetInfo());
@@ -46,6 +54,14 @@ TEST_F(TestPost, TestSetInfoIncorrectAuthor) {
     ASSERT_THROW(
         post.SetInfo("Hello world!", &user2),
         ExceptionAccess
+    );
+    ASSERT_EQ(info, post.GetInfo());
+}
+
+TEST_F(TestPost, TestSetInfoIncorrect) {
+    ASSERT_THROW(
+        post.SetInfo("", &user),
+        std::invalid_argument
     );
     ASSERT_EQ(info, post.GetInfo());
 }

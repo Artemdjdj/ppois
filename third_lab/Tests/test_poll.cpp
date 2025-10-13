@@ -10,15 +10,15 @@ public:
         poll_without_refactoring_choose = Poll("The capital of Belarus",
                                                                        (std::vector<std::string>{
                                                                            "Minsk", "Washington", "Moscow"
-                                                                       }));
+                                                                       }), &user);
         poll_with_refactoring_choose = PollWithRefactoringChoose("The capital of Russia",
                                                                  (std::vector<std::string>{
                                                                      "Minsk", "Washington", "Moscow"
-                                                                 }));
+                                                                 }), &user);
         poll_with_getting_answer = PollWithGettingAnswer("The capital of USA",
                                                          (std::vector<std::string>{
                                                              "Minsk", "Washington", "Moscow"
-                                                         }), 2);
+                                                         }), 2, &user);
         poll_with_refactoring_choose.AddAnswer(1, &user);
     }
 
@@ -33,7 +33,7 @@ TEST_F(TestAllTypesOfPoll, TestOperatorEqPollWithoutRefactoringFalse) {
     auto poll_without_refactoring_choose2 = Poll("The result of 2+2",
                                                                        (std::vector<std::string>{
                                                                            "1", "2", "4"
-                                                                       }));
+                                                                       }), &user);
     ASSERT_FALSE(poll_without_refactoring_choose2 == poll_without_refactoring_choose);
 }
 
@@ -41,7 +41,7 @@ TEST_F(TestAllTypesOfPoll, TestOperatorEqPollWithoutRefactoringTrue) {
     auto poll_without_refactoring_choose2 = Poll("The capital of Belarus",
                                                                        (std::vector<std::string>{
                                                                            "Minsk", "Washington", "Moscow"
-                                                                       }));
+                                                                       }), &user);
     ASSERT_TRUE(poll_without_refactoring_choose2 == poll_without_refactoring_choose);
 }
 
@@ -49,7 +49,7 @@ TEST_F(TestAllTypesOfPoll, TestOperatorEqPollWithoRefactoringFalse) {
     auto poll_with_refactoring_choose2 = PollWithRefactoringChoose("The result of 2+2",
                                                                        (std::vector<std::string>{
                                                                            "1", "2", "4"
-                                                                       }));
+                                                                       }), &user);
     ASSERT_FALSE(poll_with_refactoring_choose2 == poll_with_refactoring_choose);
 }
 
@@ -57,7 +57,7 @@ TEST_F(TestAllTypesOfPoll, TestOperatorEqPollWithRefactoringTrue) {
     auto poll_with_refactoring_choose2 = PollWithRefactoringChoose("The capital of Russia",
                                                                  (std::vector<std::string>{
                                                                      "Minsk", "Washington", "Moscow"
-                                                                 }));
+                                                                 }), &user);
     ASSERT_TRUE(poll_with_refactoring_choose2 == poll_with_refactoring_choose);
 }
 
@@ -65,7 +65,7 @@ TEST_F(TestAllTypesOfPoll, TestOperatorEqPollWithGettingFalse) {
     auto poll_with_getting_answer2 = PollWithGettingAnswer("The result of 2+2",
                                                                        (std::vector<std::string>{
                                                                            "1", "2", "4"
-                                                                       }),3);
+                                                                       }),3, &user);
     ASSERT_FALSE(poll_with_getting_answer2 == poll_with_refactoring_choose);
 }
 
@@ -73,7 +73,7 @@ TEST_F(TestAllTypesOfPoll, TestOperatorEqPollPollWithGettingTrue) {
     auto poll_with_getting_answer2 = PollWithGettingAnswer("The capital of USA",
                                                          (std::vector<std::string>{
                                                              "Minsk", "Washington", "Moscow"
-                                                         }), 2);
+                                                         }), 2, &user);
     ASSERT_TRUE(poll_with_getting_answer2 == poll_with_getting_answer);
 }
 
@@ -167,13 +167,18 @@ TEST_F(TestAllTypesOfPoll, TestAddAnswerToPollWithGettingAnswerUserExists) {
         ExceptionUserExist);
 }
 
-TEST_F(TestAllTypesOfPoll, AddGettingAnswer) {
-    std::stringstream buffer;
-    std::streambuf *oldCout = std::cout.rdbuf();
-    std::cout.rdbuf(buffer.rdbuf());
+TEST_F(TestAllTypesOfPoll, TestGettingAnswers) {
     poll_with_getting_answer.AddAnswer(1, &user);
-    std::cout.rdbuf(oldCout);
-    const std::string expected_cout =
-            "The answers on this question: The capital of USA\n\n\x1B[36m1) Minsk\x1B[0m\n\x1B[32m2) Washington\x1B[0m\n\x1B[36m3) Moscow\x1B[0m";
-    ASSERT_EQ(expected_cout, buffer.str());
+    ASSERT_EQ(3,poll_with_getting_answer.SeeAnswers().size());
 }
+
+// TEST_F(TestAllTypesOfPoll, AddGettingAnswer) {
+//     std::stringstream buffer;
+//     std::streambuf *oldCout = std::cout.rdbuf();
+//     std::cout.rdbuf(buffer.rdbuf());
+//     poll_with_getting_answer.AddAnswer(1, &user);
+//     std::cout.rdbuf(oldCout);
+//     const std::string expected_cout =
+//             "The answers on this question: The capital of USA\n\n\x1B[36m1) Minsk\x1B[0m\n\x1B[32m2) Washington\x1B[0m\n\x1B[36m3) Moscow\x1B[0m";
+//     ASSERT_EQ(expected_cout, buffer.str());
+// }
