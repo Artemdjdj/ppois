@@ -34,14 +34,23 @@ void DefaultProjectSettings::ToLower(std::string &str) {
     std::ranges::transform(str, str.begin(), ::tolower);
 }
 
-void DefaultProjectSettings::SetValue(std::string &property, const std::string &value, const User *user, const User *user_checked,
-                         const std::string &error_incorrect_author,
-                         const std::string &error_invalid_value) {
+void DefaultProjectSettings::SetValueWithAuthor(std::string &property, const std::string &value, const User *user,
+                                                const User *user_checked,
+                                                const std::string &error_incorrect_author,
+                                                const std::string &error_invalid_value) {
     if (user != user_checked) {
-        throw ExceptionAccess("You can't changing info");
+        throw ExceptionAccess(error_incorrect_author.c_str());
     }
     if (value.empty()) {
-        throw std::invalid_argument("You can't set name of your stories empty");
+        throw std::invalid_argument(error_invalid_value.c_str());
+    }
+    property = value;
+}
+
+void DefaultProjectSettings::SetValue(std::string &property, const std::string &value,
+                                      const std::string &error_invalid_value) {
+    if (value.empty()) {
+        throw std::invalid_argument(error_invalid_value.c_str());
     }
     property = value;
 }
@@ -51,6 +60,7 @@ std::string DefaultProjectSettings::GetRealTime() {
     const struct tm tm = *localtime(&realtime);
     return std::to_string(tm.tm_hour) + ":" + std::to_string(tm.tm_min);
 }
+
 
 void Menu::PrintMainMenu() {
     std::cout << std::endl << "===============Social Network Art===============" << std::endl;

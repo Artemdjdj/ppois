@@ -47,12 +47,12 @@ Story::Story(const std::string &name, const std::string &info, const StorySettin
 }
 
 void Story::SetStoryName(const std::string &name, const User *user) {
-    DefaultProjectSettings::SetValue(this->name_, name, this->author_, user, "You can't changing info about story",
+    DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_, user, "You can't changing info about story",
                                      "You can't set name of your stories empty");
 }
 
 void Story::SetStoryInfo(const std::string &info, const User *user) {
-    DefaultProjectSettings::SetValue(this->info_, info, this->author_, user, "You can't changing info about story",
+    DefaultProjectSettings::SetValueWithAuthor(this->info_, info, this->author_, user, "You can't changing info about story",
                                      "You can't set name of your stories empty");
 }
 

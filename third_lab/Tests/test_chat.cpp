@@ -5,12 +5,12 @@
 class TestChatsMessageAndGroups : public ::testing::Test {
 public:
 	void SetUp() override {
-		chat.WriteMessage("hello",&user1);
-		chat.WriteMessage("world",&user2);
-		chat.WriteMessage("My name is artem", &user2);
-		group.WriteMessage("hello",&user1);
-		group.WriteMessage("world",&user2);
-		group.WriteMessage("My name is artem", &user2);
+		chat.WriteMessage(&test_message1);
+		chat.WriteMessage(&test_message2);
+		chat.WriteMessage(&test_message3);
+		group.WriteMessage(&test_message1);
+		group.WriteMessage(&test_message2);
+		group.WriteMessage(&test_message3);
 		user1.SetName("Artem");
 		user2.SetName("Johnatan");
 	}
@@ -22,6 +22,9 @@ public:
 	Chat chat = Chat(&user1, &user2);
 	Chat chat2 = Chat(&user1, &user3);
 	Group group = Group(&user1);
+	Message test_message1 = Message("hello",&user1);
+	Message test_message2 = Message("world",&user2);
+	Message test_message3 = Message("My name is artem", &user2);
 };
 
 TEST_F(TestChatsMessageAndGroups, TestMessageCreation) {
@@ -55,17 +58,11 @@ TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorect) {
 }
 
 TEST_F(TestChatsMessageAndGroups, TestWriteMessageInChat) {
-	chat2.WriteMessage("Hello world", &user1);
+	auto new_message = Message("Hello world", &user1);
+	chat2.WriteMessage(&new_message);
 	std::string copy_text;
 	chat2.CopyMessage(0, copy_text);
 	ASSERT_EQ(copy_text, "Hello world");
-}
-
-TEST_F(TestChatsMessageAndGroups, TestWriteMessageInChatIncorrect) {
-	ASSERT_THROW(
-		chat2.WriteMessage("", &user1),
-		ExceptionIncorrectMessage
-	);
 }
 
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessageChat) {

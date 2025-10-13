@@ -8,12 +8,12 @@ Post::Post(const std::string &name, const std::string &info, User *author): name
 };
 
 void Post::SetName(const std::string &name, const User *author) {
-    DefaultProjectSettings::SetValue(this->name_, name, this->author_, author, "You can't changing info about post",
+    DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_, author, "You can't changing info about post",
                                      "You can't set name of your post empty");
 }
 
 void Post::SetInfo(const std::string &info, const User *author) {
-    DefaultProjectSettings::SetValue(this->info_, info, this->author_, author, "You can't changing info about post",
+    DefaultProjectSettings::SetValueWithAuthor(this->info_, info, this->author_, author, "You can't changing info about post",
                                      "You can't set name of your post empty");
 }
 
@@ -32,7 +32,7 @@ void Post::AddReaction(Reaction *reaction) {
 void Post::RemoveReaction(const std::string &username) {
     auto it = this->reactions_.find(username);
     if (it == this->reactions_.end()) {
-        throw std::logic_error("You don't have access to remove this post");
+        throw ExceptionIncorrectNumber("You don't have access to remove this post");
     }
     this->reactions_.erase(it);
 }
@@ -61,7 +61,7 @@ void Post::AddHashTag(HashTag *hash_tag) {
     if (CheckHashTagUsed(check_hash_tag_str) != -1) {
         throw std::invalid_argument("Such hash tag is used in this post!");
     }
-    this->hash_tags_.push_back(hash_tag);
+    DefaultWorkingWithVector::AddElementToVector(this->hash_tags_, hash_tag);
 }
 
 void Post::RemoveHashTag(const std::string &hash_tag, const User *author) {
@@ -69,10 +69,7 @@ void Post::RemoveHashTag(const std::string &hash_tag, const User *author) {
         throw ExceptionAccess("You don't have access to changing this post");
     }
     const auto it = CheckHashTagUsed(hash_tag);
-    if (it == -1) {
-        throw std::logic_error("Nothing to delete");
-    }
-    this->hash_tags_.erase(hash_tags_.begin() + it);
+    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->hash_tags_, it);
 }
 
 int Post::CheckPollUsed(const std::string &check_question) const {
@@ -103,7 +100,7 @@ void Post::AddPoll(Poll *poll, const User *author) {
     if (CheckPollUsedInList(poll)) {
         throw std::invalid_argument("Poll already exists");
     }
-    this->polls_.push_back(poll);
+    DefaultWorkingWithVector::AddElementToVector(this->polls_, poll);
 }
 
 void Post::RemovePoll(const std::string &question, const User *author) {
@@ -111,8 +108,5 @@ void Post::RemovePoll(const std::string &question, const User *author) {
         throw ExceptionAccess("You don't have access to changing this post");
     }
     const auto it = CheckPollUsed(question);
-    if (it == -1) {
-        throw std::logic_error("Nothing to delete");
-    }
-    this->polls_.erase(polls_.begin() + it);
+    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->polls_, it);
 }

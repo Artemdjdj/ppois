@@ -37,10 +37,8 @@ std::string Message::GetMessageText() const {
 	return message_.first;
 }
 
-void BaseChat::WriteMessage(const std::string &message, User *sender_user) {
-	Message base_chat_message;
-	base_chat_message.CreateMessage(message, sender_user);
-	this->messages_.push_back(base_chat_message);
+void BaseChat::WriteMessage(Message* message) {
+	this->messages_.push_back(message);
 }
 
 void BaseChat::ChangeMessage(int number_of_message, const User *sender_user,
@@ -48,11 +46,11 @@ void BaseChat::ChangeMessage(int number_of_message, const User *sender_user,
 	if (number_of_message < 0 or number_of_message > this->messages_.size()) {
 		throw ExceptionIncorrectNumber("Incorrect number of messages");
 	}
-	if (sender_user != this->messages_[number_of_message].GetAuthor()) {
+	if (sender_user != this->messages_[number_of_message]->GetAuthor()) {
 		throw ExceptionAccess("Such user didn't create this message and he can't to refactor it!!!!!");
 	}
 	if (!is_delete) {
-		messages_[number_of_message].RefactorMessage(message);
+		messages_[number_of_message]->RefactorMessage(message);
 	} else {
 		messages_.erase(messages_.begin() + number_of_message);
 	}
@@ -70,7 +68,7 @@ void BaseChat::CopyMessage(int number_of_message, std::string &copy_message) con
 	if (number_of_message < 0 and number_of_message > this->messages_.size()) {
 		throw ExceptionIncorrectNumber("Incorrect number of messages");
 	}
-	copy_message = this->messages_[number_of_message].GetMessageText();
+	copy_message = this->messages_[number_of_message]->GetMessageText();
 }
 
 void BaseChat::DeleteAllMessages() {
@@ -86,7 +84,7 @@ void BaseChat::ViewHistory() const {
 		throw ExceptionNothingToPrint("There is no view history");
 	}
 	for (auto &message: this->messages_) {
-		std::cout << message.GetMessage() << std::endl;
+		std::cout << message->GetMessage() << std::endl;
 	}
 }
 

@@ -92,7 +92,7 @@ TEST_F(TestPost, TestRemoveReactionIncorrect) {
     post.AddReaction(&reaction);
     ASSERT_THROW(
         post.RemoveReaction(user2.GetName()),
-        std::logic_error);
+        ExceptionIncorrectNumber);
     const std::string username = user2.GetUserName();
     ASSERT_EQ(&reaction, post.SeeReactionByAuthor(username));
 }
@@ -115,7 +115,7 @@ TEST_F(TestPost, TestRemoveHashTag) {
     post.RemoveHashTag("#global", &user);
     ASSERT_THROW(
         post.RemoveHashTag("#global",&user),
-        std::logic_error);
+        ExceptionIncorrectNumber);
 }
 
 TEST_F(TestPost, TestRemoveHashTagincorrectAccess) {
@@ -129,7 +129,7 @@ TEST_F(TestPost, TestRemoveHashTagLogicError) {
     post.AddHashTag(&hash_tag);
     ASSERT_THROW(
         post.RemoveHashTag("#globals",&user),
-        std::logic_error);
+        ExceptionIncorrectNumber);
 }
 
 
@@ -157,5 +157,5 @@ TEST_F(TestPost, TestRemoveLogicError) {
     post.RemovePoll("The capital of Belarus", &user);
     ASSERT_THROW(
         post.RemovePoll("The capital of Belarus", &user),
-        std::logic_error);
+        ExceptionIncorrectNumber);
 }

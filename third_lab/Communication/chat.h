@@ -36,7 +36,7 @@ public:
 
 	BaseChat(const BaseChat &) = delete;
 
-	 void WriteMessage(const std::string &message, User *sender_user);
+	 void WriteMessage(Message* message);
 
 	void RefactorMessage(const std::string &message, int number_of_message, const User *sender_user);
 
@@ -57,7 +57,7 @@ public:
 private:
 	void ChangeMessage(int number_of_message, const User *sender_user, bool is_delete, const std::string &message);
 
-	std::vector<Message> messages_;
+	std::vector<Message*> messages_;
 };
 
 class Chat final : public BaseChat {
