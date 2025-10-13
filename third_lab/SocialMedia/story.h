@@ -38,7 +38,7 @@ public:
 
     void SetStoryInfo(const std::string &info, const User *user);
 
-    void ChangeVisibility(bool is_public);
+    void MakeVisibilityPublic(bool is_public);
 
     std::string GetStoryName();
 
@@ -46,7 +46,7 @@ public:
 
     std::string GetStoryCategory() const;
 
-    bool GetIsForAll() const;
+    bool CheckIsPublic() const;
 
 private:
     std::string name_;

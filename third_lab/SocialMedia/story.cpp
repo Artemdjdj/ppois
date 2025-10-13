@@ -56,7 +56,7 @@ void Story::SetStoryInfo(const std::string &info, const User *user) {
                                      "You can't set name of your stories empty");
 }
 
-void Story::ChangeVisibility(const bool is_public) {
+void Story::MakeVisibilityPublic(const bool is_public) {
     if (is_public) {
         settings_.MakeStoryPublic();
     } else {
@@ -76,6 +76,6 @@ std::string Story::GetStoryCategory() const {
     return this->settings_.GetCategory();
 }
 
-bool Story::GetIsForAll() const {
+bool Story::CheckIsPublic() const {
     return this->settings_.GetTypeOfVisibility();
 }
