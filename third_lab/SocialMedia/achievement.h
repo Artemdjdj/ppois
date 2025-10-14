@@ -2,17 +2,14 @@
 #define ACHIVEMENT_H
 #include <string>
 #include <vector>
+#include "../Utils/project_utils.h"
 
-class Achievement {
+class Achievement : public BaseInfo {
 public:
     Achievement() = default;
 
     Achievement(const std::string &name, const std::string &info,
                 const std::string &reward, const std::string &city);
-
-    void SetName(const std::string &name);
-
-    void SetInfo(const std::string &info);
 
     void AddCondition(const std::string &condition);
 
@@ -24,10 +21,6 @@ public:
 
     void SetCity(const std::string &city);
 
-    std::string GetName() const;
-
-    std::string GetInfo() const;
-
     std::string GetReward() const;
 
     std::string GetCity() const;
@@ -35,8 +28,6 @@ public:
     std::vector<std::string> GetConditions() const;
 
 private:
-    std::string name_;
-    std::string info_;
     std::vector<std::string> conditions_;
     std::string reward_;
     std::string city_;

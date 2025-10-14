@@ -90,4 +90,9 @@ public:
 	explicit ExceptionIncorrectRole(const char *msg);
 };
 
+class ExceptionIncorrectLevelOfInterest final : public Exception {
+public:
+	explicit ExceptionIncorrectLevelOfInterest(const char *msg);
+};
+
 #endif //EXCEPTIONS_H

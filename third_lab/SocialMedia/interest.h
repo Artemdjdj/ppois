@@ -1,8 +1,25 @@
-//
-// Created by Redmi on 13.10.2025.
-//
-
 #ifndef INTEREST_H
 #define INTEREST_H
+#include <string>
+#include "../Utils/project_utils.h"
+
+class Interest : public BaseInfo {
+public:
+    Interest() = default;
+
+    Interest(const std::string &name, const std::string &info, const std::string &duration, int level);
+
+    void SetDuration(const std::string &duration);
+
+    std::string GetDuration(const std::string &duration);
+
+    void SetLevel(int level);
+
+    int GetLevel() const;
+
+private:
+    std::string duration_;
+    int level_;
+};
 
 #endif //INTEREST_H

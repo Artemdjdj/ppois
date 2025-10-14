@@ -4,6 +4,24 @@
 #include <iostream>
 #include "../Exceptions/exceptions.h"
 
+void BaseInfo::SetName(const std::string &name) {
+    DefaultProjectSettings::SetValue(this->name_, name,
+                                               "You can't set empty name!");
+}
+
+void BaseInfo::SetInfo(const std::string &info) {
+    DefaultProjectSettings::SetValue(this->name_, info,
+                                               "You can't set empty info!");
+}
+
+std::string BaseInfo::GetName() const {
+    return this->name_;
+}
+
+std::string BaseInfo::GetInfo() const {
+    return this->info_;
+}
+
 void DefaultProjectSettings::LogFile(const char *msg, const std::string &file_name) {
     try {
         std::ofstream file(file_name, std::ios::app);

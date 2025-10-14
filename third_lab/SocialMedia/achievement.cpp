@@ -5,22 +5,13 @@
 #include "../Utils/project_utils.h"
 
 Achievement::Achievement(const std::string &name, const std::string &info, const std::string &reward, const std::string &city) {
-    SetName(name);
-    SetInfo(info);
+    BaseInfo::SetName(name);
+    BaseInfo::SetInfo(info);
     SetReward(reward);
     SetCity(city);
 }
 
 
-void Achievement::SetName(const std::string &name) {
-    DefaultProjectSettings::SetValue(this->name_, name,
-                                               "You can't set name of your achievement empty");
-}
-
-void Achievement::SetInfo(const std::string &info) {
-    DefaultProjectSettings::SetValue(this->name_, info,
-                                               "You can't set info of your achievement empty");
-}
 
 void Achievement::AddCondition(const std::string &condition) {
     DefaultWorkingWithVector::AddElementToVector(this->conditions_, condition);
@@ -42,14 +33,6 @@ void Achievement::SetReward(const std::string &reward) {
 void Achievement::SetCity(const std::string &city) {
     DefaultProjectSettings::SetValue(this->city_, city,
                                                "You can't city reward of your achievement empty");
-}
-
-std::string Achievement::GetName() const{
-    return this->name_;
-}
-
-std::string Achievement::GetInfo() const {
-    return this->info_;
 }
 
 std::string Achievement::GetReward() const {

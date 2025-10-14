@@ -54,3 +54,6 @@ ExceptionRuntimeError::ExceptionRuntimeError(const char *msg): Exception(msg) {
 
 ExceptionIncorrectRole::ExceptionIncorrectRole(const char *msg): Exception(msg) {
 }
+
+ExceptionIncorrectLevelOfInterest::ExceptionIncorrectLevelOfInterest(const char *msg): Exception(msg) {
+}
