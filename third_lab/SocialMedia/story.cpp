@@ -46,12 +46,12 @@ Story::Story(const std::string &name, const std::string &info, const StorySettin
                             settings_(settings), author_(author) {
 }
 
-void Story::SetStoryName(const std::string &name, const User *user) {
+void Story::SetName(const std::string &name, const User *user) {
     DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_, user, "You can't changing info about story",
                                      "You can't set name of your stories empty");
 }
 
-void Story::SetStoryInfo(const std::string &info, const User *user) {
+void Story::SetInfo(const std::string &info, const User *user) {
     DefaultProjectSettings::SetValueWithAuthor(this->info_, info, this->author_, user, "You can't changing info about story",
                                      "You can't set name of your stories empty");
 }
@@ -64,11 +64,11 @@ void Story::MakeVisibilityPublic(const bool is_public) {
     }
 }
 
-std::string Story::GetStoryName() {
+std::string Story::GetName() {
     return this->name_;
 }
 
-std::string Story::GetStoryInfo() {
+std::string Story::GetInfo() {
     return this->info_;
 }
 

@@ -3,7 +3,7 @@
 #include <string>
 #include "../Utils/project_utils.h"
 
-class Interest : public BaseInfo {
+class Interest : public Info {
 public:
     Interest() = default;
 
@@ -11,7 +11,7 @@ public:
 
     void SetDuration(const std::string &duration);
 
-    std::string GetDuration(const std::string &duration);
+    std::string GetDuration();
 
     void SetLevel(int level);
 

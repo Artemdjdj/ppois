@@ -17,12 +17,12 @@
 
 const std::string main_log_file = "../Logs/main_log.txt";
 
-class BaseInfo {
+class Info {
 protected:
-    BaseInfo() = default;
+    Info() = default;
 
 public:
-    virtual ~BaseInfo() = default;
+    virtual ~Info() = default;
 
     virtual void SetName(const std::string &name);
 
@@ -36,7 +36,6 @@ protected:
     std::string name_;
     std::string info_;
 };
-
 
 class DefaultProjectSettings {
 public:

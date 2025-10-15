@@ -34,15 +34,15 @@ public:
 
     Story(const std::string &name, const std::string &info, const StorySettings &settings, User * author);
 
-    void SetStoryName(const std::string &name, const User * user);
+    void SetName(const std::string &name, const User * user);
 
-    void SetStoryInfo(const std::string &info, const User *user);
+    void SetInfo(const std::string &info, const User *user);
 
     void MakeVisibilityPublic(bool is_public);
 
-    std::string GetStoryName();
+    std::string GetName();
 
-    std::string GetStoryInfo();
+    std::string GetInfo();
 
     std::string GetStoryCategory() const;
 

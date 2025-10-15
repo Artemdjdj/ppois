@@ -13,8 +13,10 @@ public:
 
     void DeleteAll();
 
+    std::vector<std::string> GetBlockedUsersNames() const;
+
 private:
-    std::vector<User *> bad_users_;
+    std::vector<User *> blocked_users_;
 
     int FindUserIndex(const User *user) const;
 };

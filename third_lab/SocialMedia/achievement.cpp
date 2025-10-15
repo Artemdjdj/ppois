@@ -5,12 +5,11 @@
 #include "../Utils/project_utils.h"
 
 Achievement::Achievement(const std::string &name, const std::string &info, const std::string &reward, const std::string &city) {
-    BaseInfo::SetName(name);
-    BaseInfo::SetInfo(info);
+    Info::SetName(name);
+    Info::SetInfo(info);
     SetReward(reward);
     SetCity(city);
 }
-
 
 
 void Achievement::AddCondition(const std::string &condition) {

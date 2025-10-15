@@ -4,21 +4,21 @@
 #include <iostream>
 #include "../Exceptions/exceptions.h"
 
-void BaseInfo::SetName(const std::string &name) {
+void Info::SetName(const std::string &name) {
     DefaultProjectSettings::SetValue(this->name_, name,
                                                "You can't set empty name!");
 }
 
-void BaseInfo::SetInfo(const std::string &info) {
-    DefaultProjectSettings::SetValue(this->name_, info,
+void Info::SetInfo(const std::string &info) {
+    DefaultProjectSettings::SetValue(this->info_, info,
                                                "You can't set empty info!");
 }
 
-std::string BaseInfo::GetName() const {
+std::string Info::GetName() const {
     return this->name_;
 }
 
-std::string BaseInfo::GetInfo() const {
+std::string Info::GetInfo() const {
     return this->info_;
 }
 

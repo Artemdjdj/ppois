@@ -3,13 +3,13 @@
 #include "../User/user.h"
 #include "../Utils/project_utils.h"
 
-class Notification : public BaseInfo {
+class Notification : public Info {
 public:
     Notification(const std::string &name, const std::string &info, User *sender, User *receiver);
 
     void ShowNotification();
 
-    void DonNotShowNotification();
+    void DoNotShowNotification();
 
     std::string GetTime() const;
 

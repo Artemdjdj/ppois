@@ -7,8 +7,9 @@
 #include "reaction.h"
 #include "poll.h"
 #include "../User/user.h"
+#include "../Utils/project_utils.h"
 
-class Post {
+class Post{
 public:
 
 	Post(const std::string &name, const std::string &info, User *author);

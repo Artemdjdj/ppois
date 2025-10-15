@@ -1,8 +1,8 @@
 #include "interest.h"
 
 Interest::Interest(const std::string &name, const std::string &info, const std::string &duration, int level) {
-    BaseInfo::SetName(name);
-    BaseInfo::SetInfo(info);
+    Info::SetName(name);
+    Info::SetInfo(info);
     SetDuration(duration);
     SetLevel(level);
 }
@@ -11,8 +11,8 @@ void Interest::SetDuration(const std::string &duration) {
     this->duration_ = duration;
 }
 
-std::string Interest::GetDuration(const std::string &duration) {
-    return this->duration_ = duration;
+std::string Interest::GetDuration() {
+    return this->duration_ ;
 }
 
 void Interest::SetLevel(int level) {

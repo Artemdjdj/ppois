@@ -5,12 +5,12 @@
 Report::Report(User *sender, User *bad_user): sender_(sender), bad_user_(bad_user) {
 };
 
-void Report::SetCause(const std::string &cause) {
-    DefaultProjectSettings::SetValue(this->cause_, cause, "Cause can't be empty!");
+void Report::SetCause(const std::string &cause, const User* sender) {
+    DefaultProjectSettings::SetValueWithAuthor(this->cause_, cause, this->sender_, sender, "Incorrect sender", "Cause can't be empty");
 }
 
-void Report::SetProof(const std::string &proof) {
-    DefaultProjectSettings::SetValue(this->proof_, proof, "Proof can't be empty!");
+void Report::SetProof(const std::string &proof, const User* sender) {
+    DefaultProjectSettings::SetValueWithAuthor(this->proof_, proof, this->sender_, sender, "Incorrect sender", "Proof can't be empty");
 }
 
 void Report::Approve() {
@@ -31,4 +31,12 @@ User *Report::GetBadUser() const {
 
 bool Report::IsApproved() const {
     return this->is_approved_;
+}
+
+std::string Report::GetCause() const {
+    return this->cause_;
+}
+
+std::string Report::GetProof() const {
+    return this->proof_;
 }

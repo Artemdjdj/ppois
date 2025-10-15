@@ -6,9 +6,9 @@ class Report {
 public:
     Report(User *sender, User *bad_user);
 
-    void SetCause(const std::string &cause);
+    void SetCause(const std::string &cause, const User *sender);
 
-    void SetProof(const std::string &proof);
+    void SetProof(const std::string &proof, const User *sender);
 
     void Approve();
 
@@ -19,6 +19,10 @@ public:
     User *GetBadUser() const;
 
     bool IsApproved() const;
+
+    std::string GetCause() const;
+
+    std::string GetProof() const;
 
 private:
     User *sender_;

@@ -59,39 +59,39 @@ TEST_F(TestStorySettings, TestMakePrivateStory) {
 }
 
 TEST_F(TestStory, TestSetStoryName) {
-    story.SetStoryName("Relax", &user);
-    ASSERT_EQ(story.GetStoryName(), "Relax");
+    story.SetName("Relax", &user);
+    ASSERT_EQ(story.GetName(), "Relax");
 }
 
 TEST_F(TestStory, TestSetStoryNameIncorrectAuthor) {
     ASSERT_THROW(
-        story.SetStoryName("Relax", &user2),
+        story.SetName("Relax", &user2),
         ExceptionAccess
     );
 }
 
 TEST_F(TestStory, TestSetStoryNameIncorrectArgument) {
     ASSERT_THROW(
-        story.SetStoryName("", &user),
+        story.SetName("", &user),
         std::invalid_argument
     );
 }
 
 TEST_F(TestStory, TestSetStoryInfo) {
-    story.SetStoryInfo("Relax", &user);
-    ASSERT_EQ(story.GetStoryInfo(), "Relax");
+    story.SetInfo("Relax", &user);
+    ASSERT_EQ(story.GetInfo(), "Relax");
 }
 
 TEST_F(TestStory, TestSetStoryInfoIncorrectAuthor) {
     ASSERT_THROW(
-        story.SetStoryInfo("Relax", &user2),
+        story.SetInfo("Relax", &user2),
         ExceptionAccess
     );
 }
 
 TEST_F(TestStory, TestSetStoryInfoIncorrectArgument) {
     ASSERT_THROW(
-        story.SetStoryInfo("", &user),
+        story.SetInfo("", &user),
         std::invalid_argument
     );
 }

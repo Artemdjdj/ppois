@@ -4,7 +4,7 @@
 #include <vector>
 #include "../Utils/project_utils.h"
 
-class Achievement : public BaseInfo {
+class Achievement : public Info {
 public:
     Achievement() = default;
 
