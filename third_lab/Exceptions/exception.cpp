@@ -57,3 +57,9 @@ ExceptionIncorrectRole::ExceptionIncorrectRole(const char *msg): Exception(msg) 
 
 ExceptionIncorrectLevelOfInterest::ExceptionIncorrectLevelOfInterest(const char *msg): Exception(msg) {
 }
+
+ExceptionIncorrectRegistration::ExceptionIncorrectRegistration(const char *msg): Exception(msg) {
+}
+
+ExceptionIncorrectAuthorization::ExceptionIncorrectAuthorization(const char *msg): Exception(msg) {
+}

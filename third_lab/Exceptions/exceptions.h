@@ -95,4 +95,14 @@ public:
 	explicit ExceptionIncorrectLevelOfInterest(const char *msg);
 };
 
+class ExceptionIncorrectRegistration final : public Exception {
+public:
+	explicit ExceptionIncorrectRegistration(const char *msg);
+};
+
+class ExceptionIncorrectAuthorization final : public Exception {
+public:
+	explicit ExceptionIncorrectAuthorization(const char *msg);
+};
+
 #endif //EXCEPTIONS_H

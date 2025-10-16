@@ -1,6 +1,6 @@
 #include <iostream>
 #include <sqlite3.h>
-#include "WorkingWithPassword/hide_password.h"
+#include "WorkingWithUser/working_with_password.h"
 
 int main() {
 	const std::string my_pass = HidePassword::ReadPassword();

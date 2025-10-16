@@ -71,12 +71,15 @@ private:
 	std::string location_;
 	std::string biography_;
 	std::string gender_;
+	std::string birthday_;
+	std::string marital_status_;
 	int age_;
 	std::vector<std::string> interests_;
 	std::map<std::string, Group> groups_;
 	std::map<std::string, Chat> chats_;
 	GeneratorId generator_id_for_groups_;
 	GeneratorId generator_id_for_chats_;
+
 };
 
 #endif //PROFILE_H

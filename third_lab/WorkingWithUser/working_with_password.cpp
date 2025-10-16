@@ -1,4 +1,4 @@
-#include "hide_password.h"
+#include "working_with_password.h"
 #include <windows.h>
 #include <conio.h>
 #include <iostream>
@@ -31,3 +31,8 @@ std::string HidePassword::ReadPassword() {
 
 	return password;
 }
+
+
+
+
+
