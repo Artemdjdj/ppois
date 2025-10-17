@@ -3,7 +3,6 @@
 #include "user_utils.h"
 #include "../Utils/project_utils.h"
 #include "exceptions.h"
-#include "../Utils/project_utils.h"
 
 User::User(const std::string &username, const std::string &password) {
 	SetUserName(username);

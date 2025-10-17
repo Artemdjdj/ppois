@@ -9,6 +9,8 @@ public:
 	static std::string ReadPassword();
 };
 
+
+
 class Authentication {
 };
 

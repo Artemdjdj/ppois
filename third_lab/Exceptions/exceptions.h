@@ -105,4 +105,14 @@ public:
 	explicit ExceptionIncorrectAuthorization(const char *msg);
 };
 
+class ExceptionIncorrectYear final : public Exception {
+public:
+	explicit ExceptionIncorrectYear(const char *msg);
+};
+
+class ExceptionIncorrectTime final : public Exception {
+public:
+	explicit ExceptionIncorrectTime(const char *msg);
+};
+
 #endif //EXCEPTIONS_H

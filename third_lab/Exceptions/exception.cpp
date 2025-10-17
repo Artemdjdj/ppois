@@ -63,3 +63,9 @@ ExceptionIncorrectRegistration::ExceptionIncorrectRegistration(const char *msg):
 
 ExceptionIncorrectAuthorization::ExceptionIncorrectAuthorization(const char *msg): Exception(msg) {
 }
+
+ExceptionIncorrectYear::ExceptionIncorrectYear(const char *msg): Exception(msg) {
+}
+
+ExceptionIncorrectTime::ExceptionIncorrectTime(const char *msg): Exception(msg) {
+}

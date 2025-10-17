@@ -12,10 +12,10 @@ void Interest::SetDuration(const std::string &duration) {
 }
 
 std::string Interest::GetDuration() {
-    return this->duration_ ;
+    return this->duration_;
 }
 
-void Interest::SetLevel(int level) {
+void Interest::SetLevel(const int level) {
     if (level < 1 or level > 10) {
         throw ExceptionIncorrectLevelOfInterest("Incorrect level of interest");
     }
@@ -24,4 +24,296 @@ void Interest::SetLevel(int level) {
 
 int Interest::GetLevel() const {
     return this->level_;
+}
+
+Book::Book(const std::string &title, const std::string &genre, int reader_age) {
+    SetTitle(title);
+    SetGenre(genre);
+    SetReaderAge(reader_age);
+}
+
+void Book::SetTitle(const std::string &title) {
+    DefaultProjectSettings::SetValue(this->title_, title, "The title can't be empty");
+}
+
+void Book::SetGenre(const std::string &genre) {
+    DefaultProjectSettings::SetValue(this->genre_, genre, "The genre can't be empty");
+}
+
+void Book::SetCountOfPages(const int count_of_pages) {
+    if (count_of_pages < MIN_COUNT_OF_PAGES) {
+        throw ExceptionIncorrectNumber("The count of pages cant't be so small");
+    }
+    if (count_of_pages > MAX_COUNT_OF_PAGES) {
+        throw ExceptionIncorrectNumber("The count of pages can't be so big");
+    }
+    this->count_of_pages_ = count_of_pages;
+}
+
+void Book::SetInfoAboutAuthors(const std::string &base_info) {
+    DefaultProjectSettings::SetValue(this->authors_, base_info, "The info about author can't be empty");
+}
+
+void Book::SetPublicationYear(const int publication_year) {
+    if (publication_year > MAX_YEAR) {
+        throw ExceptionIncorrectYear("The book can't be published in this year");
+    }
+    this->publication_year_ = publication_year;
+}
+
+void Book::SetReaderAge(const int reader_age) {
+    if (reader_age < MIN_READER_YEAR) {
+        throw ExceptionIncorrectYear("The reader year can't be so small");
+    }
+    if (reader_age > MAX_COUNT_OF_PAGES) {
+        throw ExceptionIncorrectYear("The reader year can't be so big");
+    }
+    this->reader_age_ = reader_age;
+}
+
+std::string Book::GetTitle() const {
+    return this->title_;
+}
+
+std::string Book::GetGenre() const {
+    return this->genre_;
+}
+
+std::string Book::GetInfoAboutAuthors() const {
+    return this->authors_;
+}
+
+std::optional<int> Book::GetCountOfPages() const {
+    if (this->count_of_pages_ == 0) {
+        return std::nullopt;
+    }
+    return this->count_of_pages_;
+}
+
+std::optional<int> Book::GetPublicationYear() const {
+    if (this->publication_year_ == 0) {
+        return std::nullopt;
+    }
+    return this->publication_year_;
+}
+
+std::optional<int> Book::GetReaderAge() const {
+    if (this->reader_age_ == 0) {
+        return std::nullopt;
+    }
+    return this->reader_age_;
+}
+
+
+Song::Song(const std::vector<std::string> &performers, const std::string &title, const std::string &language,
+           const int year,
+           const double time) : performers_(performers) {
+    SetTitle(title);
+    SetLanguage(language);
+    SetYear(year);
+    SetTime(time);
+};
+
+void Song::AddPerformer(const std::string &performer) {
+    DefaultWorkingWithVector::AddElementToVector(this->performers_, performer);
+}
+
+void Song::DeletePerformer(const int number_of_performer) {
+    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->performers_, number_of_performer);
+}
+
+void Song::SetTitle(const std::string &title) {
+    DefaultProjectSettings::SetValue(this->title_, title, "The title of the song can't be empty");
+}
+
+void Song::SetLanguage(const std::string &language) {
+    DefaultProjectSettings::SetValue(this->language_, language, "The language of the song can't be empty");
+}
+
+void Song::SetYear(const int year) {
+    if (year < YEAR_OF_FIRST_SONG) {
+        throw ExceptionIncorrectYear("The song can't be made before first song");
+    }
+    if (year > MAX_YEAR) {
+        throw ExceptionIncorrectYear("The song can't be made in this year");
+    }
+    this->year_ = year;
+}
+
+void Song::SetTime(const double time) {
+    if (time < MIN_LENGTH_OF_SONG) {
+        throw ExceptionIncorrectYear("The song can't be so long");
+    }
+    if (time > MAX_LENGTH_OF_SONG) {
+        throw ExceptionIncorrectYear("The song can't be so short");
+    }
+    this->time_ = time;
+}
+
+std::vector<std::string> Song::GetPerformers() const {
+    return this->performers_;
+}
+
+std::string Song::GetTitle() const {
+    return this->title_;
+}
+
+std::string Song::GetLanguage() const {
+    return this->language_;
+}
+
+std::optional<int> Song::GetYear() const {
+    if (this->year_ == 0) {
+        return std::nullopt;
+    }
+    return this->year_;
+}
+
+std::optional<double> Song::GetTime() const {
+    if (this->time_ == 0) {
+        return std::nullopt;
+    }
+    return this->time_;
+}
+
+void Album::AddSong(const Song &song) {
+    DefaultWorkingWithVector::AddElementToVector(this->songs_, song);
+}
+
+void Album::DeleteSong(const int number_of_song) {
+    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->songs_, number_of_song);
+}
+
+std::vector<Song> Album::GetAlbum() const {
+    return this->songs_;
+}
+
+Film::Film(const std::string &title, const std::string &director, const std::string &genre,
+           const std::vector<std::string> &actors) : actors_(actors) {
+    SetTitle(title);
+    SetDirector(director);
+    SetGenre(genre);
+}
+
+void Film::SetTitle(const std::string &title) {
+    DefaultProjectSettings::SetValue(this->title_, title, "The title of film can't be empty");
+}
+
+void Film::SetDirector(const std::string &director) {
+    DefaultProjectSettings::SetValue(this->director_, director, "The director of film can't be empty");
+}
+
+void Film::SetGenre(const std::string &genre) {
+    DefaultProjectSettings::SetValue(this->genre_, genre, "The genre of film can't be empty");
+}
+
+void Film::SetPlot(const std::string &plot) {
+    DefaultProjectSettings::SetValue(this->plot_, plot, "The plot of film can't be empty");
+}
+
+void Film::SetTime(const double time) {
+    if (time < MIN_LENGTH_OF_FILM) {
+        throw ExceptionIncorrectTime("The length of film can't be so short");
+    }
+    if (time > MAX_LENGTH_OF_FILM) {
+        throw ExceptionIncorrectTime("The length of film can't be so long");
+    }
+    this->time_ = time;
+}
+
+void Film::SetRating(const int rating) {
+    if (rating < 1) {
+        throw ExceptionIncorrectNumber("The rating can't be so smaller then zero");
+    }
+    if (rating > RATING) {
+        throw ExceptionIncorrectNumber("The rating can't so big");
+    }
+    this->rating_ = rating;
+}
+
+void Film::SetOscar() {
+    this->is_oscar_ = true;
+}
+
+void Film::TakeOscar() {
+    this->is_oscar_ = false;
+}
+
+void Film::UseComputerGraphic() {
+    this->is_computer_graphic_ = true;
+}
+
+void Film::DoNotUseComputerGraphic() {
+    this->is_computer_graphic_ = false;
+}
+
+void Film::SetYear(const int year) {
+    if (year < FIRST_FILM) {
+        throw ExceptionIncorrectTime("The year of producing can't be so small");
+    }
+    if (year > MAX_YEAR) {
+        throw ExceptionIncorrectYear("The film can't be made in this year");
+    }
+    this->year_ = year;
+}
+
+void Film::AddActor(const std::string &actor) {
+    DefaultWorkingWithVector::AddElementToVector(this->actors_, actor);
+}
+
+void Film::DeleteActor(int number_of_actor) {
+    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->actors_, number_of_actor);
+}
+
+std::string Film::GetTitle() const {
+    return this->title_;
+}
+
+std::string Film::GetDirector() const {
+    return this->director_;
+}
+
+std::string Film::GetGenre() const {
+    return this->genre_;
+}
+
+std::string Film::GetPlot() const {
+    return this->plot_;
+}
+
+std::optional<double> Film::GetTime() const {
+    if (this->time_ == 0) {
+        return std::nullopt;
+    }
+    return this->time_;
+}
+
+std::optional<int> Film::GetRating() const {
+    if (this->rating_ == 0) {
+        return std::nullopt;
+    }
+    return this->rating_;
+}
+
+bool Film::GetIsOscar() const {
+    return this->is_oscar_;
+}
+
+bool Film::GetIsComputerGraphic() const {
+    return this->is_computer_graphic_;
+}
+
+std::optional<int> Film::GetYear() const {
+    if (this->year_ == 0) {
+        return std::nullopt;
+    }
+    return this->year_;
+}
+
+std::vector<std::string> Film::GetActors() const {
+    return this->actors_;
+}
+
+bool Film::CheckIsFilmGood() const {
+    return this->rating_ > 6;
 }

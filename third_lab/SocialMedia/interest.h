@@ -4,7 +4,7 @@
 #include <vector>
 #include "../Utils/project_utils.h"
 
-class Interest : public Info {
+class Interest final : public Info {
 public:
     Interest() = default;
 
@@ -26,17 +26,17 @@ private:
 
 class Book {
 public:
-    Book();
+    Book() = default;
 
     Book(const std::string &title, const std::string &genre, int reader_age);
 
-    virtual ~Book();
+    virtual ~Book() = default;
 
     void SetTitle(const std::string &title);
 
     void SetGenre(const std::string &genre);
 
-    virtual void SetInfoAboutAuthor(const std::string &info) = 0;
+    void SetInfoAboutAuthors(const std::string &info);
 
     void SetCountOfPages(int count_of_pages);
 
@@ -48,56 +48,28 @@ public:
 
     std::string GetGenre() const;
 
-    virtual std::string GetInfoAboutAuthors() const = 0;
+    std::string GetInfoAboutAuthors() const;
 
-    int GetCountOfPages() const;
+    std::optional<int> GetCountOfPages() const;
 
-    int GetPublicationYear() const;
+    std::optional<int> GetPublicationYear() const;
 
-    int GetReaderAge() const;
+    std::optional<int> GetReaderAge() const;
 
 protected:
     std::string title_;
     std::string genre_;
-    std::string info_about_authors_;
     int count_of_pages_{0};
     int publication_year_{0};
     int reader_age_{0};
+    std::string authors_;
 };
 
-class BookWithOneAuthor final : public Book {
-public:
-    BookWithOneAuthor(const std::string &title, const std::string &genre, int reader_age,
-                      const std::string &base_info) : Book(title, genre, reader_age), author_(base_info) {
-    };
-
-    void SetInfoAboutAuthor(const std::string &base_info) override;
-
-    std::string GetInfoAboutAuthors() const override;
-
-private:
-    std::string author_;
-};
-
-
-class BookWithAnyAuthors final : public Book {
-    BookWithAnyAuthors(const std::string &title, const std::string &genre, int reader_age,
-                       const std::vector<std::string> &base_info) : Book(title, genre, reader_age),
-                                                                    authors_(base_info) {
-    };
-
-    void SetInfoAboutAuthor(const std::string &base_info) override;
-
-    std::string GetInfoAboutAuthors() const override;
-
-private:
-    std::vector<std::string> authors_;
-};
 
 class Song {
     Song() = default;
 
-    Song(const std::vector<std::string> &performer, const std::string &title, const std::string &language, int year,
+    Song(const std::vector<std::string> &performers, const std::string &title, const std::string &language, int year,
          double time);
 
     void AddPerformer(const std::string &performer);
@@ -136,7 +108,9 @@ public:
 
     void AddSong(const Song &song);
 
-    void DeleteSong(int number_of_song);
+    void DeleteSong(const int number_of_song);
+
+    std::vector<Song> GetAlbum() const;
 
 private:
     std::vector<Song> songs_;
@@ -158,9 +132,9 @@ public:
 
     void SetPlot(const std::string &plot);
 
-    void SetTime(double time);
+    void SetTime(const double time);
 
-    void SetRating(int rating);
+    void SetRating(const int rating);
 
     void SetOscar();
 
@@ -170,7 +144,7 @@ public:
 
     void DoNotUseComputerGraphic();
 
-    void SetYear();
+    void SetYear(const int year);
 
     void AddActor(const std::string &actor);
 
@@ -184,7 +158,7 @@ public:
 
     std::string GetPlot() const;
 
-    std::optional<double> GetTIme() const;
+    std::optional<double> GetTime() const;
 
     std::optional<int> GetRating() const;
 
@@ -196,14 +170,14 @@ public:
 
     std::vector<std::string> GetActors() const;
 
-    bool CheckIsFilmInteresting();
+    bool CheckIsFilmGood() const;
 
 private:
     std::string title_;
     std::string director_;
     std::string genre_;
     std::string plot_;
-    double time{0.0};
+    double time_{0.0};
     int rating_{0};
     bool is_oscar_{false};
     bool is_computer_graphic_{false};
