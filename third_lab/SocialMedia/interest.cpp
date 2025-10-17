@@ -142,10 +142,10 @@ void Song::SetYear(const int year) {
 
 void Song::SetTime(const double time) {
     if (time < MIN_LENGTH_OF_SONG) {
-        throw ExceptionIncorrectYear("The song can't be so long");
+        throw ExceptionIncorrectTime("The song can't be so long");
     }
     if (time > MAX_LENGTH_OF_SONG) {
-        throw ExceptionIncorrectYear("The song can't be so short");
+        throw ExceptionIncorrectTime("The song can't be so short");
     }
     this->time_ = time;
 }

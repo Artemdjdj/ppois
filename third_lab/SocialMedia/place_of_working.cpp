@@ -32,6 +32,12 @@ void PlaceOfWorking::SetEndYear(int end_year) {
     if (end_year < MIN_YEAR or end_year > MAX_YEAR) {
         throw ExceptionIncorrectYear("This year is not allowed");
     }
+    if (this->start_year_ == 0) {
+        throw std::logic_error("You should write start year before end year");
+    }
+    if (end_year< this->start_year_) {
+        throw ExceptionIncorrectYear("End year can't be before start year");
+    }
     this->end_year_ = end_year;
 }
 

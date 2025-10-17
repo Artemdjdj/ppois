@@ -67,6 +67,7 @@ protected:
 
 
 class Song {
+public:
     Song() = default;
 
     Song(const std::vector<std::string> &performers, const std::string &title, const std::string &language, int year,
