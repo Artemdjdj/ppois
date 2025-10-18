@@ -249,7 +249,7 @@ void Film::DoNotUseComputerGraphic() {
 
 void Film::SetYear(const int year) {
     if (year < FIRST_FILM) {
-        throw ExceptionIncorrectTime("The year of producing can't be so small");
+        throw ExceptionIncorrectYear("The year of producing can't be so small");
     }
     if (year > MAX_YEAR) {
         throw ExceptionIncorrectYear("The film can't be made in this year");
