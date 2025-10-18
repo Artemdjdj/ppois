@@ -248,7 +248,3 @@ TEST_F(TestChatsMessageAndGroups, TestDeletingAllMessagesGroup) {
 	group.DeleteAllMessages();
 	ASSERT_EQ(group.CountMessages(), 0);
 }
-
-
-
-

@@ -1,7 +1,5 @@
 #include "user_utils.h"
-#include <regex>
 #include "../Exceptions/exceptions.h"
-#include "../Utils/project_utils.h"
 
 void DataSyntax::CheckUserNameForSyntaxError(const std::string &username, const std::string &error_message, std::string& result) {
 	if (const std::regex rx(R"(^@[a-zA-Z0-9\_\-]{3,17}$)"); !std::regex_match(username, rx)) {

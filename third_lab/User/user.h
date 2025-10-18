@@ -1,14 +1,19 @@
 #ifndef USER_H
 #define USER_H
 #include <string>
+#include <memory>
+
+
+class Profile;
 
 class User {
 public:
-	User(const std::string &username, const std::string &password);
-
-	User(const User &other);
 
 	User() = default;
+
+	User(const std::string &username, const std::string &password, const std::string & name="");
+
+	User(const User &other);
 
 	bool operator==(const User &other) const;
 
@@ -26,6 +31,8 @@ public:
 
 	void SetPassword(const std::string &password);
 
+	void CreateProfile();
+
 	std::string GetUserName() const;
 
 	std::string GetName() const;
@@ -36,6 +43,8 @@ public:
 
 	std::string GetPhoneNumber() const;
 
+	Profile* GetProfile() const;
+
 private:
 	std::string username_;
 	std::string name_;
@@ -43,6 +52,74 @@ private:
 	std::string email_;
 	std::string phone_number_;
 	std::string password_;
+	std::unique_ptr<Profile> profile_;
+};
+
+class Profile {
+public:
+
+	explicit Profile(User &user, const std::string &location="", const std::string &biography="");
+
+	void SetUserUserName(const std::string &username);
+
+	void SetUserName(const std::string &name);
+
+	void SetUserSurname(const std::string &surname);
+
+	void SetUserEmail(const std::string &email);
+
+	void SetUserPhoneNumber(const std::string &phone_number);
+
+	void SetUserPassword(const std::string &password);
+
+	void SetLocation(const std::string &location);
+
+	void SetBiography(const std::string &biography);
+
+	void SetGender(const std::string &gender);
+
+	void SetAge(int age);
+
+	std::string GetUserUserName() const;
+
+	std::string GetUserName() const;
+
+	std::string GetUserSurname() const;
+
+	std::string GetUserEmail() const;
+
+	std::string GetUserPhoneNumber() const;
+
+	std::string GetGender() const;
+
+	std::string GetLocation() const;
+
+	std::string GetBiography() const;
+
+	int GetAge() const;
+
+	void AddReaction(const std::string &type_of_reaction);
+
+	void RemoveReaction(const std::string &date_time);
+
+	void RemoveAllReactions();
+
+	void CreateNewChat(User *user2);
+
+	void RemoveChat(const std::string &chat_id);
+
+	void CreateNewGroup(const std::string &name_of_group);
+
+	void RemoveGroup(const std::string &group_id);
+
+private:
+	User &user_;
+	std::string location_;
+	std::string biography_;
+	std::string gender_;
+	std::string birthday_;
+	std::string marital_status_;
+	int age_;
 };
 
 

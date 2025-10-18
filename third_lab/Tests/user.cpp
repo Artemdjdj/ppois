@@ -4,11 +4,8 @@
 #include <gtest/gtest.h>
 
 class TestUser : public ::testing::Test {
-	public:
-	void SetUp() override {
-		user = User("@Artemdjdj", "554shflsd34434");
-	}
-	User user;
+public:
+	User user = User("@Artemdjdj", "554shflsd34434");
 };
 
 TEST_F(TestUser, TestSetName) {

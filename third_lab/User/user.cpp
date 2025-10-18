@@ -4,7 +4,8 @@
 #include "../Utils/project_utils.h"
 #include "exceptions.h"
 
-User::User(const std::string &username, const std::string &password) {
+
+User::User(const std::string &username, const std::string &password, const std::string& name):name_(name) {
 	SetUserName(username);
 	SetPassword(password);
 }
@@ -62,6 +63,12 @@ void User::SetPassword(const std::string &password) {
 	DataSyntax::CheckPasswordForSyntaxError(password, "Your password is not valid", this->password_);
 }
 
+void User::CreateProfile() {
+	if (!this->profile_) {
+		this->profile_ = std::make_unique<Profile>(*this);
+	}
+}
+
 std::string User::GetUserName() const{
 	return this->username_;
 }
@@ -81,3 +88,45 @@ std::string User::GetEmail() const{
 std::string User::GetPhoneNumber() const{
 	return this->phone_number_;
 }
+
+Profile* User::GetProfile() const {
+	return this->profile_.get();
+}
+
+Profile::Profile(User &user, const std::string &location, const std::string &biography):user_(user) {
+	SetLocation(location);
+	SetBiography(biography);
+}
+
+void Profile::SetLocation(const std::string &location) {
+	this->location_ = location;
+}
+
+void Profile::SetBiography(const std::string &biography) {
+	this->biography_ = biography;
+}
+
+void Profile::SetGender(const std::string &gender) {
+	this->gender_ = gender;
+}
+
+void Profile::SetAge(const int age) {
+	this->age_ = age;
+}
+
+std::string Profile::GetGender() const {
+	return this->gender_;
+}
+
+std::string Profile::GetLocation() const {
+	return this->location_;
+}
+
+std::string Profile::GetBiography() const {
+	return this->biography_;
+}
+
+int Profile::GetAge() const {
+	return this->age_;
+}
+

@@ -126,13 +126,4 @@ public:
     }
 };
 
-class Menu {
-public:
-    static void PrintMainMenu();
-
-    static void PrintHelp();
-
-    static void PrintVersion();
-};
-
 #endif

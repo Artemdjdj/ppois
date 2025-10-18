@@ -23,4 +23,4 @@ public:
 	static void CheckHashTagForSyntaxError(const std::string &hash_tag, const std::string &error_message,
 											std::string &result);
 };
-#endif //UTILS_H
+#endif //USER_UTILS_H

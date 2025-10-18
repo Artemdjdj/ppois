@@ -99,7 +99,4 @@ private:
 	int CheckUserExist(const std::string &username) const;
 };
 
-
-
-
 #endif //CHAT_H
