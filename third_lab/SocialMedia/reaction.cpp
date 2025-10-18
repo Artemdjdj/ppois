@@ -6,18 +6,18 @@ Reaction::Reaction() {
 	// author_ = nullptr;
 }
 
-Reaction::Reaction(const std::string &type_of_reaction, User * author) {
+Reaction::Reaction(const std::string &type_of_reaction, const std::shared_ptr<User> &author) {
 	SetReaction(type_of_reaction, author);
 }
 
-void Reaction::SetReaction(std::string type_of_reaction, User * author) {
+void Reaction::SetReaction(std::string type_of_reaction, const std::shared_ptr<User> &author) {
 	DefaultProjectSettings::ToLower(type_of_reaction);
 	if (!DefaultProjectSettings::CheckIsStatementInAllowed(type_of_reaction, reactions)) {
 		throw ExceptionIncorrectReaction("This reaction is not allowed!");
 	}
 	this->type_of_reaction_ = type_of_reaction;
 	this->date_time_ = DefaultProjectSettings::GetRealTime();
-	author_ = author;
+	this->author_ = author;
 }
 
 std::string Reaction::GetReaction() const {
@@ -25,6 +25,9 @@ std::string Reaction::GetReaction() const {
 }
 
 std::string Reaction::SeeAuthor() const {
-	return  this->author_->GetUserName();
+	if (!this->author_.lock()) {
+		throw ExceptionAccess("Try to add author!");
+	}
+	return  this->author_.lock()->GetUserName();
 }
 

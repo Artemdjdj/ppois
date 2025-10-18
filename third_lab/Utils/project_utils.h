@@ -22,6 +22,7 @@
 #include <vector>
 #include <optional>
 #include <../User/user.h>
+#include <functional>
 #include "../Exceptions/exceptions.h"
 #include <stdexcept>
 
@@ -58,8 +59,8 @@ public:
 
     static void ToLower(std::string &str);
 
-    static void SetValueWithAuthor(std::string &property, const std::string &value, const User *user,
-                                   const User *user_checked,
+    static void SetValueWithAuthor(std::string &property, const std::string &value, const std::shared_ptr<User>& user,
+                                   const std::shared_ptr<User>& user_checked,
                                    const std::string &error_incorrect_author,
                                    const std::string &error_invalid_value);
 
@@ -75,6 +76,14 @@ public:
     template<typename T>
     static void AddElementToVector(std::vector<T> & vec, const T & val) {
         vec.push_back(val);
+    }
+
+    template<typename T>
+    static void AddElementToVector(std::vector<std::weak_ptr<T>> &vec, const std::shared_ptr<T> &element) {
+        if (!element) {
+            throw std::invalid_argument("Invalid user pointer!");
+        }
+        vec.push_back(element);
     }
 
     static void AddElementToVector(std::vector<std::string> &vec, const std::string &element) {
@@ -123,6 +132,11 @@ public:
     template<typename T>
     static void DeleteAll(std::vector<T> &vec) {
         vec.clear();
+    }
+
+    template<typename T>
+    static void DeleteUnUsedWeakPtrs(std::vector<std::weak_ptr<T>>& vec) {
+        std::erase_if(vec, std::mem_fn(&std::weak_ptr<T>::expired));
     }
 };
 

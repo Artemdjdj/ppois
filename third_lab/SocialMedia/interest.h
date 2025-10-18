@@ -20,7 +20,7 @@ public:
 
 private:
     std::string duration_;
-    int level_{};
+    int level_{0};
 };
 
 

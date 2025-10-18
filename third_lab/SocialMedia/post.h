@@ -12,43 +12,43 @@
 class Post{
 public:
 
-	Post(const std::string &name, const std::string &info, User *author);
+	Post(const std::string &name, const std::string &info, const std::shared_ptr<User> &author);
 
-	void SetName(const std::string &name, const User *author);
+	void SetName(const std::string &name, const std::shared_ptr<User> &author);
 
-	void SetInfo(const std::string &info, const User *author);
+	void SetInfo(const std::string &info, const std::shared_ptr<User> &author);
 
 	std::string GetName() const;
 
 	std::string GetInfo() const;
 
-	void AddReaction(Reaction *reaction);
+	void AddReaction(const std::shared_ptr<Reaction> &reaction);
 
 	void RemoveReaction(const std::string &username);
 
-	Reaction* SeeReactionByAuthor(const std::string &username) const;
+	std::shared_ptr<Reaction> SeeReactionByAuthor(const std::string &username) const;
 
-	void AddHashTag(HashTag *hash_tag);
+	void AddHashTag(const std::shared_ptr<HashTag> &hash_tag);
 
-	void RemoveHashTag(const std::string &hash_tag, const User *author);
+	void RemoveHashTag(const std::string &hash_tag, const std::shared_ptr<User> &author);
 
-	void AddPoll(Poll *poll, const User *author);
+	void AddPoll(const std::shared_ptr<Poll> &poll, const  std::shared_ptr<User> &author);
 
-	void RemovePoll(const std::string &question, const User *author);
+	void RemovePoll(const std::string &question, const std::shared_ptr<User> &author);
 
 private:
 	std::string name_;
 	std::string info_;
-	std::map<std::string, Reaction*> reactions_;
-	std::vector<HashTag*> hash_tags_;
-	std::vector<Poll*> polls_;
-	User *author_;
+	std::map<std::string, std::shared_ptr<Reaction>> reactions_;
+	std::vector<std::shared_ptr<HashTag>> hash_tags_;
+	std::vector<std::shared_ptr<Poll>> polls_;
+	std::weak_ptr<User> author_;
 
 	int CheckHashTagUsed(const std::string &check_hash_tag) const;
 
 	int CheckPollUsed(const std::string &check_question) const;
 
-	bool CheckPollUsedInList(const Poll *check_poll) const;
+	bool CheckPollUsedInList(const std::shared_ptr<Poll> &check_poll) const;
 };
 
 #endif //POST_H

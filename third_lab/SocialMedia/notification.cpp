@@ -1,8 +1,8 @@
 #include "notification.h"
 
 
-Notification::Notification(const std::string &name, const std::string &info, User *sender,
-                           User *receiver): sender_(sender), receiver_(receiver) {
+Notification::Notification(const std::string &name, const std::string &info, const std::shared_ptr<User> &sender,
+                           const std::shared_ptr<User> &receiver): sender_(sender), receiver_(receiver) {
     Info::SetName(name);
     Info::SetInfo(info);
     this->time_ = DefaultProjectSettings::GetRealTime();
@@ -20,12 +20,12 @@ std::string Notification::GetTime() const {
     return this->time_;
 }
 
-User *Notification::GetSender() const {
-    return this->sender_;
+std::shared_ptr<User> Notification::GetSender() const {
+    return this->sender_.lock();
 }
 
-User *Notification::GetReceiver() const {
-    return this->receiver_;
+std::shared_ptr<User> Notification::GetReceiver() const {
+    return this->receiver_.lock();
 }
 
 bool Notification::IsShow() const {

@@ -7,17 +7,17 @@ class BlackList {
 public:
     BlackList() = default;
 
-    void AddUser(User *user);
+    void AddUser(const std::shared_ptr<User> &user);
 
-    void DeleteUser(const User *user);
+    void DeleteUser(const std::shared_ptr<User> &user);
 
     void DeleteAll();
 
-    std::vector<std::string> GetBlockedUsersNames() const;
+    std::vector<std::string> GetBlockedUsersNames();
 
 private:
-    std::vector<User *> blocked_users_;
+    std::vector<std::weak_ptr<User>> blocked_users_;
 
-    int FindUserIndex(const User *user) const;
+    int FindUserIndex(const std::shared_ptr<User> &user);
 };
 #endif //BLACK_LIST_H

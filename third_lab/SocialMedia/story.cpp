@@ -42,21 +42,25 @@ bool StorySettings::GetTypeOfVisibility() const {
 }
 
 Story::Story(const std::string &name, const std::string &info, const StorySettings &settings,
-             User *author): name_(name), info_(info),
+             const std::shared_ptr<User> &author): name_(name), info_(info),
                             settings_(settings), author_(author) {
 }
 
-void Story::SetName(const std::string &name, const User *user) {
-    DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_, user, "You can't changing info about story",
+void Story::SetName(const std::string &name, const std::shared_ptr<User> &user) {
+    DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_.lock(), user, "You can't changing info about story",
                                      "You can't set name of your stories empty");
 }
 
-void Story::SetInfo(const std::string &info, const User *user) {
-    DefaultProjectSettings::SetValueWithAuthor(this->info_, info, this->author_, user, "You can't changing info about story",
+void Story::SetInfo(const std::string &info, const std::shared_ptr<User> &user) {
+    DefaultProjectSettings::SetValueWithAuthor(this->info_, info, this->author_.lock(), user, "You can't changing info about story",
                                      "You can't set name of your stories empty");
 }
 
-void Story::MakeVisibilityPublic(const bool is_public) {
+void Story::MakeVisibilityPublic(const bool is_public, const std::shared_ptr<User> & user) {
+    if (const auto author = author_.lock(); !author || author != user) {
+        throw std::invalid_argument("You can't change visibility of this story");
+    }
+
     if (is_public) {
         settings_.MakeStoryPublic();
     } else {

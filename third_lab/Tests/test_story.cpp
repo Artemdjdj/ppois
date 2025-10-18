@@ -19,10 +19,10 @@ public:
     void SetUp() override {
     }
 
-    User user = User("@Artemdjdj", "252352353");
-    User user2 = User("@Artemdjdjs", "252352353ff");
+    std::shared_ptr<User>user = std::make_shared<User>("@Artemdjdj", "252352353");
+    std::shared_ptr<User>user2 = std::make_shared<User>("@Artemdjdjs", "252352353ff");
     StorySettings settings = StorySettings("default", true);
-    Story story = Story("My day", "Some info", settings, &user);
+    Story story = Story("My day", "Some info", settings, user);
 };
 
 TEST_F(TestStorySettings, TestSetCategory) {
@@ -59,50 +59,50 @@ TEST_F(TestStorySettings, TestMakePrivateStory) {
 }
 
 TEST_F(TestStory, TestSetStoryName) {
-    story.SetName("Relax", &user);
+    story.SetName("Relax", user);
     ASSERT_EQ(story.GetName(), "Relax");
 }
 
 TEST_F(TestStory, TestSetStoryNameIncorrectAuthor) {
     ASSERT_THROW(
-        story.SetName("Relax", &user2),
+        story.SetName("Relax", user2),
         ExceptionAccess
     );
 }
 
 TEST_F(TestStory, TestSetStoryNameIncorrectArgument) {
     ASSERT_THROW(
-        story.SetName("", &user),
+        story.SetName("", user),
         std::invalid_argument
     );
 }
 
 TEST_F(TestStory, TestSetStoryInfo) {
-    story.SetInfo("Relax", &user);
+    story.SetInfo("Relax", user);
     ASSERT_EQ(story.GetInfo(), "Relax");
 }
 
 TEST_F(TestStory, TestSetStoryInfoIncorrectAuthor) {
     ASSERT_THROW(
-        story.SetInfo("Relax", &user2),
+        story.SetInfo("Relax", user2),
         ExceptionAccess
     );
 }
 
 TEST_F(TestStory, TestSetStoryInfoIncorrectArgument) {
     ASSERT_THROW(
-        story.SetInfo("", &user),
+        story.SetInfo("", user),
         std::invalid_argument
     );
 }
 
 TEST_F(TestStory, TestChangeVisibilityPublic) {
-    story.MakeVisibilityPublic(true);
+    story.MakeVisibilityPublic(true, user);
     ASSERT_TRUE(story.CheckIsPublic());
 }
 
 TEST_F(TestStory, TestChangeVisibilitPrivate) {
-    story.MakeVisibilityPublic(false);
+    story.MakeVisibilityPublic(false, user);
     ASSERT_FALSE(story.CheckIsPublic());
 }
 

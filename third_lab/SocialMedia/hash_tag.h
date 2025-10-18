@@ -7,9 +7,9 @@ class HashTag {
 public:
 	HashTag();
 
-	explicit HashTag(const std::string &hash_tag, User* author);
+	explicit HashTag(const std::string &hash_tag, const std::shared_ptr<User> &author);
 
-	void SetHashTag(const std::string &hash_tag, User* author);
+	void SetHashTag(const std::string &hash_tag, const std::shared_ptr<User> &author);
 
 	std::string GetHashTag() const;
 
@@ -18,7 +18,7 @@ public:
 private:
 	std::string hash_tag_;
 	std::string date_time_;
-	User * author_;
+	std::weak_ptr<User> author_;
 };
 
 #endif //HASH_TAG_H

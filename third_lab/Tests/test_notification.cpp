@@ -3,9 +3,9 @@
 
 class TestNotification : public::testing::Test {
 public:
-    User  user1 = User("@Artemdjdj", "gsgg5093495");
-    User  user2 = User("@Artemdjdj35", "5093445hdskfhsk");
-    Notification notification = Notification("notificaion", "some info", &user1, &user2);
+    std::shared_ptr<User> user1 = std::make_shared<User>("@Artemdjdj", "gsgg5093495");
+    std::shared_ptr<User> user2 = std::make_shared<User>("@Artemdjdj35", "5093445hdskfhsk");
+    Notification notification = Notification("notificaion", "some info", user1, user2);
 };
 
 TEST_F(TestNotification, TestShowNotification) {
@@ -19,9 +19,9 @@ TEST_F(TestNotification, TestDoNotShowNotification) {
 }
 
 TEST_F(TestNotification, TestGetSender) {
-    ASSERT_EQ(&user1,notification.GetSender());
+    ASSERT_EQ(user1,notification.GetSender());
 }
 
 TEST_F(TestNotification, TestGetReceiver) {
-    ASSERT_EQ(&user2,notification.GetReceiver());
+    ASSERT_EQ(user2,notification.GetReceiver());
 }
