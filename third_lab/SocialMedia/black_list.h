@@ -1,7 +1,8 @@
 #ifndef BLACK_LIST_H
 #define BLACK_LIST_H
-#include "../User/user.h"
 #include <vector>
+#include <memory>
+class User;
 
 class BlackList {
 public:

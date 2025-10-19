@@ -2,7 +2,9 @@
 #include "../Utils/project_utils.h"
 
 void BlackList::AddUser(const std::shared_ptr<User> &user) {
-    DefaultWorkingWithVector::AddElementToVector(this->blocked_users_,user);
+    if (FindUserIndex(user) == -1) {
+        DefaultWorkingWithVector::AddElementToVector(this->blocked_users_, user);
+    }
 }
 
 int BlackList::FindUserIndex(const std::shared_ptr<User> &user){
@@ -17,7 +19,7 @@ int BlackList::FindUserIndex(const std::shared_ptr<User> &user){
         }
         it += 1;
     }
-    return it;
+    return -1;
 }
 
 void BlackList::DeleteUser(const std::shared_ptr<User> &user) {

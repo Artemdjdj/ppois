@@ -2,7 +2,7 @@
 #include "exceptions.h"
 #include <memory>
 #include "../SocialMedia/black_list.h"
-
+#include "../User/user.h"
 class TestBlackList : public ::testing::Test {
 public:
     void SetUp() override {

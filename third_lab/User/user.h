@@ -4,7 +4,10 @@
 #include <memory>
 #include "role.h"
 #include "../WorkingWithUser/working_with_password.h"
+#include "../SocialMedia/black_list.h"
+
 class Profile;
+
 
 class User {
 public:
@@ -47,7 +50,7 @@ public:
 
 	Profile* GetProfile() const;
 
-	Role GetRole() const;
+	std::string GetRole() const;
 
 	Hash GetPassword() const;
 
@@ -84,6 +87,14 @@ public:
 
 	int GetAge() const;
 
+	void AddUserToBlackList(const std::shared_ptr<User> &user);
+
+	void DeleteUserFromBlackList(const std::shared_ptr<User> &user);
+
+	void DeleteAllFromBlackList();
+
+	std::vector<std::string> GetBlockedUsersNamesFromBlackList();
+
 private:
 	User &user_;
 	std::string location_;
@@ -91,6 +102,7 @@ private:
 	std::string gender_;
 	std::string birthday_;
 	std::string marital_status_;
+	BlackList black_list_;
 	int age_;
 };
 

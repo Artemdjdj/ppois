@@ -17,6 +17,8 @@
 #define MIN_LENGTH_OF_FILM 0.017
 #define RATING 10
 #define FIRST_FILM 1888
+#define MAX_LENGTH_OF_LIFE 140
+#define MIN_AGE 13
 #include <string>
 #include <unordered_set>
 #include <vector>
