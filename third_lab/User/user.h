@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 #include "role.h"
-
+#include "../WorkingWithUser/working_with_password.h"
 class Profile;
 
 class User {
@@ -35,7 +35,7 @@ public:
 
 	void CreateProfile();
 
-	std::string GetUserName() const;
+	std::string GetUsername() const;
 
 	std::string GetName() const;
 
@@ -49,13 +49,16 @@ public:
 
 	Role GetRole() const;
 
+	Hash GetPassword() const;
+
+
 private:
 	std::string username_;
 	std::string name_;
 	std::string surname_;
 	std::string email_;
 	std::string phone_number_;
-	std::string password_;
+	Hash password_;
 	Role role_;
 	std::unique_ptr<Profile> profile_;
 };

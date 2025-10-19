@@ -112,8 +112,8 @@ std::shared_ptr<User> Chat::GetSecondMember() const {
 
 std::vector<std::string> Chat::ListMembers() {
     std::vector<std::string> members;
-    members.push_back(users_.first.lock()->GetUserName());
-    members.push_back(users_.second.lock()->GetUserName());
+    members.push_back(users_.first.lock()->GetUsername());
+    members.push_back(users_.second.lock()->GetUsername());
     return members;
 }
 

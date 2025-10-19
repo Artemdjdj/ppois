@@ -1,11 +1,12 @@
 
-
-#ifndef HIDE_PASSWORD_H
-#define HIDE_PASSWORD_H
+#ifndef WORKING_WITH_PASSWORD_H
+#define WORKING_WITH_PASSWORD_H
 #include <string>
+#ifdef _WIN32
 #include <windows.h>
 #include <wincrypt.h>
 #pragma comment(lib, "crypt32.lib")
+#endif
 
 class HidePassword {
 public:
@@ -32,8 +33,5 @@ private:
 	static std::string HashAlgorithm(const std::string& input);
 };
 
-class Authentication {
 
-};
-
-#endif //HIDE_PASSWORD_H
+#endif //WORKING_WITH_PASSWORD_H

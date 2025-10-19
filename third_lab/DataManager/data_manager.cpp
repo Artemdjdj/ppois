@@ -8,12 +8,12 @@ void DataManager::CreateNewChat(const std::shared_ptr<User> &user1, const std::s
         throw std::logic_error("Such chat is exist");
     }
     const auto new_chat = std::make_shared<Chat>(user1, user2);
-    this->chats_[user1->GetUserName()].push_back(new_chat);
-    this->chats_[user2->GetUserName()].push_back(new_chat);
+    this->chats_[user1->GetUsername()].push_back(new_chat);
+    this->chats_[user2->GetUsername()].push_back(new_chat);
 }
 
 bool DataManager::IsChatExist(const std::shared_ptr<User> &user1, const std::shared_ptr<User> &user2) {
-    for (const auto& chat : this->chats_[user1->GetUserName()]) {
+    for (const auto& chat : this->chats_[user1->GetUsername()]) {
         if (chat->GetFirstUser() == user1  and chat->GetSecondMember() == user2 or chat->GetFirstUser() == user2 and chat->GetSecondMember() == user1) {
             return true;
         }
@@ -25,7 +25,7 @@ std::shared_ptr<Chat> DataManager::GetChat(const std::shared_ptr<User> &user1, c
     if (!user1 or !user2) {
         return nullptr;
     }
-    for (auto& chat : this->chats_[user1->GetUserName()]) {
+    for (auto& chat : this->chats_[user1->GetUsername()]) {
         if (chat->GetFirstUser() == user1  and chat->GetSecondMember() == user2 or chat->GetFirstUser() == user2 and chat->GetSecondMember() == user1) {
             return chat;
         }
@@ -37,10 +37,10 @@ std::vector<std::shared_ptr<Chat>> DataManager::GetAllChats(const std::shared_pt
     if (!user) {
         throw std::invalid_argument("The user is empty");
     }
-    if (!this->chats_.contains(user->GetUserName())) {
+    if (!this->chats_.contains(user->GetUsername())) {
         throw std::logic_error("User do not have any chats!");
     }
-    return this->chats_[user->GetUserName()];
+    return this->chats_[user->GetUsername()];
 }
 
 void DataManager::DeleteChat(const std::shared_ptr<User> &user1, const std::shared_ptr<User> &user2) {
@@ -48,16 +48,16 @@ void DataManager::DeleteChat(const std::shared_ptr<User> &user1, const std::shar
         throw std::invalid_argument("The authors can't be empty");
     }
     int index = 0;
-    for (auto& chat : this->chats_[user1->GetUserName()]) {
+    for (auto& chat : this->chats_[user1->GetUsername()]) {
         if (chat->GetFirstUser() == user1  and chat->GetSecondMember() == user2 or chat->GetFirstUser() == user2 and chat->GetSecondMember() == user1) {
-            DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->chats_[user1->GetUserName()], index);
+            DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->chats_[user1->GetUsername()], index);
         }
         index+=1;
     }
     index = 0;
-    for (auto& chat : this->chats_[user2->GetUserName()]) {
+    for (auto& chat : this->chats_[user2->GetUsername()]) {
         if (chat->GetFirstUser() == user1  and chat->GetSecondMember() == user2 or chat->GetFirstUser() == user2 and chat->GetSecondMember() == user1) {
-            DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->chats_[user2->GetUserName()], index);
+            DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->chats_[user2->GetUsername()], index);
             return;
         }
     }
@@ -71,27 +71,27 @@ void DataManager::CreateNewStory(const std::string &name, const std::string &inf
     std::string id;
     this->stories_generator_id.GenerateNewId(id);
     const auto new_story = std::make_shared<Story>(name, info,settings, user, id);
-    this->stories_[user->GetUserName()].push_back(new_story);
+    this->stories_[user->GetUsername()].push_back(new_story);
 }
 std::vector<std::shared_ptr<Story>> DataManager::GetAllStories(std::shared_ptr<User> user) {
     if (!user) {
         throw std::invalid_argument("author can't be empty");
     }
-    if (!this->stories_.contains(user->GetUserName())) {
+    if (!this->stories_.contains(user->GetUsername())) {
         throw std::logic_error("Such user doesn't have any stories ");
     }
-    return this->stories_[user->GetUserName()];
+    return this->stories_[user->GetUsername()];
 }
 
 int DataManager::GetNumberOfStory(const std::shared_ptr<User> &user, const std::string& id) {
     if (!user) {
         throw std::invalid_argument("author can't be empty");
     }
-    if (!this->stories_.contains(user->GetUserName())) {
+    if (!this->stories_.contains(user->GetUsername())) {
         throw std::logic_error("Such user doesn't have any stories ");
     }
     int index = 0;
-    for (const auto &story : this->stories_[user->GetUserName()]) {
+    for (const auto &story : this->stories_[user->GetUsername()]) {
         if (story->GetId() == id) {
             return index;
         }
@@ -105,12 +105,12 @@ std::shared_ptr<Story> DataManager::GetStory(const std::shared_ptr<User> &user, 
     if (pos_of_user_story==-1) {
         throw std::logic_error("This story is not exist");
     }
-    return this->stories_[user->GetUserName()][pos_of_user_story];
+    return this->stories_[user->GetUsername()][pos_of_user_story];
 }
 
 void DataManager::DeleteStory(const std::shared_ptr<User> &user, const std::string& id) {
     const int pos_of_user_story = GetNumberOfStory(user, id);
-    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->stories_[user->GetUserName()], pos_of_user_story);
+    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->stories_[user->GetUsername()], pos_of_user_story);
 }
 
 void DataManager::CreateNewPost(const std::string &name, const std::string &info, const std::shared_ptr<User> &user) {
@@ -120,27 +120,27 @@ void DataManager::CreateNewPost(const std::string &name, const std::string &info
     std::string id;
     this->posts_generator_id.GenerateNewId(id);
     const auto new_story = std::make_shared<Post>(name, info, user, id);
-    this->posts_[user->GetUserName()].push_back(new_story);
+    this->posts_[user->GetUsername()].push_back(new_story);
 }
 std::vector<std::shared_ptr<Post>> DataManager::GetAllPosts(const std::shared_ptr<User> &user){
     if (!user) {
         throw std::invalid_argument("author can't be empty");
     }
-    if (!this->posts_.contains(user->GetUserName())) {
+    if (!this->posts_.contains(user->GetUsername())) {
         throw std::logic_error("Such user doesn't have any stories ");
     }
-    return this->posts_[user->GetUserName()];
+    return this->posts_[user->GetUsername()];
 }
 
 int DataManager::GetNumberOfPost(const std::shared_ptr<User> &user, const std::string& id) {
     if (!user) {
         throw std::invalid_argument("author can't be empty");
     }
-    if (!this->posts_.contains(user->GetUserName())) {
+    if (!this->posts_.contains(user->GetUsername())) {
         throw std::logic_error("Such user doesn't have any stories ");
     }
     int index = 0;
-    for (const auto &post : this->posts_[user->GetUserName()]) {
+    for (const auto &post : this->posts_[user->GetUsername()]) {
         if (post->GetId() == id) {
             return index;
         }
@@ -154,10 +154,10 @@ std::shared_ptr<Post> DataManager::GetPost(const std::shared_ptr<User> &user, co
     if (pos_of_user_post==-1) {
         throw std::logic_error("This story is not exist");
     }
-    return this->posts_[user->GetUserName()][pos_of_user_post];
+    return this->posts_[user->GetUsername()][pos_of_user_post];
 }
 
 void DataManager::DeletePost(const std::shared_ptr<User> &user, const std::string& id) {
     const int pos_of_user_post = GetNumberOfPost(user, id);
-    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->posts_[user->GetUserName()], pos_of_user_post);
+    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->posts_[user->GetUsername()], pos_of_user_post);
 }

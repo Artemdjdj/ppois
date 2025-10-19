@@ -65,7 +65,7 @@ void Post::AddHashTag(const std::shared_ptr<HashTag> &hash_tag) {
     if (!this->author_.lock()) {
         throw ExceptionAccess("Add author to post");
     }
-    if (this->author_.lock()->GetUserName() != hash_tag->SeeAuthor()) {
+    if (this->author_.lock()->GetUsername() != hash_tag->SeeAuthor()) {
         throw ExceptionAccess("You don't have access to changing this post");
     }
     if (CheckHashTagUsed(check_hash_tag_str) != -1) {

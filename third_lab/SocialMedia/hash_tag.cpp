@@ -20,5 +20,5 @@ std::string HashTag::GetHashTag() const {
 }
 
 std::string HashTag::SeeAuthor() const {
-	return this->author_.lock()->GetUserName();
+	return this->author_.lock()->GetUsername();
 }

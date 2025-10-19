@@ -32,7 +32,7 @@ std::vector<std::string> BlackList::GetBlockedUsersNames(){
     DefaultWorkingWithVector::DeleteUnUsedWeakPtrs(this->blocked_users_);
     std::vector<std::string> list_of_usernames;
     for (const auto& blocked_user:this->blocked_users_) {
-        DefaultWorkingWithVector::AddElementToVector(list_of_usernames,blocked_user.lock()->GetUserName());
+        DefaultWorkingWithVector::AddElementToVector(list_of_usernames,blocked_user.lock()->GetUsername());
     }
     return list_of_usernames;
 }

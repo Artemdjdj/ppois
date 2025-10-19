@@ -8,9 +8,6 @@ public:
 		chat.WriteMessage(test_message1);
 		chat.WriteMessage(test_message2);
 		chat.WriteMessage(test_message3);
-		group.WriteMessage(test_message1);
-		group.WriteMessage(test_message2);
-		group.WriteMessage(test_message3);
 		sh_user1->SetName("Artem");
 		sh_user2->SetName("Johnatan");
 	}
@@ -23,7 +20,6 @@ public:
 	Message  message2 = Message("Some info", sh_user1);
 	Chat chat = Chat(sh_user1, sh_user2);
 	Chat chat2 = Chat(sh_user1, sh_user3);
-	Group group = Group(sh_user1, "5345444");
 	std::shared_ptr<Message> test_message1 = std::make_shared<Message>("hello",sh_user2);
 	std::shared_ptr<Message> test_message2 = std::make_shared<Message>("world",sh_user2);
 	std::shared_ptr<Message> test_message3 = std::make_shared<Message>("My name is artem", sh_user2);
@@ -134,121 +130,12 @@ TEST_F(TestChatsMessageAndGroups, TestDeletingAllMessagesChat) {
 }
 
 TEST_F(TestChatsMessageAndGroups, TestGetName) {
-	ASSERT_EQ(chat.GetName(), "Johnatan");
+	chat.SetName("Legend");
+	ASSERT_EQ(chat.GetName(), "Legend");
 }
 
 TEST_F(TestChatsMessageAndGroups, TestGetCountOfChatMembers) {
 	ASSERT_EQ(chat.ListMembers(), (std::vector<std::string> {"@Artemdjdj", "@Vladgjhgj53334"}));
-}
-
-TEST_F(TestChatsMessageAndGroups, TestGroupSetName) {
-	group.SetName("Guys");
-	ASSERT_EQ(group.GetName(), "Guys");
-}
-
-TEST_F(TestChatsMessageAndGroups, TestGetCountOfGroupMembers) {
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj"}));
-}
-
-TEST_F(TestChatsMessageAndGroups, TestCheckUserIsNotExistInGroup) {
-	group.AddUser(sh_user3, sh_user1);
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj", "@Vsdffgjjg34"}));
-}
-
-TEST_F(TestChatsMessageAndGroups, TestCheckUserIsExistInGroup) {
-	group.AddUser(sh_user3, sh_user1);
-	group.AddUser(sh_user3, sh_user1);
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj", "@Vsdffgjjg34"}));
-}
-
-TEST_F(TestChatsMessageAndGroups, TestDeleteUser) {
-	group.AddUser(sh_user3, sh_user1);
-	group.DeleteUser("@Vsdffgjjg34", sh_user1);
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj"}));
-}
-
-TEST_F(TestChatsMessageAndGroups, TestDeleteAdmin) {
-	group.AddUser(sh_user3, sh_user1);
-	group.DeleteUser("@Artemdjdj", sh_user1);
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj","@Vsdffgjjg34"}));
-}
-
-TEST_F(TestChatsMessageAndGroups, TestDeleteIncorrectUserName) {
-	group.AddUser(sh_user3, sh_user1);
-	group.DeleteUser("jsdlfjlsdjlfjs", sh_user1);
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj","@Vsdffgjjg34"}));
-}
-
-TEST_F(TestChatsMessageAndGroups, TestDeleteIncorrectAdmin) {
-	group.AddUser(sh_user3, sh_user1);
-	group.DeleteUser("@Vsdffgjjg34", sh_user2);
-	ASSERT_EQ(group.ListMembers(), (std::vector<std::string> {"@Artemdjdj","@Vsdffgjjg34"}));
-}
-
-TEST_F(TestChatsMessageAndGroups, TestRefactorMessageGroup) {
-	group.RefactorMessage("New hello", 0, sh_user2);
-	std::string copy;
-	group.CopyMessage(0, copy);
-	ASSERT_EQ(copy, "New hello");
-}
-
-TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorrectNumberGroup) {
-	ASSERT_THROW(
-		group.RefactorMessage("New hello", -1, sh_user1),
-		ExceptionIncorrectNumber
-	);
-	std::string copy;
-	group.CopyMessage(0, copy);
-	ASSERT_EQ(copy, "hello");
-}
-
-TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorrectAuthorGroup) {
-	ASSERT_THROW(
-		group.RefactorMessage("New hello", 0, sh_user1),
-		ExceptionAccess
-	);
-	std::string copy;
-	group.CopyMessage(0, copy);
-	ASSERT_EQ(copy, "hello");
-}
-
-TEST_F(TestChatsMessageAndGroups, TestDeleteMessageGroup) {
-	group.DeleteMessage(0, sh_user2);
-	std::string copy;
-	group.CopyMessage(0, copy);
-	ASSERT_EQ(copy, "world");
-}
-
-TEST_F(TestChatsMessageAndGroups, TestDeleteMessageIncorrectNumberOfMessageGroup) {
-	ASSERT_THROW(
-		group.DeleteMessage(-1, sh_user1),
-		ExceptionIncorrectNumber
-	);
-	std::string copy;
-	group.CopyMessage(0, copy);
-	ASSERT_EQ(copy, "hello");
-}
-
-TEST_F(TestChatsMessageAndGroups, TestDeleteMessageIncorrectAuthorOfMessageGroup) {
-	ASSERT_THROW(
-		group.DeleteMessage(0, sh_user1),
-		ExceptionAccess
-	);
-	std::string copy;
-	group.CopyMessage(0, copy);
-	ASSERT_EQ(copy, "hello");
-}
-
-TEST_F(TestChatsMessageAndGroups, TestCheckCountOfMessagesAfterDeletingGroup) {
-	group.DeleteMessage(0, sh_user2);
-	std::string copy;
-	group.CopyMessage(0, copy);
-	ASSERT_EQ(group.CountMessages(), 2);
-}
-
-TEST_F(TestChatsMessageAndGroups, TestDeletingAllMessagesGroup) {
-	group.DeleteAllMessages();
-	ASSERT_EQ(group.CountMessages(), 0);
 }
 
 

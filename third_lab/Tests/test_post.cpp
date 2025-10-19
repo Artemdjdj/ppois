@@ -68,7 +68,7 @@ TEST_F(TestPost, TestSetInfoIncorrect) {
 
 TEST_F(TestPost, TestAddReaction) {
     post.AddReaction(reaction);
-    const std::string username = user2->GetUserName();
+    const std::string username = user2->GetUsername();
     ASSERT_EQ(reaction, post.SeeReactionByAuthor(username));
 }
 
@@ -82,9 +82,9 @@ TEST_F(TestPost, TestSeeReactionIncorrect) {
 
 TEST_F(TestPost, TestRemoveReaction) {
     post.AddReaction(reaction);
-    post.RemoveReaction(user2->GetUserName());
+    post.RemoveReaction(user2->GetUsername());
     ASSERT_THROW(
-        post.SeeReactionByAuthor(user2->GetUserName()),
+        post.SeeReactionByAuthor(user2->GetUsername()),
         std::out_of_range);
 }
 
@@ -93,7 +93,7 @@ TEST_F(TestPost, TestRemoveReactionIncorrect) {
     ASSERT_THROW(
         post.RemoveReaction(user2->GetName()),
         ExceptionIncorrectNumber);
-    const std::string username = user2->GetUserName();
+    const std::string username = user2->GetUsername();
     ASSERT_EQ(reaction, post.SeeReactionByAuthor(username));
 }
 

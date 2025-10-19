@@ -25,7 +25,7 @@ bool User::operator==(const User &other) const {
 			surname_ == other.surname_ &&
 			email_ == other.email_ &&
 			phone_number_ == other.phone_number_ &&
-			password_ == other.password_;
+			password_.GetHash() == other.password_.GetHash();
 }
 
 bool User::operator!=(const User &other) const {
@@ -60,7 +60,9 @@ void User::SetPhoneNumber(const std::string &phone_number) {
 
 void User::SetPassword(const std::string &password) {
 	std::string error_message;
-	DataSyntax::CheckPasswordForSyntaxError(password, "Your password is not valid", this->password_);
+	std::string res_password;
+	DataSyntax::CheckPasswordForSyntaxError(password, "Your password is not valid", res_password);
+	this->password_ = HashPassword::HashInputPassword(res_password);
 }
 
 void User::CreateProfile() {
@@ -73,7 +75,7 @@ void User::SetRole(const Role &role) {
 	this->role_ = role;
 }
 
-std::string User::GetUserName() const{
+std::string User::GetUsername() const{
 	return this->username_;
 }
 
@@ -91,6 +93,10 @@ std::string User::GetEmail() const{
 
 std::string User::GetPhoneNumber() const{
 	return this->phone_number_;
+}
+
+Hash User::GetPassword() const {
+	return this->password_;
 }
 
 Role User::GetRole() const {
@@ -137,4 +143,6 @@ std::string Profile::GetBiography() const {
 int Profile::GetAge() const {
 	return this->age_;
 }
+
+
 

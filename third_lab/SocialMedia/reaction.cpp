@@ -28,6 +28,6 @@ std::string Reaction::SeeAuthor() const {
 	if (!this->author_.lock()) {
 		throw ExceptionAccess("Try to add author!");
 	}
-	return  this->author_.lock()->GetUserName();
+	return  this->author_.lock()->GetUsername();
 }
 

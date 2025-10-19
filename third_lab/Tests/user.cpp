@@ -22,7 +22,7 @@ TEST_F(TestUser, TestSetNameNegative) {
 
 TEST_F(TestUser, TestSetUserName) {
 	user.SetUserName("@Artem");
-	ASSERT_EQ(user.GetUserName(), "@Artem");
+	ASSERT_EQ(user.GetUsername(), "@Artem");
 }
 
 TEST_F(TestUser, TestSetUserNameNegative) {
