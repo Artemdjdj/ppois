@@ -23,7 +23,7 @@ public:
 	Message  message2 = Message("Some info", sh_user1);
 	Chat chat = Chat(sh_user1, sh_user2);
 	Chat chat2 = Chat(sh_user1, sh_user3);
-	Group group = Group(sh_user1);
+	Group group = Group(sh_user1, "5345444");
 	std::shared_ptr<Message> test_message1 = std::make_shared<Message>("hello",sh_user2);
 	std::shared_ptr<Message> test_message2 = std::make_shared<Message>("world",sh_user2);
 	std::shared_ptr<Message> test_message3 = std::make_shared<Message>("My name is artem", sh_user2);

@@ -42,9 +42,13 @@ bool StorySettings::GetTypeOfVisibility() const {
 }
 
 Story::Story(const std::string &name, const std::string &info, const StorySettings &settings,
-             const std::shared_ptr<User> &author): name_(name), info_(info),
-                            settings_(settings), author_(author) {
+             const std::shared_ptr<User> &author, const std::string& id): id_(id), name_(name),
+                            info_(info), settings_(settings), author_(author) {
 }
+
+// void Story::SetId(const std::string &id) {
+//     this->id_ = id;
+// }
 
 void Story::SetName(const std::string &name, const std::shared_ptr<User> &user) {
     DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_.lock(), user, "You can't changing info about story",
@@ -82,4 +86,8 @@ std::string Story::GetStoryCategory() const {
 
 bool Story::CheckIsPublic() const {
     return this->settings_.GetTypeOfVisibility();
+}
+
+std::string Story::GetId() const {
+    return this->id_;
 }

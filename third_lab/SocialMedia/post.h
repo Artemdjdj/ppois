@@ -12,7 +12,9 @@
 class Post{
 public:
 
-	Post(const std::string &name, const std::string &info, const std::shared_ptr<User> &author);
+	Post(const std::string &name, const std::string &info, const std::shared_ptr<User> &author, const std::string &id_);
+
+	// void SetId(const std::string &id);
 
 	void SetName(const std::string &name, const std::shared_ptr<User> &author);
 
@@ -21,6 +23,8 @@ public:
 	std::string GetName() const;
 
 	std::string GetInfo() const;
+
+	std::string GetId() const;
 
 	void AddReaction(const std::shared_ptr<Reaction> &reaction);
 
@@ -37,6 +41,7 @@ public:
 	void RemovePoll(const std::string &question, const std::shared_ptr<User> &author);
 
 private:
+	std::string id_;
 	std::string name_;
 	std::string info_;
 	std::map<std::string, std::shared_ptr<Reaction>> reactions_;

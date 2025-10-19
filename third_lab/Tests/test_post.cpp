@@ -14,7 +14,7 @@ public:
     std::shared_ptr<User>user = std::make_shared<User>("@Artemdjdj", "252352353");
     std::shared_ptr<User>user2 = std::make_shared<User>("@Eugen2007", "fshdjkfhsk4343");
     Post post = Post("The problem of global warming",
-                     info, user);
+                     info, user, "534534");
     std::shared_ptr<Reaction>reaction = std::make_shared<Reaction>("like",user2);
     std::shared_ptr<HashTag>hash_tag = std::make_shared<HashTag>("#global", user);
     std::shared_ptr<HashTag>hash_tag2 = std::make_shared<HashTag>("#global", user2);

@@ -69,6 +69,10 @@ void User::CreateProfile() {
 	}
 }
 
+void User::SetRole(const Role &role) {
+	this->role_ = role;
+}
+
 std::string User::GetUserName() const{
 	return this->username_;
 }
@@ -87,6 +91,10 @@ std::string User::GetEmail() const{
 
 std::string User::GetPhoneNumber() const{
 	return this->phone_number_;
+}
+
+Role User::GetRole() const {
+	return this->role_;
 }
 
 Profile* User::GetProfile() const {

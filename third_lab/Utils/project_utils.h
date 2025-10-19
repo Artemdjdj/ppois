@@ -86,6 +86,14 @@ public:
         vec.push_back(element);
     }
 
+    template<typename T>
+    static void AddElementToVector(std::vector<std::shared_ptr<T>> &vec, const std::shared_ptr<T> &element) {
+        if (!element) {
+            throw std::invalid_argument("Invalid user pointer!");
+        }
+        vec.push_back(element);
+    }
+
     static void AddElementToVector(std::vector<std::string> &vec, const std::string &element) {
         if (element.empty()) {
             throw std::invalid_argument("Invalid input!");

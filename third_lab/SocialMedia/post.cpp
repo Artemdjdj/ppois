@@ -3,9 +3,13 @@
 #include "../Utils/project_utils.h"
 
 
-Post::Post(const std::string &name, const std::string &info, const std::shared_ptr<User> &author): name_(name), info_(info),
+Post::Post(const std::string &name, const std::string &info, const std::shared_ptr<User> &author, const std::string& id): id_(id), name_(name), info_(info),
                                                                             author_(author) {
 };
+
+// void Post::SetId(const std::string &id) {
+//     this->id_ = id;
+// }
 
 void Post::SetName(const std::string &name, const std::shared_ptr<User> &author) {
     DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_.lock(), author, "You can't changing info about post",
@@ -25,6 +29,9 @@ std::string Post::GetInfo() const {
     return this->info_;
 }
 
+std::string Post::GetId() const {
+    return this->id_;
+}
 void Post::AddReaction(const std::shared_ptr<Reaction> &reaction) {
     this->reactions_[reaction->SeeAuthor()] = reaction;
 }
