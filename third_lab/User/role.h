@@ -2,7 +2,7 @@
 #define ROLE_H
 #include <string>
 #include <unordered_set>
-const std::unordered_set<std::string> alloud_roles{"admin", "user"};
+const std::unordered_set<std::string> kAloudRoles{"admin", "user"};
 
 class Role {
 public:

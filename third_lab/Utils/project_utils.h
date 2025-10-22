@@ -22,7 +22,6 @@
 #include <string>
 #include <unordered_set>
 #include <vector>
-#include <optional>
 #include <../User/user.h>
 #include <functional>
 #include "../Exceptions/exceptions.h"

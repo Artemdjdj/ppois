@@ -10,8 +10,8 @@ StorySettings::StorySettings(const std::string &category, bool is_public): is_pu
 }
 
 bool StorySettings::CheckIsCategoryCorrect(const std::string &category) {
-    const auto it = stories_categories.find(category);
-    if (it == stories_categories.end()) {
+    const auto it = kStoriesCategories.find(category);
+    if (it == kStoriesCategories.end()) {
         return false;
     }
     return true;

@@ -12,7 +12,7 @@ Reaction::Reaction(const std::string &type_of_reaction, const std::shared_ptr<Us
 
 void Reaction::SetReaction(std::string type_of_reaction, const std::shared_ptr<User> &author) {
 	DefaultProjectSettings::ToLower(type_of_reaction);
-	if (!DefaultProjectSettings::CheckIsStatementInAllowed(type_of_reaction, reactions)) {
+	if (!DefaultProjectSettings::CheckIsStatementInAllowed(type_of_reaction, kReactions)) {
 		throw ExceptionIncorrectReaction("This reaction is not allowed!");
 	}
 	this->type_of_reaction_ = type_of_reaction;

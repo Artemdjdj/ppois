@@ -2,6 +2,7 @@
 #define INTEREST_H
 #include <string>
 #include <vector>
+#include <optional>
 #include "../Utils/project_utils.h"
 
 class Interest final : public Info {

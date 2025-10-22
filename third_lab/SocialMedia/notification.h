@@ -3,7 +3,7 @@
 #include "../User/user.h"
 #include "../Utils/project_utils.h"
 
-class Notification : public Info {
+class Notification final : public Info {
 public:
     Notification(const std::string &name, const std::string &info, const std::shared_ptr<User> &sender, const std::shared_ptr<User> &receiver);
 

@@ -11,99 +11,96 @@ class Profile;
 
 class User {
 public:
+    User() = default;
 
-	User() = default;
+    User(const std::string &username, const std::string &password, const std::string &name = "");
 
-	User(const std::string &username, const std::string &password, const std::string & name="");
+    User(const User &other);
 
-	User(const User &other);
+    bool operator==(const User &other) const;
 
-	bool operator==(const User &other) const;
+    bool operator!=(const User &other) const;
 
-	bool operator!=(const User &other) const;
+    void SetUserName(const std::string &username);
 
-	void SetUserName(const std::string &username);
+    void SetName(const std::string &name);
 
-	void SetName(const std::string &name);
+    void SetSurname(const std::string &surname);
 
-	void SetSurname(const std::string &surname);
+    void SetEmail(const std::string &email);
 
-	void SetEmail(const std::string &email);
+    void SetPhoneNumber(const std::string &phone_number);
 
-	void SetPhoneNumber(const std::string &phone_number);
+    void SetPassword(const std::string &password);
 
-	void SetPassword(const std::string &password);
+    void SetRole(const Role &role);
 
-	void SetRole(const Role &role);
+    void CreateProfile();
 
-	void CreateProfile();
+    std::string GetUsername() const;
 
-	std::string GetUsername() const;
+    std::string GetName() const;
 
-	std::string GetName() const;
+    std::string GetSurName() const;
 
-	std::string GetSurName() const;
+    std::string GetEmail() const;
 
-	std::string GetEmail() const;
+    std::string GetPhoneNumber() const;
 
-	std::string GetPhoneNumber() const;
+    std::unique_ptr<Profile> GetProfile();
 
-	Profile* GetProfile() const;
+    std::string GetRole() const;
 
-	std::string GetRole() const;
-
-	Hash GetPassword() const;
-
+    Hash GetPassword() const;
 
 private:
-	std::string username_;
-	std::string name_;
-	std::string surname_;
-	std::string email_;
-	std::string phone_number_;
-	Hash password_;
-	Role role_;
-	std::unique_ptr<Profile> profile_;
+    std::string username_;
+    std::string name_;
+    std::string surname_;
+    std::string email_;
+    std::string phone_number_;
+    Hash password_;
+    Role role_;
+    std::unique_ptr<Profile> profile_;
 };
 
 class Profile {
 public:
+    explicit Profile(User &user, const std::string &location = "", const std::string &biography = "");
 
-	explicit Profile(User &user, const std::string &location="", const std::string &biography="");
+    void SetLocation(const std::string &location);
 
-	void SetLocation(const std::string &location);
+    void SetBiography(const std::string &biography);
 
-	void SetBiography(const std::string &biography);
+    void SetGender(const std::string &gender);
 
-	void SetGender(const std::string &gender);
+    void SetAge(int age);
 
-	void SetAge(int age);
+    std::string GetGender() const;
 
-	std::string GetGender() const;
+    std::string GetLocation() const;
 
-	std::string GetLocation() const;
+    std::string GetBiography() const;
 
-	std::string GetBiography() const;
+    int GetAge() const;
 
-	int GetAge() const;
+    void AddUserToBlackList(const std::shared_ptr<User> &user);
 
-	void AddUserToBlackList(const std::shared_ptr<User> &user);
+    void DeleteUserFromBlackList(const std::shared_ptr<User> &user);
 
-	void DeleteUserFromBlackList(const std::shared_ptr<User> &user);
+    void DeleteAllFromBlackList();
 
-	void DeleteAllFromBlackList();
-
-	std::vector<std::string> GetBlockedUsersNamesFromBlackList();
+    std::vector<std::string> GetBlockedUsersNamesFromBlackList();
 
 private:
-	User &user_;
-	std::string location_;
-	std::string biography_;
-	std::string gender_;
-	std::string birthday_;
-	std::string marital_status_;
-	BlackList black_list_;
-	int age_;
+    User &user_;
+    std::string location_;
+    std::string biography_;
+    std::string gender_;
+    std::string birthday_;
+    std::string marital_status_;
+    BlackList black_list_;
+    int age_;
 };
 
 

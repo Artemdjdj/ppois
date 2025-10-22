@@ -105,8 +105,8 @@ std::string User::GetRole() const {
     return this->role_.GetRole();
 }
 
-Profile *User::GetProfile() const {
-    return this->profile_.get();
+std::unique_ptr<Profile> User::GetProfile(){
+    return std::move(this->profile_);
 }
 
 Profile::Profile(User &user, const std::string &location, const std::string &biography) : user_(user) {
@@ -134,7 +134,6 @@ void Profile::SetAge(const int age) {
         throw ExceptionIncorrectYear("Age can't be so big");
     }
     this->age_ = age;
-
 }
 
 std::string Profile::GetGender() const {

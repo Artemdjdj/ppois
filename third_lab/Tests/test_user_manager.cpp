@@ -7,7 +7,6 @@ public:
         user = user_manager.CreateUser("@Artemdjdj", "fdjglsj43y54", "Artem");
         user2 = user_manager.CreateUser("@artemdjdj", "fdjglsf54", "Artem");
     }
-
     UserManager user_manager;
     std::shared_ptr<User> user;
     std::shared_ptr<User> user2;
@@ -20,7 +19,10 @@ TEST_F(TestUserAndProfileManager, TestCreateUser) {
 
 TEST_F(TestUserAndProfileManager, TestCreateUserResultNullptr) {
     std::shared_ptr<User> user3 = user_manager.CreateUser("@Artemdjdj2", "fdjglsj43y54", "Artem");
-    ASSERT_EQ(nullptr, user_manager.CreateUser("@Artemdjdj", "fdjglsj43y54", "Artem"));
+    ASSERT_THROW(
+        user_manager.CreateUser("@Artemdjdj2", "fdjglsj43y54", "Artem"),
+        std::logic_error
+    );
     ASSERT_EQ(user_manager.GetAllUsers().size(), 3);
 }
 
@@ -54,11 +56,15 @@ TEST_F(TestUserAndProfileManager, TestAuthenticateUser) {
 }
 
 TEST_F(TestUserAndProfileManager, TestAuthenticateUserIncorrectPassword) {
-    ASSERT_EQ(nullptr, user_manager.AuthenticateUser("@Artemdjdj", "fdjglsj43y5"));
+    ASSERT_THROW(
+        user_manager.AuthenticateUser("@Artemdjdj", "fdjglsj43y5"),
+        std::logic_error
+    );
 }
 
 TEST_F(TestUserAndProfileManager, TestAuthenticateUserIncorrectUserName) {
-    ASSERT_EQ(nullptr, user_manager.AuthenticateUser("@Artemdjdj", "fdjglsj43y5"));
+    ASSERT_THROW(
+        user_manager.AuthenticateUser("@Artemdjdj", "fdjglsj43y5"),
+        std::logic_error
+    );
 }
-
-

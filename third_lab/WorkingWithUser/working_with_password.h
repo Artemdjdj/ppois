@@ -4,7 +4,6 @@
 #include <string>
 #ifdef _WIN32
 #include <windows.h>
-#include <wincrypt.h>
 #pragma comment(lib, "crypt32.lib")
 #endif
 

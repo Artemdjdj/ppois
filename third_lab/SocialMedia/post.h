@@ -44,7 +44,7 @@ private:
 	std::string id_;
 	std::string name_;
 	std::string info_;
-	std::map<std::string, std::shared_ptr<Reaction>> reactions_;
+	std::map<std::string, std::shared_ptr<Reaction>> kReactions_;
 	std::vector<std::shared_ptr<HashTag>> hash_tags_;
 	std::vector<std::shared_ptr<Poll>> polls_;
 	std::weak_ptr<User> author_;

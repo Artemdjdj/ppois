@@ -5,7 +5,7 @@
 std::shared_ptr<User> UserManager::CreateUser(const std::string &username, const std::string &password,
                                               const std::string &name) {
     if (IsUserExist(username)) {
-        return nullptr;
+        throw std::logic_error("User with this username is exist");
     }
     auto new_user = std::make_shared<User>(username, password, name);
     this->users_[username] = new_user;
@@ -32,7 +32,7 @@ std::shared_ptr<User> UserManager::AuthenticateUser(const std::string& username,
     if (HashPassword::IsPasswordMatch(password, user->GetPassword())) {
         return user;
     }
-    return nullptr;
+    throw std::logic_error("Incorrect password");
 }
 
 void UserManager::DeleteUser(const std::shared_ptr<User> &user) {
@@ -47,4 +47,8 @@ void UserManager::DeleteUser(const std::shared_ptr<User> &user) {
 
 bool UserManager::IsUserExist(const std::string &username) const {
     return this->users_.contains(username);
+}
+
+int UserManager::GetCountOfUsers() const {
+    return this->users_.size();
 }

@@ -27,7 +27,7 @@ public:
 
 TEST_F(TestChatsMessageAndGroups, TestMessageCreation) {
 	message.CreateMessage("Hello world", sh_user1);
-	ASSERT_EQ(message.GetMessageText(), "Hello world");
+	ASSERT_EQ(message.GetMessageDefaultText(), "Hello world");
 
 }
 TEST_F(TestChatsMessageAndGroups, TestMessageNegativeCreation) {
@@ -44,7 +44,7 @@ TEST_F(TestChatsMessageAndGroups, TestGetAuthor) {
 
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessage) {
 	message2.RefactorMessage("new message");
-	ASSERT_EQ(message2.GetMessageText(), "new message");
+	ASSERT_EQ(message2.GetMessageDefaultText(), "new message");
 }
 
 TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorect) {
@@ -52,7 +52,7 @@ TEST_F(TestChatsMessageAndGroups, TestRefactorMessageIncorect) {
 		message2.RefactorMessage("");,
 		ExceptionIncorrectMessage
 	);
-	ASSERT_EQ(message2.GetMessageText(), "Some info");
+	ASSERT_EQ(message2.GetMessageDefaultText(), "Some info");
 }
 
 TEST_F(TestChatsMessageAndGroups, TestWriteMessageInChat) {
@@ -129,15 +129,16 @@ TEST_F(TestChatsMessageAndGroups, TestDeletingAllMessagesChat) {
 	ASSERT_EQ(chat.CountMessages(), 0);
 }
 
-TEST_F(TestChatsMessageAndGroups, TestGetName) {
-	chat.SetName("Legend");
-	ASSERT_EQ(chat.GetName(), "Legend");
-}
-
 TEST_F(TestChatsMessageAndGroups, TestGetCountOfChatMembers) {
 	ASSERT_EQ(chat.ListMembers(), (std::vector<std::string> {"@Artemdjdj", "@Vladgjhgj53334"}));
 }
 
+TEST_F(TestChatsMessageAndGroups, TestGetCountOfAllMessages) {
+	ASSERT_EQ(chat.GetAllMessages().size(), 3);
+}
+TEST_F(TestChatsMessageAndGroups, TestGetZeroCountOfMessages) {
+	ASSERT_EQ(chat2.GetAllMessages().size(), 0);
+}
 
 
 

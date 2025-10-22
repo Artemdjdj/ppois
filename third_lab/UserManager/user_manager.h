@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <vector>
 #include "../User/user.h"
-#include "../WorkingWithUser/working_with_password.h"
+
 
 class UserManager {
 public:
@@ -20,6 +20,10 @@ public:
     void DeleteUser(const std::shared_ptr<User> &user);
 
     bool IsUserExist(const std::string &username) const;
+
+    int GetCountOfUsers() const;
+
+
 
 private:
     std::unordered_map<std::string, std::shared_ptr<User> > users_;

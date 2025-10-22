@@ -3,7 +3,7 @@
 #include <string>
 #include <unordered_set>
 #include <../User/user.h>
-const std::unordered_set<std::string> stories_categories{"default", "worth a look", "important"};
+const std::unordered_set<std::string> kStoriesCategories{"default", "worth a look", "important"};
 
 class StorySettings {
 public:

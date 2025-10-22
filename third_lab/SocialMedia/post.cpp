@@ -33,19 +33,19 @@ std::string Post::GetId() const {
     return this->id_;
 }
 void Post::AddReaction(const std::shared_ptr<Reaction> &reaction) {
-    this->reactions_[reaction->SeeAuthor()] = reaction;
+    this->kReactions_[reaction->SeeAuthor()] = reaction;
 }
 
 void Post::RemoveReaction(const std::string &username) {
-    auto it = this->reactions_.find(username);
-    if (it == this->reactions_.end()) {
+    auto it = this->kReactions_.find(username);
+    if (it == this->kReactions_.end()) {
         throw ExceptionIncorrectNumber("You don't have access to remove this post");
     }
-    this->reactions_.erase(it);
+    this->kReactions_.erase(it);
 }
 
 std::shared_ptr<Reaction>Post::SeeReactionByAuthor(const std::string &username) const {
-    return this->reactions_.at(username);
+    return this->kReactions_.at(username);
 }
 
 int Post::CheckHashTagUsed(const std::string &check_hash_tag) const {
