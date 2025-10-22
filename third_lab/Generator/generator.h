@@ -1,11 +1,11 @@
 
 #ifndef GENERATOR_H
 #define GENERATOR_H
-#include <cmath>
 #include <string>
 #include <unordered_set>
-constexpr int length_of_id = 5;
-constexpr int max_count_of_attempts = pow(10,5);
+constexpr int kLengthOfId = 5;
+constexpr int kMaxCountOfAttempts = 100000;
+
 /*! \class GeneratorId
 	 * \brief Класс для определения базовых параметров генератора id
 	 * \details Класс предоставляет некоторые возможности взаимодействия с генератором

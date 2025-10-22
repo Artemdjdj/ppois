@@ -15,14 +15,14 @@ void GeneratorId::GenerateNewId(std::string &id) {
 
 	int count_of_attempts = 0;
 
-	while ((id.length() < length_of_id || CheckIdIsTaken(id)) && count_of_attempts < max_count_of_attempts) {
+	while ((id.length() < kLengthOfId || CheckIdIsTaken(id)) && count_of_attempts < kMaxCountOfAttempts) {
 		id = "";
-		for (int i = 0; i < length_of_id; i++) {
+		for (int i = 0; i < kLengthOfId; i++) {
 			id += std::to_string(dis(gen));
 		}
 		count_of_attempts++;
 	}
-	if (count_of_attempts >= max_count_of_attempts) {
+	if (count_of_attempts >= kMaxCountOfAttempts) {
 		throw ExceptionRuntimeError("Runtime error");
 	}
 	list_of_id_.emplace(id);

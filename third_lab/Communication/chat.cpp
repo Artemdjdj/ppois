@@ -29,11 +29,11 @@ std::shared_ptr<User> Message::GetAuthor() const {
     return this->author_.lock();
 }
 
-std::string Message::GetMessage() const {
+std::string Message::GetMessageDefault() const {
     return message_.first + " " + message_.second;
 }
 
-std::string Message::GetMessageText() const {
+std::string Message::GetMessageDefaultText() const {
     return message_.first;
 }
 
@@ -69,7 +69,7 @@ void BaseChat::CopyMessage(int number_of_message, std::string &copy_message) con
     if (number_of_message < 0 and number_of_message > this->messages_.size()) {
         throw ExceptionIncorrectNumber("Incorrect number of messages");
     }
-    copy_message = this->messages_[number_of_message]->GetMessageText();
+    copy_message = this->messages_[number_of_message]->GetMessageDefaultText();
 }
 
 void BaseChat::DeleteAllMessages() {
@@ -80,12 +80,16 @@ int BaseChat::CountMessages() const {
     return this->messages_.size();
 }
 
+std::vector<std::shared_ptr<Message>> BaseChat::GetAllMessages() const {
+    return this->messages_;
+}
+
 // void BaseChat::ViewHistory() const {
 // 	if (this->messages_.size() == 0) {
 // 		throw ExceptionNothingToPrint("There is no view history");
 // 	}
 // 	for (auto &message: this->messages_) {
-// 		std::cout << message->GetMessage() << std::endl;
+// 		std::cout << message->GetMessageDefault() << std::endl;
 // 	}
 // }
 
@@ -94,15 +98,7 @@ Chat::Chat(std::shared_ptr<User> first_user, std::shared_ptr<User> second_user, 
       users_(std::make_pair(first_user, second_user)) {
 }
 
-void Chat::SetName(const std::string &name) {
-    this->name_ = name;
-}
-
-std::string Chat::GetName() {
-    return this->name_;
-}
-
-std::shared_ptr<User> Chat::GetFirstUser() const {
+std::shared_ptr<User> Chat::GetFirstMember() const {
     return this->users_.first.lock();
 }
 

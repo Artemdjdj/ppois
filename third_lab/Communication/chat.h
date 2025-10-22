@@ -18,9 +18,9 @@ public:
 
     std::shared_ptr<User> GetAuthor() const;
 
-    std::string GetMessage() const;
+    std::string GetMessageDefault() const;
 
-    std::string GetMessageText() const;
+    std::string GetMessageDefaultText() const;
 
 private:
     std::pair<std::string, std::string> message_;
@@ -48,9 +48,9 @@ public:
 
     int CountMessages() const;
 
-    // void ViewHistory() const;
+    std::vector<std::shared_ptr<Message>> GetAllMessages() const;
 
-    virtual std::string GetName() =0;
+    // void ViewHistory() const;
 
     virtual std::vector<std::string> ListMembers() =0;
 
@@ -67,16 +67,12 @@ public:
 
     Chat(std::shared_ptr<User> first_user, std::shared_ptr<User> second_user, const std::string &name = "");
 
-
-    void SetName(const std::string &name);
-
-    std::shared_ptr<User> GetFirstUser() const;
+    std::shared_ptr<User> GetFirstMember() const;
 
     std::shared_ptr<User> GetSecondMember() const;
 
-    std::string GetName() override;
-
     std::vector<std::string> ListMembers() override;
+
 
 private:
     std::string name_;
