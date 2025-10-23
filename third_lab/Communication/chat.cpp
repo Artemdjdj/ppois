@@ -61,11 +61,11 @@ void BaseChat::RefactorMessage(const std::string &message, int number_of_message
     ChangeMessage(number_of_message, sender_user, false, message);
 }
 
-void BaseChat::DeleteMessage(int number_of_message, const std::shared_ptr<User> &sender_user) {
+void BaseChat::DeleteMessage(const int number_of_message, const std::shared_ptr<User> &sender_user) {
     ChangeMessage(number_of_message, sender_user, true);
 }
 
-void BaseChat::CopyMessage(int number_of_message, std::string &copy_message) const {
+void BaseChat::CopyMessage(const int number_of_message, std::string &copy_message) const {
     if (number_of_message < 0 and number_of_message > this->messages_.size()) {
         throw ExceptionIncorrectNumber("Incorrect number of messages");
     }
@@ -84,6 +84,13 @@ std::vector<std::shared_ptr<Message>> BaseChat::GetAllMessages() const {
     return this->messages_;
 }
 
+std::shared_ptr<Message> BaseChat::GetMessageByNumber(const int number) {
+    if (number<0 || number> this->messages_.size()) {
+        throw ExceptionIncorrectNumber("Such message is not exist, you write incorrect number of message");
+    }
+    return this->messages_[number];
+}
+
 // void BaseChat::ViewHistory() const {
 // 	if (this->messages_.size() == 0) {
 // 		throw ExceptionNothingToPrint("There is no view history");
@@ -93,7 +100,7 @@ std::vector<std::shared_ptr<Message>> BaseChat::GetAllMessages() const {
 // 	}
 // }
 
-Chat::Chat(std::shared_ptr<User> first_user, std::shared_ptr<User> second_user, const std::string& name)
+Chat::Chat(const std::shared_ptr<User>& first_user, const std::shared_ptr<User>& second_user, const std::string& name)
     : name_(name),
       users_(std::make_pair(first_user, second_user)) {
 }

@@ -10,15 +10,13 @@
 class App {
 public:
     void RegistrateUser(const std::string &username, const std::string &password,
-                      const std::string &name="");
+                        const std::string &name = "");
 
     void Login(const std::string &username, const std::string &password);
 
     void Logout();
 
     void DeleteAccount();
-
-    std::unique_ptr<Profile> GetProfile() const;
 
     void CreateNewChat(const std::shared_ptr<User> &second_user);
 
@@ -43,11 +41,16 @@ public:
 
     std::string GetAuthor() const;
 
+    std::shared_ptr<Chat> GetChat(const std::shared_ptr<User> &user);
+
     std::shared_ptr<User> GetCurrentUser();
 
-    std::shared_ptr<User> GetUser(const std::string& username);
+    std::shared_ptr<User> GetUser(const std::string &username);
+
 
 private:
+    std::unique_ptr<Profile> GetProfile() const;
+
     std::shared_ptr<User> user_ = nullptr;
     UserManager user_manager_;
     DataManager data_manager_;
