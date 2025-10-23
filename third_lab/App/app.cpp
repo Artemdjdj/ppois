@@ -94,6 +94,11 @@ std::string App::GetAuthor() const {
     return this->user_->GetUsername();
 }
 
+
+Profile* App::GetProfile() const {
+    return this->user_->GetProfile().get();
+}
+
 std::shared_ptr<Chat> App::GetChat(const std::string& user) {
     return this->data_manager_.GetChat(this->user_->GetUsername(), user);
 }
@@ -105,6 +110,72 @@ std::shared_ptr<User> App::GetCurrentUser() {
 std::shared_ptr<User> App::GetUser(const std::string& username){
     return this->user_manager_.GetUser(username);
 }
+
+void App::SetLocation(const std::string& location) const {
+    const auto profile = GetProfile();
+    profile->SetLocation(location);
+}
+
+void App::SetBiography(const std::string& biography) const {
+    const auto profile = GetProfile();
+    profile->SetBiography(biography);
+}
+
+void App::SetGender(const bool is_man) const {
+    const auto profile = GetProfile();
+    profile->SetGender(is_man);
+}
+
+void App::SetAge(const int age) const {
+    const auto profile = GetProfile();
+    profile->SetAge(age);
+}
+
+std::string App::GetLocation() const {
+    return GetProfile()->GetLocation();
+}
+
+std::string App::GetBiography() const {
+    return GetProfile()->GetBiography();
+}
+
+bool App::GetGender() const {
+    return GetProfile()->GetGender();
+}
+
+int App::GetAge() const {
+    return GetProfile()->GetAge();
+}
+
+void App::AddUserToBlackList(const std::string &user){
+    if (this->user_ and GetCurrentUser()->GetUsername()  == user) {
+        throw std::logic_error("You can't add to black list yourself");
+    }
+    if (const auto bad_user = GetUser(user); !bad_user) {
+        throw std::logic_error("You can't add this_person, because he is not exist!");
+    }
+    const auto profile = GetProfile();
+    profile->AddUserToBlackList(user);
+}
+
+void App::DeleteUserFromBlackList(const std::string& user) const {
+    const auto profile = GetProfile();
+    profile->DeleteUserFromBlackList(user);
+}
+
+void App::DeleteAllFromBlackList() const {
+    const auto profile = GetProfile();
+    profile->DeleteAllFromBlackList();
+}
+
+std::vector<std::string> App::GetBlockedUsersNamesFromBlackList() {
+    const auto profile = GetProfile();
+    return profile->GetBlockedUsersNamesFromBlackList();
+}
+
+
+
+
 
 
 

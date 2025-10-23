@@ -112,14 +112,14 @@ TEST_F(TestUserAndProfile, TestSetIncorrectBiography) {
     ASSERT_EQ(profile.GetBiography(), "");
 }
 
-TEST_F(TestUserAndProfile, TestSetGender) {
-    profile.SetLocation("man");
-    ASSERT_EQ(profile.GetLocation(), "man");
+TEST_F(TestUserAndProfile, TestSetMan) {
+    profile.SetGender(true);
+    ASSERT_TRUE(profile.GetGender());
 }
 
-TEST_F(TestUserAndProfile, TestSetIncorrectGender) {
-    profile.SetGender("");
-    ASSERT_EQ(profile.GetGender(), "");
+TEST_F(TestUserAndProfile, TestSetWomen) {
+    profile.SetGender(false);
+    ASSERT_FALSE(profile.GetGender());
 }
 
 TEST_F(TestUserAndProfile, TestSetAge) {

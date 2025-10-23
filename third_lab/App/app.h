@@ -41,33 +41,37 @@ public:
 
     std::string GetAuthor() const;
 
+    Profile *GetProfile() const;
+
     std::shared_ptr<Chat> GetChat(const std::string &user);
 
     std::shared_ptr<User> GetCurrentUser();
 
     std::shared_ptr<User> GetUser(const std::string &username);
 
-    void SetLocation(const std::string &location);
+    void SetLocation(const std::string &location) const;
 
-    void SetBiography(const std::string &biography);
+    void SetBiography(const std::string &biography) const;
 
-    void SetGender(const std::string &gender);
+    void SetGender(const bool is_man) const;
 
-    void SetAge(int age);
-
-    std::string GetGender() const;
+    void SetAge(int age) const;
 
     std::string GetLocation() const;
 
     std::string GetBiography() const;
 
+    bool GetGender() const;
+
     int GetAge() const;
 
-    void AddUserToBlackList(const std::shared_ptr<User> &user);
+    void AddUserToBlackList(const std::string &user);
 
-    void DeleteUserFromBlackList(const std::shared_ptr<User> &user);
+    void DeleteUserFromBlackList(const std::string &user) const;
 
-    void DeleteAllFromBlackList();
+    void DeleteAllFromBlackList() const;
+
+    std::vector<std::string> GetBlockedUsersNamesFromBlackList();
 
 private:
     std::shared_ptr<User> user_ = nullptr;

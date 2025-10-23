@@ -106,13 +106,12 @@ std::string User::GetRole() const {
     return this->role_.GetRole();
 }
 
-std::unique_ptr<Profile> User::GetProfile(){
-    return std::move(this->profile_);
+const std::unique_ptr<Profile>& User::GetProfile() const{
+    return this->profile_;
 }
 
-Profile::Profile(const std::string& username, const std::string &location, const std::string &biography) : username_(username) {
-    SetLocation(location);
-    SetBiography(biography);
+Profile::Profile(const std::string& username, const std::string &location, const std::string &biography) : username_(username), location_(location), biography_(biography){
+
 }
 
 void Profile::SetLocation(const std::string &location) {
@@ -123,8 +122,8 @@ void Profile::SetBiography(const std::string &biography) {
     this->biography_ = biography;
 }
 
-void Profile::SetGender(const std::string &gender) {
-    this->gender_ = gender;
+void Profile::SetGender(const bool is_man) {
+    this->is_man_ = is_man;
 }
 
 void Profile::SetAge(const int age) {
@@ -137,8 +136,8 @@ void Profile::SetAge(const int age) {
     this->age_ = age;
 }
 
-std::string Profile::GetGender() const {
-    return this->gender_;
+bool Profile::GetGender() const {
+    return this->is_man_;
 }
 
 std::string Profile::GetLocation() const {

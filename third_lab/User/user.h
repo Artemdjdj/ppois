@@ -14,11 +14,11 @@ public:
 
     void SetBiography(const std::string &biography);
 
-    void SetGender(const std::string &gender);
+    void SetGender(const bool is_man);
 
     void SetAge(int age);
 
-    std::string GetGender() const;
+    bool GetGender() const;
 
     std::string GetLocation() const;
 
@@ -38,7 +38,7 @@ private:
     std::string username_;
     std::string location_;
     std::string biography_;
-    std::string gender_;
+    bool is_man_;
     std::string birthday_;
     std::string marital_status_;
     BlackList black_list_;
@@ -81,7 +81,7 @@ public:
 
     std::string GetPhoneNumber() const;
 
-    std::unique_ptr<Profile> GetProfile();
+    const std::unique_ptr<Profile>& GetProfile() const;
 
     std::string GetRole() const;
 
