@@ -12,13 +12,13 @@
 class Post{
 public:
 
-	Post(const std::string &name, const std::string &info, const std::shared_ptr<User> &author, const std::string &id_);
+	Post(const std::string &name, const std::string &info, const std::string &author, const std::string &id_);
 
 	// void SetId(const std::string &id);
 
-	void SetName(const std::string &name, const std::shared_ptr<User> &author);
+	void SetName(const std::string &name, const std::string &author);
 
-	void SetInfo(const std::string &info, const std::shared_ptr<User> &author);
+	void SetInfo(const std::string &info, const std::string &author);
 
 	std::string GetName() const;
 
@@ -34,20 +34,20 @@ public:
 
 	void AddHashTag(const std::shared_ptr<HashTag> &hash_tag);
 
-	void RemoveHashTag(const std::string &hash_tag, const std::shared_ptr<User> &author);
+	void RemoveHashTag(const std::string &hash_tag, const std::string &author);
 
-	void AddPoll(const std::shared_ptr<Poll> &poll, const  std::shared_ptr<User> &author);
+	void AddPoll(const std::shared_ptr<Poll> &poll, const  std::string &author);
 
-	void RemovePoll(const std::string &question, const std::shared_ptr<User> &author);
+	void RemovePoll(const std::string &question, const std::string &author);
 
 private:
 	std::string id_;
 	std::string name_;
 	std::string info_;
-	std::map<std::string, std::shared_ptr<Reaction>> kReactions_;
+	std::map<std::string, std::shared_ptr<Reaction>> reactions_;
 	std::vector<std::shared_ptr<HashTag>> hash_tags_;
 	std::vector<std::shared_ptr<Poll>> polls_;
-	std::weak_ptr<User> author_;
+	std::string author_;
 
 	int CheckHashTagUsed(const std::string &check_hash_tag) const;
 

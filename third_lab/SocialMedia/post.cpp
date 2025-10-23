@@ -3,7 +3,7 @@
 #include "../Utils/project_utils.h"
 
 
-Post::Post(const std::string &name, const std::string &info, const std::shared_ptr<User> &author, const std::string& id): id_(id), name_(name), info_(info),
+Post::Post(const std::string &name, const std::string &info, const std::string &author, const std::string& id): id_(id), name_(name), info_(info),
                                                                             author_(author) {
 };
 
@@ -11,13 +11,13 @@ Post::Post(const std::string &name, const std::string &info, const std::shared_p
 //     this->id_ = id;
 // }
 
-void Post::SetName(const std::string &name, const std::shared_ptr<User> &author) {
-    DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_.lock(), author, "You can't changing info about post",
+void Post::SetName(const std::string &name, const std::string &author) {
+    DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_, author, "You can't changing info about post",
                                      "You can't set name of your post empty");
 }
 
-void Post::SetInfo(const std::string &info, const std::shared_ptr<User> &author) {
-    DefaultProjectSettings::SetValueWithAuthor(this->info_, info, this->author_.lock(), author, "You can't changing info about post",
+void Post::SetInfo(const std::string &info, const std::string &author) {
+    DefaultProjectSettings::SetValueWithAuthor(this->info_, info, this->author_, author, "You can't changing info about post",
                                      "You can't set name of your post empty");
 }
 
@@ -33,19 +33,19 @@ std::string Post::GetId() const {
     return this->id_;
 }
 void Post::AddReaction(const std::shared_ptr<Reaction> &reaction) {
-    this->kReactions_[reaction->SeeAuthor()] = reaction;
+    this->reactions_[reaction->SeeAuthor()] = reaction;
 }
 
 void Post::RemoveReaction(const std::string &username) {
-    auto it = this->kReactions_.find(username);
-    if (it == this->kReactions_.end()) {
+    auto it = this->reactions_.find(username);
+    if (it == this->reactions_.end()) {
         throw ExceptionIncorrectNumber("You don't have access to remove this post");
     }
-    this->kReactions_.erase(it);
+    this->reactions_.erase(it);
 }
 
 std::shared_ptr<Reaction>Post::SeeReactionByAuthor(const std::string &username) const {
-    return this->kReactions_.at(username);
+    return this->reactions_.at(username);
 }
 
 int Post::CheckHashTagUsed(const std::string &check_hash_tag) const {
@@ -62,10 +62,7 @@ int Post::CheckHashTagUsed(const std::string &check_hash_tag) const {
 void Post::AddHashTag(const std::shared_ptr<HashTag> &hash_tag) {
     std::string check_hash_tag_str = hash_tag->GetHashTag();
     DefaultProjectSettings::ToLower(check_hash_tag_str);
-    if (!this->author_.lock()) {
-        throw ExceptionAccess("Add author to post");
-    }
-    if (this->author_.lock()->GetUsername() != hash_tag->SeeAuthor()) {
+    if (this->author_ != hash_tag->SeeAuthor()) {
         throw ExceptionAccess("You don't have access to changing this post");
     }
     if (CheckHashTagUsed(check_hash_tag_str) != -1) {
@@ -74,11 +71,8 @@ void Post::AddHashTag(const std::shared_ptr<HashTag> &hash_tag) {
     DefaultWorkingWithVector::AddElementToVector(this->hash_tags_, hash_tag);
 }
 
-void Post::RemoveHashTag(const std::string &hash_tag, const std::shared_ptr<User> &author) {
-    if (!this->author_.lock()) {
-        throw ExceptionAccess("Try to add author of the post");
-    }
-    if (this->author_.lock() != author) {
+void Post::RemoveHashTag(const std::string &hash_tag, const std::string &author) {
+    if (this->author_ != author) {
         throw ExceptionAccess("You don't have access to changing this post");
     }
     const auto it = CheckHashTagUsed(hash_tag);
@@ -106,11 +100,8 @@ bool Post::CheckPollUsedInList(const std::shared_ptr<Poll> &check_poll) const {
 }
 
 
-void Post::AddPoll(const std::shared_ptr<Poll> &poll, const std::shared_ptr<User> &author) {
-    if (! this->author_.lock()) {
-        throw ExceptionAccess("Try to add author, now you can't add poll");
-    }
-    if (this->author_.lock() != author) {
+void Post::AddPoll(const std::shared_ptr<Poll> &poll, const std::string &author) {
+    if (this->author_ != author) {
         throw ExceptionAccess("You don't have access to changing this post");
     }
     if (CheckPollUsedInList(poll)) {
@@ -119,11 +110,8 @@ void Post::AddPoll(const std::shared_ptr<Poll> &poll, const std::shared_ptr<User
     DefaultWorkingWithVector::AddElementToVector(this->polls_, poll);
 }
 
-void Post::RemovePoll(const std::string &question, const std::shared_ptr<User> &author) {
-    if (! this->author_.lock()) {
-        throw ExceptionAccess("Try to add author, now you can't remove poll");
-    }
-    if (this->author_.lock() != author) {
+void Post::RemovePoll(const std::string &question, const std::string &author) {
+    if (this->author_ != author) {
         throw ExceptionAccess("You don't have access to changing this post");
     }
     const auto it = CheckPollUsed(question);

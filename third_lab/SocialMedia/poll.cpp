@@ -6,15 +6,12 @@
 
 Poll::Poll(const std::string &question,
            const std::vector<std::string> &
-           answers, const std::shared_ptr<User> &user): question_(question), answers_(answers), author_(user) {
+           answers, const std::string &user): question_(question), answers_(answers), author_(user) {
 }
 
-int Poll::GetAnswerOfUser(const std::shared_ptr<User> &user) const {
-    if (!user) {
-        return -1;
-    }
+int Poll::GetAnswerOfUser(const std::string &user) const {
     for (const auto &answer: this->users_and_their_answers_) {
-        if (answer.first.lock() == user) {
+        if (answer.first == user) {
             return answer.second;
         }
     }
@@ -30,7 +27,7 @@ int Poll::GetAnswerOfUser(const std::shared_ptr<User> &user) const {
 //     }
 // }
 
-void Poll::AddAnswer(int number_of_answer, std::shared_ptr<User> user) {
+void Poll::AddAnswer(int number_of_answer, std::string user) {
     if (number_of_answer > answers_.size() or number_of_answer < 1) {
         throw ExceptionIncorrectNumber("Incorrect answer, such answer is not in list of answers");
     }
@@ -43,7 +40,7 @@ void Poll::AddAnswer(int number_of_answer, std::shared_ptr<User> user) {
     users_and_their_answers_.emplace_back(user, number_of_answer);
 }
 
-void Poll::SeeUserAnswer(const std::shared_ptr<User> &user, std::string &result) const {
+void Poll::SeeUserAnswer(const std::string &user, std::string &result) const {
     const int number_of_answer = GetAnswerOfUser(user);
     if (number_of_answer == -1) {
         DefaultProjectSettings::LogFile("You do not have any answer!", main_log_file);
@@ -52,9 +49,9 @@ void Poll::SeeUserAnswer(const std::shared_ptr<User> &user, std::string &result)
     result = answers_[number_of_answer - 1];
 }
 
-std::optional<int> Poll::GetAuthorAndHisAnswer(const std::shared_ptr<User> &user, const int new_answer) {
+std::optional<int> Poll::GetAuthorAndHisAnswer(const std::string &user, const int new_answer) {
     for (auto &pair: this->users_and_their_answers_) {
-        if (user == pair.first.lock()) {
+        if (user == pair.first) {
             int old_answer = pair.second;
             pair.second = new_answer;
             return old_answer;
@@ -77,10 +74,10 @@ std::string Poll::GetQuestion() const {
 
 PollWithRefactoringChoose::PollWithRefactoringChoose(const std::string &question,
                                                      const std::vector<std::string> &
-                                                     answers, const std::shared_ptr<User> &user): Poll(question, answers, user) {
+                                                     answers, const std::string &user): Poll(question, answers, user) {
 }
 
-void PollWithRefactoringChoose::RefactorYourChoose(const std::shared_ptr<User> &user, const int new_answer) {
+void PollWithRefactoringChoose::RefactorYourChoose(const std::string &user, const int new_answer) {
     if (new_answer > answers_.size() or new_answer < 1) {
         throw ExceptionIncorrectNumber("Incorrect answer, such answer is not in list of answers");
     }
@@ -95,12 +92,12 @@ void PollWithRefactoringChoose::RefactorYourChoose(const std::shared_ptr<User> &
 }
 
 PollWithGettingAnswer::PollWithGettingAnswer(const std::string &question, const std::vector<std::string> &answers,
-                                             const int number_of_correct_answer, const std::shared_ptr<User> &user): Poll(
+                                             const int number_of_correct_answer, const std::string &user): Poll(
         question, answers, user),
     correct_answer_(number_of_correct_answer) {
 }
 
-void PollWithGettingAnswer::AddAnswer(int number_of_answer, std::shared_ptr<User> user) {
+void PollWithGettingAnswer::AddAnswer(int number_of_answer, std::string user) {
     if (number_of_answer > answers_.size() or number_of_answer < 1) {
         throw ExceptionIncorrectNumber("Incorrect answer, such answer is not in list of answers");
     }

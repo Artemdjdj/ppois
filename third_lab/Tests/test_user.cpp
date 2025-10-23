@@ -10,10 +10,10 @@ public:
     }
     User user = User("@Artemdjdj", "554shflsd34434");
     User user2 = User("@Genius", "55sgsjglja4");
-    std::shared_ptr<User> user4 = std::make_shared<User>("@Geniusss", "55sgs7555jglja4");
-    std::shared_ptr<User> user5 = std::make_shared<User>("@Vladus", "55s64jglja4");
+    const std::string user4 = "@Geniusss";
+    const std::string user5 ="@Vladus";
     Role role = Role("user");
-    Profile profile = Profile(user);
+    Profile profile = Profile(user.GetUsername());
 };
 
 TEST_F(TestUserAndProfile, TestEqUser) {

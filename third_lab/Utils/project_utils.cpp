@@ -51,8 +51,8 @@ void DefaultProjectSettings::ToLower(std::string &str) {
     std::ranges::transform(str, str.begin(), ::tolower);
 }
 
-void DefaultProjectSettings::SetValueWithAuthor(std::string &property, const std::string &value, const std::shared_ptr<User> &user,
-                                                const std::shared_ptr<User> &user_checked,
+void DefaultProjectSettings::SetValueWithAuthor(std::string &property, const std::string &value, const std::string &user,
+                                                const std::string &user_checked,
                                                 const std::string &error_incorrect_author,
                                                 const std::string &error_invalid_value) {
     if (user != user_checked) {

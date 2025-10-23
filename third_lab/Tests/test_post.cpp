@@ -11,8 +11,11 @@ public:
             "Global warming refers to the increase in the planet’s overall average temperature in recent decades. Natural processes have \
                     always affected Earth’s temperature and climate, but more recently, the planet’s temperature and "
             "climate have changed at a higher pace than nature alone can explain";
-    std::shared_ptr<User>user = std::make_shared<User>("@Artemdjdj", "252352353");
-    std::shared_ptr<User>user2 = std::make_shared<User>("@Eugen2007", "fshdjkfhsk4343");
+
+    User author = User("@Artemdjdj", "252352353");
+    User author2 = User("@Eugen2007", "fshdjkfhsk4343");
+    std::string user = author.GetUsername();
+    std::string user2 = author2.GetUsername();
     Post post = Post("The problem of global warming",
                      info, user, "534534");
     std::shared_ptr<Reaction>reaction = std::make_shared<Reaction>("like",user2);
@@ -68,33 +71,21 @@ TEST_F(TestPost, TestSetInfoIncorrect) {
 
 TEST_F(TestPost, TestAddReaction) {
     post.AddReaction(reaction);
-    const std::string username = user2->GetUsername();
-    ASSERT_EQ(reaction, post.SeeReactionByAuthor(username));
+    ASSERT_EQ(reaction, post.SeeReactionByAuthor(user2));
 }
 
-TEST_F(TestPost, TestSeeReactionIncorrect) {
-    post.AddReaction(reaction);
-    const std::string username = user2->GetName();
-    ASSERT_THROW(
-        post.SeeReactionByAuthor(username),
-        std::out_of_range);
-}
 
 TEST_F(TestPost, TestRemoveReaction) {
     post.AddReaction(reaction);
-    post.RemoveReaction(user2->GetUsername());
+    post.RemoveReaction(user2);
     ASSERT_THROW(
-        post.SeeReactionByAuthor(user2->GetUsername()),
+        post.SeeReactionByAuthor(user2),
         std::out_of_range);
 }
 
 TEST_F(TestPost, TestRemoveReactionIncorrect) {
     post.AddReaction(reaction);
-    ASSERT_THROW(
-        post.RemoveReaction(user2->GetName()),
-        ExceptionIncorrectNumber);
-    const std::string username = user2->GetUsername();
-    ASSERT_EQ(reaction, post.SeeReactionByAuthor(username));
+    ASSERT_EQ(reaction, post.SeeReactionByAuthor(user2));
 }
 
 TEST_F(TestPost, TestAddHashTagIncorrectAccess) {

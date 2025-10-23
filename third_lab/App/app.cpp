@@ -27,54 +27,50 @@ void App::DeleteAccount() {
     this->user_ = nullptr;
 }
 
-std::unique_ptr<Profile> App::GetProfile() const {
-    return this->user_->GetProfile();
+void App::CreateNewChat(const std::string &second_user) {
+    this->data_manager_.CreateNewChat(this->user_->GetUsername(), second_user);
 }
 
-void App::CreateNewChat(const std::shared_ptr<User> &second_user) {
-    this->data_manager_.CreateNewChat(this->user_, second_user);
+void App::SendMessageToChat(const std::string &second_user, const std::shared_ptr<Message> &message) {
+    this->data_manager_.SendMessageToChat(this->user_->GetUsername(), second_user, message);
 }
 
-void App::SendMessageToChat(const std::shared_ptr<User> &second_user, const std::shared_ptr<Message> &message) {
-    this->data_manager_.SendMessageToChat(this->user_, second_user, message);
-}
-
-void App::DeleteChat(const std::shared_ptr<User>& user) {
-    this->data_manager_.DeleteChat(this->user_, user);
+void App::DeleteChat(const std::string& user) {
+    this->data_manager_.DeleteChat(this->user_->GetUsername(), user);
 }
 
 std::vector<std::shared_ptr<Chat>> App::GetAllChats() {
-    return this->data_manager_.GetAllChats(this->user_);
+    return this->data_manager_.GetAllChats(this->user_->GetUsername());
 }
 
-std::string App::GetChatName(const std::shared_ptr<User>& user){
-    const auto chat = this->data_manager_.GetChat(this->user_, user);
+std::string App::GetChatName(const std::string& user){
+    const auto chat = this->data_manager_.GetChat(this->user_->GetUsername(), user);
     if (!chat) {
         throw std::logic_error("Chat is not exist, you can't see name!");
     }
     const auto user1 = chat->GetFirstMember();
     const auto user2  = chat->GetSecondMember();
-    return (user1 == this->user_)?user2->GetUsername():user1->GetUsername();
+    return (user1 == this->user_->GetUsername())?user2:user1;
 }
 
-void App::DeleteMessageFromChat(const std::shared_ptr<User> &second_user, const int number_of_message) {
-    auto chat  = this->data_manager_.GetChat(this->user_, second_user);
+void App::DeleteMessageFromChat(const std::string &second_user, const int number_of_message) {
+    auto chat  = this->data_manager_.GetChat(this->user_->GetUsername(), second_user);
     if (!chat) {
         throw std::logic_error("Chat is not exist, you can't delete it");
     }
-    chat->DeleteMessage(number_of_message, this->user_);
+    chat->DeleteMessage(number_of_message, this->user_->GetUsername());
 }
 
-void App::RefactorMessageInChat(const std::shared_ptr<User> &second_user, const int number_of_message, const std::shared_ptr<Message> &new_message) {
-    auto chat  = this->data_manager_.GetChat(this->user_, second_user);
+void App::RefactorMessageInChat(const std::string &second_user, const int number_of_message, const std::shared_ptr<Message> &new_message) {
+    auto chat  = this->data_manager_.GetChat(this->user_->GetUsername(), second_user);
     if (!chat) {
         throw std::logic_error("Chat is not exist, you can't refactor it");
     }
-    chat->RefactorMessage(new_message->GetMessageDefaultText(), number_of_message, this->user_);
+    chat->RefactorMessage(new_message->GetMessageDefaultText(), number_of_message, this->user_->GetUsername());
 }
 
-std::vector<std::pair<int,std::pair<std::string, std::string>>> App::ViewAllHistoryOfChat(const std::shared_ptr<User> &second_user) {
-    const auto chat  = this->data_manager_.GetChat(this->user_, second_user);
+std::vector<std::pair<int,std::pair<std::string, std::string>>> App::ViewAllHistoryOfChat(const std::string &second_user) {
+    const auto chat  = this->data_manager_.GetChat(this->user_->GetUsername(), second_user);
     if (!chat) {
         throw std::logic_error("Chat is not exist, you can't view history");
     }
@@ -82,9 +78,7 @@ std::vector<std::pair<int,std::pair<std::string, std::string>>> App::ViewAllHist
     int index = 0;
     std::vector<std::pair<int,std::pair<std::string, std::string>>> result;
     for (const auto& message : messages) {
-        if (const auto author = message->GetAuthor()) {
-            result.emplace_back(++index, std::make_pair(message->GetMessageDefaultText(),author->GetUsername()));
-        }
+        result.emplace_back(++index, std::make_pair(message->GetMessageDefaultText(),message->GetAuthor()));
     }
     return result;
 }
@@ -100,8 +94,8 @@ std::string App::GetAuthor() const {
     return this->user_->GetUsername();
 }
 
-std::shared_ptr<Chat> App::GetChat(const std::shared_ptr<User>& user) {
-    return this->data_manager_.GetChat(this->user_, user);
+std::shared_ptr<Chat> App::GetChat(const std::string& user) {
+    return this->data_manager_.GetChat(this->user_->GetUsername(), user);
 }
 
 std::shared_ptr<User> App::GetCurrentUser() {

@@ -9,8 +9,8 @@ public:
 		reaction = Reaction();
 		hash_tag = HashTag();
 	}
-
-	std::shared_ptr<User>user = std::make_shared<User>("@Artemdjdj", "hello6546world");
+	User author = User("@Artemdjdj", "hello6546world");
+	std::string user = author.GetUsername();
 	HashTag hash_tag;
 	Reaction reaction;
 };

@@ -7,11 +7,11 @@
 
 Message::Message() = default;
 
-Message::Message(const std::string &message, const std::shared_ptr<User> &user) : author_(user) {
+Message::Message(const std::string &message, const std::string &user) : author_(user) {
     CreateMessage(message, user);
 }
 
-void Message::CreateMessage(const std::string &message, const std::shared_ptr<User> &user) {
+void Message::CreateMessage(const std::string &message, const std::string &user) {
     if (message.empty()) {
         throw ExceptionIncorrectMessage(message.c_str());
     }
@@ -21,12 +21,12 @@ void Message::CreateMessage(const std::string &message, const std::shared_ptr<Us
 }
 
 void Message::RefactorMessage(const std::string &message) {
-    CreateMessage(message, this->author_.lock());
+    CreateMessage(message, this->author_);
     this->is_refactor_ = true;
 }
 
-std::shared_ptr<User> Message::GetAuthor() const {
-    return this->author_.lock();
+std::string Message::GetAuthor() const {
+    return this->author_;
 }
 
 std::string Message::GetMessageDefault() const {
@@ -41,8 +41,8 @@ void BaseChat::WriteMessage(const std::shared_ptr<Message> &message) {
     this->messages_.push_back(message);
 }
 
-void BaseChat::ChangeMessage(int number_of_message, const std::shared_ptr<User> &sender_user,
-                             bool is_delete, const std::string &message = "") {
+void BaseChat::ChangeMessage(const int number_of_message, const std::string &sender_user,
+                             const bool is_delete, const std::string &message = "") {
     if (number_of_message < 0 or number_of_message > this->messages_.size()) {
         throw ExceptionIncorrectNumber("Incorrect number of messages");
     }
@@ -56,12 +56,12 @@ void BaseChat::ChangeMessage(int number_of_message, const std::shared_ptr<User> 
     }
 };
 
-void BaseChat::RefactorMessage(const std::string &message, int number_of_message,
-                               const std::shared_ptr<User> &sender_user) {
-    ChangeMessage(number_of_message, sender_user, false, message);
+void BaseChat::RefactorMessage(const std::string &message, const int number_of_message,
+                               const std::string &user) {
+    ChangeMessage(number_of_message, user, false, message);
 }
 
-void BaseChat::DeleteMessage(const int number_of_message, const std::shared_ptr<User> &sender_user) {
+void BaseChat::DeleteMessage(const int number_of_message, const std::string &sender_user) {
     ChangeMessage(number_of_message, sender_user, true);
 }
 
@@ -100,23 +100,23 @@ std::shared_ptr<Message> BaseChat::GetMessageByNumber(const int number) {
 // 	}
 // }
 
-Chat::Chat(const std::shared_ptr<User>& first_user, const std::shared_ptr<User>& second_user, const std::string& name)
+Chat::Chat(const std::string& first_user, const std::string& second_user, const std::string& name)
     : name_(name),
       users_(std::make_pair(first_user, second_user)) {
 }
 
-std::shared_ptr<User> Chat::GetFirstMember() const {
-    return this->users_.first.lock();
+std::string Chat::GetFirstMember() const {
+    return this->users_.first;
 }
 
-std::shared_ptr<User> Chat::GetSecondMember() const {
-    return this->users_.second.lock();
+std::string Chat::GetSecondMember() const {
+    return this->users_.second;
 }
 
 std::vector<std::string> Chat::ListMembers() {
     std::vector<std::string> members;
-    members.push_back(users_.first.lock()->GetUsername());
-    members.push_back(users_.second.lock()->GetUsername());
+    members.push_back(users_.first);
+    members.push_back(users_.second);
     return members;
 }
 

@@ -6,11 +6,11 @@ Reaction::Reaction() {
 	// author_ = nullptr;
 }
 
-Reaction::Reaction(const std::string &type_of_reaction, const std::shared_ptr<User> &author) {
+Reaction::Reaction(const std::string &type_of_reaction, const std::string &author) {
 	SetReaction(type_of_reaction, author);
 }
 
-void Reaction::SetReaction(std::string type_of_reaction, const std::shared_ptr<User> &author) {
+void Reaction::SetReaction(std::string type_of_reaction, const std::string &author) {
 	DefaultProjectSettings::ToLower(type_of_reaction);
 	if (!DefaultProjectSettings::CheckIsStatementInAllowed(type_of_reaction, kReactions)) {
 		throw ExceptionIncorrectReaction("This reaction is not allowed!");
@@ -25,9 +25,6 @@ std::string Reaction::GetReaction() const {
 }
 
 std::string Reaction::SeeAuthor() const {
-	if (!this->author_.lock()) {
-		throw ExceptionAccess("Try to add author!");
-	}
-	return  this->author_.lock()->GetUsername();
+	return  this->author_;
 }
 

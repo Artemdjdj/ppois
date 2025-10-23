@@ -21,9 +21,10 @@ public:
                                                          }), 2, user);
         poll_with_refactoring_choose.AddAnswer(1, user);
     }
-
-    std::shared_ptr<User>user = std::make_shared<User>("@Artemdjdj", "252352353");
-    std::shared_ptr<User>user2 = std::make_shared<User>("@Eugen2007", "fshdjkfhsk4343");
+    User author = User("@Artemdjdj", "252352353");
+    User author2 = User("@Eugen2007", "fshdjkfhsk4343");
+    std::string user = author.GetUsername();
+    std::string user2 = author2.GetUsername();
     Poll poll_without_refactoring_choose;
     PollWithRefactoringChoose poll_with_refactoring_choose;
     PollWithGettingAnswer poll_with_getting_answer;

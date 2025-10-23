@@ -9,8 +9,8 @@ public:
         blacklist.AddUser(user1);
     }
 
-    std::shared_ptr<User> user1 = std::make_shared<User>("@Artemdjdj", "gsgg5093495");
-    std::shared_ptr<User> user2 = std::make_shared<User>("@Artemdjdj35", "5093445hdskfhsk");
+    const std::string user1 = "@Artemdjdj";
+    const std::string user2 = "@Artemdjdj35";
     BlackList blacklist = BlackList();
 };
 

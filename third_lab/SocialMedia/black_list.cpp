@@ -1,20 +1,16 @@
 #include "../SocialMedia/black_list.h"
 #include "../Utils/project_utils.h"
 
-void BlackList::AddUser(const std::shared_ptr<User> &user) {
+void BlackList::AddUser(const std::string& user) {
     if (FindUserIndex(user) == -1) {
         DefaultWorkingWithVector::AddElementToVector(this->blocked_users_, user);
     }
 }
 
-int BlackList::FindUserIndex(const std::shared_ptr<User> &user){
-    if (!user) {
-        return -1;
-    }
+int BlackList::FindUserIndex(const std::string& user) const {
     int it = 0;
-    DefaultWorkingWithVector::DeleteUnUsedWeakPtrs(this->blocked_users_);
     for (auto &bad_user: this->blocked_users_) {
-        if (user == bad_user.lock()) {
+        if (user == bad_user) {
             return it;
         }
         it += 1;
@@ -22,7 +18,7 @@ int BlackList::FindUserIndex(const std::shared_ptr<User> &user){
     return -1;
 }
 
-void BlackList::DeleteUser(const std::shared_ptr<User> &user) {
+void BlackList::DeleteUser(const std::string& user) {
     DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->blocked_users_, FindUserIndex(user));
 }
 
@@ -31,10 +27,5 @@ void BlackList::DeleteAll() {
 }
 
 std::vector<std::string> BlackList::GetBlockedUsersNames(){
-    DefaultWorkingWithVector::DeleteUnUsedWeakPtrs(this->blocked_users_);
-    std::vector<std::string> list_of_usernames;
-    for (const auto& blocked_user:this->blocked_users_) {
-        DefaultWorkingWithVector::AddElementToVector(list_of_usernames,blocked_user.lock()->GetUsername());
-    }
-    return list_of_usernames;
+    return this->blocked_users_;
 }

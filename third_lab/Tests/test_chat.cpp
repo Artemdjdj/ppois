@@ -8,14 +8,15 @@ public:
 		chat.WriteMessage(test_message1);
 		chat.WriteMessage(test_message2);
 		chat.WriteMessage(test_message3);
-		sh_user1->SetName("Artem");
-		sh_user2->SetName("Johnatan");
+		user1.SetName("Artem");
+		user2.SetName("Johnatan");
 	}
+	User user1 = User("@Artemdjdj", "sldfk54353");
 	User user2 = User("@Vladgjhgj53334", "hfdhh634u233");
 	User user3 = User("@Vsdffgjjg34", "hfdhh6357573");
-	std::shared_ptr<User> sh_user1 = std::make_shared<User>("@Artemdjdj", "sldfk54353");
-	std::shared_ptr<User> sh_user2 = std::make_shared<User>(user2);
-	std::shared_ptr<User> sh_user3 = std::make_shared<User>(user3);
+	std::string sh_user1 = user1.GetUsername();
+	std::string sh_user2 = user2.GetUsername();
+	std::string sh_user3 = user3.GetUsername();
 	Message  message = Message();
 	Message  message2 = Message("Some info", sh_user1);
 	Chat chat = Chat(sh_user1, sh_user2);

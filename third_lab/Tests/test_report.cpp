@@ -4,8 +4,10 @@
 
 class TestReport : public ::testing::Test {
 public:
-    std::shared_ptr<User>user1 = std::make_shared<User>("@Artemdjdj", "gsgg5093495");
-    std::shared_ptr<User>user2 = std::make_shared<User>("@Artemdjdj35", "5093445hdskfhsk");
+    std::shared_ptr<User>author1 = std::make_shared<User>("@Artemdjdj", "gsgg5093495");
+    std::shared_ptr<User>author2 = std::make_shared<User>("@Artemdjdj35", "5093445hdskfhsk");
+    std::string user1 = author1->GetUsername();
+    std::string user2 = author2->GetUsername();
     Report report  = Report(user1, user2);
 };
 

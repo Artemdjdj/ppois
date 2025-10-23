@@ -3,8 +3,10 @@
 
 class TestNotification : public::testing::Test {
 public:
-    std::shared_ptr<User> user1 = std::make_shared<User>("@Artemdjdj", "gsgg5093495");
-    std::shared_ptr<User> user2 = std::make_shared<User>("@Artemdjdj35", "5093445hdskfhsk");
+    User author = User("@Artemdjdj", "gsgg5093495");
+    User author2 = User("@Artemdjdj35", "5093445hdskfhsk");;
+    std::string user1 = author.GetUsername();
+    std::string user2 = author2.GetUsername();
     Notification notification = Notification("notificaion", "some info", user1, user2);
 };
 

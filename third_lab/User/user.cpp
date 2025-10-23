@@ -8,6 +8,7 @@
 User::User(const std::string &username, const std::string &password, const std::string &name) : name_(name) {
     SetUserName(username);
     SetPassword(password);
+    CreateProfile();
 }
 
 User::User(const User &other) {
@@ -69,7 +70,7 @@ void User::SetPassword(const std::string &password) {
 
 void User::CreateProfile() {
     if (!this->profile_) {
-        this->profile_ = std::make_unique<Profile>(*this);
+        this->profile_ = std::make_unique<Profile>(this->GetUsername());
     }
 }
 
@@ -109,7 +110,7 @@ std::unique_ptr<Profile> User::GetProfile(){
     return std::move(this->profile_);
 }
 
-Profile::Profile(User &user, const std::string &location, const std::string &biography) : user_(user) {
+Profile::Profile(const std::string& username, const std::string &location, const std::string &biography) : username_(username) {
     SetLocation(location);
     SetBiography(biography);
 }
@@ -152,11 +153,11 @@ int Profile::GetAge() const {
     return this->age_;
 }
 
-void Profile::AddUserToBlackList(const std::shared_ptr<User> &user) {
+void Profile::AddUserToBlackList(const std::string& user) {
     this->black_list_.AddUser(user);
 }
 
-void Profile::DeleteUserFromBlackList(const std::shared_ptr<User> &user) {
+void Profile::DeleteUserFromBlackList(const std::string& user) {
     this->black_list_.DeleteUser(user);
 }
 

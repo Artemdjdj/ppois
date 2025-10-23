@@ -18,39 +18,58 @@ public:
 
     void DeleteAccount();
 
-    void CreateNewChat(const std::shared_ptr<User> &second_user);
+    void CreateNewChat(const std::string &second_user);
 
-    void SendMessageToChat(const std::shared_ptr<User> &second_user,
+    void SendMessageToChat(const std::string &second_user,
                            const std::shared_ptr<Message> &message);
 
-    std::string GetChatName(const std::shared_ptr<User> &user);
+    std::string GetChatName(const std::string &user);
 
-    void DeleteMessageFromChat(const std::shared_ptr<User> &second_user, int number_of_message);
+    void DeleteMessageFromChat(const std::string &second_user, int number_of_message);
 
-    void RefactorMessageInChat(const std::shared_ptr<User> &second_user, int number_of_message,
+    void RefactorMessageInChat(const std::string &second_user, int number_of_message,
                                const std::shared_ptr<Message> &new_message);
 
     std::vector<std::pair<int, std::pair<std::string, std::string> > > ViewAllHistoryOfChat(
-        const std::shared_ptr<User> &second_user);
+        const std::string &second_user);
 
     std::vector<std::shared_ptr<Chat> > GetAllChats();
 
-    void DeleteChat(const std::shared_ptr<User> &user);
+    void DeleteChat(const std::string &user);
 
     int GetCountOfUsers() const;
 
     std::string GetAuthor() const;
 
-    std::shared_ptr<Chat> GetChat(const std::shared_ptr<User> &user);
+    std::shared_ptr<Chat> GetChat(const std::string &user);
 
     std::shared_ptr<User> GetCurrentUser();
 
     std::shared_ptr<User> GetUser(const std::string &username);
 
+    void SetLocation(const std::string &location);
+
+    void SetBiography(const std::string &biography);
+
+    void SetGender(const std::string &gender);
+
+    void SetAge(int age);
+
+    std::string GetGender() const;
+
+    std::string GetLocation() const;
+
+    std::string GetBiography() const;
+
+    int GetAge() const;
+
+    void AddUserToBlackList(const std::shared_ptr<User> &user);
+
+    void DeleteUserFromBlackList(const std::shared_ptr<User> &user);
+
+    void DeleteAllFromBlackList();
 
 private:
-    std::unique_ptr<Profile> GetProfile() const;
-
     std::shared_ptr<User> user_ = nullptr;
     UserManager user_manager_;
     DataManager data_manager_;

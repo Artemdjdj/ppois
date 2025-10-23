@@ -33,15 +33,15 @@ public:
     // Story() = default;
 
     Story(const std::string &name, const std::string &info, const StorySettings &settings,
-          const std::shared_ptr<User> &author, const std::string &id);
+          const std::string &author, const std::string &id);
 
     // void SetId(const std::string &id);
 
-    void SetName(const std::string &name, const std::shared_ptr<User> &user);
+    void SetName(const std::string &name, const std::string &user);
 
-    void SetInfo(const std::string &info, const std::shared_ptr<User> &user);
+    void SetInfo(const std::string &info, const std::string &user);
 
-    void MakeVisibilityPublic(bool is_public, const std::shared_ptr<User> &user);
+    void MakeVisibilityPublic(bool is_public, const std::string &user);
 
     std::string GetName();
 
@@ -58,7 +58,7 @@ private:
     std::string name_;
     std::string info_;
     StorySettings settings_;
-    std::weak_ptr<User> author_;
+    std::string author_;
 };
 
 #endif //STORY_H

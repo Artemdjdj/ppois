@@ -5,7 +5,7 @@
 
 class Notification final : public Info {
 public:
-    Notification(const std::string &name, const std::string &info, const std::shared_ptr<User> &sender, const std::shared_ptr<User> &receiver);
+    Notification(const std::string &name, const std::string &info, const std::string &sender, const std::string &receiver);
 
     void ShowNotification();
 
@@ -13,15 +13,15 @@ public:
 
     std::string GetTime() const;
 
-    std::shared_ptr<User> GetSender() const;
+    std::string GetSender() const;
 
-    std::shared_ptr<User> GetReceiver() const;
+    std::string GetReceiver() const;
 
     bool IsShow() const;
 
 private:
-    std::weak_ptr<User> sender_;
-    std::weak_ptr<User> receiver_;
+    std::string sender_;
+    std::string receiver_;
     std::string time_;
     bool is_show_{true};
 };

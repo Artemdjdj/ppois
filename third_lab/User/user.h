@@ -6,13 +6,47 @@
 #include "../WorkingWithUser/working_with_password.h"
 #include "../SocialMedia/black_list.h"
 
-class Profile;
+class Profile {
+public:
+    explicit Profile(const std::string& username, const std::string &location = "", const std::string &biography = "");
 
+    void SetLocation(const std::string &location);
+
+    void SetBiography(const std::string &biography);
+
+    void SetGender(const std::string &gender);
+
+    void SetAge(int age);
+
+    std::string GetGender() const;
+
+    std::string GetLocation() const;
+
+    std::string GetBiography() const;
+
+    int GetAge() const;
+
+    void AddUserToBlackList(const std::string& user);
+
+    void DeleteUserFromBlackList(const std::string& user);
+
+    void DeleteAllFromBlackList();
+
+    std::vector<std::string> GetBlockedUsersNamesFromBlackList();
+
+private:
+    std::string username_;
+    std::string location_;
+    std::string biography_;
+    std::string gender_;
+    std::string birthday_;
+    std::string marital_status_;
+    BlackList black_list_;
+    int age_;
+};
 
 class User {
 public:
-    User() = default;
-
     User(const std::string &username, const std::string &password, const std::string &name = "");
 
     User(const User &other);
@@ -62,45 +96,6 @@ private:
     Hash password_;
     Role role_;
     std::unique_ptr<Profile> profile_;
-};
-
-class Profile {
-public:
-    explicit Profile(User &user, const std::string &location = "", const std::string &biography = "");
-
-    void SetLocation(const std::string &location);
-
-    void SetBiography(const std::string &biography);
-
-    void SetGender(const std::string &gender);
-
-    void SetAge(int age);
-
-    std::string GetGender() const;
-
-    std::string GetLocation() const;
-
-    std::string GetBiography() const;
-
-    int GetAge() const;
-
-    void AddUserToBlackList(const std::shared_ptr<User> &user);
-
-    void DeleteUserFromBlackList(const std::shared_ptr<User> &user);
-
-    void DeleteAllFromBlackList();
-
-    std::vector<std::string> GetBlockedUsersNamesFromBlackList();
-
-private:
-    User &user_;
-    std::string location_;
-    std::string biography_;
-    std::string gender_;
-    std::string birthday_;
-    std::string marital_status_;
-    BlackList black_list_;
-    int age_;
 };
 
 

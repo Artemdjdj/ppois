@@ -4,19 +4,19 @@
 
 class Report {
 public:
-    Report(const std::shared_ptr<User> &sender, const std::shared_ptr<User>& bad_user);
+    Report(const std::string &sender, const std::string& bad_user);
 
-    void SetCause(const std::string &cause, const std::shared_ptr<User> &sender);
+    void SetCause(const std::string &cause, const std::string &sender);
 
-    void SetProof(const std::string &proof, const std::shared_ptr<User> &sender);
+    void SetProof(const std::string &proof, const std::string &sender);
 
     void Approve();
 
     void Disapprove();
 
-    std::shared_ptr<User> GetSender() const;
+    std::string GetSender() const;
 
-    std::shared_ptr<User> GetBadUser() const;
+    std::string GetBadUser() const;
 
     bool IsApproved() const;
 
@@ -25,8 +25,8 @@ public:
     std::string GetProof() const;
 
 private:
-    std::weak_ptr<User> sender_;
-    std::weak_ptr<User> bad_user_;
+    std::string sender_;
+    std::string bad_user_;
     std::string cause_;
     std::string proof_;
     bool is_approved_{false};

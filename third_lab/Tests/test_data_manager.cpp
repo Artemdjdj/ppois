@@ -5,27 +5,20 @@
 class TestDataManager : public::testing::Test {
 public:
     void SetUp() override {
-        user = std::make_shared<User>("@Artemdjdj", "fdjglsj43y54", "Artem");
-        user2 = std::make_shared<User>("@artemdjdj", "fdjglsf54", "Artem");
         data_manager.CreateNewChat(user, user2);
         data_manager.CreateNewStory("Name", "Some interesting", story_settings, user);
     }
     StorySettings story_settings = StorySettings("default",true);
     DataManager data_manager;
-    std::shared_ptr<User> user;
-    std::shared_ptr<User> user2;
+    User author = User("@Artemdjdj", "fdjglsj43y54", "Artem");
+    User author2 = User("@artemdjdj", "fdjglsf54", "Artem");
+    std::string user = author.GetUsername();
+    std::string user2 = author2.GetUsername();
 };
 
 TEST_F(TestDataManager, CreateNewChat) {
     ASSERT_EQ(data_manager.GetAllChats(user).size(), 1);
     ASSERT_EQ(data_manager.GetAllChats(user2).size(), 1);
-}
-
-TEST_F(TestDataManager, CreateNewChatNullptrAuthor) {
-    ASSERT_THROW(
-        data_manager.CreateNewChat(nullptr, user2),
-        std::invalid_argument
-    );
 }
 
 TEST_F(TestDataManager, CreateNewChatExist) {
@@ -45,14 +38,6 @@ TEST_F(TestDataManager, DeleteChat) {
     ASSERT_EQ(data_manager.GetAllChats(user2).size(), 0);
 }
 
-TEST_F(TestDataManager, DeleteChatAuthorNullptr) {
-    ASSERT_THROW(
-        data_manager.DeleteChat(nullptr, user2),
-        std::invalid_argument
-    );
-    ASSERT_EQ(data_manager.GetAllChats(user).size(), 1);
-}
-
 TEST_F(TestDataManager, DeleteChatIsNotExist) {
     data_manager.DeleteChat(user, user2);
     ASSERT_THROW(
@@ -66,13 +51,6 @@ TEST_F(TestDataManager, CreateNewStory) {
     ASSERT_EQ(data_manager.GetAllStories(user).size(), 1);
 }
 
-TEST_F(TestDataManager, CreateNewStoryNullptrAuthor) {
-    ASSERT_THROW(
-        data_manager.CreateNewStory("Name", "Some interesting", story_settings, nullptr),
-        std::invalid_argument
-    );
-}
-
 TEST_F(TestDataManager, GetStory) {
     const std::string id = data_manager.GetAllStories(user)[0]->GetId();
     ASSERT_EQ(data_manager.GetStory(user,id), data_manager.GetAllStories(user)[0]);
@@ -82,15 +60,6 @@ TEST_F(TestDataManager, DeleteStory) {
     const std::string id = data_manager.GetAllStories(user)[0]->GetId();
     data_manager.DeleteStory(user, id);
     ASSERT_EQ(data_manager.GetAllStories(user).size(), 0);
-}
-
-TEST_F(TestDataManager, DeleteStoryAuthorNullptr) {
-    const std::string id = data_manager.GetAllStories(user)[0]->GetId();
-    ASSERT_THROW(
-        data_manager.DeleteStory(nullptr, id),
-        std::invalid_argument
-    );
-    ASSERT_EQ(data_manager.GetAllChats(user).size(), 1);
 }
 
 TEST_F(TestDataManager, DeleteStoryIsNotExist) {

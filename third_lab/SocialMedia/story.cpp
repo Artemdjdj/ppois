@@ -5,7 +5,7 @@
 #include "exceptions.h"
 #include "../Utils/project_utils.h"
 
-StorySettings::StorySettings(const std::string &category, bool is_public): is_public_(is_public) {
+StorySettings::StorySettings(const std::string &category, const bool is_public): is_public_(is_public) {
     SetCategory(category);
 }
 
@@ -42,7 +42,7 @@ bool StorySettings::GetTypeOfVisibility() const {
 }
 
 Story::Story(const std::string &name, const std::string &info, const StorySettings &settings,
-             const std::shared_ptr<User> &author, const std::string& id): id_(id), name_(name),
+             const std::string &author, const std::string& id): id_(id), name_(name),
                             info_(info), settings_(settings), author_(author) {
 }
 
@@ -50,18 +50,18 @@ Story::Story(const std::string &name, const std::string &info, const StorySettin
 //     this->id_ = id;
 // }
 
-void Story::SetName(const std::string &name, const std::shared_ptr<User> &user) {
-    DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_.lock(), user, "You can't changing info about story",
+void Story::SetName(const std::string &name, const std::string &user) {
+    DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_, user, "You can't changing info about story",
                                      "You can't set name of your stories empty");
 }
 
-void Story::SetInfo(const std::string &info, const std::shared_ptr<User> &user) {
-    DefaultProjectSettings::SetValueWithAuthor(this->info_, info, this->author_.lock(), user, "You can't changing info about story",
+void Story::SetInfo(const std::string &info, const std::string &user) {
+    DefaultProjectSettings::SetValueWithAuthor(this->info_, info, this->author_, user, "You can't changing info about story",
                                      "You can't set name of your stories empty");
 }
 
-void Story::MakeVisibilityPublic(const bool is_public, const std::shared_ptr<User> & user) {
-    if (const auto author = author_.lock(); !author || author != user) {
+void Story::MakeVisibilityPublic(const bool is_public, const std::string & user) {
+    if (const auto author = author_; author != user) {
         throw std::invalid_argument("You can't change visibility of this story");
     }
 

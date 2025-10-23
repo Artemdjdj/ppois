@@ -60,8 +60,8 @@ public:
 
     static void ToLower(std::string &str);
 
-    static void SetValueWithAuthor(std::string &property, const std::string &value, const std::shared_ptr<User>& user,
-                                   const std::shared_ptr<User>& user_checked,
+    static void SetValueWithAuthor(std::string &property, const std::string &value, const std::string& user,
+                                   const std::string& user_checked,
                                    const std::string &error_incorrect_author,
                                    const std::string &error_invalid_value);
 

@@ -19,8 +19,10 @@ public:
     void SetUp() override {
     }
 
-    std::shared_ptr<User>user = std::make_shared<User>("@Artemdjdj", "252352353");
-    std::shared_ptr<User>user2 = std::make_shared<User>("@Artemdjdjs", "252352353ff");
+    std::shared_ptr<User> author= std::make_shared<User>("@Artemdjdj", "252352353");
+    std::shared_ptr<User>author2 = std::make_shared<User>("@Artemdjdjs", "252352353ff");
+    std::string user = author->GetUsername();
+    std::string user2 = author2->GetUsername();
     StorySettings settings = StorySettings("default", true);
     Story story = Story("My day", "Some info", settings, user, "4234fsd");
 };

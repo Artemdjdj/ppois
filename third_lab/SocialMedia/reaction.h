@@ -10,9 +10,9 @@ class Reaction {
 public:
 	Reaction();
 
-	explicit Reaction(const std::string &type_of_reaction, const std::shared_ptr<User> &author);
+	explicit Reaction(const std::string &type_of_reaction, const std::string &author);
 
-	void SetReaction(std::string type_of_reaction, const std::shared_ptr<User> &author);
+	void SetReaction(std::string type_of_reaction, const std::string &author);
 
 	std::string SeeAuthor() const;
 
@@ -21,6 +21,6 @@ public:
 private:
 	std::string type_of_reaction_;
 	std::string date_time_;
-	std::weak_ptr<User> author_;
+	std::string author_;
 };
 #endif //REACTION_H
