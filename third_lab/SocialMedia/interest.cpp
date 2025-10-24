@@ -1,5 +1,5 @@
 #include "interest.h"
-
+#include "../Utils/validator.h"
 Interest::Interest(const std::string &name, const std::string &info, const std::string &duration, int level) {
     Info::SetName(name);
     Info::SetInfo(info);
@@ -16,7 +16,7 @@ std::string Interest::GetDuration() {
 }
 
 void Interest::SetLevel(const int level) {
-    if (level < 1 or level > 10) {
+    if (ValidatorLevel validator; validator.Validate(level)) {
         throw ExceptionIncorrectLevelOfInterest("Incorrect level of interest");
     }
     this->level_ = level;
@@ -26,7 +26,7 @@ int Interest::GetLevel() const {
     return this->level_;
 }
 
-Book::Book(const std::string &title, const std::string &genre, int reader_age) {
+Book::Book(const std::string &title, const std::string &genre, const int reader_age) {
     SetTitle(title);
     SetGenre(genre);
     SetReaderAge(reader_age);
@@ -41,11 +41,8 @@ void Book::SetGenre(const std::string &genre) {
 }
 
 void Book::SetCountOfPages(const int count_of_pages) {
-    if (count_of_pages < MIN_COUNT_OF_PAGES) {
-        throw ExceptionIncorrectNumber("The count of pages cant't be so small");
-    }
-    if (count_of_pages > MAX_COUNT_OF_PAGES) {
-        throw ExceptionIncorrectNumber("The count of pages can't be so big");
+    if (ValidatorCountOfPages validator; validator.Validate(count_of_pages)) {
+        throw ExceptionIncorrectNumber("The count of pages is incorrect");
     }
     this->count_of_pages_ = count_of_pages;
 }
@@ -55,18 +52,15 @@ void Book::SetInfoAboutAuthors(const std::string &base_info) {
 }
 
 void Book::SetPublicationYear(const int publication_year) {
-    if (publication_year > MAX_YEAR) {
+    if (ValidatorMaxYear validator; validator.Validate(publication_year)) {
         throw ExceptionIncorrectYear("The book can't be published in this year");
     }
     this->publication_year_ = publication_year;
 }
 
 void Book::SetReaderAge(const int reader_age) {
-    if (reader_age < MIN_READER_YEAR) {
-        throw ExceptionIncorrectYear("The reader year can't be so small");
-    }
-    if (reader_age > MAX_COUNT_OF_PAGES) {
-        throw ExceptionIncorrectYear("The reader year can't be so big");
+    if (ValidatorReaderAge validator; validator.Validate(reader_age)) {
+        throw ExceptionIncorrectYear("The reader age is incorrect!");
     }
     this->reader_age_ = reader_age;
 }
@@ -131,21 +125,18 @@ void Song::SetLanguage(const std::string &language) {
 }
 
 void Song::SetYear(const int year) {
-    if (year < YEAR_OF_FIRST_SONG) {
+    if (ValidatorYearSong validator; validator.Validate(year)) {
         throw ExceptionIncorrectYear("The song can't be made before first song");
     }
-    if (year > MAX_YEAR) {
+    if (ValidatorMaxYear validator; validator.Validate(year)) {
         throw ExceptionIncorrectYear("The song can't be made in this year");
     }
     this->year_ = year;
 }
 
 void Song::SetTime(const double time) {
-    if (time < MIN_LENGTH_OF_SONG) {
-        throw ExceptionIncorrectTime("The song can't be so long");
-    }
-    if (time > MAX_LENGTH_OF_SONG) {
-        throw ExceptionIncorrectTime("The song can't be so short");
+    if (ValidatorLengthOfSong validator; validator.Validate(time)) {
+        throw ExceptionIncorrectTime("The song can't has this length, check it please");
     }
     this->time_ = time;
 }
@@ -212,21 +203,15 @@ void Film::SetPlot(const std::string &plot) {
 }
 
 void Film::SetTime(const double time) {
-    if (time < MIN_LENGTH_OF_FILM) {
-        throw ExceptionIncorrectTime("The length of film can't be so short");
-    }
-    if (time > MAX_LENGTH_OF_FILM) {
-        throw ExceptionIncorrectTime("The length of film can't be so long");
+    if (ValidatorLengthOfFilm validator; validator.Validate(time)) {
+        throw ExceptionIncorrectTime("The length of film can't be such this, try again");
     }
     this->time_ = time;
 }
 
 void Film::SetRating(const int rating) {
-    if (rating < 1) {
+    if (ValidatorLevel validator; validator.Validate(rating)) {
         throw ExceptionIncorrectNumber("The rating can't be so smaller then zero");
-    }
-    if (rating > RATING) {
-        throw ExceptionIncorrectNumber("The rating can't so big");
     }
     this->rating_ = rating;
 }
@@ -248,11 +233,8 @@ void Film::DoNotUseComputerGraphic() {
 }
 
 void Film::SetYear(const int year) {
-    if (year < FIRST_FILM) {
-        throw ExceptionIncorrectYear("The year of producing can't be so small");
-    }
-    if (year > MAX_YEAR) {
-        throw ExceptionIncorrectYear("The film can't be made in this year");
+    if (ValidatorFilmCreation validator; validator.Validate(year)) {
+        throw ExceptionIncorrectYear("The year of producing can't be such this, try again");
     }
     this->year_ = year;
 }

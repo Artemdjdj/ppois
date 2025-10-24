@@ -1,6 +1,5 @@
 #include "user.h"
 #include <string>
-#include "user_utils.h"
 #include "../Utils/project_utils.h"
 #include "exceptions.h"
 
@@ -33,38 +32,45 @@ bool User::operator!=(const User &other) const {
 }
 
 void User::SetUserName(const std::string &username) {
-    std::string error_message;
-    DataSyntax::CheckUserNameForSyntaxError(
-        username, "Your username is not correct the length should be between 3 and 17 and starts with @",
-        this->username_);
+    if (ValidatorUsername validator; !validator.Validate(username)) {
+        throw ExceptionUserName("Your username is not correct the length should be between 3 and 17 and starts with @");
+    }
+    this->username_ = username;
 }
 
 void User::SetName(const std::string &name) {
-    std::string error_message;
-    DataSyntax::CheckNameOrSurnameForSyntaxError(
-        name, "Your name or surname is not correct the length should be between 3 and 25", this->name_);
+    if (ValidatorName validator; !validator.Validate(name)) {
+        throw ExceptionName("Your name or surname is not correct the length should be between 3 and 25");
+    }
+    this->name_ = name;
 }
 
 void User::SetSurname(const std::string &surname) {
-    std::string error_message;
-    DataSyntax::CheckNameOrSurnameForSyntaxError(
-        surname, "Your name or surname is not correct the length should be between 3 and 25", this->surname_);
+    if (ValidatorName validator; !validator.Validate(surname)) {
+        throw ExceptionSurName("Your name or surname is not correct the length should be between 3 and 25");
+    }
+    this->surname_ = surname;
 }
 
 void User::SetEmail(const std::string &email) {
-    std::string error_message;
-    DataSyntax::CheckEmailForSyntaxError(email, "Your E-mail address is not valid", this->email_);
+    if (ValidatorEmail validator; !validator.Validate(email)) {
+        throw ExceptionEmail("Your E-mail address is not valid");
+    }
+    this->email_ = email;
 }
 
 void User::SetPhoneNumber(const std::string &phone_number) {
-    std::string error_message;
-    DataSyntax::CheckPhoneNumberForSyntaxError(phone_number, "Your phone number is not valid", this->phone_number_);
+    if (ValidatorPhoneNumber validator; !validator.Validate(phone_number)) {
+        throw ExceptionPhoneNumber("Your phone number is not valid");
+    }
+    this->phone_number_ = phone_number;
 }
 
 void User::SetPassword(const std::string &password) {
-    std::string error_message;
-    std::string res_password;
-    DataSyntax::CheckPasswordForSyntaxError(password, "Your password is not valid", res_password);
+    if (ValidatorPassword validator; !validator.Validate(password)) {
+        throw ExceptionPassword("Your password is not valid");
+    }
+    const std::string res_password = password;
     this->password_ = HashPassword::HashInputPassword(res_password);
 }
 

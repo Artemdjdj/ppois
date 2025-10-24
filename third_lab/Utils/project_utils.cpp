@@ -3,14 +3,13 @@
 #include <fstream>
 #include <iostream>
 #include "../Exceptions/exceptions.h"
+
 void Info::SetName(const std::string &name) {
-    DefaultProjectSettings::SetValue(this->name_, name,
-                                               "You can't set empty name!");
+    DefaultProjectSettings::SetValue(this->name_, name, "You can't set empty name!");
 }
 
 void Info::SetInfo(const std::string &info) {
-    DefaultProjectSettings::SetValue(this->info_, info,
-                                               "You can't set empty info!");
+    DefaultProjectSettings::SetValue(this->info_, info, "You can't set empty info!");
 }
 
 std::string Info::GetName() const {
@@ -52,23 +51,24 @@ void DefaultProjectSettings::ToLower(std::string &str) {
 }
 
 void DefaultProjectSettings::SetValueWithAuthor(std::string &property, const std::string &value, const std::string &user,
-                                                const std::string &user_checked,
-                                                const std::string &error_incorrect_author,
-                                                const std::string &error_invalid_value) {
+                        const std::string &user_checked,
+                        const std::string &error_incorrect_author,
+                        const std::string &error_invalid_value) {
     if (user != user_checked) {
         throw ExceptionAccess(error_incorrect_author.c_str());
     }
-    if (value.empty()) {
+    if (ValidatorString validator; validator.Validate(value)) {
         throw std::invalid_argument(error_invalid_value.c_str());
     }
     property = value;
 }
 
 void DefaultProjectSettings::SetValue(std::string &property, const std::string &value,
-                                      const std::string &error_invalid_value) {
-    if (value.empty()) {
+              const std::string &error_invalid_value) {
+    if (ValidatorString validator; validator.Validate(value)) {
         throw std::invalid_argument(error_invalid_value.c_str());
     }
+
     property = value;
 }
 

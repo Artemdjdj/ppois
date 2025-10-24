@@ -59,7 +59,7 @@ TEST_F(TestUserAndProfile, TestSetSurName) {
 TEST_F(TestUserAndProfile, TestSetSurNameNegative) {
     ASSERT_THROW(
         user.SetSurname("Artemflsdhjfglsjlk-"),
-        ExceptionName
+        ExceptionSurName
     );
 }
 

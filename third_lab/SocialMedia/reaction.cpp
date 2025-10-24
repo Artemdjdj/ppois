@@ -2,9 +2,6 @@
 #include "exceptions.h"
 #include "../Utils/project_utils.h"
 
-Reaction::Reaction() {
-	// author_ = nullptr;
-}
 
 Reaction::Reaction(const std::string &type_of_reaction, const std::string &author) {
 	SetReaction(type_of_reaction, author);

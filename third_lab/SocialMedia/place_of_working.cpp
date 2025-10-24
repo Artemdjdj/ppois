@@ -21,15 +21,15 @@ void PlaceOfWorking::SetCity(const std::string &city) {
     DefaultProjectSettings::SetValue(this->city_, city, "The city can't be empty");
 }
 
-void PlaceOfWorking::SetStartYear(int start_year) {
-    if (start_year < MIN_YEAR or start_year > MAX_YEAR) {
+void PlaceOfWorking::SetStartYear(const int start_year) {
+    if (ValidatorWorkingYear validator; validator.Validate(start_year)) {
         throw ExceptionIncorrectYear("This year is not allowed");
     }
     this->start_year_ = start_year;
 }
 
-void PlaceOfWorking::SetEndYear(int end_year) {
-    if (end_year < MIN_YEAR or end_year > MAX_YEAR) {
+void PlaceOfWorking::SetEndYear(const int end_year) {
+    if (ValidatorWorkingYear validator; validator.Validate(end_year)) {
         throw ExceptionIncorrectYear("This year is not allowed");
     }
     if (this->start_year_ == 0) {

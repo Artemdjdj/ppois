@@ -80,29 +80,19 @@ int BaseChat::CountMessages() const {
     return this->messages_.size();
 }
 
-std::vector<std::shared_ptr<Message>> BaseChat::GetAllMessages() const {
+std::vector<std::shared_ptr<Message> > BaseChat::GetAllMessages() const {
     return this->messages_;
 }
 
 std::shared_ptr<Message> BaseChat::GetMessageByNumber(const int number) {
-    if (number<0 || number> this->messages_.size()) {
+    if (number < 0 || number > this->messages_.size()) {
         throw ExceptionIncorrectNumber("Such message is not exist, you write incorrect number of message");
     }
     return this->messages_[number];
 }
 
-// void BaseChat::ViewHistory() const {
-// 	if (this->messages_.size() == 0) {
-// 		throw ExceptionNothingToPrint("There is no view history");
-// 	}
-// 	for (auto &message: this->messages_) {
-// 		std::cout << message->GetMessageDefault() << std::endl;
-// 	}
-// }
-
-Chat::Chat(const std::string& first_user, const std::string& second_user, const std::string& name)
-    : name_(name),
-      users_(std::make_pair(first_user, second_user)) {
+Chat::Chat(const std::string &first_user, const std::string &second_user)
+    : users_(std::make_pair(first_user, second_user)) {
 }
 
 std::string Chat::GetFirstMember() const {
@@ -119,4 +109,3 @@ std::vector<std::string> Chat::ListMembers() {
     members.push_back(users_.second);
     return members;
 }
-

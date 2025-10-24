@@ -1,7 +1,7 @@
 #include "hash_tag.h"
 #include "exceptions.h"
-#include "../User/user_utils.h"
 #include "../Utils/project_utils.h"
+#include "../Utils/validator.h"
 
 HashTag::HashTag() = default;
 
@@ -10,7 +10,10 @@ HashTag::HashTag(const std::string &hash_tag, const std::string &author) {
 }
 
 void HashTag::SetHashTag(const std::string &hash_tag, const std::string &author) {
-	DataSyntax::CheckHashTagForSyntaxError(hash_tag, "Your hash tag is not correct!", this->hash_tag_);
+	if (ValidatorHashTag validator; !validator.Validate(hash_tag)) {
+		throw ExceptionIncorrectHashTag("Your hash tag is not correct!");
+	}
+	this->hash_tag_ = hash_tag;
 	this->date_time_ = DefaultProjectSettings::GetRealTime();
 	this->author_ = author;
 }

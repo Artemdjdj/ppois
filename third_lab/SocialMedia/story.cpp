@@ -9,17 +9,9 @@ StorySettings::StorySettings(const std::string &category, const bool is_public):
     SetCategory(category);
 }
 
-bool StorySettings::CheckIsCategoryCorrect(const std::string &category) {
-    const auto it = kStoriesCategories.find(category);
-    if (it == kStoriesCategories.end()) {
-        return false;
-    }
-    return true;
-}
-
 void StorySettings::SetCategory(std::string category) {
     DefaultProjectSettings::ToLower(category);
-    if (!CheckIsCategoryCorrect(category)) {
+    if (!DefaultProjectSettings::CheckIsStatementInAllowed(category, kStoriesCategories)) {
         throw std::invalid_argument("Invalid category!");
     }
     this->category_ = category;
