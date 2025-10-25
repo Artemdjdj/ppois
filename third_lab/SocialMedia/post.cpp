@@ -12,12 +12,12 @@ Post::Post(const std::string &name, const std::string &info, const std::string &
 // }
 
 void Post::SetName(const std::string &name, const std::string &author) {
-    DefaultProjectSettings::SetValueWithAuthor(this->name_, name, this->author_, author, "You can't changing info about post",
+    DefaultPropertySetter::SetValueWithAuthor(this->name_, name, this->author_, author, "You can't changing info about post",
                                      "You can't set name of your post empty");
 }
 
 void Post::SetInfo(const std::string &info, const std::string &author) {
-    DefaultProjectSettings::SetValueWithAuthor(this->info_, info, this->author_, author, "You can't changing info about post",
+    DefaultPropertySetter::SetValueWithAuthor(this->info_, info, this->author_, author, "You can't changing info about post",
                                      "You can't set name of your post empty");
 }
 
@@ -61,7 +61,7 @@ int Post::CheckHashTagUsed(const std::string &check_hash_tag) const {
 
 void Post::AddHashTag(const std::shared_ptr<HashTag> &hash_tag) {
     std::string check_hash_tag_str = hash_tag->GetHashTag();
-    DefaultProjectSettings::ToLower(check_hash_tag_str);
+    DefaultFormatter::ToLower(check_hash_tag_str);
     if (this->author_ != hash_tag->SeeAuthor()) {
         throw ExceptionAccess("You don't have access to changing this post");
     }

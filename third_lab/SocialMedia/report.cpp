@@ -6,11 +6,11 @@ Report::Report(const std::string &sender, const std::string &bad_user): sender_(
 };
 
 void Report::SetCause(const std::string &cause, const std::string &sender) {
-    DefaultProjectSettings::SetValueWithAuthor(this->cause_, cause, this->sender_, sender, "Incorrect sender", "Cause can't be empty");
+    DefaultPropertySetter::SetValueWithAuthor(this->cause_, cause, this->sender_, sender, "Incorrect sender", "Cause can't be empty");
 }
 
 void Report::SetProof(const std::string &proof, const std::string &sender) {
-    DefaultProjectSettings::SetValueWithAuthor(this->proof_, proof, this->sender_, sender, "Incorrect sender", "Proof can't be empty");
+    DefaultPropertySetter::SetValueWithAuthor(this->proof_, proof, this->sender_, sender, "Incorrect sender", "Proof can't be empty");
 }
 
 void Report::Approve() {

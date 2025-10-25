@@ -14,7 +14,7 @@ void HashTag::SetHashTag(const std::string &hash_tag, const std::string &author)
 		throw ExceptionIncorrectHashTag("Your hash tag is not correct!");
 	}
 	this->hash_tag_ = hash_tag;
-	this->date_time_ = DefaultProjectSettings::GetRealTime();
+	this->date_time_ = DefaultTimeProvider::GetRealTime();
 	this->author_ = author;
 }
 

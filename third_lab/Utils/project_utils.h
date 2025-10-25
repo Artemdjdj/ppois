@@ -31,7 +31,7 @@
 #include "validator.h"
 #include <stdexcept>
 
-const std::string main_log_file = "../Logs/main_log.txt"; /*!< Основной файл для логирования */
+const std::string kMainLogFile = "../Logs/main_log.txt"; /*!< Основной файл для логирования */
 
 /*! \class Info
  *  \brief Базовый класс для хранения информации с названием и описанием
@@ -71,36 +71,12 @@ protected:
     std::string info_; /*!< Информация/описание */
 };
 
-/*! \class DefaultProjectSettings
+/*! \class DefaultPropertySetter
  *  \brief Класс с утилитами для настроек проекта
- *  \details Предоставляет статические методы для логирования, работы с файлами и валидации
+ *  \details Предоставляет статические методы для установки значений
  */
-class DefaultProjectSettings {
+class DefaultPropertySetter {
 public:
-    /*! \brief Запись в лог-файл
-     *  \param msg Сообщение для логирования
-     *  \param file_name Имя файла для записи
-     */
-    static void LogFile(const char *msg, const std::string &file_name);
-
-    /*! \brief Очистка файла
-     *  \param file_name Имя файла для очистки
-     */
-    static void ClearFile(const std::string &file_name);
-
-    /*! \brief Проверка наличия значения в разрешенном множестве
-     *  \param statement Проверяемое значение
-     *  \param allowed_values Множество разрешенных значений
-     *  \return true если значение разрешено, false в противном случае
-     */
-    static bool CheckIsStatementInAllowed(const std::string &statement,
-                                          const std::unordered_set<std::string> &allowed_values);
-
-    /*! \brief Преобразование строки к нижнему регистру
-     *  \param str Строка для преобразования
-     */
-    static void ToLower(std::string &str);
-
     /*! \brief Установка значения с проверкой автора
      *  \param property Свойство для установки
      *  \param value Новое значение
@@ -121,7 +97,41 @@ public:
      */
     static void SetValue(std::string &property, const std::string &value,
                          const std::string &error_invalid_value);
+};
 
+/*! \class DefaultLogger
+ *  \brief Класс для логирования ошибок
+ */
+class DefaultLogger {
+public:
+    /*! \brief Запись в лог-файл
+     *  \param msg Сообщение для логирования
+     *  \param file_name Имя файла для записи
+     */
+    static void LogFile(const char *msg, const std::string &file_name);
+
+    /*! \brief Очистка файла
+     *  \param file_name Имя файла для очистки
+     */
+    static void ClearFile(const std::string &file_name);
+};
+
+/*! \class DefaultFormatter
+ *  \brief Класс для форматирования строк
+ */
+class DefaultFormatter {
+public:
+    /*! \brief Преобразование строки к нижнему регистру
+     *  \param str Строка для преобразования
+     */
+    static void ToLower(std::string &str);
+};
+
+/*! \class DefaultTimeProvider
+ *  \brief Класс для работы с временем
+ */
+class DefaultTimeProvider {
+public:
     /*! \brief Получение текущего реального времени
      *  \return Строка с текущим временем
      */

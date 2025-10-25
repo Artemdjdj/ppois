@@ -174,14 +174,3 @@ TEST_F(TestAllTypesOfPoll, TestGettingAnswers) {
     poll_with_getting_answer.AddAnswer(1, user);
     ASSERT_EQ(3,poll_with_getting_answer.SeeAnswers().size());
 }
-
-// TEST_F(TestAllTypesOfPoll, AddGettingAnswer) {
-//     std::stringstream buffer;
-//     std::streambuf *oldCout = std::cout.rdbuf();
-//     std::cout.rdbuf(buffer.rdbuf());
-//     poll_with_getting_answer.AddAnswer(1, &user);
-//     std::cout.rdbuf(oldCout);
-//     const std::string expected_cout =
-//             "The answers on this question: The capital of USA\n\n\x1B[36m1) Minsk\x1B[0m\n\x1B[32m2) Washington\x1B[0m\n\x1B[36m3) Moscow\x1B[0m";
-//     ASSERT_EQ(expected_cout, buffer.str());
-// }

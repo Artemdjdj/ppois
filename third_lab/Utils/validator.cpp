@@ -37,6 +37,10 @@ bool ValidatorString::Validate(const std::string &str) {
     return str.empty();
 }
 
+bool ValidatorString::CheckIsStatementInAllowed(const std::string &statement,const std::unordered_set<std::string> &allowed_values) {
+    return allowed_values.contains(statement);
+}
+
 bool ValidatorLevel::Validate(const int &level) {
     return level < 1 or level > 10;
 }

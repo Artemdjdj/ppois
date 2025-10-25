@@ -25,12 +25,12 @@ void Achievement::RefactorCondition(const std::string &condition, const int numb
 }
 
 void Achievement::SetReward(const std::string &reward) {
-    DefaultProjectSettings::SetValue(this->reward_, reward,
+    DefaultPropertySetter::SetValue(this->reward_, reward,
                                                "You can't set reward of your achievement empty");
 }
 
 void Achievement::SetCity(const std::string &city) {
-    DefaultProjectSettings::SetValue(this->city_, city,
+    DefaultPropertySetter::SetValue(this->city_, city,
                                                "You can't city reward of your achievement empty");
 }
 

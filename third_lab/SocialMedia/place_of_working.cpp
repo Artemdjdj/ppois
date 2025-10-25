@@ -10,15 +10,15 @@ PlaceOfWorking::PlaceOfWorking(const std::string &name_of_company, const std::st
 }
 
 void PlaceOfWorking::SetNameOfCompany(const std::string &name_of_company) {
-    DefaultProjectSettings::SetValue(this->name_of_company_, name_of_company, "Name of company can't be empty");
+    DefaultPropertySetter::SetValue(this->name_of_company_, name_of_company, "Name of company can't be empty");
 }
 
 void PlaceOfWorking::SetCountry(const std::string &country) {
-    DefaultProjectSettings::SetValue(this->country_, country, "The country can't be empty");
+    DefaultPropertySetter::SetValue(this->country_, country, "The country can't be empty");
 }
 
 void PlaceOfWorking::SetCity(const std::string &city) {
-    DefaultProjectSettings::SetValue(this->city_, city, "The city can't be empty");
+    DefaultPropertySetter::SetValue(this->city_, city, "The city can't be empty");
 }
 
 void PlaceOfWorking::SetStartYear(const int start_year) {
@@ -42,7 +42,7 @@ void PlaceOfWorking::SetEndYear(const int end_year) {
 }
 
 void PlaceOfWorking::SetJobTitle(const std::string &job_title) {
-    DefaultProjectSettings::SetValue(this->job_title_, job_title, "Job title can't be empty");
+    DefaultPropertySetter::SetValue(this->job_title_, job_title, "Job title can't be empty");
 }
 
 std::string PlaceOfWorking::GetNameOfCompany() const {

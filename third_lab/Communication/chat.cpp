@@ -15,7 +15,7 @@ void Message::CreateMessage(const std::string &message, const std::string &user)
     if (message.empty()) {
         throw ExceptionIncorrectMessage(message.c_str());
     }
-    std::string real_time = DefaultProjectSettings::GetRealTime();
+    std::string real_time = DefaultTimeProvider::GetRealTime();
     this->author_ = user;
     this->message_ = std::make_pair(message, real_time);
 }

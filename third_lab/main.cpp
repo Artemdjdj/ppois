@@ -3,7 +3,7 @@
 #include "App/app.h"
 
 int main() {
-    DefaultProjectSettings::ClearFile(kMainLogFile);
+    DefaultLogger::ClearFile(kMainLogFile);
     App app;
     std::string username;
     std::string name;
@@ -17,16 +17,16 @@ int main() {
         app.RegistrateUser(username, password, name);
     }
     catch (const ExceptionUserName &e ) {
-        DefaultProjectSettings::LogFile(e.what(), kMainLogFile);
+        DefaultLogger::LogFile(e.what(), kMainLogFile);
     }
     catch (const ExceptionName &e ) {
-        DefaultProjectSettings::LogFile(e.what(), kMainLogFile);
+        DefaultLogger::LogFile(e.what(), kMainLogFile);
     }
     catch (const ExceptionPassword &e ) {
-        DefaultProjectSettings::LogFile(e.what(), kMainLogFile);
+        DefaultLogger::LogFile(e.what(), kMainLogFile);
     }
     catch (const Exception &e ) {
-        DefaultProjectSettings::LogFile(e.what(), kMainLogFile);
+        DefaultLogger::LogFile(e.what(), kMainLogFile);
     }
 
     return 0;

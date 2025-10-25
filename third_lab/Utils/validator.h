@@ -4,6 +4,7 @@
 #ifndef THIRD_LAB_VALIDATOR_H
 #define THIRD_LAB_VALIDATOR_H
 #include <string>
+#include <unordered_set>
 
 /*! \class DefaultValidator
  *  \brief Базовый шаблонный класс для валидаторов
@@ -105,6 +106,8 @@ public:
      *  \return true если строка валидна, false в противном случае
      */
     bool Validate(const std::string &str) override;
+
+    static bool CheckIsStatementInAllowed(const std::string &statement, const std::unordered_set<std::string> &allowed_values);
 };
 
 /*! \class ValidatorLevel
@@ -214,4 +217,5 @@ public:
      */
     bool Validate(const int &year) override;
 };
+
 #endif //THIRD_LAB_VALIDATOR_H

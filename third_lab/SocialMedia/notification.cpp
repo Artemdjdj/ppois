@@ -5,7 +5,7 @@ Notification::Notification(const std::string &name, const std::string &info, con
                            const std::string &receiver): sender_(sender), receiver_(receiver) {
     Info::SetName(name);
     Info::SetInfo(info);
-    this->time_ = DefaultProjectSettings::GetRealTime();
+    this->time_ = DefaultTimeProvider::GetRealTime();
 }
 
 void Notification::ShowNotification() {

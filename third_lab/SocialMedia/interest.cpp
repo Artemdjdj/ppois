@@ -33,11 +33,11 @@ Book::Book(const std::string &title, const std::string &genre, const int reader_
 }
 
 void Book::SetTitle(const std::string &title) {
-    DefaultProjectSettings::SetValue(this->title_, title, "The title can't be empty");
+    DefaultPropertySetter::SetValue(this->title_, title, "The title can't be empty");
 }
 
 void Book::SetGenre(const std::string &genre) {
-    DefaultProjectSettings::SetValue(this->genre_, genre, "The genre can't be empty");
+    DefaultPropertySetter::SetValue(this->genre_, genre, "The genre can't be empty");
 }
 
 void Book::SetCountOfPages(const int count_of_pages) {
@@ -48,7 +48,7 @@ void Book::SetCountOfPages(const int count_of_pages) {
 }
 
 void Book::SetInfoAboutAuthors(const std::string &base_info) {
-    DefaultProjectSettings::SetValue(this->authors_, base_info, "The info about author can't be empty");
+    DefaultPropertySetter::SetValue(this->authors_, base_info, "The info about author can't be empty");
 }
 
 void Book::SetPublicationYear(const int publication_year) {
@@ -117,11 +117,11 @@ void Song::DeletePerformer(const int number_of_performer) {
 }
 
 void Song::SetTitle(const std::string &title) {
-    DefaultProjectSettings::SetValue(this->title_, title, "The title of the song can't be empty");
+    DefaultPropertySetter::SetValue(this->title_, title, "The title of the song can't be empty");
 }
 
 void Song::SetLanguage(const std::string &language) {
-    DefaultProjectSettings::SetValue(this->language_, language, "The language of the song can't be empty");
+    DefaultPropertySetter::SetValue(this->language_, language, "The language of the song can't be empty");
 }
 
 void Song::SetYear(const int year) {
@@ -187,19 +187,19 @@ Film::Film(const std::string &title, const std::string &director, const std::str
 }
 
 void Film::SetTitle(const std::string &title) {
-    DefaultProjectSettings::SetValue(this->title_, title, "The title of film can't be empty");
+    DefaultPropertySetter::SetValue(this->title_, title, "The title of film can't be empty");
 }
 
 void Film::SetDirector(const std::string &director) {
-    DefaultProjectSettings::SetValue(this->director_, director, "The director of film can't be empty");
+    DefaultPropertySetter::SetValue(this->director_, director, "The director of film can't be empty");
 }
 
 void Film::SetGenre(const std::string &genre) {
-    DefaultProjectSettings::SetValue(this->genre_, genre, "The genre of film can't be empty");
+    DefaultPropertySetter::SetValue(this->genre_, genre, "The genre of film can't be empty");
 }
 
 void Film::SetPlot(const std::string &plot) {
-    DefaultProjectSettings::SetValue(this->plot_, plot, "The plot of film can't be empty");
+    DefaultPropertySetter::SetValue(this->plot_, plot, "The plot of film can't be empty");
 }
 
 void Film::SetTime(const double time) {

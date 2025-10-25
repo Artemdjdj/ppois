@@ -11,7 +11,7 @@ Role::Role(const std::string& name_of_role) {
 }
 
 void Role::ChooseRole(const std::string& name_of_role) {
-	if (!DefaultProjectSettings::CheckIsStatementInAllowed(name_of_role, kAloudRoles)) {
+	if (!ValidatorString::CheckIsStatementInAllowed(name_of_role, kAloudRoles)) {
 		throw ExceptionIncorrectRole("Such role is not exist");
 	}
 	this->name_of_role_ = name_of_role;
