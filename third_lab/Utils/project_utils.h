@@ -5,7 +5,7 @@
 #define PROJECT_UTILS_H
 #define NUMBER_OF_VERSION "1.0.0" /*!< Версия проекта */
 #define GREEN "\033[32m" /*!< Зеленый цвет */
-#define CYAN "\033[36m" /*!< Голубой цвет*/
+#define RED "\033[31m" /*!< Красный цвет*/
 #define RESET "\033[0m" /*!< Сброс цвета*/
 #define MIN_YEAR 1930 /*!< Минимальный год */
 #define MAX_YEAR 2025 /*!< Максимальный год  */
