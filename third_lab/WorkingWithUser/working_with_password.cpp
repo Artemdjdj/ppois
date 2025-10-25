@@ -14,8 +14,6 @@ std::string HidePassword::ReadPassword() {
 	GetConsoleMode(hStdin, &mode);
 	SetConsoleMode(hStdin, mode & (~ENABLE_ECHO_INPUT));
 
-	std::cout << "Введите пароль: ";
-
 	char ch;
 	while ((ch = _getch()) != '\r') {
 		if (ch == '\b') {

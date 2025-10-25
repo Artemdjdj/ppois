@@ -43,8 +43,7 @@ void Poll::AddAnswer(int number_of_answer, std::string user) {
 void Poll::SeeUserAnswer(const std::string &user, std::string &result) const {
     const int number_of_answer = GetAnswerOfUser(user);
     if (number_of_answer == -1) {
-        DefaultProjectSettings::LogFile("You do not have any answer!", main_log_file);
-        return;
+        throw Exception("You do not have any answer!");
     }
     result = answers_[number_of_answer - 1];
 }

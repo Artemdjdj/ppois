@@ -89,7 +89,8 @@ TEST_F(TestAllTypesOfPoll, TestAddAnswerIncorrectNumber) {
     ASSERT_THROW(poll_without_refactoring_choose.AddAnswer(66,user),
                  ExceptionIncorrectNumber);
     std::string result;
-    poll_without_refactoring_choose.SeeUserAnswer(user, result);
+    ASSERT_THROW(poll_without_refactoring_choose.SeeUserAnswer(user, result),
+                 Exception);
     ASSERT_EQ("", result);
 }
 
@@ -110,7 +111,8 @@ TEST_F(TestAllTypesOfPoll, TestAddAnswerIncorrectForRefactoringPoll) {
     ASSERT_THROW(poll_with_refactoring_choose.AddAnswer(-1,user2),
                  ExceptionIncorrectNumber);
     std::string result;
-    poll_with_refactoring_choose.SeeUserAnswer(user2, result);
+    ASSERT_THROW(poll_with_refactoring_choose.SeeUserAnswer(user2, result),
+                 Exception);
     ASSERT_EQ("", result);
 }
 
