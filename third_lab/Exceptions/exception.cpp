@@ -1,13 +1,13 @@
 #include "exceptions.h"
 
-Exception::Exception(const char *msg): message(msg) {
+Exception::Exception(const char *msg): message_(msg) {
 }
 
-Exception::Exception(const Exception &other): message(other.message) {
+Exception::Exception(const Exception &other): message_(other.message_) {
 }
 
 const char *Exception::what() const noexcept {
-	return this->message.c_str();
+	return this->message_.c_str();
 }
 
 ExceptionUserName::ExceptionUserName(const char *msg): Exception(msg) {

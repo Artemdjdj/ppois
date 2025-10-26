@@ -2,9 +2,9 @@
 
 
 void App::RegistrateUser(const std::string &username, const std::string &password,
-                                       const std::string &name) {
+                         const std::string &name) {
     const std::shared_ptr<User> new_user = this->user_manager_.CreateUser(username, password, name);
-    this->user_ =new_user;
+    this->user_ = new_user;
 }
 
 void App::Login(const std::string &username, const std::string &password) {
@@ -12,7 +12,7 @@ void App::Login(const std::string &username, const std::string &password) {
         throw std::logic_error("Now user is authenticate, logout before login");
     }
     const std::shared_ptr<User> new_user = this->user_manager_.AuthenticateUser(username, password);
-    this->user_=new_user;
+    this->user_ = new_user;
 }
 
 void App::Logout() {
@@ -35,50 +35,52 @@ void App::SendMessageToChat(const std::string &second_user, const std::shared_pt
     this->data_manager_.SendMessageToChat(this->user_->GetUsername(), second_user, message);
 }
 
-void App::DeleteChat(const std::string& user) {
+void App::DeleteChat(const std::string &user) {
     this->data_manager_.DeleteChat(this->user_->GetUsername(), user);
 }
 
-std::vector<std::shared_ptr<Chat>> App::GetAllChats() {
+std::vector<std::shared_ptr<Chat> > App::GetAllChats() {
     return this->data_manager_.GetAllChats(this->user_->GetUsername());
 }
 
-std::string App::GetChatName(const std::string& user){
+std::string App::GetChatName(const std::string &user) {
     const auto chat = this->data_manager_.GetChat(this->user_->GetUsername(), user);
     if (!chat) {
         throw std::logic_error("Chat is not exist, you can't see name!");
     }
     const auto user1 = chat->GetFirstMember();
-    const auto user2  = chat->GetSecondMember();
-    return (user1 == this->user_->GetUsername())?user2:user1;
+    const auto user2 = chat->GetSecondMember();
+    return (user1 == this->user_->GetUsername()) ? user2 : user1;
 }
 
 void App::DeleteMessageFromChat(const std::string &second_user, const int number_of_message) {
-    auto chat  = this->data_manager_.GetChat(this->user_->GetUsername(), second_user);
+    auto chat = this->data_manager_.GetChat(this->user_->GetUsername(), second_user);
     if (!chat) {
         throw std::logic_error("Chat is not exist, you can't delete it");
     }
     chat->DeleteMessage(number_of_message, this->user_->GetUsername());
 }
 
-void App::RefactorMessageInChat(const std::string &second_user, const int number_of_message, const std::shared_ptr<Message> &new_message) {
-    auto chat  = this->data_manager_.GetChat(this->user_->GetUsername(), second_user);
+void App::RefactorMessageInChat(const std::string &second_user, const int number_of_message,
+                                const std::shared_ptr<Message> &new_message) {
+    auto chat = this->data_manager_.GetChat(this->user_->GetUsername(), second_user);
     if (!chat) {
         throw std::logic_error("Chat is not exist, you can't refactor it");
     }
     chat->RefactorMessage(new_message->GetMessageDefaultText(), number_of_message, this->user_->GetUsername());
 }
 
-std::vector<std::pair<int,std::pair<std::string, std::string>>> App::ViewAllHistoryOfChat(const std::string &second_user) {
-    const auto chat  = this->data_manager_.GetChat(this->user_->GetUsername(), second_user);
+std::vector<std::pair<int, std::pair<std::string, std::string> > > App::ViewAllHistoryOfChat(
+    const std::string &second_user) {
+    const auto chat = this->data_manager_.GetChat(this->user_->GetUsername(), second_user);
     if (!chat) {
         throw std::logic_error("Chat is not exist, you can't view history");
     }
     const auto messages = chat->GetAllMessages();
     int index = 0;
-    std::vector<std::pair<int,std::pair<std::string, std::string>>> result;
-    for (const auto& message : messages) {
-        result.emplace_back(++index, std::make_pair(message->GetMessageDefaultText(),message->GetAuthor()));
+    std::vector<std::pair<int, std::pair<std::string, std::string> > > result;
+    for (const auto &message: messages) {
+        result.emplace_back(++index, std::make_pair(message->GetMessageDefaultText(), message->GetAuthor()));
     }
     return result;
 }
@@ -95,11 +97,11 @@ std::string App::GetAuthor() const {
 }
 
 
-Profile* App::GetProfile() const {
+Profile *App::GetProfile() const {
     return this->user_->GetProfile().get();
 }
 
-std::shared_ptr<Chat> App::GetChat(const std::string& user) {
+std::shared_ptr<Chat> App::GetChat(const std::string &user) {
     return this->data_manager_.GetChat(this->user_->GetUsername(), user);
 }
 
@@ -107,16 +109,16 @@ std::shared_ptr<User> App::GetCurrentUser() {
     return this->user_;
 }
 
-std::shared_ptr<User> App::GetUser(const std::string& username){
+std::shared_ptr<User> App::GetUser(const std::string &username) {
     return this->user_manager_.GetUser(username);
 }
 
-void App::SetLocation(const std::string& location) const {
+void App::SetLocation(const std::string &location) const {
     const auto profile = GetProfile();
     profile->SetLocation(location);
 }
 
-void App::SetBiography(const std::string& biography) const {
+void App::SetBiography(const std::string &biography) const {
     const auto profile = GetProfile();
     profile->SetBiography(biography);
 }
@@ -147,8 +149,8 @@ int App::GetAge() const {
     return GetProfile()->GetAge();
 }
 
-void App::AddUserToBlackList(const std::string &user){
-    if (this->user_ and GetCurrentUser()->GetUsername()  == user) {
+void App::AddUserToBlackList(const std::string &user) {
+    if (this->user_ and GetCurrentUser()->GetUsername() == user) {
         throw std::logic_error("You can't add to black list yourself");
     }
     if (const auto bad_user = GetUser(user); !bad_user) {
@@ -158,7 +160,7 @@ void App::AddUserToBlackList(const std::string &user){
     profile->AddUserToBlackList(user);
 }
 
-void App::DeleteUserFromBlackList(const std::string& user) const {
+void App::DeleteUserFromBlackList(const std::string &user) const {
     const auto profile = GetProfile();
     profile->DeleteUserFromBlackList(user);
 }
@@ -172,14 +174,3 @@ std::vector<std::string> App::GetBlockedUsersNamesFromBlackList() {
     const auto profile = GetProfile();
     return profile->GetBlockedUsersNamesFromBlackList();
 }
-
-
-
-
-
-
-
-
-
-
-

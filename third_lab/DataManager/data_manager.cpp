@@ -9,7 +9,6 @@ void DataManager::CreateNewChat(const std::string &user1, const std::string &use
     this->chats_[user2].push_back(new_chat);
 }
 
-
 bool DataManager::IsChatExist(const std::string &user1, const std::string &user2) {
     for (const auto &chat: this->chats_[user1]) {
         if (chat->GetFirstMember() == user1 and chat->GetSecondMember() == user2 or chat->GetFirstMember() == user2 and
@@ -99,7 +98,8 @@ void DataManager::DeleteStory(const std::string &user, const std::string &id) {
     DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->stories_[user], pos_of_user_story);
 }
 
-void DataManager::SendMessageToChat(const std::string &user1, const std::string &user2, const std::shared_ptr<Message> &message) {
+void DataManager::SendMessageToChat(const std::string &user1, const std::string &user2,
+                                    const std::shared_ptr<Message> &message) {
     auto chat = GetChat(user1, user2);
     if (!chat) {
         throw std::logic_error("Such chat is not exist!");
