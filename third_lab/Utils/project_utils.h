@@ -68,7 +68,7 @@ public:
 
 protected:
     std::string name_; /*!< Название */
-    std::string info_; /*!< Информация/описание */
+    std::string info_; /*!< Информация */
 };
 
 /*! \class DefaultPropertySetter
@@ -122,7 +122,7 @@ public:
 class DefaultFormatter {
 public:
     /*! \brief Преобразование строки к нижнему регистру
-     *  \param str Строка для преобразования
+     *  \param str Строка для форматирования
      */
     static void ToLower(std::string &str);
 };
