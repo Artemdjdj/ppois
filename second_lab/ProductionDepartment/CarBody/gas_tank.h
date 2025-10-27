@@ -30,7 +30,7 @@ public:
 	* \param season Начальный сезон года
 	* \param volume Начальный объем
 	*/
-	GasTank(int percentage, std::string type_of_fuel, std::string season, int volume);
+	GasTank(int percentage, const std::string& type_of_fuel, const std::string& season, int volume);
 
 	/*! \brief Установка процента заполненности
 	* \param procent Новое значение заполненности
@@ -60,12 +60,17 @@ public:
 	/*! \brief Установка типа топлива
 	* \param type_of_fuel Новый вид топлива
 	*/
-	void SetFuel(std::string type_of_fuel);
+	void SetFuel(const std::string& type_of_fuel);
 
 	/*! \brief Установка сезона года
 	* \param season Новый сезон года
 	*/
-	void SetSeason(std::string season);
+	void SetSeason(const std::string& season);
+
+	/*! \brief Установка механического индикатора
+	* \param is_mechanical_indicator Новый сезон года
+	*/
+	void SetMechanicalIndicator(bool is_mechanical_indicator);
 
 	/*! \brief Получение текущего сезона года
 	* \return Сезон года
@@ -77,10 +82,16 @@ public:
 	*/
 	int CheckHowMuchEmptySpace() const;
 
+	/*! \brief Получение механического индикатора (есть ли он)
+	* \return Есть ли механический индикатор
+	*/
+	bool CheckIsMechanicalIndicator() const;
+
 private:
 	Volume volume_;/*!< Объем бака */;
 	Fuel fuel_;/*!< Тип топлива */;
 	int percentage_of_occupancy_{0};/*!< Процент заполненности */;
+	bool is_mechanical_indicator_{false} /*!< Механический индикатор  (есть ли он)*/;
 };
 
 #endif //INCLUDE_GAS_TANK_H

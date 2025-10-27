@@ -76,6 +76,11 @@ TEST_F(TestGasTank, TestSetSeasonNegative) {
 	ASSERT_EQ(gas_tank.GetSeason(), "");
 }
 
-TEST_F(TestGasTank, GasTankDescription) {
-	EXPECT_EQ(gas_tank.GetInfoAboutPart(), "This detail name is gas tank");
+TEST_F(TestGasTank, TestGasTankDescription) {
+	ASSERT_EQ(gas_tank.GetInfoAboutPart(), "This detail name is gas tank");
+}
+
+TEST_F(TestGasTank, TestIsMechanicalIndicator) {
+    gas_tank.SetMechanicalIndicator(true);
+	ASSERT_TRUE(gas_tank.CheckIsMechanicalIndicator());
 }
