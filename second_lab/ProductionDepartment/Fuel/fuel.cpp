@@ -13,7 +13,7 @@ Fuel::Fuel(const std::string &type_of_fuel, const std::string &season): season_(
 
 void Fuel::SetTypeOfFuel(std::string type_of_fuel) {
 	ToLower(type_of_fuel);
-	if (!CheckIsStatementCorrect(type_of_fuels, type_of_fuel)) {
+	if (!CheckIsStatementCorrect(kTypeOfFuels, type_of_fuel)) {
 		throw ExceptionIncorrectFuel("This is incorrect type of fuel");
 	}
 	this->type_of_fuel_ = type_of_fuel;

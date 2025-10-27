@@ -135,15 +135,15 @@ TEST(TestSetSingleValue, TestCorrectNumber) {
 
 TEST(TestCheckIsStatementCorrect, CorrectRes) {
 	std::string res = "petrol";
-	ASSERT_TRUE(CheckIsStatementCorrect(type_of_fuels, res));
+	ASSERT_TRUE(CheckIsStatementCorrect(kTypeOfFuels, res));
 }
 
 TEST(TestCheckIsStatementCorrect, CorrectResBigLetter) {
 	std::string res = "Petrol";
-	ASSERT_TRUE(CheckIsStatementCorrect(type_of_fuels, res));
+	ASSERT_TRUE(CheckIsStatementCorrect(kTypeOfFuels, res));
 }
 
 TEST(TestCheckIsStatementCorrect, InCorrectRes) {
 	std::string res = "petrols";
-	ASSERT_FALSE(CheckIsStatementCorrect(type_of_fuels, res));
+	ASSERT_FALSE(CheckIsStatementCorrect(kTypeOfFuels, res));
 }

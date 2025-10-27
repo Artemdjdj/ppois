@@ -25,7 +25,7 @@ std::string BrakeShoe::GetColor() {
 }
 
 void BrakeShoe::SetMaterial(std::string material) {
-	if (!CheckIsStatementCorrect(type_of_materials_to_brake_shoe, material)) {
+	if (!CheckIsStatementCorrect(kTypeOfMaterialsToBrakeShoe, material)) {
 		throw ExceptionIncorrectMaterial("This material is not used!");
 	}
 	this->type_of_material_ = material;

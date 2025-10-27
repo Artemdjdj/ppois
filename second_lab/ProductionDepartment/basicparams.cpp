@@ -48,7 +48,7 @@ Color::Color() {
 }
 
 void Color::SetColor(std::string color) {
-	if (!CheckIsStatementCorrect(colors, color)) {
+	if (!CheckIsStatementCorrect(kColors, color)) {
 		throw ExceptionIncorrectColor("This color is not correct!");
 	}
 	this->color_ = color;
@@ -106,7 +106,7 @@ int GetNewValueAfterMultiplication(int number, int procent) {
 }
 
 double CalculateTheSpeedOfSoundInSpecialTemperature(double temperature) {
-	return speed_of_sound + 0.61 * temperature;
+	return kSpeedOfSound + 0.61 * temperature;
 }
 
 bool LogToFile(const char *message, const std::string &file_name) {
