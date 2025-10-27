@@ -7,12 +7,14 @@ public:
         book = Book("Harry Potter", "fantasy", 6);
         song.AddPerformer("Genious2006");
     }
+
     Interest interest = Interest();
     Book book;
     Book book2 = Book();
     Song song;
     Album album;
     Film film;
+    VideoGame game;
 };
 
 TEST_F(TestInterestAndOther, TestSetDuration) {
@@ -146,7 +148,7 @@ TEST_F(TestInterestAndOther, TestReaderAgeIncorrect) {
 
 TEST_F(TestInterestAndOther, TestAddPerformer) {
     song.AddPerformer("Human");
-    ASSERT_EQ((std::vector<std::string>{"Genious2006","Human"}),song.GetPerformers());
+    ASSERT_EQ((std::vector<std::string>{"Genious2006","Human"}), song.GetPerformers());
 }
 
 TEST_F(TestInterestAndOther, TestAddPerformerIncorrect) {
@@ -158,7 +160,7 @@ TEST_F(TestInterestAndOther, TestAddPerformerIncorrect) {
 
 TEST_F(TestInterestAndOther, TestDeletePerformer) {
     song.DeletePerformer(0);
-    ASSERT_EQ((std::vector<std::string>{}),song.GetPerformers());
+    ASSERT_EQ((std::vector<std::string>{}), song.GetPerformers());
 }
 
 TEST_F(TestInterestAndOther, TestDeletePerformerIncorrect1) {
@@ -247,9 +249,9 @@ TEST_F(TestInterestAndOther, TestSetTimeIncorrect2) {
 
 TEST_F(TestInterestAndOther, TestDeleteSongFromAlbum) {
     album.AddSong(song);
-    ASSERT_EQ(album.GetAlbum().size(),1);
+    ASSERT_EQ(album.GetAlbum().size(), 1);
     album.DeleteSong(0);
-    ASSERT_EQ(album.GetAlbum().size(),0);
+    ASSERT_EQ(album.GetAlbum().size(), 0);
 }
 
 TEST_F(TestInterestAndOther, TestSetTitleFilm) {
@@ -393,4 +395,53 @@ TEST_F(TestInterestAndOther, TestAddActor) {
         film.AddActor(""),
         std::invalid_argument
     );
+}
+
+TEST_F(TestInterestAndOther, TestSetName) {
+    game.SetName("Minecraft");
+    ASSERT_EQ(game.GetName(), "Minecraft");
+}
+
+TEST_F(TestInterestAndOther, TestSetReleaseYear) {
+    game.SetReleaseYear(2009);
+    ASSERT_EQ(game.ReleaseYear(), 2009);
+    const VideoGame game2;
+    ASSERT_EQ(game2.ReleaseYear(), std::nullopt);
+}
+
+TEST_F(TestInterestAndOther, TesSetGenre) {
+    game.SetGenre("sandbox");
+    ASSERT_EQ(game.GetGenre(), "sandbox");
+}
+
+TEST_F(TestInterestAndOther, TestSetReview) {
+    game.SetReview("Interesting");
+    ASSERT_EQ(game.GetReview(), "Interesting");
+}
+
+TEST_F(TestInterestAndOther, TestSetDeveloper) {
+    game.SetDeveloper("Artem");
+    ASSERT_EQ(game.GetDeveloper(), "Artem");
+}
+
+TEST_F(TestInterestAndOther, TestOnlineStatus) {
+    ASSERT_FALSE(game.GetIsGameOnline());
+    game.MakeOnline();
+    ASSERT_TRUE(game.GetIsGameOnline());
+    game.MakeOffline();
+    ASSERT_FALSE(game.GetIsGameOnline());
+}
+
+TEST_F(TestInterestAndOther, TestSetHours) {
+    game.SetHours(100);
+    ASSERT_EQ(game.GetHours(), 100);
+    const VideoGame game2;
+    ASSERT_EQ(game2.GetHours(), std::nullopt);
+}
+
+TEST_F(TestInterestAndOther, TestSetParts) {
+    game.SetParts(1);
+    ASSERT_EQ(game.GetParts(), 1);
+    const VideoGame game2;
+    ASSERT_EQ(game2.GetParts(), std::nullopt);
 }

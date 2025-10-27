@@ -390,4 +390,102 @@ private:
     int year_{0}; /*!< Год выпуска фильма */
     std::vector<std::string> actors_; /*!< Список актеров */
 };
+
+
+/*! \class VideoGame
+ *  \brief Класс, представляющий видеоигру с основными характеристиками
+ */
+class VideoGame {
+public:
+    /*! \brief Установка названия игры
+     *  \param name Название игры
+     */
+    void SetName(const std::string &name);
+
+    /*! \brief Установка года выпуска
+     *  \param year Год выпуска игры
+     */
+    void SetReleaseYear(int year);
+
+    /*! \brief Установка жанра игры
+     *  \param genre Жанр игры
+     */
+    void SetGenre(const std::string &genre);
+
+    /*! \brief Установка обзора игры
+     *  \param review Текст обзора игры
+     */
+    void SetReview(const std::string &review);
+
+    /*! \brief Установка разработчика игры
+     *  \param developer Разработчик игры
+     */
+    void SetDeveloper(const std::string &developer);
+
+    /*! \brief Переключение игры в онлайн-режим */
+    void MakeOnline();
+
+    /*! \brief Переключение игры в офлайн-режим */
+    void MakeOffline();
+
+    /*! \brief Установка количества наигранных часов
+     *  \param hours Количество часов
+     */
+    void SetHours(int hours);
+
+    /*! \brief Установка количества частей игры
+     *  \param parts Количество частей
+     */
+    void SetParts(int parts);
+
+    /*! \brief Получение названия игры
+     *  \return Название игры
+     */
+    std::string GetName() const;
+
+    /*! \brief Получение года выпуска
+     *  \return Год выпуска (optional)
+     */
+    std::optional<int> ReleaseYear() const;
+
+    /*! \brief Получение жанра игры
+     *  \return Жанр игры
+     */
+    std::string GetGenre() const;
+
+    /*! \brief Получение обзора игры
+     *  \return Текст обзора
+     */
+    std::string GetReview() const;
+
+    /*! \brief Получение разработчика игры
+     *  \return Разработчик игры
+     */
+    std::string GetDeveloper() const;
+
+    /*! \brief Проверка онлайн-режима игры
+     *  \return true если игра онлайн, false в противном случае
+     */
+    bool GetIsGameOnline() const;
+
+    /*! \brief Получение количества наигранных часов
+     *  \return Количество часов (optional)
+     */
+    std::optional<int> GetHours() const;
+
+    /*! \brief Получение количества частей игры
+     *  \return Количество частей (optional)
+     */
+    std::optional<int> GetParts() const;
+
+private:
+    std::string name_; /*!< Название игры */
+    int release_year_{0}; /*!< Год выпуска */
+    std::string genre_; /*!< Жанр игры */
+    std::string review_; /*!< Обзор игры */
+    std::string developer_; /*!< Разработчик игры */
+    bool is_online_{false}; /*!< Флаг онлайн-режима */
+    int hours_{0}; /*!< Количество наигранных часов */
+    int parts_{0}; /*!< Количество частей игры */
+};
 #endif //INTEREST_H

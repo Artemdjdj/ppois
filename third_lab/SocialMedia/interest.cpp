@@ -1,5 +1,7 @@
 #include "interest.h"
 #include "../Utils/validator.h"
+
+
 Interest::Interest(const std::string &name, const std::string &info, const std::string &duration, int level) {
     Info::SetName(name);
     Info::SetInfo(info);
@@ -298,4 +300,81 @@ std::vector<std::string> Film::GetActors() const {
 
 bool Film::CheckIsFilmGood() const {
     return this->rating_ > 6;
+}
+
+void VideoGame::SetName(const std::string &name) {
+    this->name_ = name;
+}
+
+void VideoGame::SetReleaseYear(int year) {
+    this->release_year_ = year;
+}
+
+void VideoGame::SetGenre(const std::string &genre) {
+    this->genre_ = genre;
+}
+
+void VideoGame::SetReview(const std::string &review) {
+    this->review_ = review;
+}
+
+void VideoGame::SetDeveloper(const std::string &developer) {
+    this->developer_ = developer;
+}
+
+void VideoGame::MakeOnline() {
+    this->is_online_ = true;
+}
+
+void VideoGame::MakeOffline() {
+    this->is_online_ = false;
+}
+
+void VideoGame::SetHours(const int hours) {
+    this->hours_ = hours;
+}
+
+void VideoGame::SetParts(const int parts) {
+    this->parts_ = parts;
+}
+
+std::string VideoGame::GetName() const {
+    return this->name_;
+}
+
+std::optional<int> VideoGame::ReleaseYear() const {
+    if (release_year_ == 0) {
+        return std::nullopt;
+    }
+    return this->release_year_;
+}
+
+std::string VideoGame::GetGenre() const {
+    return this->genre_;
+}
+
+std::string VideoGame::GetReview() const {
+    return this->review_;
+}
+
+std::string VideoGame::GetDeveloper() const {
+    return this->developer_;
+}
+
+bool VideoGame::GetIsGameOnline() const {
+    return this->is_online_;
+}
+
+std::optional<int> VideoGame::GetHours() const {
+    if (hours_ == 0) {
+        return std::nullopt;
+    }
+    return this->hours_;
+}
+
+std::optional<int> VideoGame::GetParts() const {
+    if (parts_ == 0) {
+        return std::nullopt;
+    }
+    return this->parts_;
 }
