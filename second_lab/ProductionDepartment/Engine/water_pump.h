@@ -95,7 +95,7 @@ public:
     /*! \brief Проверка наличия термостата
     * \return true если есть термостат, false в противном случае
     */
-    bool HasThermostat() const;
+    bool IsThermostat() const;
 
     // Методы для работы со сроком службы
     /*! \brief Установка срока службы

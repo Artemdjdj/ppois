@@ -61,7 +61,7 @@ TEST_F(TestWaterPump, TestSetNegativeOperatingTemperature) {
 
 TEST_F(TestWaterPump, TestSetAndGetThermostat) {
     water_pump.SetThermostat(true);
-    ASSERT_TRUE(water_pump.HasThermostat());
+    ASSERT_TRUE(water_pump.IsThermostat());
 }
 
 TEST_F(TestWaterPump, TestSetAndGetLifeSpan) {

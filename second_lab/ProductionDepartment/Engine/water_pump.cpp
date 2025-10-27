@@ -67,7 +67,7 @@ void WaterPump::SetThermostat(const bool is_thermostat) {
     this->is_thermostat_ = is_thermostat;
 }
 
-bool WaterPump::HasThermostat() const {
+bool WaterPump::IsThermostat() const {
     return this->is_thermostat_;
 }
 
