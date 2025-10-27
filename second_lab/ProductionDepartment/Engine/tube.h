@@ -88,12 +88,7 @@ public:
     /*! \brief Получение производителя
     * \return Производитель
     */
-    const std::string &GetManufacturer() const;
-
-    /*! \brief Получение веса
-    * \return Вес в граммах
-    */
-    int GetWeight() const;
+    std::string GetManufacturer() const;
 
     /*! \brief Получение максимального давления
     * \return Максимальное давление в бар
@@ -124,7 +119,6 @@ private:
     BaseCircle radius_;/*!< Радиус трубки */;
     int height_{0};/*!<Длина трубки */;
     std::string manufacturer_; /*!< Производитель */;
-    int weight_{0}; /*!< Вес */;
     int max_pressure_{0}; /*!< Максимальное давление */;
     bool is_flexible_{false}; /*!< Гибкая ли трубка */;
     int operating_temperature_{0}; /*!< Температура работы */;

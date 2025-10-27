@@ -54,21 +54,6 @@ TEST(TestTube, TestSetEmptyManufacturer) {
     ASSERT_TRUE(tube.GetManufacturer().empty());
 }
 
-TEST(TestTube, TestSetAndGetWeight) {
-    auto tube = Tube();
-    tube.SetWeight(500);
-    ASSERT_EQ(tube.GetWeight(), 500);
-}
-
-TEST(TestTube, TestSetNegativeWeight) {
-    auto tube = Tube();
-    ASSERT_THROW(
-        tube.SetWeight(-100),
-        ExceptionRuntimeError
-    );
-    ASSERT_EQ(tube.GetWeight(), 0);
-}
-
 TEST(TestTube, TestSetAndGetMaxPressure) {
     auto tube = Tube();
     tube.SetMaxPressure(100);

@@ -26,13 +26,6 @@ void Tube::SetManufacturer(const std::string &manufacturer) {
     this->manufacturer_ = manufacturer;
 }
 
-void Tube::SetWeight(const int weight) {
-    if (weight < 0) {
-        throw ExceptionRuntimeError("Incorrect weight");
-    }
-    this->weight_ = weight;
-}
-
 void Tube::SetMaxPressure(const int max_pressure) {
     if (max_pressure < 0) {
         throw ExceptionRuntimeError("Incorrect max pressure");
@@ -70,12 +63,8 @@ int Tube::GetHeight() const {
     return height_;
 }
 
-const std::string &Tube::GetManufacturer() const {
+std::string Tube::GetManufacturer() const {
     return this->manufacturer_;
-}
-
-int Tube::GetWeight() const {
-    return this->weight_;
 }
 
 int Tube::GetMaxPressure() const {
