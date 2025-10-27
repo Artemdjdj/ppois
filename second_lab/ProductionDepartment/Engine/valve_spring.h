@@ -25,7 +25,7 @@ public:
 	*  \param diameter Диаметр пружины
 	*  \param length Длина пружины
 	*  \param count_of_coils Количество витков
-	*  \param is_Compressed Состояние сжатия
+	*  \param is_compressed Состояние сжатия
 	*/
 	ValveSpring(int diameter, int length, int count_of_coils, bool is_compressed);
 
