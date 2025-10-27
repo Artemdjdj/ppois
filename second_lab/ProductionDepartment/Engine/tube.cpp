@@ -1,22 +1,99 @@
 #include "tube.h"
+#include <cmath>
+
+#include "../../Exceptions/exceptions.h"
 
 Tube::Tube() = default;
 
-Tube::Tube(int radius, int height): radius_(radius), height_(height) {
+Tube::Tube(const int radius, const int height) : radius_(BaseCircle(radius)), height_(height) {
 }
 
-void Tube::SetRadius(int radius) {
-	this->radius_.SetRadius(radius);
+void Tube::SetRadius(const int radius) {
+    if (radius < 0) {
+        throw ExceptionIncorrectSize("Incorrect radius of tube");
+    }
+    this->radius_.SetRadius(radius);
 }
 
-void Tube::SetHeight(int height) {
-	SetSingleValue(height, "Height should be bigger then zero!", this->height_);
+void Tube::SetHeight(const int height) {
+    if (height < 0) {
+        throw ExceptionIncorrectSize("Incorrect height of tube");
+    }
+    this->height_ = height;
+}
+
+void Tube::SetManufacturer(const std::string &manufacturer) {
+    this->manufacturer_ = manufacturer;
+}
+
+void Tube::SetWeight(const int weight) {
+    if (weight < 0) {
+        throw ExceptionRuntimeError("Incorrect weight");
+    }
+    this->weight_ = weight;
+}
+
+void Tube::SetMaxPressure(const int max_pressure) {
+    if (max_pressure < 0) {
+        throw ExceptionRuntimeError("Incorrect max pressure");
+    }
+    this->max_pressure_ = max_pressure;
+}
+
+void Tube::SetFlexibility(const bool is_flexible) {
+    this->is_flexible_ = is_flexible;
+}
+
+void Tube::SetOperatingTemperature(const int temperature) {
+    this->operating_temperature_ = temperature;
+}
+
+void Tube::SetLifespan(const int life_span) {
+    if (life_span < 0) {
+        throw ExceptionRuntimeError("Incorrect life span");
+    }
+    this->life_span_ = life_span;
+}
+
+void Tube::SetWallThickness(const int thickness) {
+    if (thickness < 0) {
+        throw ExceptionRuntimeError("Incorrect thickness");
+    }
+    this->thickness_ = thickness;
 }
 
 int Tube::GetRadius() const {
-	return this->radius_.GetRadius();
+    return radius_.GetRadius();
 }
 
 int Tube::GetHeight() const {
-	return this->height_;
+    return height_;
+}
+
+const std::string &Tube::GetManufacturer() const {
+    return this->manufacturer_;
+}
+
+int Tube::GetWeight() const {
+    return this->weight_;
+}
+
+int Tube::GetMaxPressure() const {
+    return this->max_pressure_;
+}
+
+bool Tube::IsFlexible() const {
+    return this->is_flexible_;
+}
+
+int Tube::GetOperatingTemperature() const {
+    return this->operating_temperature_;
+}
+
+int Tube::GetLifespan() const {
+    return this->life_span_;
+}
+
+int Tube::GetWallThickness() const {
+    return this->thickness_;
 }
