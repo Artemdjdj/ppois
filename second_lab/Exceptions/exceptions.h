@@ -15,22 +15,22 @@
  */
 class Exception : public std::exception {
 private:
-	std::string message; /*!< Сообщение об ошибке */
+    std::string message; /*!< Сообщение об ошибке */
 public:
-	/*! \brief Конструктор с сообщением об ошибке
-	*  \param msg Текст сообщения об ошибке
-	*/
-	explicit Exception(const char *msg);
+    /*! \brief Конструктор с сообщением об ошибке
+    *  \param msg Текст сообщения об ошибке
+    */
+    explicit Exception(const char *msg);
 
-	/*! \brief Конструктор копирования
-	*  \param other Копируемый объект исключения
-	*/
-	explicit Exception(const Exception &other);
+    /*! \brief Конструктор копирования
+    *  \param other Копируемый объект исключения
+    */
+    explicit Exception(const Exception &other);
 
-	/*! \brief Получение текста ошибки
-	*  \return Текст сообщения об ошибке
-	*/
-	const char *what() const noexcept override;
+    /*! \brief Получение текста ошибки
+    *  \return Текст сообщения об ошибке
+    */
+    const char *what() const noexcept override;
 };
 
 /*! \class ExceptionIncorrectRadius
@@ -39,7 +39,7 @@ public:
  */
 class ExceptionIncorrectRadius final : public Exception {
 public:
-	explicit ExceptionIncorrectRadius(const char *msg);
+    explicit ExceptionIncorrectRadius(const char *msg);
 };
 
 /*! \class ExceptionIncorrectColor
@@ -48,7 +48,7 @@ public:
  */
 class ExceptionIncorrectColor final : public Exception {
 public:
-	explicit ExceptionIncorrectColor(const char *msg);
+    explicit ExceptionIncorrectColor(const char *msg);
 };
 
 /*! \class ExceptionIncorrectMaterial
@@ -57,7 +57,7 @@ public:
  */
 class ExceptionIncorrectMaterial final : public Exception {
 public:
-	explicit ExceptionIncorrectMaterial(const char *msg);
+    explicit ExceptionIncorrectMaterial(const char *msg);
 };
 
 /*! \class ExceptionIncorrectSize
@@ -66,7 +66,7 @@ public:
  */
 class ExceptionIncorrectSize : public Exception {
 public:
-	explicit ExceptionIncorrectSize(const char *msg);
+    explicit ExceptionIncorrectSize(const char *msg);
 };
 
 /*! \class ExceptionIncorrectSerialNumber
@@ -75,7 +75,7 @@ public:
  */
 class ExceptionIncorrectSerialNumber final : public Exception {
 public:
-	explicit ExceptionIncorrectSerialNumber(const char *msg);
+    explicit ExceptionIncorrectSerialNumber(const char *msg);
 };
 
 /*! \class ExceptionIncorrectSeason
@@ -84,7 +84,7 @@ public:
  */
 class ExceptionIncorrectSeason final : public Exception {
 public:
-	explicit ExceptionIncorrectSeason(const char *msg);
+    explicit ExceptionIncorrectSeason(const char *msg);
 };
 
 /*! \class ExceptionIncorrectFuel
@@ -93,7 +93,7 @@ public:
  */
 class ExceptionIncorrectFuel final : public Exception {
 public:
-	explicit ExceptionIncorrectFuel(const char *msg);
+    explicit ExceptionIncorrectFuel(const char *msg);
 };
 
 /*! \class ExceptionIncorrectProcent
@@ -102,7 +102,7 @@ public:
  */
 class ExceptionIncorrectProcent final : public ExceptionIncorrectSize {
 public:
-	explicit ExceptionIncorrectProcent(const char *msg);
+    explicit ExceptionIncorrectProcent(const char *msg);
 };
 
 /*! \class ExceptionIncorrectVolume
@@ -111,7 +111,7 @@ public:
  */
 class ExceptionIncorrectVolume final : public ExceptionIncorrectSize {
 public:
-	explicit ExceptionIncorrectVolume(const char *msg);
+    explicit ExceptionIncorrectVolume(const char *msg);
 };
 
 /*! \class ExceptionIncorrectLevelOil
@@ -120,16 +120,16 @@ public:
  */
 class ExceptionIncorrectLevelOil final : public Exception {
 public:
-	explicit ExceptionIncorrectLevelOil(const char *msg);
+    explicit ExceptionIncorrectLevelOil(const char *msg);
 };
 
 /*! \class ExceptionRuntimeError
- *  \brief Исключение при некорректном id
- *  \details Выбрасывается при попытке установить недопустимый id, или id не может быть сгенерирован
+ *  \brief Исключение при некорректном id, а также при некоторых других логических ошибках
+ *  \details Выбрасывается при попытке установить недопустимый id, или id не может быть сгенерирован, а также если пользователь допускает логическую ошибку
  */
 class ExceptionRuntimeError final : public Exception {
 public:
-	explicit ExceptionRuntimeError(const char *msg);
+    explicit ExceptionRuntimeError(const char *msg);
 };
 
 /*! \class ExceptionWayError
@@ -138,7 +138,7 @@ public:
  */
 class ExceptionWayError final : public Exception {
 public:
-	explicit ExceptionWayError(const char *msg);
+    explicit ExceptionWayError(const char *msg);
 };
 
 #endif
