@@ -10,7 +10,7 @@ StorySettings::StorySettings(const std::string &category, const bool is_public):
 }
 
 void StorySettings::SetCategory(std::string category) {
-    DefaultFormatter::ToLower(category);
+    StringFormatter::ToLower(category);
     if (!ValidatorString::CheckIsStatementInAllowed(category, kStoriesCategories)) {
         throw std::invalid_argument("Invalid category!");
     }
@@ -43,12 +43,12 @@ Story::Story(const std::string &name, const std::string &info, const StorySettin
 // }
 
 void Story::SetName(const std::string &name, const std::string &user) {
-    DefaultPropertySetter::SetValueWithAuthor(this->name_, name, this->author_, user, "You can't changing info about story",
+    PropertySetter::SetValueWithAuthor(this->name_, name, this->author_, user, "You can't changing info about story",
                                      "You can't set name of your stories empty");
 }
 
 void Story::SetInfo(const std::string &info, const std::string &user) {
-    DefaultPropertySetter::SetValueWithAuthor(this->info_, info, this->author_, user, "You can't changing info about story",
+    PropertySetter::SetValueWithAuthor(this->info_, info, this->author_, user, "You can't changing info about story",
                                      "You can't set name of your stories empty");
 }
 

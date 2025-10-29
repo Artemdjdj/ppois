@@ -35,11 +35,11 @@ Book::Book(const std::string &title, const std::string &genre, const int reader_
 }
 
 void Book::SetTitle(const std::string &title) {
-    DefaultPropertySetter::SetValue(this->title_, title, "The title can't be empty");
+    PropertySetter::SetValue(this->title_, title, "The title can't be empty");
 }
 
 void Book::SetGenre(const std::string &genre) {
-    DefaultPropertySetter::SetValue(this->genre_, genre, "The genre can't be empty");
+    PropertySetter::SetValue(this->genre_, genre, "The genre can't be empty");
 }
 
 void Book::SetCountOfPages(const int count_of_pages) {
@@ -50,7 +50,7 @@ void Book::SetCountOfPages(const int count_of_pages) {
 }
 
 void Book::SetInfoAboutAuthors(const std::string &base_info) {
-    DefaultPropertySetter::SetValue(this->authors_, base_info, "The info about author can't be empty");
+    PropertySetter::SetValue(this->authors_, base_info, "The info about author can't be empty");
 }
 
 void Book::SetPublicationYear(const int publication_year) {
@@ -111,19 +111,19 @@ Song::Song(const std::vector<std::string> &performers, const std::string &title,
 };
 
 void Song::AddPerformer(const std::string &performer) {
-    DefaultWorkingWithVector::AddElementToVector(this->performers_, performer);
+    WorkingWithVector::AddElementToVector(this->performers_, performer);
 }
 
 void Song::DeletePerformer(const int number_of_performer) {
-    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->performers_, number_of_performer);
+    WorkingWithVector::DeleteElementFromVectorByPos(this->performers_, number_of_performer);
 }
 
 void Song::SetTitle(const std::string &title) {
-    DefaultPropertySetter::SetValue(this->title_, title, "The title of the song can't be empty");
+    PropertySetter::SetValue(this->title_, title, "The title of the song can't be empty");
 }
 
 void Song::SetLanguage(const std::string &language) {
-    DefaultPropertySetter::SetValue(this->language_, language, "The language of the song can't be empty");
+    PropertySetter::SetValue(this->language_, language, "The language of the song can't be empty");
 }
 
 void Song::SetYear(const int year) {
@@ -170,11 +170,11 @@ std::optional<double> Song::GetTime() const {
 }
 
 void Album::AddSong(const Song &song) {
-    DefaultWorkingWithVector::AddElementToVector(this->songs_, song);
+    WorkingWithVector::AddElementToVector(this->songs_, song);
 }
 
 void Album::DeleteSong(const int number_of_song) {
-    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->songs_, number_of_song);
+    WorkingWithVector::DeleteElementFromVectorByPos(this->songs_, number_of_song);
 }
 
 std::vector<Song> Album::GetAlbum() const {
@@ -189,19 +189,19 @@ Film::Film(const std::string &title, const std::string &director, const std::str
 }
 
 void Film::SetTitle(const std::string &title) {
-    DefaultPropertySetter::SetValue(this->title_, title, "The title of film can't be empty");
+    PropertySetter::SetValue(this->title_, title, "The title of film can't be empty");
 }
 
 void Film::SetDirector(const std::string &director) {
-    DefaultPropertySetter::SetValue(this->director_, director, "The director of film can't be empty");
+    PropertySetter::SetValue(this->director_, director, "The director of film can't be empty");
 }
 
 void Film::SetGenre(const std::string &genre) {
-    DefaultPropertySetter::SetValue(this->genre_, genre, "The genre of film can't be empty");
+    PropertySetter::SetValue(this->genre_, genre, "The genre of film can't be empty");
 }
 
 void Film::SetPlot(const std::string &plot) {
-    DefaultPropertySetter::SetValue(this->plot_, plot, "The plot of film can't be empty");
+    PropertySetter::SetValue(this->plot_, plot, "The plot of film can't be empty");
 }
 
 void Film::SetTime(const double time) {
@@ -242,11 +242,11 @@ void Film::SetYear(const int year) {
 }
 
 void Film::AddActor(const std::string &actor) {
-    DefaultWorkingWithVector::AddElementToVector(this->actors_, actor);
+    WorkingWithVector::AddElementToVector(this->actors_, actor);
 }
 
 void Film::DeleteActor(int number_of_actor) {
-    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->actors_, number_of_actor);
+    WorkingWithVector::DeleteElementFromVectorByPos(this->actors_, number_of_actor);
 }
 
 std::string Film::GetTitle() const {

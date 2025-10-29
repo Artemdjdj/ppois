@@ -71,11 +71,11 @@ protected:
     std::string info_; /*!< Информация */
 };
 
-/*! \class DefaultPropertySetter
+/*! \class PropertySetter
  *  \brief Класс с утилитами для настроек проекта
  *  \details Предоставляет статические методы для установки значений
  */
-class DefaultPropertySetter {
+class PropertySetter {
 public:
     /*! \brief Установка значения с проверкой автора
      *  \param property Свойство для установки
@@ -99,10 +99,10 @@ public:
                          const std::string &error_invalid_value);
 };
 
-/*! \class DefaultLogger
+/*! \class Logger
  *  \brief Класс для логирования ошибок
  */
-class DefaultLogger {
+class Logger {
 public:
     /*! \brief Запись в лог-файл
      *  \param msg Сообщение для логирования
@@ -116,10 +116,10 @@ public:
     static void ClearFile(const std::string &file_name);
 };
 
-/*! \class DefaultFormatter
+/*! \class StringFormatter
  *  \brief Класс для форматирования строк
  */
-class DefaultFormatter {
+class StringFormatter {
 public:
     /*! \brief Преобразование строки к нижнему регистру
      *  \param str Строка для форматирования
@@ -127,10 +127,10 @@ public:
     static void ToLower(std::string &str);
 };
 
-/*! \class DefaultTimeProvider
+/*! \class TimeProvider
  *  \brief Класс для работы с временем
  */
-class DefaultTimeProvider {
+class TimeProvider {
 public:
     /*! \brief Получение текущего реального времени
      *  \return Строка с текущим временем
@@ -138,11 +138,11 @@ public:
     static std::string GetRealTime();
 };
 
-/*! \class DefaultWorkingWithVector
+/*! \class WorkingWithVector
  *  \brief Класс с утилитами для работы с векторами
  *  \details Предоставляет статические шаблонные методы для работы с различными типами векторов
  */
-class DefaultWorkingWithVector {
+class WorkingWithVector {
 public:
     /*! \brief Добавление элемента в вектор
      *  \tparam T Тип элементов вектора

@@ -3,7 +3,7 @@
 #include "App/app.h"
 
 int main() {
-    DefaultLogger::ClearFile(kMainLogFile);
+    Logger::ClearFile(kMainLogFile);
     App app;
     std::string username;
     std::string name;
@@ -19,19 +19,19 @@ int main() {
         std::cout<<std::endl<<GREEN<<"Successful registration"<<RESET<<std::endl;
     }
     catch (const ExceptionUserName &e ) {
-        DefaultLogger::LogFile(e.what(), kMainLogFile);
+        Logger::LogFile(e.what(), kMainLogFile);
         std::cout<<std::endl<<RED<<e.what()<<RESET<<std::endl;
     }
     catch (const ExceptionName &e ) {
-        DefaultLogger::LogFile(e.what(), kMainLogFile);
+        Logger::LogFile(e.what(), kMainLogFile);
         std::cout<<std::endl<<RED<<e.what()<<RESET<<std::endl;
     }
     catch (const ExceptionPassword &e ) {
-        DefaultLogger::LogFile(e.what(), kMainLogFile);
+        Logger::LogFile(e.what(), kMainLogFile);
         std::cout<<std::endl<<RED<<e.what()<<RESET<<std::endl;
     }
     catch (const Exception &e ) {
-        DefaultLogger::LogFile(e.what(), kMainLogFile);
+        Logger::LogFile(e.what(), kMainLogFile);
         std::cout<<std::endl<<RED<<e.what()<<RESET<<std::endl;
     }
     app.Logout();
@@ -46,11 +46,11 @@ int main() {
         std::cout<<std::endl<<GREEN<<"Successful authorization"<<RESET<<std::endl;
     }
     catch (const std::invalid_argument& e){
-        DefaultLogger::LogFile(e.what(), kMainLogFile);
+        Logger::LogFile(e.what(), kMainLogFile);
         std::cout<<std::endl<<RED<<e.what()<<RESET<<std::endl;
     }
     catch (const std::logic_error& e){
-        DefaultLogger::LogFile(e.what(), kMainLogFile);
+        Logger::LogFile(e.what(), kMainLogFile);
         std::cout<<std::endl<<RED<<e.what()<<RESET<<std::endl;
     }
     system("pause");

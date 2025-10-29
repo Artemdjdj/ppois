@@ -29,18 +29,18 @@ TEST(TestIsStatementInAllowed, TestIsValueinAllowedNegativeBigLetter) {
 
 TEST(TestToLower, TestAllBigLetters) {
 	std::string test_str = "TEST";
-	DefaultFormatter::ToLower(test_str);
+	StringFormatter::ToLower(test_str);
 	ASSERT_EQ(test_str, "test");
 }
 
 TEST(TestToLower, TestSomeBigLetters) {
 	std::string test_str = "TesT";
-	DefaultFormatter::ToLower(test_str);
+	StringFormatter::ToLower(test_str);
 	ASSERT_EQ(test_str, "test");
 }
 
  TEST(TestRefactor, TestInIntVector) {
 	std::vector<int> test_ints = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-	DefaultWorkingWithVector::RefactorElement(test_ints, 17,0);
+	WorkingWithVector::RefactorElement(test_ints, 17,0);
 	ASSERT_EQ(test_ints[0], 17);
 }

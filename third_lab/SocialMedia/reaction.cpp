@@ -8,12 +8,12 @@ Reaction::Reaction(const std::string &type_of_reaction, const std::string &autho
 }
 
 void Reaction::SetReaction(std::string type_of_reaction, const std::string &author) {
-	DefaultFormatter::ToLower(type_of_reaction);
+	StringFormatter::ToLower(type_of_reaction);
 	if (!ValidatorString::CheckIsStatementInAllowed(type_of_reaction, kReactions)) {
 		throw ExceptionIncorrectReaction("This reaction is not allowed!");
 	}
 	this->type_of_reaction_ = type_of_reaction;
-	this->date_time_ = DefaultTimeProvider::GetRealTime();
+	this->date_time_ = TimeProvider::GetRealTime();
 	this->author_ = author;
 }
 

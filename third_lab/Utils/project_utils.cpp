@@ -5,11 +5,11 @@
 #include "../Exceptions/exceptions.h"
 
 void Info::SetName(const std::string &name) {
-    DefaultPropertySetter::SetValue(this->name_, name, "You can't set empty name!");
+    PropertySetter::SetValue(this->name_, name, "You can't set empty name!");
 }
 
 void Info::SetInfo(const std::string &info) {
-    DefaultPropertySetter::SetValue(this->info_, info, "You can't set empty info!");
+    PropertySetter::SetValue(this->info_, info, "You can't set empty info!");
 }
 
 std::string Info::GetName() const {
@@ -20,7 +20,7 @@ std::string Info::GetInfo() const {
     return this->info_;
 }
 
-void DefaultPropertySetter::SetValueWithAuthor(std::string &property, const std::string &value, const std::string &user,
+void PropertySetter::SetValueWithAuthor(std::string &property, const std::string &value, const std::string &user,
                         const std::string &user_checked,
                         const std::string &error_incorrect_author,
                         const std::string &error_invalid_value) {
@@ -33,7 +33,7 @@ void DefaultPropertySetter::SetValueWithAuthor(std::string &property, const std:
     property = value;
 }
 
-void DefaultPropertySetter::SetValue(std::string &property, const std::string &value,
+void PropertySetter::SetValue(std::string &property, const std::string &value,
               const std::string &error_invalid_value) {
     if (ValidatorString validator; validator.Validate(value)) {
         throw std::invalid_argument(error_invalid_value.c_str());
@@ -42,17 +42,17 @@ void DefaultPropertySetter::SetValue(std::string &property, const std::string &v
     property = value;
 }
 
-void DefaultFormatter::ToLower(std::string &str) {
+void StringFormatter::ToLower(std::string &str) {
     std::ranges::transform(str, str.begin(), ::tolower);
 }
 
-std::string DefaultTimeProvider::GetRealTime() {
+std::string TimeProvider::GetRealTime() {
     const time_t realtime = time(nullptr);
     const struct tm tm = *localtime(&realtime);
     return std::to_string(tm.tm_hour) + ":" + std::to_string(tm.tm_min);
 }
 
-void DefaultLogger::LogFile(const char *msg, const std::string &file_name) {
+void Logger::LogFile(const char *msg, const std::string &file_name) {
     try {
         std::ofstream file(file_name, std::ios::app);
         file.exceptions(std::ofstream::badbit | std::ofstream::failbit);
@@ -63,7 +63,7 @@ void DefaultLogger::LogFile(const char *msg, const std::string &file_name) {
     }
 }
 
-void DefaultLogger::ClearFile(const std::string &file_name) {
+void Logger::ClearFile(const std::string &file_name) {
     try {
         std::ofstream file(file_name, std::ios::trunc);
         file.exceptions(std::ofstream::badbit | std::ofstream::failbit);
