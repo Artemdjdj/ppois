@@ -7,20 +7,21 @@
 Fuel::Fuel() {
 }
 
-Fuel::Fuel(const std::string &type_of_fuel, const std::string &season): season_(season) {
-	this->type_of_fuel_ = type_of_fuel;
+Fuel::Fuel(const std::string &type_of_fuel, const std::string &season){
+	SetTypeOfFuel(type_of_fuel);
+	SetSeason(season);
 }
 
 void Fuel::SetTypeOfFuel(std::string type_of_fuel) {
-	ToLower(type_of_fuel);
-	if (!CheckIsStatementCorrect(kTypeOfFuels, type_of_fuel)) {
+	CarStringFormatter::ToLower(type_of_fuel);
+	if (!CarValidator::CheckIsStatementCorrect(kTypeOfFuels, type_of_fuel)) {
 		throw ExceptionIncorrectFuel("This is incorrect type of fuel");
 	}
 	this->type_of_fuel_ = type_of_fuel;
 }
 
-void Fuel::SetSeason(const std::string &season) {
-	this->season_.SetSeason(season);
+void Fuel::SetSeason(const Season& season) {
+	this->season_ = season;
 }
 
 std::string Fuel::GetTypeOfFuel() const {

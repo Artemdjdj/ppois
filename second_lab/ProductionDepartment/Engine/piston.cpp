@@ -2,8 +2,6 @@
 #include "piston.h"
 #include "../../Exceptions/exceptions.h"
 
-Piston::Piston() = default;
-
 Piston::Piston(const int diameter_p, const int height_p, const int compression_height_p, const int count_of_cycles_p,
                const int weight_p) : diameter_(diameter_p), height_(height_p),
                                      compression_height_(compression_height_p),
@@ -12,13 +10,13 @@ Piston::Piston(const int diameter_p, const int height_p, const int compression_h
 }
 
 void Piston::SetAllParameters(int diameter, int height, int compression_height, int count_of_cycles, int weight) {
-    SetSingleValue(diameter, "The diameter should be bigger then 0!", this->diameter_);
-    SetSingleValue(height, "The height should be bigger then 0!", this->height_);
-    SetSingleValue(compression_height, "The Compression height should be bigger then 0!",
+    CarSetter::SetSingleValue(diameter, "The diameter should be bigger then 0!", this->diameter_);
+    CarSetter::SetSingleValue(height, "The height should be bigger then 0!", this->height_);
+    CarSetter::SetSingleValue(compression_height, "The Compression height should be bigger then 0!",
                    this->compression_height_);
-    SetSingleValue(count_of_cycles, "The count_of_cycles should be bigger then 0!",
+    CarSetter::SetSingleValue(count_of_cycles, "The count_of_cycles should be bigger then 0!",
                    this->count_of_cycles_);
-    SetSingleValue(weight, "The weight should be bigger then 0!", this->weight_);
+    CarSetter::SetSingleValue(weight, "The weight should be bigger then 0!", this->weight_);
 }
 
 int Piston::GetDiameter() const {

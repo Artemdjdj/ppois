@@ -20,7 +20,7 @@ public:
     }
 
     /*! \brief Конструктор по умолчанию */
-    Piston();
+    Piston() = default;
 
     /*! \brief Параметризованный конструктор
     * \param diameter Начальный диаметр

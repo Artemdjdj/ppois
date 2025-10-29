@@ -8,9 +8,9 @@ ValveSpring::ValveSpring(int diameter, int length, int count_of_coils, bool is_c
 }
 
 void ValveSpring::SetAllParameters(int diameter, int length, int count_of_coils) {
-	SetSingleValue(diameter, "The diameter can't be negative or zero!", this->diameter_);
-	SetSingleValue(length, "The length can't be negative or zero!", this->length_);
-	SetSingleValue(count_of_coils, "Count of coils can't be bigger negative or zero", this->count_of_coils_);
+	CarSetter::SetSingleValue(diameter, "The diameter can't be negative or zero!", this->diameter_);
+	CarSetter::SetSingleValue(length, "The length can't be negative or zero!", this->length_);
+	CarSetter::SetSingleValue(count_of_coils, "Count of coils can't be bigger negative or zero", this->count_of_coils_);
 }
 
 void ValveSpring::Compress() {

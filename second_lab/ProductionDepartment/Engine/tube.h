@@ -33,7 +33,12 @@ public:
     /*! \brief Установка радиуса
     * \param radius Начальный радиус
     */
-    void SetRadius(int radius);
+    void SetRadius(const BaseCircle &radius);
+
+    /*! \brief Установка цвета
+    * \param color  Начальный цвет
+    */
+    void SetColor(const Color &color);
 
     /*! \brief Установка длины
     * \param height Начальная длина
@@ -44,11 +49,6 @@ public:
     * \param manufacturer Производитель
     */
     void SetManufacturer(const std::string &manufacturer);
-
-    /*! \brief Установка веса
-    * \param weight Вес в граммах
-    */
-    void SetWeight(int weight);
 
     /*! \brief Установка максимального давления
     * \param max_pressure Максимальное давление в бар
@@ -79,6 +79,11 @@ public:
     * \return Радиус
     */
     int GetRadius() const;
+
+    /*! \brief Получение текущего цвета
+    * \return Цвет
+    */
+    std::string GetColor() const;
 
     /*! \brief Получение текущей длины
     * \return Длина
@@ -117,6 +122,7 @@ public:
 
 private:
     BaseCircle radius_;/*!< Радиус трубки */;
+    Color color_; /*!< Цвет трубки */;
     int height_{0};/*!<Длина трубки */;
     std::string manufacturer_; /*!< Производитель */;
     int max_pressure_{0}; /*!< Максимальное давление */;

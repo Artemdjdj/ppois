@@ -22,15 +22,15 @@ public:
 	}
 
 	/*! \brief Конструктор по умолчанию */
-	IntakeManifold();
+	IntakeManifold() = default;
 
 	/*! \brief Параметризованный конструктор
 	* \param main_volume Начальный весь объем
-	* \param width Начальный радиус трубки
+	* \param radius_canal Начальный радиус трубки
 	* \param height_canal Начальныая длина трубки
 	* \param number_of_canals Начальное количество трубок
 	*/
-	IntakeManifold(int main_volume, int radius_canal, int height_canal, int number_of_canals);
+	IntakeManifold(const Volume&  main_volume, int radius_canal, int height_canal, int number_of_canals);
 
 	/*! \brief Установка всего объема
 	* \param main_volume Новое значение добъема
@@ -85,6 +85,6 @@ private:
 	Volume main_volume_;/*!< Главный объем */;
 	Volume plenum_volume_;/*!< Объем камеры */;
 	Tube canal_;/*!< Трубка */;
-	int number_of_canals_;/*!< Количество трубок */;
+	int number_of_canals_{0};/*!< Количество трубок */;
 };
 #endif

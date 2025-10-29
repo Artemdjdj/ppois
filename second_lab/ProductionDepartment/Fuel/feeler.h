@@ -22,7 +22,7 @@ public:
 	}
 
 	/*! \brief Конструктор по умолчанию */
-	Feeler();
+	Feeler() =default;
 
 	/*! \brief Параметризованный конструктор
 	*  \param length Начальная длина щупа

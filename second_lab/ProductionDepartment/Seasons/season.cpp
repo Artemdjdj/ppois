@@ -3,20 +3,17 @@
 #include "season.h"
 #include "../Include/settings.h"
 
-Season::Season() {
-}
-
 Season::Season(const std::string &season) {
-	this->season_ = season;
+    SetSeason(season);
 }
 
 void Season::SetSeason(std::string season) {
-	if (!CheckIsStatementCorrect(kSeasons, season)) {
-		throw ExceptionIncorrectSeason("Incorrect season, you can write winter or summer!");
-	}
-	this->season_ = season;
+    if (!CarValidator::CheckIsStatementCorrect(kSeasons, season)) {
+        throw ExceptionIncorrectSeason("Incorrect season, you can write winter or summer!");
+    }
+    this->season_ = season;
 }
 
 std::string Season::GetSeason() const {
-	return season_;
+    return season_;
 }

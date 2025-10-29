@@ -7,10 +7,10 @@ class TestingBrakeShoe : public ::testing::Test {
 protected:
 	void SetUp() override {
 		material = "low-metal";
-		brake_shoe = BrakeShoe(12, 25, "ceramic");
+		brake_shoe = BrakeShoe(12, 25, "ceramic", color);
 		brake_shoe.SetMaterial(material);
 	}
-
+	Color color = Color("blue");
 	std::string material;
 	BrakeShoe brake_shoe;
 };
@@ -62,7 +62,7 @@ TEST_F(TestingBrakeShoe, TestSetWidthNegative) {
 }
 
 TEST(TestBrakeShoe, TestBigMaterial) {
-	BrakeShoe brake_shoe = BrakeShoe();
+	auto brake_shoe = BrakeShoe();
 	brake_shoe.SetMaterial("Low-MetAL");
 	ASSERT_EQ("low-metal", brake_shoe.GetMaterial());
 }

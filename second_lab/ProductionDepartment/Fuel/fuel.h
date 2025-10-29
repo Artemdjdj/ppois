@@ -30,7 +30,7 @@ public:
 	/*! \brief Установка сезона года
 	* \param season Новый сезон
 	*/
-	void SetSeason(const std::string& season);
+	void SetSeason(const Season& season);
 
 	/*! \brief Получение текущего вида топлива
 	* \return Тип топлива

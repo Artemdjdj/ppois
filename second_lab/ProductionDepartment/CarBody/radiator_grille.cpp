@@ -17,11 +17,11 @@ void RadiatorGrille::SetSize(const int height, const int width) {
 }
 
 void RadiatorGrille::SetCountOfHoles(const int count_of_holes) {
-    SetSingleValue(count_of_holes, "The number of holes should be positive", this->count_of_holes_);
+    CarSetter::SetSingleValue(count_of_holes, "The number of holes should be positive", this->count_of_holes_);
 }
 
 void RadiatorGrille::SetDiameter(const int diameter) {
-    SetSingleValue(diameter, "The diameter of hole should be positive", this->diameter_of_hole_);
+    CarSetter::SetSingleValue(diameter, "The diameter of hole should be positive", this->diameter_of_hole_);
 }
 
 int RadiatorGrille::GetCountOfHoles() const {
@@ -36,8 +36,8 @@ bool RadiatorGrille::CheckReliabilityOfGrille() const {
     return this->count_of_holes_ > 200 && this->diameter_of_hole_ < 10;
 }
 
-void RadiatorGrille::SetColor(const std::string &color) {
-    this->color_.SetColor(color);
+void RadiatorGrille::SetColor(const Color &color) {
+    this->color_ = color;
 }
 
 void RadiatorGrille::SetYearOfProducing(const int year_of_producing) {

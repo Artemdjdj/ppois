@@ -16,13 +16,13 @@ public:
 
 TEST(Testingtolower, BigLetters) {
 	std::string word = "GGGG";
-	ToLower(word);
+	CarStringFormatter::ToLower(word);
 	ASSERT_EQ(word, "gggg");
 }
 
 TEST(Testingtolower, SmallLettersWithBigletters) {
 	std::string word = "Hello wOrlD";
-	ToLower(word);
+	CarStringFormatter::ToLower(word);
 	ASSERT_EQ(word, "hello world");
 }
 
@@ -96,54 +96,54 @@ TEST_F(TestingBasicParams, TestSetSizeCheckValues) {
 	ASSERT_EQ(width, 10);
 }
 
-TEST(TestSetSinglePercent, TestCorrectPercent) {
+TEST(SetSinglePercent, TestCorrectPercent) {
 	int value;
-	SetSinglePercent(30, value);
+	CarSetter::SetSinglePercent(30, value);
 	ASSERT_EQ(value, 30);
 }
 
-TEST(TestSetSinglePercent, TestInCorrectPercentNegativeNumber) {
+TEST(SetSinglePercent, TestInCorrectPercentNegativeNumber) {
 	int value;
 	ASSERT_THROW(
-		SetSinglePercent(-30,value ),
+		CarSetter::SetSinglePercent(-30,value ),
 		ExceptionIncorrectSize
 	);
 }
 
-TEST(TestSetSinglePercent, TestInCorrectPercentNumberBiggerThenOneHundred) {
+TEST(SetSinglePercent, TestInCorrectPercentNumberBiggerThenOneHundred) {
 	int value;
 	ASSERT_THROW(
-		SetSinglePercent(3000,value ),
+		CarSetter::SetSinglePercent(3000,value ),
 		ExceptionIncorrectSize
 	);
 }
 
 
-TEST(TestSetSingleValue, TestInCorrectPercentNegativeNumber) {
+TEST(SetSingleValue, TestInCorrectPercentNegativeNumber) {
 	int value;
 	ASSERT_THROW(
-		SetSingleValue(-30,"some information",value ),
+		CarSetter::SetSingleValue(-30,"some information",value ),
 		ExceptionIncorrectSize
 	);
 }
 
-TEST(TestSetSingleValue, TestCorrectNumber) {
+TEST(SetSingleValue, TestCorrectNumber) {
 	int value;
-	SetSingleValue(30, "Some information", value);
+	CarSetter::SetSingleValue(30, "Some information", value);
 	ASSERT_EQ(value, 30);
 }
 
-TEST(TestCheckIsStatementCorrect, CorrectRes) {
+TEST(CheckIsStatementCorrect, CorrectRes) {
 	std::string res = "petrol";
-	ASSERT_TRUE(CheckIsStatementCorrect(kTypeOfFuels, res));
+	ASSERT_TRUE(CarValidator::CheckIsStatementCorrect(kTypeOfFuels, res));
 }
 
-TEST(TestCheckIsStatementCorrect, CorrectResBigLetter) {
+TEST(CheckIsStatementCorrect, CorrectResBigLetter) {
 	std::string res = "Petrol";
-	ASSERT_TRUE(CheckIsStatementCorrect(kTypeOfFuels, res));
+	ASSERT_TRUE(CarValidator::CheckIsStatementCorrect(kTypeOfFuels, res));
 }
 
-TEST(TestCheckIsStatementCorrect, InCorrectRes) {
+TEST(CheckIsStatementCorrect, InCorrectRes) {
 	std::string res = "petrols";
-	ASSERT_FALSE(CheckIsStatementCorrect(kTypeOfFuels, res));
+	ASSERT_FALSE(CarValidator::CheckIsStatementCorrect(kTypeOfFuels, res));
 }

@@ -65,7 +65,7 @@ public:
     /*! \brief Установка размеров
     * \param color
     */
-    void SetColor(const std::string& color);
+    void SetColor(const Color& color);
 
     /*! \brief Установка года производства двигателя
      *  \param year_of_producing Год производства

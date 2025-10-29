@@ -8,15 +8,15 @@ ElectroPart::ElectroPart(int voltage, int power, int current_strength): voltage_
 }
 
 void ElectroPart::SetVoltage(int voltage) {
-	SetSingleValue(voltage, "Voltage in electro part can't be smaller then zero!", this->voltage_);
+	CarSetter::SetSingleValue(voltage, "Voltage in electro part can't be smaller then zero!", this->voltage_);
 }
 
 void ElectroPart::SetPower(int power) {
-	SetSingleValue(power, "Power in electro part can't be smaller then zero!", this->power_);
+	CarSetter::SetSingleValue(power, "Power in electro part can't be smaller then zero!", this->power_);
 }
 
 void ElectroPart::SetCurrentStrength(int strength) {
-	SetSingleValue(strength, "Current strength in electro part can't be smaller then zero!",
+	CarSetter::SetSingleValue(strength, "Current strength in electro part can't be smaller then zero!",
 						this->current_strength_);
 }
 
@@ -49,7 +49,7 @@ void Starter::ChooseLeftDirection() {
 }
 
 void Starter::SetCountOfProg(int count_of_prong) {
-	SetSingleValue(count_of_prong, "Count of prong can't be negative or zero!", this->count_of_prong_);
+	CarSetter::SetSingleValue(count_of_prong, "Count of prong can't be negative or zero!", this->count_of_prong_);
 }
 
 int Starter::GetCountOfProg() const {
@@ -68,7 +68,7 @@ Battery::Battery(int voltage, int power, int current_strength, int cold_cranking
 }
 
 void Battery::SetColdCrankingCurrent(int cold_cranking_current) {
-	SetSingleValue(cold_cranking_current, "The cold cranking current can't be negative or zero!",
+	CarSetter::SetSingleValue(cold_cranking_current, "The cold cranking current can't be negative or zero!",
 						this->cold_cranking_current_);
 }
 

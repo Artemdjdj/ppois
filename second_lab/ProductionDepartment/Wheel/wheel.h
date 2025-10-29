@@ -14,27 +14,26 @@
  */
 class BaseCircle {
 public:
-	/*! \brief Конструктор по умолчанию */
-	BaseCircle() {
-	}
+    /*! \brief Конструктор по умолчанию */
+    BaseCircle() = default;
 
-	/*! \brief Параметризованный конструктор
-	*  \param radius Начальный радиус
-	*/
-	BaseCircle(int radius);
+    /*! \brief Параметризованный конструктор
+    *  \param radius Начальный радиус
+    */
+    BaseCircle(int radius);
 
-	/*! \brief Установка радиуса
-	*  \param r Новое значение радиуса
-	*/
-	void SetRadius(int r);
+    /*! \brief Установка радиуса
+    *  \param radius Новое значение радиуса
+    */
+    void SetRadius(int radius);
 
-	/*! \brief Получение текущего радиуса
-	*  \return Радиус
-	*/
-	int GetRadius() const;
+    /*! \brief Получение текущего радиуса
+    *  \return Радиус
+    */
+    int GetRadius() const;
 
 private:
-	int radius_{0}; /*!< Радиус круга */
+    int radius_{0}; /*!< Радиус круга */
 };
 
 /*! \class BrakeShoe
@@ -43,52 +42,52 @@ private:
  */
 class BrakeShoe : public CarPart, public BasicParams {
 public:
-	/*! \brief Переопределение унаследованной функции
-	* \return Описание
-	*/
-	std::string GetInfoAboutPart() const override {
-		return "This detail name is brake shoe";
-	}
+    /*! \brief Переопределение унаследованной функции
+    * \return Описание
+    */
+    std::string GetInfoAboutPart() const override {
+        return "This detail name is brake shoe";
+    }
 
-	/*! \brief Установка цвета
-	*  \param color Новый цвет
-	*/
-	void SetColor(std::string color);
+    /*! \brief Конструктор по умолчанию */
+    BrakeShoe() = default;
 
-	/*! \brief Получение текущего цвета
-	*  \return Цвет
-	*/
-	std::string GetColor();
+    /*! \brief Параметризованный конструктор
+    *  \param height Высота
+    *  \param width Ширина
+    *  \param material Материал
+    *  \param color Цвет
+    */
+    BrakeShoe(int height, int width, const std::string &material, const Color &color);
 
-	/*! \brief Конструктор по умолчанию */
-	BrakeShoe();
+    /*! \brief Параметризованный конструктор
+    *  \param material Материал
+    */
+    BrakeShoe(const std::string &material);
 
-	/*! \brief Параметризованный конструктор
-	*  \param height Высота
-	*  \param width Ширина
-	*  \param material Материал
-	*  \param color Цвет
-	*/
-	BrakeShoe(int height, int width, std::string material);
+    /*! \brief Установка цвета
+    *  \param color Новый цвет
+    */
+    void SetColor(const Color &color);
 
-	/*! \brief Параметризованный конструктор
-	*  \param material Материал
-	*/
-	BrakeShoe(std::string material);
+    /*! \brief Получение текущего цвета
+    *  \return Цвет
+    */
+    std::string GetColor() const;
 
-	/*! \brief Установка материала
-	*  \param material Новый материал
-	*/
-	void SetMaterial(std::string material);
+    /*! \brief Установка материала
+    *  \param material Новый материал
+    */
+    void SetMaterial(std::string material);
 
-	/*! \brief Получение текущего материала
-	*  \return Материал
-	*/
-	std::string GetMaterial();
+    /*! \brief Получение текущего материала
+    *  \return Материал
+    */
+    std::string GetMaterial();
 
 private:
-	std::string type_of_material_; /*!< Тип материала */
-	Color color_; /*!< Цвет колодки */
+    std::string type_of_material_; /*!< Тип материала */
+    Color color_; /*!< Цвет колодки */
 };
 
 /*! \class Wheel
@@ -97,71 +96,71 @@ private:
  */
 class Wheel : public CarPart {
 public:
-	/*! \brief Переопределение унаследованной функции
-	* \return Описание
-	*/
-	std::string GetInfoAboutPart() const override {
-		return "This detail name is wheel";
-	}
+    /*! \brief Переопределение унаследованной функции
+    * \return Описание
+    */
+    std::string GetInfoAboutPart() const override {
+        return "This detail name is wheel";
+    }
 
-	/*! \brief Конструктор по умолчанию */
-	Wheel();
+    /*! \brief Конструктор по умолчанию */
+    Wheel() = default;
 
-	/*! \brief Параметризованный конструктор
-	*  \param radius Радиус
-	*  \param height Высота
-	*  \param width Ширина
-	*  \param material Материал
-	*  \param color Цвет
-	*  \param count_of_bolts Количество болтов
-	*/
-	Wheel(int radius, int height, int width, std::string material, int count_of_bolts);
+    /*! \brief Параметризованный конструктор
+    *  \param radius Радиус
+    *  \param height Высота
+    *  \param width Ширина
+    *  \param material Материал
+    *  \param color Цвет
+    *  \param count_of_bolts Количество болтов
+    */
+    Wheel(int radius, int height, int width, const std::string &material, int count_of_bolts, const Color &color);
 
-	/*! \brief Установка количества болтов
-	*  \param count_of_bolts Новое количество болтов
-	*/
-	void SetCountOfBolts(int count_of_bolts);
+    /*! \brief Установка количества болтов
+    *  \param count_of_bolts Новое количество болтов
+    */
+    void SetCountOfBolts(int count_of_bolts);
 
-	/*! \brief Получение количества болтов
-	*  \return Количество болтов
-	*/
-	int GetCountOfBolts() const;
+    /*! \brief Получение количества болтов
+    *  \return Количество болтов
+    */
+    int GetCountOfBolts() const;
 
-	/*! \brief Получение радиуса
-	*  \return Радиус
-	*/
-	int GetRadius() const;
+    /*! \brief Получение радиуса
+    *  \return Радиус
+    */
+    int GetRadius() const;
 
-	/*! \brief Установка радиуса
-	*  \param radius Новый радиус
-	*/
-	void SetRadius(int radius);
+    /*! \brief Установка радиуса
+    *  \param radius Новый радиус
+    */
+    void SetRadius(int radius);
 
-	/*! \brief Установка материала
-	*  \param material Новый материал
-	*/
-	void SetMaterial(std::string material);
+    /*! \brief Установка материала
+    *  \param material Новый материал
+    */
+    void SetMaterial(const std::string &material);
 
-	/*! \brief Установка цвета
-	*  \param color Новый цвет
-	*/
-	void SetColor(std::string color);
+    /*! \brief Установка цвета
+    *  \param color Новый цвет
+    */
+    void SetColor(const Color &color);
 
-	/*! \brief Установка размера
-	*  \param height Новая высота
-	*  \param width Новая ширина
-	*/
-	void SetSize(int height, int width);
+    /*! \brief Установка размера
+    *  \param height Новая высота
+    *  \param width Новая ширина
+    */
+    void SetSize(int height, int width);
 
-	/*! \brief Получение типа материала тормозной колодки
-	*  \return Тип материала
-	*/
-	std::string GetTypeOfMaterialToBrakeShoe();
+    /*! \brief Получение типа материала тормозной колодки
+    *  \return Тип материала
+    */
+    std::string GetTypeOfMaterialToBrakeShoe();
 
 private:
-	BaseCircle radius_; /*!< Радиус колеса */
-	BrakeShoe brake_shoe_; /*!< Тормозная колодка */
-	int count_of_bolts_{0}; /*!< Количество болтов */
+    BaseCircle radius_; /*!< Радиус колеса */
+    BrakeShoe brake_shoe_; /*!< Тормозная колодка */
+    int count_of_bolts_{0}; /*!< Количество болтов */
 };
 
 /*! \class SignalButton
@@ -170,37 +169,37 @@ private:
  */
 class SignalButton {
 public:
-	/*! \brief Конструктор по умолчанию */
-	SignalButton();
+    /*! \brief Конструктор по умолчанию */
+    SignalButton() = default;
 
-	/*! \brief Параметризованный конструктор
-	*  \param height Высота
-	*  \param width Ширина
-	*  \param is_clicked Состояние нажатия
-	*/
-	SignalButton(int height, int width, bool is_clicked);
+    /*! \brief Параметризованный конструктор
+    *  \param height Высота
+    *  \param width Ширина
+    *  \param is_clicked Состояние нажатия
+    */
+    SignalButton(int height, int width, bool is_clicked);
 
-	/*! \brief Нажатие кнопки */
-	void ClickedButton();
+    /*! \brief Нажатие кнопки */
+    void ClickedButton();
 
-	/*! \brief Получение размеров кнопки
-	*/
-	void GetSize(int &height, int &width) const;
+    /*! \brief Получение размеров кнопки
+    */
+    void GetSize(int &height, int &width) const;
 
-	/*! \brief Получение состояния нажатия
-	*  \return Состояние нажатия
-	*/
-	bool GetIsClicked() const;
+    /*! \brief Получение состояния нажатия
+    *  \return Состояние нажатия
+    */
+    bool GetIsClicked() const;
 
-	/*! \brief Установка размера кнопки
-	*  \param height Новая высота
-	*  \param width Новая ширина
-	*/
-	void SetSizeForButton(int height, int width);
+    /*! \brief Установка размера кнопки
+    *  \param height Новая высота
+    *  \param width Новая ширина
+    */
+    void SetSizeForButton(int height, int width);
 
 private:
-	BasicParams size_; /*!< Размеры кнопки */
-	bool is_clicked_ = false; /*!< Состояние нажатия */
+    BasicParams size_; /*!< Размеры кнопки */
+    bool is_clicked_ = false; /*!< Состояние нажатия */
 };
 
 /*! \class SteeringWheel
@@ -209,67 +208,67 @@ private:
  */
 class SteeringWheel : public CarPart {
 public:
-	/*! \brief Переопределение унаследованной функции
-	* \return Описание
-	*/
-	std::string GetInfoAboutPart() const override {
-		return "This detail name is steering wheel";
-	}
+    /*! \brief Переопределение унаследованной функции
+    * \return Описание
+    */
+    std::string GetInfoAboutPart() const override {
+        return "This detail name is steering wheel";
+    }
 
-	/*! \brief Конструктор по умолчанию */
-	SteeringWheel();
+    /*! \brief Конструктор по умолчанию */
+    SteeringWheel() = default;
 
-	/*! \brief Параметризованный конструктор
-	*  \param first_radius Радиус руля
-	*  \param second_radius Радиус логотипа
-	*  \param height_of_button Высота кнопки
-	*  \param width_of_button Ширина кнопки
-	*  \param is_clicked Состояние нажатия
-	*/
-	SteeringWheel(int first_radius, int second_radius, int height_of_button, int width_of_button, bool is_clicked);
+    /*! \brief Параметризованный конструктор
+    *  \param first_radius Радиус руля
+    *  \param second_radius Радиус логотипа
+    *  \param height_of_button Высота кнопки
+    *  \param width_of_button Ширина кнопки
+    *  \param is_clicked Состояние нажатия
+    */
+    SteeringWheel(int first_radius, int second_radius, int height_of_button, int width_of_button, bool is_clicked);
 
-	/*! \brief Установка радиуса руля
-	*  \param radius_of_steering_wheel Новый радиус
-	*  \return true если установка прошла успешно, false в противном случае
-	*/
-	void SetRadiusOfSteeringWheel(int radius_of_steering_wheel);
+    /*! \brief Установка радиуса руля
+    *  \param radius_of_steering_wheel Новый радиус
+    *  \return true если установка прошла успешно, false в противном случае
+    */
+    void SetRadiusOfSteeringWheel(int radius_of_steering_wheel);
 
-	/*! \brief Установка радиуса логотипа
-	*  \param radius_of_center_logo Новый радиус
-	*  \return true если установка прошла успешно, false в противном случае
-	*/
-	void SetRadiusOfCenterLogo(int radius_of_center_logo);
+    /*! \brief Установка радиуса логотипа
+    *  \param radius_of_center_logo Новый радиус
+    *  \return true если установка прошла успешно, false в противном случае
+    */
+    void SetRadiusOfCenterLogo(int radius_of_center_logo);
 
-	/*! \brief Получение радиуса руля
-	*  \return Радиус
-	*/
-	int GetRadiusOfSteeringWheel() const;
+    /*! \brief Получение радиуса руля
+    *  \return Радиус
+    */
+    int GetRadiusOfSteeringWheel() const;
 
-	/*! \brief Получение радиуса логотипа
-	*  \return Радиус логоитпа
-	*/
-	int GetRadiusOfCenterLogo() const;
+    /*! \brief Получение радиуса логотипа
+    *  \return Радиус логоитпа
+    */
+    int GetRadiusOfCenterLogo() const;
 
-	/*! \brief Нажатие кнопки сигнала
-	*  \return true если нажатие прошло успешно, false в противном случае
-	*/
-	bool ClickedButtonToMakeNoise();
+    /*! \brief Нажатие кнопки сигнала
+    *  \return true если нажатие прошло успешно, false в противном случае
+    */
+    bool ClickedButtonToMakeNoise();
 
-	/*! \brief Получение состояния нажатия
-	*  \return Состояние нажатия
-	*/
-	bool GetIsClicked() const;
+    /*! \brief Получение состояния нажатия
+    *  \return Состояние нажатия
+    */
+    bool GetIsClicked() const;
 
-	/*! \brief Установка размера кнопки
-	*  \param height_of_button Новая высота
-	*  \param width_of_button Новая ширина
-	*  \return true если установка прошла успешно, false в противном случае
-	*/
-	void SetSizeForButton(int height_of_button, int width_of_button);
+    /*! \brief Установка размера кнопки
+    *  \param height_of_button Новая высота
+    *  \param width_of_button Новая ширина
+    *  \return true если установка прошла успешно, false в противном случае
+    */
+    void SetSizeForButton(int height_of_button, int width_of_button);
 
 private:
-	BaseCircle radius_of_steering_wheel_; /*!< Радиус руля */
-	BaseCircle radius_of_center_logo_; /*!< Радиус центрального логотипа */
-	SignalButton signal_button_; /*!< Кнопка сигнала */
+    BaseCircle radius_of_steering_wheel_; /*!< Радиус руля */
+    BaseCircle radius_of_center_logo_; /*!< Радиус центрального логотипа */
+    SignalButton signal_button_; /*!< Кнопка сигнала */
 };
 #endif //INCLUDE_WHEEL_H

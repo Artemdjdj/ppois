@@ -12,20 +12,15 @@ public:
 };
 
 TEST_F(TestGasTank, TestSetFuel) {
-	gas_tank.SetFuel("petrol");
+	const auto fuel = Fuel("petrol", "summer");
+	gas_tank.SetFuel(fuel);
 	ASSERT_EQ(gas_tank.GetFuel(), "petrol");
 }
 
-TEST_F(TestGasTank, TestSetFuelNegativeResult) {
-	ASSERT_THROW(
-		gas_tank.SetFuel("petrols"),
-		ExceptionIncorrectFuel
-	);
-	ASSERT_EQ(gas_tank.GetFuel(), "");
-}
 
 TEST_F(TestGasTank, TestSetFuelPositiveResultBigLetters) {
-	gas_tank.SetFuel("Petrol");
+	const auto fuel = Fuel("Petrol", "summer");
+	gas_tank.SetFuel(fuel);
 	ASSERT_EQ(gas_tank.GetFuel(), "petrol");
 }
 

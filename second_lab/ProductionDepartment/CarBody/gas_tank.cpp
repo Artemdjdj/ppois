@@ -2,13 +2,14 @@
 
 GasTank::GasTank() = default;
 
-GasTank::GasTank(int percentage, const std::string& type_of_fuel, const std::string& season, int volume): volume_(volume),
-	fuel_(type_of_fuel, season) {
+GasTank::GasTank(int percentage, const Fuel& type_of_fuel, const Volume& volume){
+	this->fuel_ = type_of_fuel;
+	this->volume_ = volume;
 	this->percentage_of_occupancy_ = percentage;
 }
 
 void GasTank::SetPercentageOfOccupancy(int procent) {
-	SetSinglePercent(procent, this->percentage_of_occupancy_);
+	CarSetter::SetSinglePercent(procent, this->percentage_of_occupancy_);
 }
 
 int GasTank::GetPercentageOfOccupancy() const {
@@ -19,16 +20,16 @@ int GasTank::GetVolume() const {
 	return this->volume_.GetVolume();
 }
 
-std::string GasTank::GetFuel() {
+std::string GasTank::GetFuel() const {
 	return this->fuel_.GetTypeOfFuel();
 }
 
-void GasTank::SetVolume(int volume) {
-	this->volume_.SetVolume(volume);
+void GasTank::SetVolume(const Volume& volume) {
+	this->volume_ = volume;
 }
 
-void GasTank::SetFuel(const std::string& type_of_fuel) {
-	this->fuel_.SetTypeOfFuel(type_of_fuel);
+void GasTank::SetFuel(const Fuel& type_of_fuel) {
+	this->fuel_ = type_of_fuel;
 }
 
 void GasTank::SetSeason(const std::string& season) {
@@ -44,7 +45,7 @@ std::string GasTank::GetSeason() {
 }
 
 int GasTank::CheckHowMuchEmptySpace() const {
-	return this->volume_.GetVolume() - GetNewValueAfterMultiplication(
+	return this->volume_.GetVolume() - MathOperations::GetNewValueAfterMultiplication(
 				this->volume_.GetVolume(), this->percentage_of_occupancy_);
 }
 

@@ -1,10 +1,12 @@
 #include "wheel.h"
 #include "basic_params.h"
 
-BaseCircle::BaseCircle(int radius): radius_(radius) {}
+BaseCircle::BaseCircle(const int radius) {
+    SetRadius(radius);
+}
 
-void BaseCircle::SetRadius(int radius) {
-    SetSingleValue(radius, "Radius of wheel can't be negative number!", this->radius_);
+void BaseCircle::SetRadius(const int radius) {
+    CarSetter::SetSingleValue(radius, "Radius of wheel can't be negative number!", this->radius_);
 }
 
 int BaseCircle::GetRadius() const {

@@ -28,7 +28,8 @@ TEST_F(TestFuel, TestSetCorrectFuelBigLetters) {
 }
 
 TEST_F(TestFuel, TestGetSeason) {
-	fuel.SetSeason("Winter");
+	const auto season  = Season("Winter");
+	fuel.SetSeason(season);
 	ASSERT_EQ(fuel.GetSeason(), "winter");
 }
 

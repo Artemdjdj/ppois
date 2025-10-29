@@ -8,13 +8,13 @@ public:
         grille = RadiatorGrille();
         grille.SetCountOfHoles(210);
         grille.SetDiameter(7);
-        grille.SetColor("black");
+        grille.SetColor(base_color);
         grille.SetYearOfProducing(2023);
         grille.SetLedLighting(true);
         grille.SetStoneGuard(false);
         grille.MakeReinforced(true);
     }
-
+    Color base_color = Color("black");
     RadiatorGrille grille;
 };
 
@@ -66,13 +66,15 @@ TEST_F(TestRadiatorGrille, RadiatorGrilleDescription) {
 }
 
 TEST_F(TestRadiatorGrille, TestSetColor) {
-    grille.SetColor("red");
+    const auto color = Color("red");
+    grille.SetColor(color);
     ASSERT_EQ(grille.GetColor(), "red");
 }
 
 TEST_F(TestRadiatorGrille, TestSetEmptyColor) {
     ASSERT_THROW(
-        grille.SetColor(""),
+        const auto color = Color("");
+        grille.SetColor(color),
         ExceptionIncorrectColor
     );
 }

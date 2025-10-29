@@ -25,7 +25,7 @@ void Mirror::MakeMirrorTinting() {
 }
 
 void Mirror::SetThickness(int thickness) {
-	SetSingleValue(thickness, "The thickness can't be negative number!", thickness);
+	CarSetter::SetSingleValue(thickness, "The thickness can't be negative number!", thickness);
 }
 
 void Mirror::MakeTinting() {

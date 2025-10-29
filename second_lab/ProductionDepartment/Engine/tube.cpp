@@ -8,11 +8,12 @@ Tube::Tube() = default;
 Tube::Tube(const int radius, const int height) : radius_(BaseCircle(radius)), height_(height) {
 }
 
-void Tube::SetRadius(const int radius) {
-    if (radius < 0) {
-        throw ExceptionIncorrectSize("Incorrect radius of tube");
-    }
-    this->radius_.SetRadius(radius);
+void Tube::SetRadius(const BaseCircle& radius) {
+    this->radius_ = radius;
+}
+
+void Tube::SetColor(const Color& color) {
+    this->color_ = color;
 }
 
 void Tube::SetHeight(const int height) {
@@ -56,7 +57,11 @@ void Tube::SetWallThickness(const int thickness) {
 }
 
 int Tube::GetRadius() const {
-    return radius_.GetRadius();
+    return this->radius_.GetRadius();
+}
+
+std::string Tube::GetColor() const {
+    return this->color_.GetColor();
 }
 
 int Tube::GetHeight() const {

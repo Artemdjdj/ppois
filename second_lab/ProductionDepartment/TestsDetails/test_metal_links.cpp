@@ -4,7 +4,6 @@
 
 class TestAllInMetalChain : public ::testing::Test {
 public:
-	// TestAllInMetalChain() : plata() {}
 	void SetUp() override {
 		plata = Plata();
 		cylinder = MetalCylinder();

@@ -1,8 +1,5 @@
 #include "handbrake.h"
 
-Handbrake::Handbrake(): size_() {
-}
-
 Handbrake::Handbrake(int height, int width, bool is_car_block_now): size_(height, width) {
 	this->is_block_ = is_car_block_now;
 }

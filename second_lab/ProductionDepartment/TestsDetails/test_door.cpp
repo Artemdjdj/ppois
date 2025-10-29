@@ -7,11 +7,11 @@
 class TestDoor : public ::testing::Test {
 protected:
 	void SetUp() override {
-		front_door = FrontDoor(78, 100, 15, 17, false, "blue");
-		mirror = SideMirror(2, 3);
+		mirror = SideMirror(2, 3, base_color);
+		front_door.SetMirror(mirror);
 	}
-
-	FrontDoor front_door;
+	Color base_color = Color("blue");
+	FrontDoor front_door = FrontDoor(78, 100, mirror, false);
 	SideMirror mirror;
 };
 
@@ -23,8 +23,7 @@ TEST_F(TestDoor, GetSizeOfDoor) {
 }
 
 TEST_F(TestDoor, GetColorOfSideMirror) {
-	std::string res_color;
-	front_door.GetColorOfMirror(res_color);
+	const std::string res_color = front_door.GetColorOfMirror();
 	EXPECT_EQ(res_color, "blue");
 }
 
@@ -39,16 +38,18 @@ TEST_F(TestDoor, SetLockIsTrue) {
 }
 
 TEST_F(TestDoor, SetColorMirror) {
-	mirror.SetColor("green");
+	base_color.SetColor("green");
+	mirror.SetColor(base_color);
 	EXPECT_EQ(mirror.GetColor(), "green");
 }
 
 TEST_F(TestDoor, SetColorMirrorNegative) {
 	ASSERT_THROW(
-		mirror.SetColor("greens"),
+		base_color.SetColor("greens");
+		mirror.SetColor(base_color),
 		ExceptionIncorrectColor
 	);
-	EXPECT_EQ(mirror.GetColor(), "black");
+	EXPECT_EQ(mirror.GetColor(), "blue");
 }
 
 TEST_F(TestDoor, FrontDoorDescription) {

@@ -38,7 +38,7 @@ TEST(TestTube, TestTubeSetRadius) {
 }
 
 TEST(TestTube, TubeDescription) {
-    Tube tube = Tube();
+    const auto tube = Tube();
     EXPECT_EQ(tube.GetInfoAboutPart(), "This detail name is tube");
 }
 

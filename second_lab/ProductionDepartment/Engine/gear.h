@@ -10,19 +10,18 @@
 */
 class Figure {
 public:
-	/*! \brief Деструктор */
-	virtual ~Figure() {
-	};
+    /*! \brief Деструктор */
+    virtual ~Figure() = default;
 
-	/*! \brief Чисто виртуальная функция для получения площади фигуры
-	* \return Площадь фигуры
-	*/
-	virtual double GetSquare() = 0;
+    /*! \brief Чисто виртуальная функция для получения площади фигуры
+    * \return Площадь фигуры
+    */
+    virtual double GetSquare() = 0;
 
-	/*! \brief Чисто виртуальная функция для получения периметра фигуры
-	* \return Периметр фигуры
-	*/
-	virtual double GetPerimeter() = 0;
+    /*! \brief Чисто виртуальная функция для получения периметра фигуры
+    * \return Периметр фигуры
+    */
+    virtual double GetPerimeter() = 0;
 };
 
 /*! \class Triangle
@@ -31,37 +30,37 @@ public:
 */
 class Triangle : public Figure {
 public:
-	/*! \brief Конструктор по умолчанию */
-	Triangle();
+    /*! \brief Конструктор по умолчанию */
+    Triangle() = default;
 
-	/*! \brief Параметризованный конструктор
-	* \param first_side Длина первой стороны
-	* \param second_side Длина второй стороны
-	* \param third_side Длина третьей стороны
-	*/
-	Triangle(int first_side, int second_side, int third_side);
+    /*! \brief Параметризованный конструктор
+    * \param first_side Длина первой стороны
+    * \param second_side Длина второй стороны
+    * \param third_side Длина третьей стороны
+    */
+    Triangle(int first_side, int second_side, int third_side);
 
-	/*! \brief Установка всех сторон
-	* \param first_side Длина первой стороны
-	* \param second_side Длина второй стороны
-	* \param third_side Длина третьей стороны
-	*/
-	void SetSides(int first_side, int second_side, int third_side);
+    /*! \brief Установка всех сторон
+    * \param first_side Длина первой стороны
+    * \param second_side Длина второй стороны
+    * \param third_side Длина третьей стороны
+    */
+    void SetSides(int first_side, int second_side, int third_side);
 
-	/*! \brief Получение текущей длины стороны
-	* \param number_of_side Номер стороны
-	* \return Длина стороны или nullodt
-	*/
-	std::optional<int> GetOneOfSides(int number_of_side) const;
+    /*! \brief Получение текущей длины стороны
+    * \param number_of_side Номер стороны
+    * \return Длина стороны или nullodt
+    */
+    std::optional<int> GetOneOfSides(int number_of_side) const;
 
-	double GetSquare() override;
+    double GetSquare() override;
 
-	double GetPerimeter() override;
+    double GetPerimeter() override;
 
 private:
-	int first_side_{0};/*!< Первая сторона */;
-	int second_side_{0};/*!< Вторая сторона */;
-	int third_side_{0};/*!< Третья сторона */;
+    int first_side_{0};/*!< Первая сторона */;
+    int second_side_{0};/*!< Вторая сторона */;
+    int third_side_{0};/*!< Третья сторона */;
 };
 
 /*! \class Circle
@@ -70,30 +69,30 @@ private:
 */
 class Circle : public Figure {
 public:
-	/*! \brief Конструктор по умолчанию */
-	Circle();
+    /*! \brief Конструктор по умолчанию */
+    Circle() = default;
 
-	/*! \brief Параметризованный конструктор
-	* \param radius Радиус
-	*/
-	Circle(int radius);
+    /*! \brief Параметризованный конструктор
+    * \param radius Радиус
+    */
+    Circle(int radius);
 
-	/*! \brief Установка радиуса
-	* \param radius Радиус
-	*/
-	void SetRadius(int radius);
+    /*! \brief Установка радиуса
+    * \param radius Радиус
+    */
+    void SetRadius(int radius);
 
-	/*! \brief Получение текущего радиуса
-	* \return Длина радиуса
-	*/
-	int GetRadius() const;
+    /*! \brief Получение текущего радиуса
+    * \return Длина радиуса
+    */
+    int GetRadius() const;
 
-	double GetSquare() override;
+    double GetSquare() override;
 
-	double GetPerimeter() override;
+    double GetPerimeter() override;
 
 private:
-	int radius_{0};/*!< Радиус */;
+    int radius_{0};/*!< Радиус */;
 };
 
 /*! \class Detail
@@ -102,54 +101,53 @@ private:
 */
 class Detail : public CarPart {
 public:
-	/*! \brief Переопределение унаследованной функции
-	* \return Описание
-	*/
-	std::string GetInfoAboutPart() const override {
-		return "This detail name is default detail";
-	}
+    /*! \brief Переопределение унаследованной функции
+    * \return Описание
+    */
+    std::string GetInfoAboutPart() const override {
+        return "This detail name is default detail";
+    }
 
-	/*! \brief Конструктор по умолчанию */
-	Detail();
+    /*! \brief Конструктор по умолчанию */
+    Detail() = default;
 
-	/*! \brief Параметризованный конструктор
-	* \param thickness Начальная толщина
-	* \param density Начальная плотность
-	*/
-	Detail(int thickness, int density);
+    /*! \brief Параметризованный конструктор
+    * \param thickness Начальная толщина
+    * \param density Начальная плотность
+    */
+    Detail(int thickness, int density);
 
-	/*! \brief Виртуальный деструктор */
-	virtual ~Detail() {
-	};
+    /*! \brief Виртуальный деструктор */
+    ~Detail() override = default;
 
-	/*! \brief Установка толщины
-	* \param thickness Толщина
-	*/
-	void SetThickness(int thickness);
+    /*! \brief Установка толщины
+    * \param thickness Толщина
+    */
+    void SetThickness(int thickness);
 
-	/*! \brief Получение текущей толщины
-	* \return Толщина
-	*/
-	int GetThickness() const;
+    /*! \brief Получение текущей толщины
+    * \return Толщина
+    */
+    int GetThickness() const;
 
-	/*! \brief Установка плотности
-	* \param density Плотность
-	*/
-	void SetDensity(int density);
+    /*! \brief Установка плотности
+    * \param density Плотность
+    */
+    void SetDensity(int density);
 
-	/*! \brief Получение текущей плотности
-	* \return Плотность
-	*/
-	int GetDensity() const;
+    /*! \brief Получение текущей плотности
+    * \return Плотность
+    */
+    int GetDensity() const;
 
-	/*! \brief Чисто виртуальная функция для получения массы детали
-	* \return Масса
-	*/
-	virtual double GetWeight() =0;
+    /*! \brief Чисто виртуальная функция для получения массы детали
+    * \return Масса
+    */
+    virtual double GetWeight() =0;
 
 private:
-	int thickness_{0};/*!< Толщина */;
-	int density_{0};/*!< Плотность */;
+    int thickness_{0};/*!< Толщина */;
+    int density_{0};/*!< Плотность */;
 };
 
 /*! \class Prong
@@ -158,35 +156,35 @@ private:
 */
 class Prong : public Triangle, Detail {
 public:
-	/*! \brief Переопределение унаследованной функции
-	* \return Описание
-	*/
-	std::string GetInfoAboutPart() const override {
-		return "This detail name is prong";
-	}
+    /*! \brief Переопределение унаследованной функции
+    * \return Описание
+    */
+    std::string GetInfoAboutPart() const override {
+        return "This detail name is prong";
+    }
 
-	/*! \brief Конструктор по умолчанию */
-	Prong();
+    /*! \brief Конструктор по умолчанию */
+    Prong() = default;
 
-	/*! \brief Параметризованный конструктор
-	* \param first_side Длина первой стороны
-	* \param second_side Длина второй стороны
-	* \param third_side Длина третьей стороны
-	* \param thickness Начальная толщина
-	* \param density Начальная плотность
-	*/
-	Prong(int first_side, int seconde_side, int third_side, int thickness, int density);
+    /*! \brief Параметризованный конструктор
+    * \param first_side Длина первой стороны
+    * \param second_side Длина второй стороны
+    * \param third_side Длина третьей стороны
+    * \param thickness Начальная толщина
+    * \param density Начальная плотность
+    */
+    Prong(int first_side, int second_side, int third_side, int thickness, int density);
 
-	/*! \brief Установка всех сторон, толщины и плонтости
-	* \param first_side Длина первой стороны
-	* \param second_side Длина второй стороны
-	* \param third_side Длина третьей стороны
-	* \param thickness Толщина
-	*  \param density Плотность
-	*/
-	void SetDataProng(int first_side, int second_side, int third_side, int thickness, int density);
+    /*! \brief Установка всех сторон, толщины и плонтости
+    * \param first_side Длина первой стороны
+    * \param second_side Длина второй стороны
+    * \param third_side Длина третьей стороны
+    * \param thickness Толщина
+    *  \param density Плотность
+    */
+    void SetDataProng(int first_side, int second_side, int third_side, int thickness, int density);
 
-	double GetWeight() override;
+    double GetWeight() override;
 };
 
 /*! \class Rim
@@ -195,31 +193,31 @@ public:
 */
 class Rim : public Circle, public Detail {
 public:
-	/*! \brief Переопределение унаследованной функции
-	* \return Описание
-	*/
-	std::string GetInfoAboutPart() const override {
-		return "This detail name is rim";
-	}
+    /*! \brief Переопределение унаследованной функции
+    * \return Описание
+    */
+    std::string GetInfoAboutPart() const override {
+        return "This detail name is rim";
+    }
 
-	/*! \brief Конструктор по умолчанию */
-	Rim();
+    /*! \brief Конструктор по умолчанию */
+    Rim() = default;
 
-	/*! \brief Параметризованный конструктор
-	* \param radius Радиус
-	*  \param thickness Толщина
-	*  \param density Плотность
-	*/
-	Rim(int radius, int thickness, int density);
+    /*! \brief Параметризованный конструктор
+    * \param radius Радиус
+    *  \param thickness Толщина
+    *  \param density Плотность
+    */
+    Rim(int radius, int thickness, int density);
 
-	/*! \brief Установка радиуса, толщины и плонтости
-	* \param radius Радиус
-	*  \param thickness Толщина
-	*  \param density Плотность
-	*/
-	void SetDataRim(int radius, int thickness, int density);
+    /*! \brief Установка радиуса, толщины и плонтости
+    * \param radius Радиус
+    *  \param thickness Толщина
+    *  \param density Плотность
+    */
+    void SetDataRim(int radius, int thickness, int density);
 
-	double GetWeight() override;
+    double GetWeight() override;
 };
 
 #endif //INCLUDE_GEAR_H

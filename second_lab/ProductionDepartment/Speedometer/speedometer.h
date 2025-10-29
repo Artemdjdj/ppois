@@ -19,7 +19,7 @@ public:
 	}
 
 	/*! \brief Конструктор по умолчанию */
-	DefaultSpeedometer();
+	DefaultSpeedometer() = default;
 
 	/*! \brief Параметризованный конструктор
 	*  \param speed Начальная скорость
@@ -48,7 +48,7 @@ public:
 	int GetMileage() const;
 
 	/*! \brief Виртуальный деструктор */
-	virtual ~DefaultSpeedometer() = default;
+	~DefaultSpeedometer() override = default;
 
 protected:
 	int speed_{0}; /*!< Текущая скорость */
@@ -108,7 +108,7 @@ public:
 	SpeedometerInMiles(int speed, int mileage);
 
 	/*! \brief Конструктор по умолчанию */
-	SpeedometerInMiles();
+	SpeedometerInMiles() = default;
 
 	/*! \brief Установка скорости в милях в час
 	*  \param speed Новое значение скорости
