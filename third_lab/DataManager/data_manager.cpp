@@ -41,7 +41,7 @@ void DataManager::DeleteChat(const std::string &user1, const std::string &user2)
     for (const auto &chat: this->chats_[user1]) {
         if ((chat->GetFirstMember() == user1 and chat->GetSecondMember() == user2) or (
                 chat->GetFirstMember() == user2 and chat->GetSecondMember() == user1)) {
-            DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->chats_[user1], index);
+            WorkingWithVector::DeleteElementFromVectorByPos(this->chats_[user1], index);
         }
         index += 1;
     }
@@ -49,7 +49,7 @@ void DataManager::DeleteChat(const std::string &user1, const std::string &user2)
     for (const auto &chat: this->chats_[user2]) {
         if ((chat->GetFirstMember() == user1 and chat->GetSecondMember() == user2) or (
                 chat->GetFirstMember() == user2 and chat->GetSecondMember() == user1)) {
-            DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->chats_[user2], index);
+            WorkingWithVector::DeleteElementFromVectorByPos(this->chats_[user2], index);
             return;
         }
     }
@@ -95,7 +95,7 @@ std::shared_ptr<Story> DataManager::GetStory(const std::string &user, const std:
 
 void DataManager::DeleteStory(const std::string &user, const std::string &id) {
     const int pos_of_user_story = GetNumberOfStory(user, id);
-    DefaultWorkingWithVector::DeleteElementFromVectorByPos(this->stories_[user], pos_of_user_story);
+    WorkingWithVector::DeleteElementFromVectorByPos(this->stories_[user], pos_of_user_story);
 }
 
 void DataManager::SendMessageToChat(const std::string &user1, const std::string &user2,
