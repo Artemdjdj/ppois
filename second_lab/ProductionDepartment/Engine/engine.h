@@ -22,8 +22,15 @@ public:
     /*! \brief Параметризованный конструктор
     *  \param is_worked Заведен ли двигаетль
     *  \param engine_life Количество километров
+    *  \param rim Обод
+    *  \param prong Зубец
+    *  \param intake_manifold Впускной коллектор
+    *  \param metal_chain Металлическая цепь
+    *  \param tube Трубка
+    *  \param water_pump Водяной насос
     */
-    Engine(bool is_worked, int engine_life);
+    Engine(bool is_worked, int engine_life, const Rim &rim, const Prong &prong, const IntakeManifold &intake_manifold,
+           const MetalChain &metal_chain, const Tube &tube, const WaterPump &water_pump);
 
     /*! \brief Переопределение унаследованной функции
     *  \return Описание двигателя

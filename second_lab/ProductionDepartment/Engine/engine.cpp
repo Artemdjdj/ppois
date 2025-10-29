@@ -3,7 +3,14 @@
 
 #include "../../Exceptions/exceptions.h"
 
-Engine::Engine(const bool is_worked, const int engine_life) : is_worked_(is_worked), engine_life_(engine_life) {
+Engine::Engine(const bool is_worked, const int engine_life, const Rim &rim, const Prong &prong, const IntakeManifold &intake_manifold,
+           const MetalChain &metal_chain, const Tube &tube, const WaterPump &water_pump) : is_worked_(is_worked), engine_life_(engine_life) {
+    this->rim_ = rim;
+    this->prong_ = prong;
+    this->intake_manifold_ = intake_manifold;
+    this->metal_chain_ = metal_chain;
+    this->tube_ = tube;
+    this->water_pump_ = water_pump;
 }
 
 void Engine::SetInfoAboutRim(const int radius, const int thickness, const int density) {

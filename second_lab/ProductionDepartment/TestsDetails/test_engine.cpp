@@ -4,8 +4,15 @@
 #include "../../Exceptions/exceptions.h"
 
 class TestEngine : public ::testing::Test {
-public:
-    Engine engine = Engine(false, 400000);
+public:;
+    Rim rim = Rim();
+    Prong prong = Prong();
+    IntakeManifold  intake_manifold = IntakeManifold();
+    MetalChain metal_chain = MetalChain();
+    Tube tube = Tube();
+    WaterPump water_pump = WaterPump();
+    Engine engine = Engine(false, 400000, rim, prong, intake_manifold, metal_chain,tube, water_pump);
+
 };
 
 TEST_F(TestEngine, TestGetInfoAboutPart) {
