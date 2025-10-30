@@ -6,38 +6,28 @@ T = TypeVar('T')
 
 class ValuesOfArray:
     @staticmethod
-    def get_maximum(array: List[T], key: Optional[Callable[[T], Union[int, float]]] = None) ->Union[int, float] :
+    def get_value(is_max: bool, array: List[T], key: Optional[Callable[[T], Union[int, float]]] = None) -> Union[
+        int, float]:
         if not array:
             raise Exception('Array is empty')
         if key is None:
-            if not isinstance(array[0], (int, float)):
+            if not NumberValidator().is_valid(array[0]):
                 raise Exception('Elements must be of type int or float when key is None')
-            return max(array)
-        max_value = key(array[0])
-        if not isinstance(max_value, (int, float)):
+            if is_max:
+                return max(array)
+            return min(array)
+        res_value = key(array[0])
+        if not NumberValidator().is_valid(res_value):
             raise Exception(f'Key function must return a number')
         for i in range(1, len(array)):
             value = key(array[i])
-            if not isinstance(value, (int, float)):
+            if not NumberValidator().is_valid(value):
                 raise Exception(f'Key function must return a number')
-            if value > max_value:
-                max_value = value
-        return max_value
-
-    @staticmethod
-    def get_minimum(array: List[T], key: Optional[Callable[[T], Union[int, float]]] = None) ->Union[int, float] :
-        if not array:
-            raise Exception('Array is empty')
-        if key is None:
-            if not isinstance(array[0], (int, float)):
-                raise Exception('Elements must be of type int or float when key is None')
-            return min(array)
-        min_value = key(array[0])
-        for i in range(1, len(array)):
-            value = key(array[i])
-            if value < min_value:
-                min_value = value
-        return min_value
+            if is_max and value > res_value:
+                res_value = value
+            elif not is_max and value < res_value:
+                res_value = value
+        return res_value
 
 
 class Validator(ABC, Generic[T]):

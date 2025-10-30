@@ -1,18 +1,20 @@
 from abc import ABC, abstractmethod
-from typing import TypeVar,Optional, Callable, Generic, List, Any
+from typing import TypeVar, Optional, Callable, Generic, List, Any
 from src.sorting.utils import ValuesOfArray
 
 T = TypeVar('T')
 
+
 class Sorting(ABC, Generic[T]):
     @abstractmethod
     def sort(self, array: List[T],
-        key: Optional[Callable[[T], Any]] = None) -> List[T]:
+             key: Optional[Callable[[T], Any]] = None) -> List[T]:
         pass
 
+
 class GnomeSorting(Sorting[T]):
-    def sort(self, array:List[T],
-        key:Optional[Callable[[T], Any]] = None) -> List[T]:
+    def sort(self, array: List[T],
+             key: Optional[Callable[[T], Any]] = None) -> List[T]:
         index = 0
         length = len(array)
         while index < length:
@@ -25,10 +27,11 @@ class GnomeSorting(Sorting[T]):
                 index -= 1
         return array
 
+
 class PigeonholeSorting(Sorting):
-    def sort(self, array: List[T],key:Optional[Callable[[T], int]] = None) -> List[T]:
-        max_value = ValuesOfArray.get_maximum(array, key)
-        min_value = ValuesOfArray.get_minimum(array, key)
+    def sort(self, array: List[T], key: Optional[Callable[[T], int]] = None) -> List[T]:
+        max_value = ValuesOfArray.get_value(True, array, key)
+        min_value = ValuesOfArray.get_value(False, array, key)
         size = max_value - min_value + 1
         if not isinstance(size, int):
             raise TypeError("Incorrect type of arr")
@@ -41,11 +44,3 @@ class PigeonholeSorting(Sorting):
         for temp_element in temp_array:
             result_array.extend(temp_element)
         return result_array
-
-
-
-
-
-
-
-
