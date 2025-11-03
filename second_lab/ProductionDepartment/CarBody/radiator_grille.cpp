@@ -3,9 +3,6 @@
 #include "../../Exceptions/exceptions.h"
 #include "../../Settings/project_settings.h"
 
-RadiatorGrille::RadiatorGrille() : size_() {
-}
-
 RadiatorGrille::RadiatorGrille(const int height, const int width, const int count_of_holes, const int diameter) : size_(
     height, width) {
     this->count_of_holes_ = count_of_holes;

@@ -27,10 +27,10 @@ public:
 	*  \param is_tinting Наличие тонировки
 	*  \param serial_number Серийный номер
 	*/
-	Mirror(int height, int width, int thickness, bool is_tinting, std::string serial_number);
+	Mirror(int height, int width, int thickness, bool is_tinting, const std::string &serial_number);
 
 	/*! \brief Конструктор по умолчанию */
-	Mirror();
+	Mirror() =default;
 
 	/*! \brief Тонировка зеркала */
 	void MakeMirrorTinting();
@@ -77,7 +77,7 @@ private:
 	*/
 	bool CheckSerialNumber(const std::string &serial_number);
 
-private:
+protected:
 	std::string serial_number_; /*!< Серийный номер */
 	int thickness_{0}; /*!< Толщина */
 	bool is_tinting_{false}; /*!< Наличие тонировки */

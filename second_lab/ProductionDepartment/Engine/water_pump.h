@@ -75,7 +75,6 @@ public:
     */
     bool GetWorkingState() const;
 
-    // Методы для работы с температурой
     /*! \brief Установка температуры работы
     * \param temperature Температура работы в градусах Цельсия
     */
@@ -86,7 +85,6 @@ public:
     */
     int GetOperatingTemperature() const;
 
-    // Методы для работы с термостатом
     /*! \brief Установка наличия термостата
     * \param is_thermostat Наличие термостата
     */
@@ -97,7 +95,6 @@ public:
     */
     bool IsThermostat() const;
 
-    // Методы для работы со сроком службы
     /*! \brief Установка срока службы
     * \param life_span Срок службы в часах
     */
@@ -108,7 +105,6 @@ public:
     */
     int GetLifeSpan() const;
 
-    // Методы для работы с энергопотреблением
     /*! \brief Установка энергопотребления
     * \param power_consumption Энергопотребление в ваттах
     */
@@ -119,7 +115,6 @@ public:
     */
     int GetPowerConsumption() const;
 
-    // Методы для работы с производителем
     /*! \brief Установка производителя
     * \param manufacturer Производитель
     */
@@ -130,7 +125,6 @@ public:
     */
     const std::string &GetManufacturer() const;
 
-    // Методы для работы с весом
     /*! \brief Установка веса
     * \param weight Вес в граммах
     */

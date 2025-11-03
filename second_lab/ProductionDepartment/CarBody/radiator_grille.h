@@ -20,7 +20,7 @@ public:
     }
 
     /*! \brief Конструктор по умолчанию */
-    RadiatorGrille();
+    RadiatorGrille() = default;
 
     /*! \brief Параметризованный конструктор
     * \param height Начальная длина
@@ -65,7 +65,7 @@ public:
     /*! \brief Установка размеров
     * \param color
     */
-    void SetColor(const Color& color);
+    void SetColor(const Color &color);
 
     /*! \brief Установка года производства двигателя
      *  \param year_of_producing Год производства

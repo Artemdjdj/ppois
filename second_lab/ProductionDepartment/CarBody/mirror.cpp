@@ -5,14 +5,11 @@
 #include <iostream>
 #include <string>
 
-Mirror::Mirror(int height, int width, int thickness, bool is_tinting, std::string serial_number): BasicParams(
+Mirror::Mirror(int height, int width, int thickness, bool is_tinting, const std::string &serial_number): BasicParams(
 	height, width) {
 	this->thickness_ = thickness;
 	this->is_tinting_ = is_tinting;
 	this->serial_number_ = serial_number;
-}
-
-Mirror::Mirror(): BasicParams() {
 }
 
 bool Mirror::GetIsTinting() const {

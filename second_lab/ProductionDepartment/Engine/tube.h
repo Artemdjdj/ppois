@@ -120,7 +120,7 @@ public:
     */
     int GetWallThickness() const;
 
-private:
+protected:
     BaseCircle radius_;/*!< Радиус трубки */;
     Color color_; /*!< Цвет трубки */;
     int height_{0};/*!<Длина трубки */;

@@ -9,5 +9,9 @@ const std::vector<std::string> kColors = {"blue", "black", "grey", "green", "red
 const std::vector<std::string> kTypeOfFuels = {"petrol", "diesel", "gas"};/*!< Список разрешенных видов топлива */;
 const std::vector<std::string> kTypeOfMaterialsToBrakeShoe = {"semi-metallic", "organic", "low-metal", "ceramic"};/*!< Список разрешенных материалов для тормозных колодок  */;
 const std::vector<std::string> kSeasons = {"winter", "summer"};/*!< Спосок разрешенных пор года  */;
+constexpr int kMaxTemperatureOfStarter = 110;
+constexpr int kMinTemperatureOfStarter = -50;
+constexpr int kMaxTemperatureOfBattery = 70;
+constexpr int kMinTemperatureOfBattery = -20;
 constexpr int kSpeedOfSound = 331;/*!< Скорость звука */;
 #endif

@@ -22,7 +22,7 @@ public:
     }
 
     /*! \brief Конструктор по умолчанию */
-    GasTank();
+    GasTank() = default;
 
     /*! \brief Параметризованный конструктор
     * \param percentage Начальная заполненность
@@ -74,7 +74,7 @@ public:
     /*! \brief Получение текущего сезона года
     * \return Сезон года
     */
-    std::string GetSeason();
+    std::string GetSeason() const;
 
     /*! \brief Получение свободного места
     * \return Свободное место в баке

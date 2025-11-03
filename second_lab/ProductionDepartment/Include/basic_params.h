@@ -54,7 +54,7 @@ public:
     */
     void GetSize(int &height, int &width) const;
 
-private:
+protected:
     int height_{0}; /*!< Высота/длина объекта */
     int width_{0}; /*!< Ширина объекта */
 };

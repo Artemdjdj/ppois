@@ -57,7 +57,7 @@ public:
 
     double GetPerimeter() override;
 
-private:
+protected:
     int first_side_{0};/*!< Первая сторона */;
     int second_side_{0};/*!< Вторая сторона */;
     int third_side_{0};/*!< Третья сторона */;
@@ -91,7 +91,7 @@ public:
 
     double GetPerimeter() override;
 
-private:
+protected:
     int radius_{0};/*!< Радиус */;
 };
 
@@ -145,7 +145,7 @@ public:
     */
     virtual double GetWeight() =0;
 
-private:
+protected:
     int thickness_{0};/*!< Толщина */;
     int density_{0};/*!< Плотность */;
 };

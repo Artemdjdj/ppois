@@ -1,52 +1,50 @@
 #include "gas_tank.h"
 
-GasTank::GasTank() = default;
-
-GasTank::GasTank(int percentage, const Fuel& type_of_fuel, const Volume& volume){
-	this->fuel_ = type_of_fuel;
-	this->volume_ = volume;
-	this->percentage_of_occupancy_ = percentage;
+GasTank::GasTank(int percentage, const Fuel &type_of_fuel, const Volume &volume) {
+    this->fuel_ = type_of_fuel;
+    this->volume_ = volume;
+    this->percentage_of_occupancy_ = percentage;
 }
 
 void GasTank::SetPercentageOfOccupancy(int procent) {
-	CarSetter::SetSinglePercent(procent, this->percentage_of_occupancy_);
+    CarSetter::SetSinglePercent(procent, this->percentage_of_occupancy_);
 }
 
 int GasTank::GetPercentageOfOccupancy() const {
-	return this->percentage_of_occupancy_;
+    return this->percentage_of_occupancy_;
 }
 
 int GasTank::GetVolume() const {
-	return this->volume_.GetVolume();
+    return this->volume_.GetVolume();
 }
 
 std::string GasTank::GetFuel() const {
-	return this->fuel_.GetTypeOfFuel();
+    return this->fuel_.GetTypeOfFuel();
 }
 
-void GasTank::SetVolume(const Volume& volume) {
-	this->volume_ = volume;
+void GasTank::SetVolume(const Volume &volume) {
+    this->volume_ = volume;
 }
 
-void GasTank::SetFuel(const Fuel& type_of_fuel) {
-	this->fuel_ = type_of_fuel;
+void GasTank::SetFuel(const Fuel &type_of_fuel) {
+    this->fuel_ = type_of_fuel;
 }
 
-void GasTank::SetSeason(const std::string& season) {
-	this->fuel_.SetSeason(season);
+void GasTank::SetSeason(const std::string &season) {
+    this->fuel_.SetSeason(season);
 }
 
-void GasTank::SetMechanicalIndicator(bool is_mechanical_indicator){
+void GasTank::SetMechanicalIndicator(bool is_mechanical_indicator) {
     this->is_mechanical_indicator_ = is_mechanical_indicator;
 }
 
-std::string GasTank::GetSeason() {
-	return this->fuel_.GetSeason();
+std::string GasTank::GetSeason() const {
+    return this->fuel_.GetSeason();
 }
 
 int GasTank::CheckHowMuchEmptySpace() const {
-	return this->volume_.GetVolume() - MathOperations::GetNewValueAfterMultiplication(
-				this->volume_.GetVolume(), this->percentage_of_occupancy_);
+    return this->volume_.GetVolume() - MathOperations::GetNewValueAfterMultiplication(
+               this->volume_.GetVolume(), this->percentage_of_occupancy_);
 }
 
 bool GasTank::CheckIsMechanicalIndicator() const {

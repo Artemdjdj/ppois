@@ -47,7 +47,7 @@ public:
     */
     std::string GetColor() const;
 
-private:
+protected:
     Color color_;
 };
 
