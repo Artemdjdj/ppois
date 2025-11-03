@@ -6,7 +6,7 @@ SignalButton::SignalButton(int height, int width, bool is_clicked) : size_(heigh
 }
 
 void SignalButton::ClickedButton() {
-    this->is_clicked_ = (!is_clicked_) ? true : false;
+    this->is_clicked_ = (!is_clicked_);
 }
 
 bool SignalButton::GetIsClicked() const {
