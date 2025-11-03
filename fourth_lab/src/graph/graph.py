@@ -5,6 +5,7 @@ from typing import Generic, TypeVar, List, Set, Tuple, Hashable, Dict
 from exceptions.exceptions import IncorrectVertex, IncorrectEdge
 from utils import Counter
 import settings
+import copy
 
 T = TypeVar('T', bound=Hashable)
 
@@ -16,6 +17,33 @@ class Graph(Generic[T]):
         self._incidence_matrix: List[List[int]] = []
         self._vertex_order: List[int] = []
         self._edge_order: List[int] = []
+
+    def __copy__(self):
+        new_graph = Graph()
+        new_graph._vertices = self._vertices.copy()
+        new_graph._edges = self._edges.copy()
+        new_graph._incidence_matrix = [row[:] for row in self._incidence_matrix]
+        new_graph._vertex_order = self._vertex_order.copy()
+        new_graph._edge_order = self._edge_order.copy()
+        return new_graph
+
+    def __deepcopy__(self, memo):
+        new_graph = Graph()
+        new_graph._vertices = copy.deepcopy(self._vertices, memo)
+        new_graph._edges = copy.deepcopy(self._edges, memo)
+        self._incidence_matrix = copy.deepcopy(self._incidence_matrix, memo)
+        new_graph._vertex_order = copy.deepcopy(self._vertex_order, memo)
+        new_graph._edge_order = copy.deepcopy(self._edge_order, memo)
+        memo[id(self)] = new_graph
+        return new_graph
+
+    def is_empty(self)->bool:
+        return len(self._vertices) == 0
+
+    def clear(self):
+        self._vertices.clear()
+        self._edges.clear()
+        self._incidence_matrix = []
 
     def is_vertex_exist(self, id_vertex: int) -> bool:
         return id_vertex in self._vertices
