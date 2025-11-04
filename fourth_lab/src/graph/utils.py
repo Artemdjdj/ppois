@@ -1,6 +1,5 @@
 from typing import List
 
-
 class Counter:
     @staticmethod
     def count_number_in_list(arr: List[int], number: int) -> int:
@@ -17,3 +16,5 @@ class Counter:
             if el == element:
                 res_arr.append(i)
         return res_arr
+
+

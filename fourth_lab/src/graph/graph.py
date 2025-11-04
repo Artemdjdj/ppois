@@ -4,19 +4,25 @@ from edge import Edge
 from typing import Generic, TypeVar, List, Set, Tuple, Hashable, Dict
 from exceptions.exceptions import IncorrectVertex, IncorrectEdge
 from utils import Counter
-import settings
+from settings import *
 import copy
 
 T = TypeVar('T', bound=Hashable)
 
 
 class Graph(Generic[T]):
+    setup_logger()
+    _logger = logging.getLogger(__name__)
+
     def __init__(self):
         self._vertices: Dict[int, Vertex[T]] = dict()
         self._edges: Dict[int, Edge] = dict()
         self._incidence_matrix: List[List[int]] = []
         self._vertex_order: List[int] = []
         self._edge_order: List[int] = []
+
+    def __del__(self, ) -> None:
+        Graph._logger.debug("Deleting graph")
 
     def __copy__(self):
         new_graph = Graph()
@@ -37,7 +43,7 @@ class Graph(Generic[T]):
         memo[id(self)] = new_graph
         return new_graph
 
-    def is_empty(self)->bool:
+    def is_empty(self) -> bool:
         return len(self._vertices) == 0
 
     def clear(self):
@@ -64,7 +70,7 @@ class Graph(Generic[T]):
         count_of_not_connected_edges = Counter.count_number_in_list(self._incidence_matrix[index_of_vertex], 0)
         return len(self._incidence_matrix[index_of_vertex]) - count_of_not_connected_edges
 
-    def edge_degree(self, edge_id:int)->int:
+    def edge_degree(self, edge_id: int) -> int:
         if edge_id not in self._edges:
             raise IncorrectEdge("Such edge does not exist")
         edge = self._edges[edge_id]
@@ -129,6 +135,3 @@ class Graph(Generic[T]):
         self._vertex_order.pop(index_of_vertex)
         self._incidence_matrix.pop(index_of_vertex)
         del self._vertices[vertex_id]
-
-
-

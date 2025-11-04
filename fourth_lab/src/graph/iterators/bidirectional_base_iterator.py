@@ -4,17 +4,18 @@ from src.graph.vertex import Vertex
 
 T = TypeVar('T')
 
+
 class IBidirectionalBaseIterator(ABC, Generic[T]):
     @abstractmethod
-    def __iter__(self):
+    def __iter__(self) -> 'IBidirectionalBaseIterator[T]':
         pass
 
     @abstractmethod
-    def __next__(self)->Vertex[T]:
+    def __next__(self) -> T:
         pass
 
     @abstractmethod
-    def previous(self):
+    def previous(self) -> T:
         pass
 
     @abstractmethod
@@ -24,4 +25,3 @@ class IBidirectionalBaseIterator(ABC, Generic[T]):
     @abstractmethod
     def has_previous(self) -> bool:
         pass
-
