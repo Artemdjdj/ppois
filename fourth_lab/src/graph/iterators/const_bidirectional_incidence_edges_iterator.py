@@ -1,14 +1,18 @@
-from src.graph.iterators.bidirectional_incidence_edges_iterator import BidirectionalIteratorForIncidentEdges
-from typing import List, Self
+from src.graph.iterators.bidirectional_incidence_edges_iterator import BidirectionalIncidentEdgesIterator
+from src.graph.edge import Edge
+from typing import List, Self, TypeVar, Generic, Dict
+
+T = TypeVar('T')
 
 
-class ConstBidirectionalIncidentEdgesIterator(BidirectionalIteratorForIncidentEdges):
+class ConstBidirectionalIncidentEdgesIterator(BidirectionalIncidentEdgesIterator[T], Generic[T]):
     __slots__ = ()
 
-    def __init__(self, matrix: List[List[int]], order_edges: List[int], order_vertex: List[int], vertex_id: int,
-                 reverse: bool = False):
+    def __init__(self, matrix: List[List[int]], order_edges: List[int], edges: Dict[int, Edge],
+                 order_vertex: List[int], vertex_id: int, reverse: bool = False) -> None:
         object.__setattr__(self, '_matrix', matrix)
         object.__setattr__(self, '_order_edges', order_edges)
+        object.__setattr__(self, '_edges', edges)
         object.__setattr__(self, '_order_vertex', order_vertex)
         object.__setattr__(self, '_vertex_id', vertex_id)
         object.__setattr__(self, '_vertex', order_vertex.index(vertex_id))
@@ -16,15 +20,16 @@ class ConstBidirectionalIncidentEdgesIterator(BidirectionalIteratorForIncidentEd
         object.__setattr__(self, '_reverse', reverse)
 
     def __iter__(self) -> Self:
-        return ConstBidirectionalIncidentEdgesIterator(
+        return ConstBidirectionalIncidentEdgesIterator[T](
             self._matrix,
             self._order_edges,
+            self._edges,
             self._order_vertex,
             self._vertex_id,
             self._reverse
         )
 
-    def __setattr__(self, name: str, value):
+    def __setattr__(self, name: str, value) -> None:
         raise AttributeError(
-            f"Константный итератор защищен, атрибут '{name}' нельзя изменить."
+            f"Constant iterator is protected, attribute '{name}' is changed."
         )

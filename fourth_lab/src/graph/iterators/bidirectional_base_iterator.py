@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar
+from typing import Generic, TypeVar, Self
 from abc import ABC, abstractmethod
 from src.graph.vertex import Vertex
 
@@ -7,7 +7,7 @@ T = TypeVar('T')
 
 class IBidirectionalBaseIterator(ABC, Generic[T]):
     @abstractmethod
-    def __iter__(self) -> 'IBidirectionalBaseIterator[T]':
+    def __iter__(self) -> Self:
         pass
 
     @abstractmethod

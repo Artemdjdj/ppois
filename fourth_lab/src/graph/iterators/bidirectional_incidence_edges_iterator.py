@@ -1,17 +1,19 @@
-from operator import index
-
 from src.graph.exceptions.exceptions import EmptyContainer
-from src.graph.graph import Graph
+from src.graph.edge import Edge
 from src.graph.iterators.bidirectional_base_iterator import IBidirectionalBaseIterator
-from typing import TypeVar, List, Self
+from typing import TypeVar, List, Self, Dict, Generic
+
+T = TypeVar('T')
 
 
-class BidirectionalIteratorForIncidentEdges(IBidirectionalBaseIterator):
-    __slots__ = ('_matrix', '_order_edges', '_order_vertex', '_vertex_id', '_vertex', '_current_edge', '_reverse')
+class BidirectionalIncidentEdgesIterator(IBidirectionalBaseIterator, Generic[T]):
+    __slots__ = ('_matrix', '_edges', '_order_edges', '_order_vertex', '_vertex_id', '_vertex', '_current_edge',
+                 '_reverse')
 
-    def __init__(self, matrix: List[List[int]], order_edges: List[int],
+    def __init__(self, matrix: List[List[int]], order_edges: List[int], edges: Dict[int, Edge],
                  order_vertex: List[int], vertex_id: int, reverse: bool = False) -> None:
         self._matrix = matrix
+        self._edges = edges
         self._order_edges = order_edges
         self._order_vertex = order_vertex
         self._vertex_id = vertex_id
@@ -28,7 +30,7 @@ class BidirectionalIteratorForIncidentEdges(IBidirectionalBaseIterator):
     def _set_current_edge(self, value: int) -> None:
         object.__setattr__(self, '_current_edge', value)
 
-    def __next__(self) -> int:
+    def __next__(self) -> Edge:
         if not self._reverse:
             while self.has_next() and not self.is_incident_edge():
                 self._set_current_edge(self._current_edge + 1)
@@ -38,7 +40,8 @@ class BidirectionalIteratorForIncidentEdges(IBidirectionalBaseIterator):
 
             res_edge = self._current_edge
             self._set_current_edge(self._current_edge + 1)
-            return self._order_edges[res_edge]
+            result = self._order_edges[res_edge]
+            return self._edges[result]
 
         while self.has_next() and not self.is_incident_edge():
             self._set_current_edge(self._current_edge - 1)
@@ -48,9 +51,10 @@ class BidirectionalIteratorForIncidentEdges(IBidirectionalBaseIterator):
         res_edge = self._current_edge
         self._set_current_edge(self._current_edge - 1)
 
-        return self._order_edges[res_edge]
+        result = self._order_edges[res_edge]
+        return self._edges[result]
 
-    def previous(self) -> int:
+    def previous(self) -> Edge:
         if not self._reverse:
             self._set_current_edge(self._current_edge - 1)
 
@@ -60,7 +64,8 @@ class BidirectionalIteratorForIncidentEdges(IBidirectionalBaseIterator):
             if self._current_edge < 0:
                 raise StopIteration
 
-            return self._order_edges[self._current_edge]
+            result = self._order_edges[self._current_edge]
+            return self._edges[result]
         self._set_current_edge(self._current_edge + 1)
 
         while self.has_previous() and not self.is_incident_edge():
@@ -69,7 +74,8 @@ class BidirectionalIteratorForIncidentEdges(IBidirectionalBaseIterator):
         if self._current_edge >= len(self._matrix[0]):
             raise StopIteration
 
-        return self._order_edges[self._current_edge]
+        result = self._order_edges[self._current_edge]
+        return self._edges[result]
 
     def has_next(self) -> bool:
         if len(self._matrix) == 0:

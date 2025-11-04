@@ -1,3 +1,4 @@
+"""Файл settings.py необходим для определения базовых настроек."""
 import logging
 
 POSITIVE_EDGE = 1
