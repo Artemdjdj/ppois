@@ -86,15 +86,15 @@ class BidirectionalIncidentEdgesIterator(IBidirectionalBaseIterator, Generic[T])
         return self._edges[result]
 
     def has_next(self) -> bool:
-        if len(self._matrix) == 0:
-            raise EmptyContainer("Matrix empty")
+        if len(self._edges) == 0:
+            raise EmptyContainer("There are no any edges")
         if not self._reverse:
-            return self._current_edge < len(self._matrix[0])
+            return self._current_edge < len(self._edges)
         return self._current_edge >= 0
 
     def has_previous(self) -> bool:
-        if len(self._matrix) == 0:
-            raise EmptyContainer("Matrix empty")
+        if len(self._edges) == 0:
+            raise EmptyContainer("There are no any edges")
         if not self._reverse:
             return self._current_edge >= 0
-        return self._current_edge < len(self._matrix[0])
+        return self._current_edge < len(self._edges)

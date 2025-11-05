@@ -1,6 +1,6 @@
-import pytest
 from src.sorting.sorting import GnomeSorting, PigeonholeSorting
 from src.sorting.user import User
+import pytest
 
 test_data1 = [
     ([1, 3, 2], [1, 2, 3]),
@@ -18,10 +18,23 @@ test_data1 = [
      [User("art", "Art", 18, 1111), User("art", "Art", 20, 43242), User("art", "Art", 37, 2432)]),
     ([User("art", "Art", 11, 43242), User("art", "Art", 11, 2432), User("art", "Art", 11, 1111)],
      [User("art", "Art", 11, 1111), User("art", "Art", 11, 2432), User("art", "Art", 11, 43242)]),
+    ([0, 0, 0, -1, -2, -3, 4, -5, 1], [-5, -3, -2, -1, 0, 0, 0, 1, 4]),
+    ([-2.4, 0.3, -9, 0, 1, 2, 3, 5, 6, 7, 9.0, -0.8, 0, 0, 4],
+     [-9, -2.4, -0.8, 0, 0, 0, 0.3, 1, 2, 3, 4, 5, 6, 7, 9.0]),
+    ([2, 2, 1], [1, 2, 2]),
+    ([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]),
+    ([-3.3, 7.0, -8, 0, 0], [-8, -3.3, 0, 0, 7.0]),
+    (["Dmitriy", "Evgeniy", "Artem", "Kirill", "Ivan"], ["Artem", "Dmitriy", "Evgeniy", "Ivan", "Kirill"]),
+    (["dmitriy", "evgeniy", "artem", "kirill", "ivan"], ["artem", "dmitriy", "evgeniy", "ivan", "kirill"]),
+    (["a", "h", "g", "f"], ["a", "f", "g", "h"]),
+    (["a", "0", "1", "3", "g"], ["0", "1", "3", "a", "g"])
 ]
 
 test_data2 = [
     ([1, 3, 2], [1, 2, 3]),
+    ([2, 2, 1], [1, 2, 2]),
+    ([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]),
+    ([0, 0, 0, -1, -2, -3, 4, -5, 1], [-5, -3, -2, -1, 0, 0, 0, 1, 4]),
     ([8, 5, 6, 7, 1, 2, 3, -7, 98, 24], [-7, 1, 2, 3, 5, 6, 7, 8, 24, 98]),
 ]
 

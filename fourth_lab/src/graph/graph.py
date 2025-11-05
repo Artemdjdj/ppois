@@ -32,8 +32,8 @@ class Graph(Generic[T]):
         vertex_order (List[int]): Список id вершин как в матрице ницидентности (строки)
         edge_order (List[int]): Список id ребер как в матрице ницидентности (столбцы)
     """
-    setup_logger()
     _logger = logging.getLogger(__name__)
+    setup_logger()
     def __init__(self):
         self._vertices: Dict[int, Vertex[T]] = dict()
         self._edges: Dict[int, Edge] = dict()
@@ -231,30 +231,40 @@ class Graph(Generic[T]):
 
     def bidirectional_iterator_for_iter_over_edges_incident_to_vertex(self, vertex_id: int) -> \
             BidirectionalIncidentEdgesIterator[T]:
+        if vertex_id not in self._vertices:
+            raise IncorrectVertex("Such vertex does not exist")
         return BidirectionalIncidentEdgesIterator[T](self._incidence_matrix, self._edge_order, self._edges,
                                                      self._vertex_order,
                                                      vertex_id)
 
     def reverse_bidirectional_iterator_for_iter_over_edges_incident_to_vertex(self, vertex_id: int) -> \
             BidirectionalIncidentEdgesIterator[T]:
+        if vertex_id not in self._vertices:
+            raise IncorrectVertex("Such vertex does not exist")
         return BidirectionalIncidentEdgesIterator[T](self._incidence_matrix, self._edge_order, self._edges,
                                                      self._vertex_order,
                                                      vertex_id, reverse=True)
 
     def const_bidirectional_iterator_for_iter_over_edges_incident_to_vertex(self, vertex_id: int) -> \
             ConstBidirectionalIncidentEdgesIterator[T]:
+        if vertex_id not in self._vertices:
+            raise IncorrectVertex("Such vertex does not exist")
         return ConstBidirectionalIncidentEdgesIterator[T](self._incidence_matrix, self._edge_order, self._edges,
                                                           self._vertex_order,
                                                           vertex_id)
 
     def const_reverse_bidirectional_iterator_for_iter_over_edges_incident_to_vertex(self, vertex_id: int) -> \
             ConstBidirectionalIncidentEdgesIterator[T]:
+        if vertex_id not in self._vertices:
+            raise IncorrectVertex("Such vertex does not exist")
         return ConstBidirectionalIncidentEdgesIterator[T](self._incidence_matrix, self._edge_order, self._edges,
                                                           self._vertex_order,
                                                           vertex_id, reverse=True)
 
     def bidirectional_iterator_over_vertices_adjacent_to_vertex(self, vertex_id: int) -> \
             BidirectionalAdjacentVerticesIterator[T]:
+        if vertex_id not in self._vertices:
+            raise IncorrectVertex("Such vertex does not exist")
         return BidirectionalAdjacentVerticesIterator[T](self._incidence_matrix, self._edge_order, self._edges,
                                                         self._vertices,
                                                         self._vertex_order,
@@ -262,6 +272,8 @@ class Graph(Generic[T]):
 
     def reverse_bidirectional_iterator_over_vertices_adjacent_to_vertex(self, vertex_id: int) -> \
             BidirectionalAdjacentVerticesIterator[T]:
+        if vertex_id not in self._vertices:
+            raise IncorrectVertex("Such vertex does not exist")
         return BidirectionalAdjacentVerticesIterator[T](self._incidence_matrix, self._edge_order, self._edges,
                                                         self._vertices,
                                                         self._vertex_order,
@@ -269,6 +281,8 @@ class Graph(Generic[T]):
 
     def const_bidirectional_iterator_over_vertices_adjacent_to_vertex(self, vertex_id: int) -> \
             ConstBidirectionalAdjacentVerticesIterator[T]:
+        if vertex_id not in self._vertices:
+            raise IncorrectVertex("Such vertex does not exist")
         return ConstBidirectionalAdjacentVerticesIterator[T](self._incidence_matrix, self._edge_order, self._edges,
                                                              self._vertices,
                                                              self._vertex_order,
@@ -276,6 +290,8 @@ class Graph(Generic[T]):
 
     def const_reverse_bidirectional_iterator_over_vertices_adjacent_to_vertex(self, vertex_id: int) -> \
             ConstBidirectionalAdjacentVerticesIterator[T]:
+        if vertex_id not in self._vertices:
+            raise IncorrectVertex("Such vertex does not exist")
         return ConstBidirectionalAdjacentVerticesIterator[T](self._incidence_matrix, self._edge_order, self._edges,
                                                              self._vertices,
                                                              self._vertex_order,
