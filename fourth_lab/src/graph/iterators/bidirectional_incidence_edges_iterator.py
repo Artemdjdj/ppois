@@ -27,49 +27,57 @@ class BidirectionalIncidentEdgesIterator(IBidirectionalBaseIterator, Generic[T])
     def is_incident_edge(self) -> bool:
         return self._matrix[self._vertex][self._current_edge] != 0
 
-    def _set_current_edge(self, value: int) -> None:
+    @property
+    def current_edge(self)->int:
+        return self._current_edge
+
+    @current_edge.setter
+    def current_edge(self, new_edge: int) -> None:
+        self._current_edge = new_edge
+
+    def __set_current_edge(self, value: int) -> None:
         object.__setattr__(self, '_current_edge', value)
 
     def __next__(self) -> Edge:
         if not self._reverse:
             while self.has_next() and not self.is_incident_edge():
-                self._set_current_edge(self._current_edge + 1)
+                self.__set_current_edge(self._current_edge + 1)
 
             if not self.has_next():
                 raise StopIteration
 
             res_edge = self._current_edge
-            self._set_current_edge(self._current_edge + 1)
+            self.__set_current_edge(self._current_edge + 1)
             result = self._order_edges[res_edge]
             return self._edges[result]
 
         while self.has_next() and not self.is_incident_edge():
-            self._set_current_edge(self._current_edge - 1)
+            self.__set_current_edge(self._current_edge - 1)
 
         if not self.has_next():
             raise StopIteration
         res_edge = self._current_edge
-        self._set_current_edge(self._current_edge - 1)
+        self.__set_current_edge(self._current_edge - 1)
 
         result = self._order_edges[res_edge]
         return self._edges[result]
 
     def previous(self) -> Edge:
         if not self._reverse:
-            self._set_current_edge(self._current_edge - 1)
+            self.__set_current_edge(self._current_edge - 1)
 
             while self.has_previous() and not self.is_incident_edge():
-                self._set_current_edge(self._current_edge - 1)
+                self.__set_current_edge(self._current_edge - 1)
 
             if self._current_edge < 0:
                 raise StopIteration
 
             result = self._order_edges[self._current_edge]
             return self._edges[result]
-        self._set_current_edge(self._current_edge + 1)
+        self.__set_current_edge(self._current_edge + 1)
 
         while self.has_previous() and not self.is_incident_edge():
-            self._set_current_edge(self._current_edge + 1)
+            self.__set_current_edge(self._current_edge + 1)
 
         if self._current_edge >= len(self._matrix[0]):
             raise StopIteration

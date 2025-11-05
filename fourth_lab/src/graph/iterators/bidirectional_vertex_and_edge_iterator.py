@@ -21,13 +21,16 @@ class BidirectionalVertexAndEdgeIterator(IBidirectionalBaseIterator, Generic[T])
     def position(self) -> int:
         return self._position
 
-    def current_element(self) -> Union[Vertex[T], Edge]:
+    @position.setter
+    def position(self, position: int) -> None:
+        self._position = position
+
+    def current_element(self) -> int:
         if self._position < 0 or self._position >= len(self._order_list):
             raise IncorrectPosition("Iterator out of bounds")
-        result = self._order_list[self._position]
-        return self._collection[result]
+        return self._order_list[self._position]
 
-    def _set_position(self, value: int) -> None:
+    def __set_position(self, value: int) -> None:
         object.__setattr__(self, '_position', value)
 
     def __iter__(self) -> Self:
@@ -38,24 +41,24 @@ class BidirectionalVertexAndEdgeIterator(IBidirectionalBaseIterator, Generic[T])
             if not self.has_next():
                 raise StopIteration
             result = self._order_list[self._position]
-            self._set_position(self._position + 1)
+            self.__set_position(self._position + 1)
             return self._collection[result]
         if not self.has_next():
             raise StopIteration
         result = self._order_list[self._position]
-        self._set_position(self._position - 1)
+        self.__set_position(self._position - 1)
         return self._collection[result]
 
     def previous(self) -> Union[Vertex[T], Edge]:
         if not self._reverse:
             if not self.has_previous():
                 raise StopIteration
-            self._set_position(self._position - 1)
+            self.__set_position(self._position - 1)
             result = self._order_list[self._position]
             return self._collection[result]
         if not self.has_previous():
             raise StopIteration
-        self._set_position(self._position + 1)
+        self.__set_position(self._position + 1)
         result = self._order_list[self._position]
         return self._collection[result]
 

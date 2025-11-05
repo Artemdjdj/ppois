@@ -15,8 +15,6 @@ class Edge:
         id (int): Уникальный идентификатор, присвоенный ребру при создании.
     """
 
-    _next_id: int = 0
-
     def __init__(self, v_from: int, v_to: int):
         """Инициализирует новое ребро.
 
@@ -26,8 +24,7 @@ class Edge:
         """
         self._v_from: int = v_from
         self._v_to: int = v_to
-        self._id = Edge._next_id
-        Edge._next_id += 1
+        self._id = None
 
     @property
     def v_from(self) -> int:
@@ -43,6 +40,11 @@ class Edge:
     def id(self) -> int:
         """int: Уникальный идентификатор ребра."""
         return self._id
+
+    @id.setter
+    def id(self, value: int) -> None:
+        """None: Установка уникального идентификатора ребра."""
+        self._id = value
 
     def __eq__(self, other) -> bool:
         """Проверяет равенство двух рёбер.

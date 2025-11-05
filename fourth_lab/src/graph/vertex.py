@@ -20,8 +20,6 @@ class Vertex(Generic[T]):
         id (int): Уникальный идентификатор вершины.
     """
 
-    _next_id: int = 0
-
     def __init__(self, data: T):
         """Инициализирует новую вершину.
 
@@ -29,8 +27,7 @@ class Vertex(Generic[T]):
             data (T): Данные для сохранения в вершине.
         """
         self._data: T = data
-        self._id: int = Vertex._next_id
-        Vertex._next_id += 1
+        self._id = None
 
     @property
     def data(self) -> T:
@@ -50,6 +47,11 @@ class Vertex(Generic[T]):
     def id(self) -> int:
         """int: Уникальный идентификатор вершины."""
         return self._id
+
+    @id.setter
+    def id(self, value:int) -> None:
+        """None: Установка уникального идентификатора вершины."""
+        self._id = value
 
     def __hash__(self) -> int:
         """Возвращает хеш вершины на основе её ID.
@@ -75,7 +77,7 @@ class Vertex(Generic[T]):
         """
         if not isinstance(other, Vertex):
             raise TypeError("You cannot compare a Vertex with a different type")
-        return self._id == other.id
+        return self._data == other.data
 
     def __repr__(self) -> str:
         """Возвращает строковое представление вершины.
@@ -84,3 +86,11 @@ class Vertex(Generic[T]):
             str: Строка с информацией об ID и данных вершины.
         """
         return f"ID: {self._id} with data: {self.data}"
+
+    def __str__(self) -> str:
+        """Возвращает строковое представление вершины.
+
+        Returns:
+            str: Строка с информацией о вершине
+        """
+        return f"{self.data}"

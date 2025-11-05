@@ -17,6 +17,7 @@ class ConstBidirectionalVertexAndEdgeIterator(BidirectionalVertexAndEdgeIterator
         object.__setattr__(self, '_position', 0 if not reverse else len(order_list) - 1)
         object.__setattr__(self, '_reverse', reverse)
 
+
     def __iter__(self) -> Self:
         return ConstBidirectionalVertexAndEdgeIterator[T](
             self._collection,
