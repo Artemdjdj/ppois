@@ -16,6 +16,7 @@ from src.graph.iterators.const_bidirectional_vertex_and_edge_iterator import Con
 from src.graph.utils import Counter
 import logging
 
+
 T = TypeVar('T', bound=Hashable)
 
 
