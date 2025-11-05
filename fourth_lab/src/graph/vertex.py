@@ -1,4 +1,5 @@
 """Файл vertex.py необходим для определения класса вершины графа."""
+
 from typing import TypeVar, Generic, Hashable
 
 T = TypeVar('T', bound=Hashable)
@@ -9,8 +10,6 @@ class Vertex(Generic[T]):
 
     Вершина содержит данные (любого хешируемого типа) и уникальный
     идентификатор. Каждой вершине автоматически присваивается ID при создании.
-    Вершины могут использоваться как ключи в словарях и элементы множеств
-    благодаря методам __hash__ и __eq__.
 
     Args:
         T: Тип данных вершины, должен быть хешируемым.
@@ -53,24 +52,16 @@ class Vertex(Generic[T]):
         """None: Установка уникального идентификатора вершины."""
         self._id = value
 
-    def __hash__(self) -> int:
-        """Возвращает хеш вершины на основе её ID.
-
-        Returns:
-            int: Хеш вершины.
-        """
-        return hash(self.id)
-
     def __eq__(self, other) -> bool:
         """Проверяет равенство двух вершин.
 
-        Две вершины считаются равными, если имеют одинаковый ID.
+        Две вершины считаются равными, если имеют одинаковые данные.
 
         Args:
             other (Vertex): Другая вершина для сравнения.
 
         Returns:
-            bool: True, если вершины имеют одинаковый ID, иначе False.
+            bool: True, если вершины имеют одинаковые данные, иначе False.
 
         Raises:
             TypeError: Если other не является экземпляром Vertex.
@@ -85,7 +76,7 @@ class Vertex(Generic[T]):
         Returns:
             str: Строка с информацией об ID и данных вершины.
         """
-        return f"ID: {self._id} with data: {self.data}"
+        return f"ID: {self._id} with data: {self._data}"
 
     def __str__(self) -> str:
         """Возвращает строковое представление вершины.
@@ -93,4 +84,4 @@ class Vertex(Generic[T]):
         Returns:
             str: Строка с информацией о вершине
         """
-        return f"{self.data}"
+        return f"{self._data}"

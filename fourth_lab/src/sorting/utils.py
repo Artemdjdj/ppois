@@ -1,4 +1,5 @@
 """Файл utils.py необходим для определения класса работы со списками и классов валидации."""
+
 from abc import abstractclassmethod, abstractmethod, ABC
 from typing import TypeVar, List, Generic, Optional, Callable, Union
 

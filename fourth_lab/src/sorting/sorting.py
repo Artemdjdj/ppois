@@ -1,4 +1,5 @@
 """Файл sorting.py необходим для определения классов сортировок."""
+
 from abc import ABC, abstractmethod
 from typing import TypeVar, Optional, Callable, Generic, List, Any
 from src.sorting.utils import ValuesOfArray, IntValidator

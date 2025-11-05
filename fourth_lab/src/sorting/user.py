@@ -1,4 +1,5 @@
 """Файл user.py необходим для определения класса User."""
+
 from dataclasses import dataclass
 
 

@@ -57,31 +57,22 @@ def test_lt_graphs():
 
 
 def test_str_empty_graph():
-    """Тест для пустого графа"""
     graph = Graph[int]()
     result = str(graph)
     assert result == "Graph is empty"
 
 
 def test_str_graph_with_vertices():
-    """Тест для графа с вершинами и рёбрами"""
     graph = Graph[int]()
     graph.add_vertex(1)
     graph.add_vertex(2)
     graph.add_vertex(3)
     graph.add_edge(1, 2)
-
     result = str(graph)
-
-    # Проверяем, что есть вступление
     assert "The graph is represented as an incidence matrix:" in result
-
-    # Проверяем, что результат содержит числа из матрицы
     assert result.startswith("The graph is represented as an incidence matrix:\n")
-
-    # Проверяем структуру (должны быть строки с числами)
     lines = result.split('\n')
-    assert len(lines) > 1  # Заголовок + хотя бы одна строка матрицы
+    assert len(lines) > 1
 
 
 def test_str_format():
@@ -208,7 +199,6 @@ def test_const_bidirectional_iterator_for_iterating_over_vertices():
     assert 3 == next(iterator).data
 
 
-
 def test_const_reverse_bidirectional_iterator_for_iterating_over_vertices():
     graph1 = create_sample_graph()
     iterator = graph1.const_reverse_bidirectional_iterator_for_iterating_over_vertices()
@@ -266,13 +256,15 @@ def test_bidirectional_iterator_for_iter_over_edges_incident_to_vertex():
     assert 2 == iterator.previous().id
     iterator.position = 2
 
+
 def test_incorrect_index_of_vertex():
     graph1 = Graph()
     with pytest.raises(IncorrectVertex):
         graph1.bidirectional_iterator_for_iter_over_edges_incident_to_vertex(0)
 
+
 def test_empty_container_in_special_graph():
-    graph1 = Graph()
+    graph1 = Graph[int]()
     graph1.add_vertex(52343)
     graph1.add_vertex(2)
     iterator = graph1.bidirectional_iterator_for_iter_over_edges_incident_to_vertex(0)
@@ -313,6 +305,7 @@ def test_const_reverse_bidirectional_iterator_for_iter_over_edges_incident_to_ve
     with pytest.raises(AttributeError):
         iterator.position = 2
 
+
 def test_bidirectional_iterator_over_vertices_adjacent_to_vertex():
     graph1 = create_sample_graph()
     graph1.add_edge(0, 2)
@@ -323,6 +316,7 @@ def test_bidirectional_iterator_over_vertices_adjacent_to_vertex():
     assert 1 == iterator.previous().id
     iterator.position = 2
 
+
 def test_reverse_bidirectional_iterator_over_vertices_adjacent_to_vertex():
     graph1 = create_sample_graph()
     graph1.add_edge(0, 2)
@@ -331,6 +325,7 @@ def test_reverse_bidirectional_iterator_over_vertices_adjacent_to_vertex():
     assert 1 == next(iterator).id
     assert 2 == next(iterator).id
     assert 2 == iterator.previous().id
+
 
 def test_const_bidirectional_iterator_over_vertices_adjacent_to_vertex():
     graph1 = create_sample_graph()
@@ -343,6 +338,7 @@ def test_const_bidirectional_iterator_over_vertices_adjacent_to_vertex():
     with pytest.raises(AttributeError):
         iterator.position = 2
 
+
 def test_const_reverse_bidirectional_iterator_over_vertices_adjacent_to_vertex():
     graph1 = create_sample_graph()
     graph1.add_edge(0, 2)
@@ -354,12 +350,14 @@ def test_const_reverse_bidirectional_iterator_over_vertices_adjacent_to_vertex()
     with pytest.raises(AttributeError):
         iterator.position = 2
 
+
 def test_remove_vertex_by_iterator():
     graph1 = create_sample_graph()
     iterator = graph1.bidirectional_iterator_for_iterating_over_vertices()
     assert graph1.number_of_vertices() == 3
     graph1.remove_vertex_by_iterator(iterator)
     assert graph1.number_of_vertices() == 2
+
 
 def test_remove_edge_by_iterator():
     graph1 = create_sample_graph()
@@ -368,6 +366,7 @@ def test_remove_edge_by_iterator():
     graph1.remove_edge_by_iterator(iterator)
     assert graph1.number_of_edges() == 0
 
+
 def test_remove_vertex_by_iterator_incorrect_position():
     graph1 = create_sample_graph()
     iterator = graph1.bidirectional_iterator_for_iterating_over_vertices()
@@ -375,9 +374,11 @@ def test_remove_vertex_by_iterator_incorrect_position():
     with pytest.raises(IncorrectPosition):
         graph1.remove_vertex_by_iterator(iterator)
 
+
 def test_remove_edge_by_iterator_incorrect_position():
     graph1 = create_sample_graph()
     iterator = graph1.bidirectional_iterator_for_traversing_edges()
     iterator.position = 10
     with pytest.raises(IncorrectPosition):
         graph1.remove_edge_by_iterator(iterator)
+
