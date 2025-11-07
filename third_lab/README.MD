@@ -59,7 +59,7 @@
 **Hash** 2 0 → <br>
 **HashPassword** 0 4 →<br>
 
-## Exceptions (20)
+## Exceptions (21)
 
 **Exception** 1 1 → <br>
 **ExceptionUserName** 0 0 → <br>
@@ -98,4 +98,6 @@
 **Ассоциации:** 40 
 <p></p>
 
-**Исключения:** 20
+**Исключения:** 21
+
+**Всего классов:** 79
