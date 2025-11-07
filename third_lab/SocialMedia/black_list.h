@@ -5,7 +5,6 @@
 #define BLACK_LIST_H
 #include <vector>
 #include <memory>
-class User;
 
 /*! \class BlackList
  *  \brief Класс для работы с "черным" списком пользователей

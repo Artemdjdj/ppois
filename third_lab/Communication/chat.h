@@ -6,6 +6,8 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <map>
+#include "../SocialMedia/reaction.h"
 #include "../User/user.h"
 
 /*! \class Message
@@ -34,6 +36,22 @@ public:
      */
     void RefactorMessage(const std::string &message);
 
+    /*! \brief Добавление реакции на сообщения
+     *  \param reaction  Реакция
+     */
+    void AddReaction(const std::shared_ptr<Reaction> &reaction);
+
+    /*! \brief Получение реакции
+     *  \param author Автор реакции
+     *  \return  Реакция
+     */
+    std::shared_ptr<Reaction> GetReaction(const std::string &author);
+
+    /*! \brief Удаление реакции
+     *  \param author Автор реакции
+     */
+    void DeleteReaction(const std::string &author);
+
     /*! \brief Получение автора сообщения
      *  \return Имя автора
      */
@@ -50,7 +68,8 @@ public:
     std::string GetMessageDefaultText() const;
 
 private:
-    std::pair<std::string, std::string> message_; /*!<Текст сообщения и времея его создания или изменения */
+    std::pair<std::string, std::string> message_; /*!< Текст сообщения и времея его создания или изменения */
+    std::map<std::string, std::shared_ptr<Reaction> > reactions_; /*!< Реакции */
     bool is_refactor_{false}; /*!< редактировано ли сообщение */
     std::string author_; /*!< Автор сообщения */
 };

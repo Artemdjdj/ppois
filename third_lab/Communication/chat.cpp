@@ -25,6 +25,24 @@ void Message::RefactorMessage(const std::string &message) {
     this->is_refactor_ = true;
 }
 
+void Message::AddReaction(const std::shared_ptr<Reaction> &reaction) {
+    const auto author = reaction->SeeAuthor();
+    this->reactions_[author] = reaction;
+}
+
+void Message::DeleteReaction(const std::string &author) {
+    if (const int res_of_del = this->reactions_.erase(author); res_of_del == 0) {
+        throw ExceptionAccess("Such user does not have the reaction, nothing to delete");
+    }
+}
+
+std::shared_ptr<Reaction> Message::GetReaction(const std::string &author) {
+    if (!this->reactions_.contains(author)) {
+        throw ExceptionAccess("Such user does not have the reaction");
+    }
+    return this->reactions_[author];
+}
+
 std::string Message::GetAuthor() const {
     return this->author_;
 }

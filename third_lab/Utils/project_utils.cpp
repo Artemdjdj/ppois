@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include "../Exceptions/exceptions.h"
+#include "validator.h"
 
 void Info::SetName(const std::string &name) {
     PropertySetter::SetValue(this->name_, name, "You can't set empty name!");

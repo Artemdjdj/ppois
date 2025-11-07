@@ -1,5 +1,6 @@
 #include "place_of_working.h"
 #include "../Utils/project_utils.h"
+#include "../Utils/validator.h"
 
 PlaceOfWorking::PlaceOfWorking(const std::string &name_of_company, const std::string &country, const std::string &city,
                                const std::string &job_title) {

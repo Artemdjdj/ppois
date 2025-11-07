@@ -397,6 +397,9 @@ private:
  */
 class VideoGame {
 public:
+    /*! \brief Конструктор по умолчанию */
+    VideoGame() = default;
+
     /*! \brief Установка названия игры
      *  \param name Название игры
      */

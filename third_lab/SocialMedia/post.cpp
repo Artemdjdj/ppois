@@ -7,10 +7,6 @@ Post::Post(const std::string &name, const std::string &info, const std::string &
                                                                             author_(author) {
 };
 
-// void Post::SetId(const std::string &id) {
-//     this->id_ = id;
-// }
-
 void Post::SetName(const std::string &name, const std::string &author) {
     PropertySetter::SetValueWithAuthor(this->name_, name, this->author_, author, "You can't changing info about post",
                                      "You can't set name of your post empty");
@@ -32,6 +28,7 @@ std::string Post::GetInfo() const {
 std::string Post::GetId() const {
     return this->id_;
 }
+
 void Post::AddReaction(const std::shared_ptr<Reaction> &reaction) {
     this->reactions_[reaction->SeeAuthor()] = reaction;
 }

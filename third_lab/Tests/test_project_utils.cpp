@@ -1,6 +1,7 @@
 #include <ranges>
 #include <gtest/gtest.h>
 #include "../Utils/project_utils.h"
+#include "../Utils/validator.h"
 
 TEST(TestIsStatementInAllowed, TestIsValueinAllowedFirst) {
 	const std::unordered_set<std::string> allowed_values = {"blue", "white", "green"};

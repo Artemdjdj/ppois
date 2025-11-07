@@ -127,7 +127,7 @@ public:
     std::vector<std::string> SeeAnswers() const;
 
 private:
-    int correct_answer_{}; /*!< Номер правильного ответа */
+    int correct_answer_{0}; /*!< Номер правильного ответа */
 };
 
 #endif //Poll_H

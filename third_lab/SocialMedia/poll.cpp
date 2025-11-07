@@ -18,15 +18,6 @@ int Poll::GetAnswerOfUser(const std::string &user) const {
     return -1;
 }
 
-// void Poll::SeeAnswer() const {
-//     std::cout << "The answers on this question:" << " " << this->question_ << std::endl;
-//     int index = 1;
-//     for (const auto &answer: this->answers_) {
-//         std::cout << std::endl << index << ")" << answer;
-//         index++;
-//     }
-// }
-
 void Poll::AddAnswer(int number_of_answer, std::string user) {
     if (number_of_answer > answers_.size() or number_of_answer < 1) {
         throw ExceptionIncorrectNumber("Incorrect answer, such answer is not in list of answers");
@@ -58,14 +49,6 @@ std::optional<int> Poll::GetAuthorAndHisAnswer(const std::string &user, const in
     }
     return std::nullopt;
 }
-
-// void Poll::SeeStatistics() const {
-//     std::cout << "The result of Poll!" << std::endl;
-//     for (const auto &answer: statistics_) {
-//         std::cout << std::endl << answer.first << " --- " << static_cast<double>(
-//             answer.second * 100 / result_count_of_voices_) << "%" << std::endl;
-//     }
-// }
 
 std::string Poll::GetQuestion() const {
     return this->question_;
@@ -108,19 +91,6 @@ void PollWithGettingAnswer::AddAnswer(int number_of_answer, std::string user) {
     result_count_of_voices_++;
     users_and_their_answers_.emplace_back(user, number_of_answer);
 }
-
-// void PollWithGettingAnswer::SeeAnswer() const {
-//     std::cout << "The answers on this question:" << " " << this->question_ << std::endl;
-//     int index = 1;
-//     for (const auto &answer: this->answers_) {
-//         if (index == this->correct_answer_)
-//             std::cout << std::endl << GREEN << index << ") " << answer << RESET;
-//         else {
-//             std::cout << std::endl << CYAN << index << ") " << answer << RESET;
-//         }
-//         index++;
-//     }
-// }
 
 std::vector<std::string> PollWithGettingAnswer::SeeAnswers() const {
     return this->answers_;

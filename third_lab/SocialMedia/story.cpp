@@ -38,10 +38,6 @@ Story::Story(const std::string &name, const std::string &info, const StorySettin
                             info_(info), settings_(settings), author_(author) {
 }
 
-// void Story::SetId(const std::string &id) {
-//     this->id_ = id;
-// }
-
 void Story::SetName(const std::string &name, const std::string &user) {
     PropertySetter::SetValueWithAuthor(this->name_, name, this->author_, user, "You can't changing info about story",
                                      "You can't set name of your stories empty");

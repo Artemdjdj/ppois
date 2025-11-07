@@ -9,6 +9,7 @@
 #include "../WorkingWithUser/working_with_password.h"
 #include "../SocialMedia/black_list.h"
 #include "../Utils/validator.h"
+#include "../SocialMedia/interest.h"
 
 /*! \class Profile
  *  \brief Класс для представления профиля пользователя
@@ -81,6 +82,51 @@ public:
      */
     std::vector<std::string> GetBlockedUsersNamesFromBlackList();
 
+    /*! \brief Добавление новой книги
+     *  \param book  Книга
+     */
+    void AddBook(const Book &book);
+
+    /*! \brief Удаление книги по ее номеру
+     *  \param number_of_book Номер книги
+     */
+    void DeleteBook(int number_of_book);
+
+    /*! \brief Добавление нового фильма
+     *  \param film  Фильм
+     */
+    void AddFilm(const Film &film);
+
+    /*! \brief Удаление фильма по его номеру
+     *  \param number_of_film Номер фильма
+     */
+    void DeleteFilm(int number_of_film);
+
+    /*! \brief Добавление новой игры
+     *  \param video_game  Игра
+     */
+    void AddVideoGame(const VideoGame &video_game);
+
+    /*! \brief Удаление игры по ее номеру
+     *  \param number_of_game Номер игры
+     */
+    void DeleteVideoGame(int number_of_game);
+
+    /*! \brief Получение всех книг
+     *  \return Вектор книг
+     */
+    std::vector<Book> GetAllBooks() const;
+
+    /*! \brief Получение всех фильмов
+     *  \return Вектор фильмов
+     */
+    std::vector<Film> GetAllFilms() const;
+
+    /*! \brief Получение всех игр
+     *  \return Вектор игр
+     */
+    std::vector<VideoGame> GetAllVideoGames() const;
+
 private:
     std::string username_; /*!< Имя пользователя */
     std::string location_; /*!< Местоположение пользователя */
@@ -89,6 +135,9 @@ private:
     std::string birthday_; /*!< Дата рождения пользователя */
     std::string marital_status_; /*!< Семейное положение пользователя */
     BlackList black_list_; /*!< Черный список пользователя */
+    std::vector<Book> books_; /*!< Список книг */
+    std::vector<Film> films_; /*!< Список фильмов */
+    std::vector<VideoGame> games_; /*!< Список игр */
     int age_; /*!< Возраст пользователя */
 };
 

@@ -25,11 +25,10 @@
 #include <string>
 #include <unordered_set>
 #include <vector>
-#include <../User/user.h>
 #include <functional>
 #include "../Exceptions/exceptions.h"
-#include "validator.h"
 #include <stdexcept>
+#include <memory>
 
 const std::string kMainLogFile = "../Logs/main_log.txt"; /*!< Основной файл для логирования */
 

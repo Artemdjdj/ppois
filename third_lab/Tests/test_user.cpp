@@ -14,6 +14,9 @@ public:
     const std::string user5 ="@Vladus";
     Role role = Role("user");
     Profile profile = Profile(user.GetUsername());
+    Book book = Book("Harry Potter", "fantasy", 6);
+    Film film = Film();
+    VideoGame video_game = VideoGame();
 };
 
 TEST_F(TestUserAndProfile, TestEqUser) {
@@ -162,4 +165,37 @@ TEST_F(TestUserAndProfile, TestDeleteAll) {
     profile.AddUserToBlackList(user4);
     profile.DeleteAllFromBlackList();
     ASSERT_EQ((std::vector<std::string>{}), profile.GetBlockedUsersNamesFromBlackList());
+}
+
+TEST_F(TestUserAndProfile, TestOperationsWithBook) {
+    profile.AddBook(book);
+    ASSERT_EQ(profile.GetAllBooks().size(), 1);
+    ASSERT_THROW(
+        profile.DeleteBook(8),
+        ExceptionIncorrectNumber
+        );
+    profile.DeleteBook(0);
+    ASSERT_EQ(profile.GetAllBooks().size(), 0);
+}
+
+TEST_F(TestUserAndProfile, TestOperationsWithFilm) {
+    profile.AddFilm(film);
+    ASSERT_EQ(profile.GetAllFilms().size(), 1);
+    ASSERT_THROW(
+        profile.DeleteFilm(8),
+        ExceptionIncorrectNumber
+        );
+    profile.DeleteFilm(0);
+    ASSERT_EQ(profile.GetAllFilms().size(), 0);
+}
+
+TEST_F(TestUserAndProfile, TestOperationsWithVideoGame) {
+    profile.AddVideoGame(video_game);
+    ASSERT_EQ(profile.GetAllVideoGames().size(), 1);
+    ASSERT_THROW(
+        profile.DeleteVideoGame(8),
+        ExceptionIncorrectNumber
+        );
+    profile.DeleteVideoGame(0);
+    ASSERT_EQ(profile.GetAllFilms().size(), 0);
 }

@@ -112,12 +112,12 @@ std::string User::GetRole() const {
     return this->role_.GetRole();
 }
 
-const std::unique_ptr<Profile>& User::GetProfile() const{
+const std::unique_ptr<Profile> &User::GetProfile() const {
     return this->profile_;
 }
 
-Profile::Profile(const std::string& username, const std::string &location, const std::string &biography) : username_(username), location_(location), biography_(biography){
-
+Profile::Profile(const std::string &username, const std::string &location,
+                 const std::string &biography) : username_(username), location_(location), biography_(biography) {
 }
 
 void Profile::SetLocation(const std::string &location) {
@@ -133,10 +133,10 @@ void Profile::SetGender(const bool is_man) {
 }
 
 void Profile::SetAge(const int age) {
-    if (age<MIN_AGE) {
+    if (age < MIN_AGE) {
         throw ExceptionIncorrectYear("Age can't be smaller than zero");
     }
-    if (age>MAX_LENGTH_OF_LIFE) {
+    if (age > MAX_LENGTH_OF_LIFE) {
         throw ExceptionIncorrectYear("Age can't be so big");
     }
     this->age_ = age;
@@ -158,11 +158,11 @@ int Profile::GetAge() const {
     return this->age_;
 }
 
-void Profile::AddUserToBlackList(const std::string& user) {
+void Profile::AddUserToBlackList(const std::string &user) {
     this->black_list_.AddUser(user);
 }
 
-void Profile::DeleteUserFromBlackList(const std::string& user) {
+void Profile::DeleteUserFromBlackList(const std::string &user) {
     this->black_list_.DeleteUser(user);
 }
 
@@ -172,4 +172,40 @@ void Profile::DeleteAllFromBlackList() {
 
 std::vector<std::string> Profile::GetBlockedUsersNamesFromBlackList() {
     return this->black_list_.GetBlockedUsersNames();
+}
+
+void Profile::AddBook(const Book &book) {
+    WorkingWithVector::AddElementToVector(this->books_, book);
+}
+
+void Profile::DeleteBook(const int number_of_book) {
+    WorkingWithVector::DeleteElementFromVectorByPos(this->books_, number_of_book);
+}
+
+void Profile::AddFilm(const Film &film) {
+    WorkingWithVector::AddElementToVector(this->films_, film);
+}
+
+void Profile::DeleteFilm(const int number_of_film) {
+    WorkingWithVector::DeleteElementFromVectorByPos(this->films_, number_of_film);
+}
+
+void Profile::AddVideoGame(const VideoGame &video_game) {
+    WorkingWithVector::AddElementToVector(this->games_, video_game);
+}
+
+void Profile::DeleteVideoGame(const int number_of_game) {
+    WorkingWithVector::DeleteElementFromVectorByPos(this->games_, number_of_game);
+}
+
+std::vector<Book> Profile::GetAllBooks() const {
+    return this->books_;
+}
+
+std::vector<Film> Profile::GetAllFilms() const {
+    return this->films_;
+}
+
+std::vector<VideoGame> Profile::GetAllVideoGames() const {
+    return this->games_;
 }
