@@ -9,6 +9,10 @@ const std::vector<std::string> kColors = {"blue", "black", "grey", "green", "red
 const std::vector<std::string> kTypeOfFuels = {"petrol", "diesel", "gas"};/*!< Список разрешенных видов топлива */;
 const std::vector<std::string> kTypeOfMaterialsToBrakeShoe = {"semi-metallic", "organic", "low-metal", "ceramic"};/*!< Список разрешенных материалов для тормозных колодок  */;
 const std::vector<std::string> kSeasons = {"winter", "summer"};/*!< Спосок разрешенных пор года  */;
+constexpr int kSmallVolumeOfGasTank = 30;
+constexpr int kNormalVolumeOfGasTank = 60;
+constexpr int kSmallCountOfHoles 10;
+constexpr int kBigCountOfHoles = 200;
 constexpr int kMaxTemperatureOfStarter = 110;
 constexpr int kMinTemperatureOfStarter = -50;
 constexpr int kMaxTemperatureOfBattery = 70;

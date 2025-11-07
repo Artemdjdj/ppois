@@ -56,3 +56,13 @@ TEST_F(TestWareHouse, TestCheckTypeCarPart) {
 	ASSERT_EQ(detail2->GetInfoAboutPart(), "This detail name is gas tank");
 	delete detail;
 }
+
+TEST_F(TestWareHouse, TestDeleteAllDetails) {
+	CarPart *detail2 = new GasTank();
+	std::string my_id;
+	ware_house.AddNewDetail(detail2, my_id);
+	ASSERT_EQ(ware_house.GetAllDetails().size(),1);
+	ware_house.DeleteAllDetails();
+	ASSERT_EQ(ware_house.GetAllDetails().size(),0);
+	delete detail2;
+}

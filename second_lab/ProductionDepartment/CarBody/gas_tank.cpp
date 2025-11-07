@@ -50,3 +50,13 @@ int GasTank::CheckHowMuchEmptySpace() const {
 bool GasTank::CheckIsMechanicalIndicator() const {
     return this->is_mechanical_indicator_;
 }
+
+std::string GasTank::CheckIsGasTankBig() const {
+    int volume = this->volume_.GetVolume();
+    if (volume <= kSmallVolumeOfGasTank) {
+        return "small";
+    } else if (volume > kSmallVolumeOfGasTank && volume <= kNormalVolumeOfGasTank) {
+        return "normal";
+    }
+    return "big";
+}

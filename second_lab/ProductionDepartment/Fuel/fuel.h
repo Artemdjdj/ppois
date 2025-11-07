@@ -14,7 +14,7 @@
 class Fuel {
 public:
 	/*! \brief Конструктор по умолчанию */
-	Fuel();
+	Fuel() = default;
 
 	/*! \brief Параметризованный конструктор
 	* \param type_of_fuel Тип топлива

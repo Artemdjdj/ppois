@@ -86,6 +86,11 @@ public:
     */
     bool CheckIsMechanicalIndicator() const;
 
+    /*! \brief Проверка объема
+    * \return Тип бензобака (маленький, средний, большой)
+    */
+    std::string CheckIsGasTankBig() const;
+
 private:
     Volume volume_;/*!< Объем бака */;
     Fuel fuel_;/*!< Тип топлива */;

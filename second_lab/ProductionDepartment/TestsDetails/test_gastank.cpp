@@ -79,3 +79,20 @@ TEST_F(TestGasTank, TestIsMechanicalIndicator) {
     gas_tank.SetMechanicalIndicator(true);
 	ASSERT_TRUE(gas_tank.CheckIsMechanicalIndicator());
 }
+
+
+TEST_F(TestGasTank, TestIsBigGasTankSmall) {
+    gas_tank.SetVolume(20);
+	ASSERT_EQ(gas_tank.CheckIsGasTankBig(), "small");
+}
+
+TEST_F(TestGasTank, TestIsBigGasTankNormal) {
+	gas_tank.SetVolume(50);
+	ASSERT_EQ(gas_tank.CheckIsGasTankBig(), "normal");
+}
+
+TEST_F(TestGasTank, TestIsBigGasTankBig) {
+	gas_tank.SetVolume(80);
+	ASSERT_EQ(gas_tank.CheckIsGasTankBig(), "big");
+}
+

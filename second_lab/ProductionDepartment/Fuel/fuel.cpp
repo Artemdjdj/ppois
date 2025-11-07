@@ -4,9 +4,6 @@
 #include "../Include/settings.h"
 #include "../../Exceptions/exceptions.h"
 
-Fuel::Fuel() {
-}
-
 Fuel::Fuel(const std::string &type_of_fuel, const std::string &season){
 	SetTypeOfFuel(type_of_fuel);
 	SetSeason(season);

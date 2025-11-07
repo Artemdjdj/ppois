@@ -30,7 +30,7 @@ int RadiatorGrille::GetDiameter() const {
 }
 
 bool RadiatorGrille::CheckReliabilityOfGrille() const {
-    return this->count_of_holes_ > 200 && this->diameter_of_hole_ < 10;
+    return this->count_of_holes_ > kBigCountOfHoles && this->diameter_of_hole_ < kSmallCountOfHoles;
 }
 
 void RadiatorGrille::SetColor(const Color &color) {

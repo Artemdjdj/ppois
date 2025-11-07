@@ -14,8 +14,6 @@
  *  \details Класс наследуется от std::exception и предоставляет базовый функционал для всех пользовательских исключений
  */
 class Exception : public std::exception {
-private:
-    std::string message; /*!< Сообщение об ошибке */
 public:
     /*! \brief Конструктор с сообщением об ошибке
     *  \param msg Текст сообщения об ошибке
@@ -31,6 +29,9 @@ public:
     *  \return Текст сообщения об ошибке
     */
     const char *what() const noexcept override;
+
+private:
+    std::string message; /*!< Сообщение об ошибке */
 };
 
 /*! \class ExceptionIncorrectRadius
