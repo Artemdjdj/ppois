@@ -49,7 +49,8 @@
 **SteeringWheel** 3 2 → BaseCircle, BaseCircle, SignalButton <br>
 **WareHouse** 2 5 → GeneratorId, CarPart <br>
 
-**Exceptions (13)** <br>
+## Exceptions (13)
+
 **Exception** 1 1 → <br>
 **ExceptionIncorrectRadius** 0 0 → <br>
 **ExceptionIncorrectColor** 0 0 → <br>
@@ -64,13 +65,19 @@
 **ExceptionRuntimeError** 0 0 → <br>
 **ExceptionWayError** 0 0 → <br>
 
+## Итог:
+
+**Примеры ассоциации в качестве поля класса:** 36 <br>
+**Примеры ассоциации в качестве параметра функций:** 26
+<p></p>
+
 **Поля:** 175
 <p></p>
 
 **Поведения:** 127
 <p></p>
 
-**Ассоциации:** 36
+**Ассоциации:** 62
 <p></p>
 
 **Исключения:** 13
