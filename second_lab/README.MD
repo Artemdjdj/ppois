@@ -18,7 +18,7 @@
 **Detail** 2 2 → <br>
 **Prong** 5 2 → <br>
 **Rim** 3 2 → <br>
-**IntakeManifold** 4 2 → Volume, Volume, Tube  <br>
+**IntakeManifold** 4 2 → Volume, Volume, Tube <br>
 **Plata** 2 0 → BasicParams <br>
 **MetalCylinder** 10 0 → BaseCircle, Color <br>
 **MetalLink** 2 0 → Plata, MetalCylinder <br>
@@ -67,8 +67,8 @@
 
 ## Итог:
 
-**Примеры ассоциации в качестве поля класса:** 36 <br>
-**Примеры ассоциации в качестве параметра функций:** 26
+**Примеры ассоциации в качестве полей классов:** 36 <br>
+**Примеры ассоциации в качестве параметров функций:** 26
 <p></p>
 
 **Поля:** 175
