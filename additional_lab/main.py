@@ -19,7 +19,7 @@ def main():
                     new_word = input("Enter word which want to check:\t")
                     result = bloom_filter.check_value(new_word)
                     if result:
-                        print(Fore.BLUE + "Your word might be in the filter, but I can't say for sure!" + Style.RESET_ALL)
+                        print(Fore.BLUE + "Your word might be in the filter!" + Style.RESET_ALL)
                     else:
                         print(Fore.RED + "Your word doesn't exist!" + Style.RESET_ALL)
                 case 3:
