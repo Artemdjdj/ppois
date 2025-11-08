@@ -2,6 +2,7 @@ from bloom_filter import BloomFilter
 from interface import Interface
 from colorama import init, Fore, Style
 
+
 def main():
     start_condition = -1
     bloom_filter = BloomFilter(5, 100)
@@ -29,6 +30,7 @@ def main():
                     print(Fore.RED + "\nInvalid option!" + Style.RESET_ALL)
         except ValueError:
             print(Fore.RED + "\nWrong input!" + Style.RESET_ALL)
+
 
 if __name__ == '__main__':
     main()
